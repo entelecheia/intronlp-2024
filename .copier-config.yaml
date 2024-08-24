@@ -5,16 +5,16 @@ author: Young Joon Lee
 build_and_release: true
 code_template_answers_file: .copier-hyfi-config.yaml
 code_template_source: ''
-codecov_graph_token: usYkLC6aBx
+codecov_graph_token: AaJIunU8cG
 copyright_year: 2024
-documentation_url: https://entelecheia.github.io/course-template-i18n
+documentation_url: https://nlp2024.jeju.ai
 email: entelecheia@hotmail.com
 favicon_path: https://assets.entelecheia.ai/favicon.png
-friendly_name: Course Template Internationalization
-giscus_data_category: Q&A
-giscus_data_category_id: DIC_kwDOH-wD9M4CWANU
-giscus_data_repo_id: R_kgDOH-wD9A
-github_repo_name: course-template-i18n
+friendly_name: Introduction to NLP and LLMs 2024
+giscus_data_category: General
+giscus_data_category_id: DIC_kwDOMnmcQM4Ch5PF
+giscus_data_repo_id: R_kgDOMnmcQA
+github_repo_name: intronlp-2024
 github_username: entelecheia
 google_analytics_id: G-BQJE5V9RK2
 lang_code_1: en
@@ -24,21 +24,16 @@ lang_name_2: 한국어
 logo_path: ''
 main_branch: main
 open_link: true
-package_name: coursetempi
+package_name: nlp2024
 package_scripts:
-- coursetempi = 'coursetempi.__cli__:main'
+- nlp2024 = 'nlp2024.__cli__:main'
 poe_task_files:
 - .tasks.toml
 - .tasks-extra.toml
-project_description: This project provides a comprehensive and flexible template for
-    creating and managing multilingual online courses. It leverages GitHub for version
-    control and Jupyter Book for interactive content delivery, enabling educators
-    to easily develop, maintain, and share their educational materials across different
-    languages and cultures.
+project_description: This course introduces the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies. Students will learn through hands-on practice, starting from basic text processing to advanced language model API utilization and NLP application development. The course emphasizes the use of Large Language Models (LLMs) and prompt engineering, aiming to develop practical skills in applying cutting-edge NLP technologies.
 project_license: CC-BY-4.0
-project_name: course-template-i18n
-project_short_description: Multilingual course creation template with interactive
-    documentation support for international audiences
+project_name: intronlp-2024
+project_short_description: Introduction to the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies.
 upload_to_release: true
 upload_to_repository: true
 use_launch_buttons: true

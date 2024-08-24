@@ -7,10 +7,10 @@ license = "CC-BY-4.0"
 homepage = "https://entelecheia.github.io/course-template-i18n"
 repository = "https://github.com/entelecheia/course-template-i18n"
 readme = "README.md"
-packages = [{ include = "coursetempi", from = "src" }]
+packages = [{ include = "nlp2024", from = "src" }]
 
 [tool.poetry.scripts]
-coursetempi = 'coursetempi.__cli__:main'
+nlp2024 = 'nlp2024.__cli__:main'
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
@@ -101,7 +101,7 @@ tag_format = "v$version"
 branch = "main"
 version_toml = "pyproject.toml:tool.poetry.version"
 version_pattern = '.docker/docker.version:IMAGE_VERSION="{version}"'
-version_variable = "src/coursetempi/_version.py:__version__"
+version_variable = "src/nlp2024/_version.py:__version__"
 version_source = "tag"
 commit_version_number = true # required for version_source = "tag"
 commit_subject = "chore(release): :rocket: {version} [skip ci]"
