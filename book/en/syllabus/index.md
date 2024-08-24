@@ -2,7 +2,7 @@
 
 This course introduces the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies. Students will learn through hands-on practice, starting from basic text processing to advanced language model API utilization and NLP application development. The course emphasizes the use of Large Language Models (LLMs) and prompt engineering, aiming to develop practical skills in applying cutting-edge NLP technologies.
 
-## Learning Objectives:
+## Learning Objectives
 
 1. Understand the basic concepts and key technologies of NLP and language models.
 2. Practice core NLP techniques such as text preprocessing, word embeddings, and transformer architecture.
@@ -11,7 +11,7 @@ This course introduces the fundamental concepts of Natural Language Processing (
 5. Develop skills to design and implement NLP-based web applications.
 6. Understand the ethical aspects of LLM utilization and learn methods for developing safe AI systems.
 
-## Course Outline:
+## Course Outline
 
 Week 1
 
@@ -103,23 +103,25 @@ Week 15
 - Key Learning Content: Sharing results of NLP app development projects
 - Note: Student project presentations, feedback, discussion on future learning directions
 
-## Evaluation:
+## Evaluation
 
 1. Attendance and Participation (10%)
 2. Weekly Practical Assignments (30%)
 3. Midterm Project (25%)
 4. Final Project (35%)
 
-## Reference Materials:
+## Course Materials
 
+- Lecture Note: [https://nlp2024.halla.ai](https://nlp2024.halla.ai)
+- GitHub: [https://github.com/entelecheia/intronlp-2024](https://github.com/entelecheia/intronlp-2024)
 - OpenAI API documentation, Hugging Face documentation, latest NLP-related papers and blog posts
 
-## Prerequisites:
+## Prerequisites
 
 - Basic Python Programming
 - Fundamentals of Statistics and Linear Algebra
 
-## Additional Notes:
+## Additional Notes
 
 - Personal laptop required as the course is practice-oriented
 - Course content may be partially modified to reflect the latest technology trends
