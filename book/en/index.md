@@ -8,8 +8,8 @@
 [![codecov][codecov-image]][codecov-url]
 
 <!-- Links: -->
-[hyperfast python template]: https://github.com/entelecheia/hyperfast-course-template
 
+[hyperfast python template]: https://github.com/entelecheia/hyperfast-course-template
 [codecov-image]: https://codecov.io/gh/entelecheia/course-template-i18n/branch/main/graph/badge.svg?token=usYkLC6aBx
 [codecov-url]: https://codecov.io/gh/entelecheia/course-template-i18n
 [pypi-image]: https://img.shields.io/pypi/v/course-template-i18n
@@ -19,21 +19,21 @@
 [release-date-image]: https://img.shields.io/github/release-date/entelecheia/course-template-i18n
 [release-url]: https://github.com/entelecheia/course-template-i18n/releases
 [jupyter-book-image]: https://jupyterbook.org/en/stable/_images/badge.svg
-
 [repo-url]: https://github.com/entelecheia/course-template-i18n
 [pypi-url]: https://pypi.org/project/course-template-i18n
 [docs-url]: https://entelecheia.github.io/course-template-i18n
 [changelog]: https://github.com/entelecheia/course-template-i18n/blob/main/CHANGELOG.md
 [contributing guidelines]: https://github.com/entelecheia/course-template-i18n/blob/main/CONTRIBUTING.md
+
 <!-- Links: -->
 
-Multilingual course creation template with interactive documentation support for international audiences
+This course introduces the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies. Students will learn through hands-on practice, starting from basic text processing to advanced language model API utilization and NLP application development. The course emphasizes the use of Large Language Models (LLMs) and prompt engineering, aiming to develop practical skills in applying cutting-edge NLP technologies.
 
-- Documentation: [https://entelecheia.github.io/course-template-i18n][docs-url]
-- GitHub: [https://github.com/entelecheia/course-template-i18n][repo-url]
-- PyPI: [https://pypi.org/project/course-template-i18n][pypi-url]
+## Table of Contents
 
-This project provides a comprehensive and flexible template for creating and managing multilingual online courses. It leverages GitHub for version control and Jupyter Book for interactive content delivery, enabling educators to easily develop, maintain, and share their educational materials across different languages and cultures.
+```{tableofcontents}
+
+```
 
 ## Changelog
 
@@ -46,8 +46,3 @@ Contributions are welcome! Please see the [contributing guidelines] for more inf
 ## License
 
 This project is released under the [CC-BY-4.0 License][license-url].
-
-## Table of Contents
-
-```{tableofcontents}
-```
