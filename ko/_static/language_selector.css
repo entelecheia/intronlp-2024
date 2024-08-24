@@ -1,0 +1,86 @@
+/*===========================================================================*/
+/* Language Selector Styles */
+/*===========================================================================*/
+
+/* Container for the language selector */
+.sidebar-lang-select {
+  padding: 0rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--pst-color-border);
+  margin-bottom: 0rem;
+}
+
+/* Center the menu */
+.sidebar-lang-select .menu {
+  display: flex;
+  justify-content: center;
+}
+
+/* Remove bullet points from all menu items in the language selector */
+.sidebar-lang-select .menu,
+.sidebar-lang-select .menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for the top-level menu item (current language) */
+.sidebar-lang-select .menu > ul > li {
+  position: relative;
+}
+
+.sidebar-lang-select .menu > ul > li > a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--pst-color-text-base);
+  text-decoration: none;
+  transition: color 0.25s ease-in-out;
+}
+
+/* Style for menu items on hover and current item */
+.sidebar-lang-select .menu li:hover > a,
+.sidebar-lang-select .menu .current-item > a {
+  color: var(--pst-color-primary);
+}
+
+/* Style for the dropdown arrow */
+.sidebar-lang-select .menu .arrow {
+  margin-left: 0.3rem;
+}
+
+/* Styles for the language submenu */
+.sidebar-lang-select .sub-menu {
+  position: absolute;
+  display: none;
+  background-color: var(--pst-color-surface);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
+/* Show submenu on hover */
+.sidebar-lang-select .menu li:hover .sub-menu {
+  display: block;
+}
+
+/* Style for individual language options in the submenu */
+.sidebar-lang-select .sub-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--pst-color-text-base);
+  text-decoration: none;
+  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+  text-align: center;
+}
+
+/* Style for hovered language options in the submenu */
+.sidebar-lang-select .sub-menu li a:hover,
+.sidebar-lang-select .sub-menu .current-item a {
+  color: var(--pst-color-primary);
+  background-color: var(--pst-color-on-surface);
+}
