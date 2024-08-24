@@ -1,14 +1,24 @@
 # Home
 
+[![halla-img]][halla-url]
+[![home-img]][home-url]
+[![course-img]][course-url]
+[![lecture-img]][lecture-url]
 [![pypi-image]][pypi-url]
-[![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
-[![jupyter-book-image]][docs-url]
-[![codecov][codecov-image]][codecov-url]
 
 <!-- Links: -->
 
+[halla-img]: https://img.shields.io/badge/CHU-halla.ai-blue
+[halla-url]: https://halla.ai
+[home-img]: https://img.shields.io/badge/home-jeju.ai-blue
+[home-url]: https://home.jeju.ai
+[home-repo-url]: https://entelecheia.me/repositories
+[course-img]: https://img.shields.io/badge/course-jeju.ai-blue
+[course-url]: https://course.jeju.ai
+[lecture-img]: https://img.shields.io/badge/lecture-jeju.ai-blue
+[lecture-url]: https://lecture.jeju.ai
 [hyperfast python template]: https://github.com/entelecheia/hyperfast-course-template
 [codecov-image]: https://codecov.io/gh/entelecheia/intronlp-2024/branch/main/graph/badge.svg?token=AaJIunU8cG
 [codecov-url]: https://codecov.io/gh/entelecheia/intronlp-2024
