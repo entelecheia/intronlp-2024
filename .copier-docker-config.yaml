@@ -16,7 +16,7 @@ docker_container_username: dev
 docker_image_variant_name: base
 docker_image_version_variable_name: IMAGE_VERSION
 docker_name_prefix: COURSE_TEMP
-docker_project_name: course-template-i18n
+docker_project_name: intronlp-2024
 docker_registry: ghcr.io
 docker_run_command: zsh
 docker_service_name: workspace
@@ -25,7 +25,7 @@ docker_username: entelecheia
 email: entelecheia@hotmail.com
 enable_nvidia_gpu: true
 friendly_name: Course Template
-github_repo_name: course-template-i18n
+github_repo_name: intronlp-2024
 github_username: entelecheia
 install_dotfiles: true
 jupyter_host_port: 19871

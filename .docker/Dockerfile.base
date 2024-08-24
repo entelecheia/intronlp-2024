@@ -2,7 +2,7 @@
 FROM ghcr.io/entelecheia/devcon:latest-cuda-12.1.0-ubuntu22.04 AS builder
 
 # Sets labels for the image
-LABEL org.opencontainers.image.source="https://github.com/entelecheia/course-template-i18n"
+LABEL org.opencontainers.image.source="https://github.com/entelecheia/intronlp-2024"
 LABEL org.opencontainers.image.description="A template for a course"
 LABEL org.opencontainers.image.licenses="MIT"
 
