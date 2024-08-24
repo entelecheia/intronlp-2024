@@ -45,6 +45,38 @@ This course introduces the fundamental concepts of Natural Language Processing (
 
 ```
 
+## Learning Objectives
+
+1. Understand the basic concepts and key technologies of NLP and language models.
+2. Practice core NLP techniques such as text preprocessing, word embeddings, and transformer architecture.
+3. Learn methods to perform various NLP tasks using LLM APIs.
+4. Master prompt engineering techniques and apply them to solve real-world problems.
+5. Develop skills to design and implement NLP-based web applications.
+6. Understand the ethical aspects of LLM utilization and learn methods for developing safe AI systems.
+
+## Evaluation
+
+1. Attendance and Participation (10%)
+2. Weekly Practical Assignments (30%)
+3. Midterm Project (25%)
+4. Final Project (35%)
+
+## Course Materials
+
+- Lecture Note: [https://nlp2024.halla.ai](https://nlp2024.halla.ai)
+- GitHub: [https://github.com/entelecheia/intronlp-2024](https://github.com/entelecheia/intronlp-2024)
+- OpenAI API documentation, Hugging Face documentation, latest NLP-related papers and blog posts
+
+## Prerequisites
+
+- Basic Python Programming
+- Fundamentals of Statistics and Linear Algebra
+
+## Additional Notes
+
+- Personal laptop required as the course is practice-oriented
+- Course content may be partially modified to reflect the latest technology trends
+
 ## Changelog
 
 See the [CHANGELOG] for more information.
