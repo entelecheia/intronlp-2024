@@ -1,4 +1,4 @@
-"""Command line interface for coursetempi"""
+"""Command line interface for nlp2024"""
 
 # Importing the libraries
 
@@ -8,7 +8,7 @@ import webbrowser
 import click
 import yaml
 
-from coursetempi._version import __version__
+from nlp2024._version import __version__
 
 __package_path__ = os.path.abspath(os.path.dirname(__file__))
 __package_name__ = os.path.basename(__package_path__)

@@ -1,4 +1,4 @@
-from coursetempi._version import __version__
+from nlp2024._version import __version__
 
 
 def get_version() -> str:

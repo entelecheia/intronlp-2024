@@ -67,7 +67,7 @@ sequence = ["clean-cov", "clean-pycache", "clean-build", "clean-docs"]
 help = "remove build artifacts and coverage reports"
 
 [tool.poe.tasks.run]
-cmd = "coursetempi"
+cmd = "nlp2024"
 help = "run the main program"
 
 [tool.poe.tasks.build]

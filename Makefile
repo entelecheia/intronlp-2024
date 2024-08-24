@@ -98,8 +98,8 @@ initialize: install-pipx ## initialize the project environment
 	@pre-commit install
 
 remove-template: ## remove template-specific files
-	@rm -rf src/coursetempi
-	@rm -rf tests/coursetempi
+	@rm -rf src/nlp2024
+	@rm -rf tests/nlp2024
 	@rm -rf CHANGELOG.md
 	@echo "Template-specific files removed."
 
