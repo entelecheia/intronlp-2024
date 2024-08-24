@@ -10,20 +10,20 @@
 <!-- Links: -->
 
 [hyperfast python template]: https://github.com/entelecheia/hyperfast-course-template
-[codecov-image]: https://codecov.io/gh/entelecheia/course-template-i18n/branch/main/graph/badge.svg?token=usYkLC6aBx
-[codecov-url]: https://codecov.io/gh/entelecheia/course-template-i18n
-[pypi-image]: https://img.shields.io/pypi/v/course-template-i18n
-[license-image]: https://img.shields.io/github/license/entelecheia/course-template-i18n
-[license-url]: https://github.com/entelecheia/course-template-i18n/blob/main/LICENSE
-[version-image]: https://img.shields.io/github/v/release/entelecheia/course-template-i18n?sort=semver
-[release-date-image]: https://img.shields.io/github/release-date/entelecheia/course-template-i18n
-[release-url]: https://github.com/entelecheia/course-template-i18n/releases
+[codecov-image]: https://codecov.io/gh/entelecheia/intronlp-2024/branch/main/graph/badge.svg?token=AaJIunU8cG
+[codecov-url]: https://codecov.io/gh/entelecheia/intronlp-2024
+[pypi-image]: https://img.shields.io/pypi/v/intronlp-2024
+[license-image]: https://img.shields.io/github/license/entelecheia/intronlp-2024
+[license-url]: https://github.com/entelecheia/intronlp-2024/blob/main/LICENSE
+[version-image]: https://img.shields.io/github/v/release/entelecheia/intronlp-2024?sort=semver
+[release-date-image]: https://img.shields.io/github/release-date/entelecheia/intronlp-2024
+[release-url]: https://github.com/entelecheia/intronlp-2024/releases
 [jupyter-book-image]: https://jupyterbook.org/en/stable/_images/badge.svg
-[repo-url]: https://github.com/entelecheia/course-template-i18n
-[pypi-url]: https://pypi.org/project/course-template-i18n
-[docs-url]: https://entelecheia.github.io/course-template-i18n
-[changelog]: https://github.com/entelecheia/course-template-i18n/blob/main/CHANGELOG.md
-[contributing guidelines]: https://github.com/entelecheia/course-template-i18n/blob/main/CONTRIBUTING.md
+[repo-url]: https://github.com/entelecheia/intronlp-2024
+[pypi-url]: https://pypi.org/project/intronlp-2024
+[docs-url]: https://nlp2024.jeju.ai/
+[changelog]: https://github.com/entelecheia/intronlp-2024/blob/main/CHANGELOG.md
+[contributing guidelines]: https://github.com/entelecheia/intronlp-2024/blob/main/CONTRIBUTING.md
 
 <!-- Links: -->
 
