@@ -1,4 +1,4 @@
-# The People Behind This Course
+# Who made this book?
 
 This course is directly taught by Professor Young Joon Lee from the Department of Artificial Intelligence at Cheju Halla University, with active participation from undergraduate students. Students attending the course not only learn from the lectures but also gain valuable experience by contributing to the creation of the course content.
 
