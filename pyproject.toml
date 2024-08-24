@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "course-template-i18n"
-version = "0.4.0"
-description = "Multilingual course creation template with interactive documentation support for international audiences"
+name = "intronlp-2024"
+version = "0.0.0"
+description = "Introduction to the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies."
 authors = ["Young Joon Lee <entelecheia@hotmail.com>"]
 license = "CC-BY-4.0"
-homepage = "https://entelecheia.github.io/course-template-i18n"
-repository = "https://github.com/entelecheia/course-template-i18n"
+homepage = "https://nlp2024.jeju.ai"
+repository = "https://github.com/entelecheia/intronlp-2024"
 readme = "README.md"
 packages = [{ include = "nlp2024", from = "src" }]
 
@@ -100,7 +100,6 @@ tag_format = "v$version"
 [tool.semantic_release]
 branch = "main"
 version_toml = "pyproject.toml:tool.poetry.version"
-version_pattern = '.docker/docker.version:IMAGE_VERSION="{version}"'
 version_variable = "src/nlp2024/_version.py:__version__"
 version_source = "tag"
 commit_version_number = true # required for version_source = "tag"

@@ -30,10 +30,16 @@ package_scripts:
 poe_task_files:
 - .tasks.toml
 - .tasks-extra.toml
-project_description: This course introduces the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies. Students will learn through hands-on practice, starting from basic text processing to advanced language model API utilization and NLP application development. The course emphasizes the use of Large Language Models (LLMs) and prompt engineering, aiming to develop practical skills in applying cutting-edge NLP technologies.
+project_description: This course introduces the fundamental concepts of Natural Language
+    Processing (NLP) and advanced language model technologies. Students will learn
+    through hands-on practice, starting from basic text processing to advanced language
+    model API utilization and NLP application development. The course emphasizes the
+    use of Large Language Models (LLMs) and prompt engineering, aiming to develop
+    practical skills in applying cutting-edge NLP technologies.
 project_license: CC-BY-4.0
 project_name: intronlp-2024
-project_short_description: Introduction to the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies.
+project_short_description: Introduction to the fundamental concepts of Natural Language
+    Processing (NLP) and advanced language model technologies.
 upload_to_release: true
 upload_to_repository: true
 use_launch_buttons: true
