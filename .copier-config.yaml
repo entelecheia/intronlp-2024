@@ -1,0 +1,46 @@
+# Changes here will be overwritten by Copier; do NOT edit manually
+_commit: v0.1.0
+_src_path: gh:entelecheia/hyperfast-course-template
+author: Young Joon Lee
+build_and_release: true
+code_template_answers_file: .copier-hyfi-config.yaml
+code_template_source: ''
+codecov_graph_token: usYkLC6aBx
+copyright_year: 2024
+documentation_url: https://entelecheia.github.io/course-template-i18n
+email: entelecheia@hotmail.com
+favicon_path: https://assets.entelecheia.ai/favicon.png
+friendly_name: Course Template Internationalization
+giscus_data_category: Q&A
+giscus_data_category_id: DIC_kwDOH-wD9M4CWANU
+giscus_data_repo_id: R_kgDOH-wD9A
+github_repo_name: course-template-i18n
+github_username: entelecheia
+google_analytics_id: G-BQJE5V9RK2
+lang_code_1: en
+lang_code_2: ko
+lang_name_1: English
+lang_name_2: 한국어
+logo_path: ''
+main_branch: main
+open_link: true
+package_name: coursetempi
+package_scripts:
+- coursetempi = 'coursetempi.__cli__:main'
+poe_task_files:
+- .tasks.toml
+- .tasks-extra.toml
+project_description: This project provides a comprehensive and flexible template for
+    creating and managing multilingual online courses. It leverages GitHub for version
+    control and Jupyter Book for interactive content delivery, enabling educators
+    to easily develop, maintain, and share their educational materials across different
+    languages and cultures.
+project_license: CC-BY-4.0
+project_name: course-template-i18n
+project_short_description: Multilingual course creation template with interactive
+    documentation support for international audiences
+upload_to_release: true
+upload_to_repository: true
+use_launch_buttons: true
+use_source_code_skeleton: true
+

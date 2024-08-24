@@ -1,0 +1,7 @@
+[tool.poe.tasks.hello]
+cmd = "echo 'Hello World'"
+help = "Put your extra tasks here"
+
+[tool.poe.tasks.generate_toc]
+cmd = "python3 .github/scripts/autotoc.py"
+help = "Generate the table of contents"

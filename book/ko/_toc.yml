@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+  - caption: Lecture Notes
+    chapters:
+      - file: week01/index
+        sections:
+          - file: week01/session1
+          - file: week01/session2
+  - caption: About
+    chapters:
+      - file: syllabus/index
+      - file: about/index
+      - url: https://halla.ai
+        title: CHU AI Department

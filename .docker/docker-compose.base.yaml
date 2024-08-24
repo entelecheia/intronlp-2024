@@ -1,0 +1,81 @@
+services:
+  # Defines a service name
+  workspace:
+    build:
+      # Sets the build context to the current directory
+      context: .
+      # Specifies the Dockerfile to use for the build
+      dockerfile: .docker/Dockerfile.base
+      # Specifies build-time variables (ARGs)
+      args:
+        ARG_BUILD_FROM: $BUILD_FROM
+        ARG_USERNAME: $CONTAINER_USERNAME
+        ARG_USER_UID: $CONTAINER_USER_UID
+        ARG_USER_GID: $CONTAINER_USER_GID
+        ARG_WORKSPACE_ROOT: $CONTAINER_WORKSPACE_ROOT
+        ARG_USER_FULLNAME: $CONTAINER_USER_FULLNAME
+        ARG_USER_EMAIL: $CONTAINER_USER_EMAIL
+        ARG_GITHUB_USERNAME: $GITHUB_USERNAME
+        ARG_SYSTEM_HOSTNAME: $CONTAINER_HOSTNAME
+        ARG_WORKSPACE_LOCATION: $CONTAINER_WORKSPACE_LOCATION
+        ARG_DOTFILES_VERSION: $DOTFILES_VERSION
+        ARG_APP_INSTALL_ROOT: $APP_INSTALL_ROOT
+        ARG_APP_DIRNAME: $APP_DIRNAME
+        ARG_CONTAINER_SERVICE_NAME: $CONTAINER_SERVICE_NAME
+    # Sets the image name for the built image
+    image: $IMAGE_NAME:$IMAGE_TAG
+    # Sets the hostname of the container
+    hostname: $CONTAINER_HOSTNAME
+    # Sets tty to true if the container needs a pseudo-TTY
+    tty: true
+    # command:
+    #   # Specifies the command to be executed when the container is run
+    #   - bash
+    #   - $CONTAINER_LAUNCH_SCRIPT
+    # set the environment variables
+    environment:
+      USER_UID: $CONTAINER_USER_UID
+      USER_GID: $CONTAINER_USER_GID
+      USER_FULLNAME: $CONTAINER_USER_FULLNAME
+      USER_EMAIL: $CONTAINER_USER_EMAIL
+      GITHUB_USERNAME: $CONTAINER_GITHUB_USERNAME
+      WORKSPACE_LOCATION: $CONTAINER_WORKSPACE_LOCATION
+      SYSTEM_HOSTNAME: $CONTAINER_HOSTNAME
+      GIT_COMMIT_GPGSIGN: $GIT_COMMIT_GPGSIGN
+      WORKSPACE_ROOT: $CONTAINER_WORKSPACE_ROOT
+      IMAGE_VARIANT: $IMAGE_VARIANT
+      JUPYTER_PORT: $CONTAINER_JUPYTER_PORT
+      JUPYTER_TOKEN: $CONTAINER_JUPYTER_TOKEN
+    ulimits:
+      # Sets the stack size and memory lock limits
+      stack: 67108864
+      memlock: -1
+    # Allows the container to use the host's IPC namespace
+    ipc: $CONTAINER_IPC
+    ports:
+      # Maps the container's SSH and Web service ports to the host's ports
+      - "$HOST_SSH_PORT:$CONTAINER_SSH_PORT"
+      - "$HOST_JUPYTER_PORT:$CONTAINER_JUPYTER_PORT"
+      - "$HOST_WEB_SVC_PORT:$CONTAINER_WEB_SVC_PORT"
+    volumes:
+      # Maps directories from the host to the container
+      - "$HOST_SCRIPTS_DIR:$CONTAINER_WORKSPACE_ROOT/scripts"
+      - "$HOST_HF_HOME:$CONTAINER_HF_HOME"
+      - "$HOST_WORKSPACE_ROOT:$CONTAINER_WORKSPACE_ROOT"
+      - "$HOST_CACHE_DIR:$CONTAINER_CACHE_DIR"
+      - "$HOST_SSH_DIR:$CONTAINER_SSH_DIR"
+      - "$HOST_GH_CONFIG_DIR:$CONTAINER_GH_CONFIG_DIR"
+      - "$HOST_PASSAGE_DIR:$CONTAINER_PASSAGE_DIR"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            # Reserves the specified GPU for the container
+            - driver: nvidia
+              device_ids: ["${CONTAINER_CUDA_DEVICE_ID}"]
+              capabilities: [gpu]
+networks:
+  default:
+    # Sets the name of the default network and makes it external
+    name: $CONTAINER_NETWORK_NAME
+    external: true

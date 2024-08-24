@@ -1,0 +1,103 @@
+#######################################################################################
+# A default configuration that will be loaded for all jupyter books
+# See the documentation for help and more options:
+# https://jupyterbook.org/customize/config.html
+
+#######################################################################################
+# Book settings
+title: "Course Template Internationalization" # The title of the book. Will be placed in the left navbar.
+author: "Young Joon Lee" # The author of the book
+copyright: "2024" # Copyright year to be placed in the footer
+# logo: Path to the book logo
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: cache
+  exclude_patterns:
+    - "*.ipynb"
+  allow_errors: true
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/entelecheia/course-template-i18n # Online location of your book
+  path_to_book: book/ko # Optional path to your book, relative to the repository root
+  branch: main # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
+  favicon: https://assets.entelecheia.ai/favicon.png # favicon: Path to the favicon image
+  google_analytics_id: G-BQJE5V9RK2 # google_analytics_id: Google Analytics ID
+
+sphinx:
+  config:
+    html_extra_path: ["assets"]
+    bibtex_reference_style: author_year
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    intersphinx_mapping:
+      ebp:
+        - "https://executablebooks.org/en/latest/"
+        - null
+      myst-parser:
+        - "https://myst-parser.readthedocs.io/en/latest/"
+        - null
+      myst-nb:
+        - "https://myst-nb.readthedocs.io/en/latest/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master"
+        - null
+      nbformat:
+        - "https://nbformat.readthedocs.io/en/latest"
+        - null
+      sd:
+        - "https://sphinx-design.readthedocs.io/en/latest"
+        - null
+      sphinxproof:
+        - "https://sphinx-proof.readthedocs.io/en/latest/"
+        - null
+    hoverxref_intersphinx:
+      - "sphinxproof"
+    mathjax3_config:
+      tex:
+        macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
+    add_module_names: false
+    autosummary_generate: true
+
+  extra_extensions:
+    - sphinx.ext.intersphinx
+    - sphinx.ext.autodoc
+    - sphinx.ext.autosummary
+    - sphinx.ext.napoleon
+    - sphinx.ext.viewcode
+    - sphinx_inline_tabs
+    - sphinx_proof
+    - sphinx_examples
+    - hoverxref.extension
+    - sphinxcontrib.youtube
+    - sphinxcontrib.video
+    - sphinxcontrib.mermaid
+    - sphinx_thebe
+    - sphinx_carousel.carousel
+    - sphinxcontrib.lastupdate
+
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+  thebe: true

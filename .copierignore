@@ -1,0 +1,7 @@
+.copierignore
+.tasks-extra.toml
+CHANGELOG.md
+Makefile
+.gitignore
+_toc.yml
+.docker/docker.version

@@ -1,0 +1,49 @@
+# Changes here will be overwritten by Copier; do NOT edit manually
+_commit: v0.31.0
+_src_path: gh:entelecheia/hyperfast-docker-template
+app_dirname: course_temp
+app_install_root: /workspace
+author: Young Joon Lee
+build_images_from_dockerfile: true
+container_service_name: app
+container_workspace_root: /workspace
+copy_scripts_dir: true
+cuda_device_id: '6'
+docker_apt_packages: ''
+docker_build_from: ghcr.io/entelecheia/devcon:latest-cuda-12.1.0-ubuntu22.04
+docker_container_uid: 9001
+docker_container_username: dev
+docker_image_variant_name: base
+docker_image_version_variable_name: IMAGE_VERSION
+docker_name_prefix: COURSE_TEMP
+docker_project_name: course-template-i18n
+docker_registry: ghcr.io
+docker_run_command: zsh
+docker_service_name: workspace
+docker_timezone: Asia/Seoul
+docker_username: entelecheia
+email: entelecheia@hotmail.com
+enable_nvidia_gpu: true
+friendly_name: Course Template
+github_repo_name: course-template-i18n
+github_username: entelecheia
+install_dotfiles: true
+jupyter_host_port: 19871
+jupyter_port: 8585
+jupyter_token: ''
+launch_scripts: launch.sh
+main_branch: main
+project_description: A template for a course
+project_license: MIT
+project_short_description: A template for a course
+ssh_host_port: 2341
+ssh_port: 22
+use_deploy_workflows: true
+use_jupyter: true
+use_semantic_versioning_for_image: true
+use_ssh_service: true
+use_tty: true
+use_web_service: true
+web_service_host_port: 18761
+web_service_port: 8080
+
