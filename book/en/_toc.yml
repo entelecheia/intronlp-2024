@@ -10,6 +10,9 @@ parts:
         sections:
           - file: week01/session1
           - file: week01/session2
+  - caption: Projects
+    chapters:
+      - file: projects/index
   - caption: About
     chapters:
       - file: syllabus/index
