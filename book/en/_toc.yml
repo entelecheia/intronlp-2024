@@ -13,6 +13,7 @@ parts:
   - caption: Projects
     chapters:
       - file: projects/index
+      - file: projects/proposal
   - caption: About
     chapters:
       - file: syllabus/index
