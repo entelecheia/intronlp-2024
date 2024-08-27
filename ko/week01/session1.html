@@ -90,6 +90,8 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week01/session1';</script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
@@ -474,7 +476,8 @@ document.write(`
 <section id="id2">
 <h3>1.1 NLP의 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>자연어처리(NLP)는 언어학, 컴퓨터 과학, 인공지능을 결합한 학제간 분야로, 컴퓨터가 인간의 언어를 이해, 해석, 생성할 수 있게 합니다. NLP의 주요 목표는 인간 의사소통과 컴퓨터 이해 사이의 간극을 좁히는 것입니다.</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[자연어처리] --&gt; B[언어학]
     A --&gt; C[컴퓨터 과학]
     A --&gt; D[인공지능]
@@ -485,9 +488,7 @@ document.write(`
     C --&gt; I[데이터 구조]
     D --&gt; J[기계학습]
     D --&gt; K[딥러닝]
-</pre></div>
-</div>
-</section>
+        </div></section>
 <section id="id3">
 <h3>1.2 기본 개념<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>NLP의 주요 개념:</p>
@@ -554,7 +555,8 @@ document.write(`
 </section>
 <section id="id5">
 <h2>2. NLP의 역사적 관점<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>timeline
+<div class="mermaid">
+            timeline
     title NLP의 진화
     1950년대 : 규칙 기반 시스템
     1960년대 : 초기 기계 번역
@@ -564,9 +566,7 @@ document.write(`
     2000년대 : 통계적 기계 번역 &amp; 웹 스케일 데이터
     2010년대 : 딥러닝 &amp; 신경망
     2020년대 : 대규모 언어 모델
-</pre></div>
-</div>
-<section id="id6">
+        </div><section id="id6">
 <h3>2.1 초기 접근법 (1950년대-1980년대)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>초기 NLP 시스템은 주로 규칙 기반으로, 수작업으로 만든 규칙과 전문가 지식에 의존했습니다. 이러한 접근법은 노암 촘스키의 형식 언어 이론의 영향을 받았으며, 이는 언어가 문법 규칙 집합으로 설명될 수 있다고 제안했습니다.</p>
 <p>주요 발전:</p>
@@ -660,7 +660,8 @@ document.write(`
 <section id="nlp-2010">
 <h2>3. 현대 NLP와 딥러닝 (2010년대-현재)<a class="headerlink" href="#nlp-2010" title="Link to this heading">#</a></h2>
 <p>현재 NLP 시대는 특히 트랜스포머 기반 모델을 중심으로 한 딥러닝 접근법의 우세로 특징지어집니다.</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[현대 NLP] --&gt; B[단어 임베딩]
     A --&gt; C[심층 신경망]
     A --&gt; D[트랜스포머 아키텍처]
@@ -671,9 +672,7 @@ document.write(`
     D --&gt; I[BERT]
     D --&gt; J[GPT]
     D --&gt; K[T5]
-</pre></div>
-</div>
-<p>주요 발전:</p>
+        </div><p>주요 발전:</p>
 <ol class="arabic simple">
 <li><p><strong>단어 임베딩</strong>: 단어의 밀집 벡터 표현 (예: Word2Vec, GloVe)</p></li>
 <li><p><strong>순환 신경망(RNN)</strong>: 특히 시퀀스 모델링을 위한 LSTM(Long Short-Term Memory) 네트워크</p></li>
@@ -712,15 +711,14 @@ document.write(`
 <section id="id8">
 <h2>4. 전통적인 NLP 파이프라인<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>전통적인 NLP 파이프라인은 일반적으로 여러 단계로 구성됩니다:</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+<div class="mermaid">
+            graph LR
     A[텍스트 입력] --&gt; B[텍스트 전처리]
     B --&gt; C[특징 추출]
     C --&gt; D[모델 학습]
     D --&gt; E[평가]
     E --&gt; F[응용]
-</pre></div>
-</div>
-<section id="id9">
+        </div><section id="id9">
 <h3>4.1 텍스트 전처리<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>텍스트 전처리는 원시 텍스트 데이터를 정제하고 표준화하는 데 중요합니다. 일반적인 단계는 다음과 같습니다:</p>
 <ol class="arabic simple">

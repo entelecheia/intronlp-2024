@@ -90,6 +90,8 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week01/session2';</script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
@@ -525,16 +527,15 @@ document.write(`
 <li><p>장단기 메모리 네트워크 (LSTMs)</p></li>
 <li><p>텍스트를 위한 합성곱 신경망 (CNNs)</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[NLP에서의 딥 러닝] --&gt; B[RNNs]
     A --&gt; C[LSTMs]
     A --&gt; D[텍스트용 CNNs]
     B --&gt; E[시퀀스 모델링]
     C --&gt; F[장기 의존성]
     D --&gt; G[특징 추출]
-</pre></div>
-</div>
-<p>PyTorch를 사용한 감성 분석을 위한 간단한 RNN 예제:</p>
+        </div><p>PyTorch를 사용한 감성 분석을 위한 간단한 RNN 예제:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
@@ -576,7 +577,8 @@ document.write(`
 <li><p>위치 인코딩</p></li>
 <li><p>피드포워드 신경망</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[트랜스포머] --&gt; B[인코더]
     A --&gt; C[디코더]
     B --&gt; D[자기 주의]
@@ -584,9 +586,7 @@ document.write(`
     C --&gt; F[마스크드 자기 주의]
     C --&gt; G[인코더-디코더 주의]
     C --&gt; H[피드포워드 NN]
-</pre></div>
-</div>
-<p>주요 트랜스포머 기반 모델:</p>
+        </div><p>주요 트랜스포머 기반 모델:</p>
 <ol class="arabic simple">
 <li><p>BERT (Bidirectional Encoder Representations from Transformers)</p></li>
 <li><p>GPT (Generative Pre-trained Transformer)</p></li>
@@ -645,7 +645,8 @@ document.write(`
 <li><p>코드 생성</p></li>
 <li><p>퓨샷 및 제로샷 학습</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[대규모 언어 모델] --&gt; B[퓨샷 학습]
     A --&gt; C[제로샷 학습]
     A --&gt; D[전이 학습]
@@ -654,9 +655,7 @@ document.write(`
     C --&gt; G[예시 없이 작업 수행]
     D --&gt; H[도메인 간 지식 전이]
     E --&gt; I[다중 작업 동시 수행]
-</pre></div>
-</div>
-</section>
+        </div></section>
 <section id="id6">
 <h3>7.2. 예시와 그 영향<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>주요 LLM 예시:</p>

@@ -6,7 +6,7 @@
 
 Natural Language Processing (NLP) is an interdisciplinary field that combines linguistics, computer science, and artificial intelligence to enable computers to understand, interpret, and generate human language. The primary goal of NLP is to bridge the gap between human communication and computer understanding.
 
-```mermaid
+```{mermaid}
 graph TD
     A[Natural Language Processing] --> B[Linguistics]
     A --> C[Computer Science]
@@ -88,7 +88,7 @@ Example: A researcher studying political discourse could use NLP techniques to a
 
 ## 2. Historical Perspective of NLP
 
-```mermaid
+```{mermaid}
 timeline
     title Evolution of NLP
     1950s : Rule-based systems
@@ -199,7 +199,7 @@ This era also saw the emergence of corpus linguistics, which emphasized the stud
 
 The current era of NLP is characterized by the dominance of deep learning approaches, particularly transformer-based models.
 
-```mermaid
+```{mermaid}
 graph TD
     A[Modern NLP] --> B[Word Embeddings]
     A --> C[Deep Neural Networks]
@@ -254,7 +254,7 @@ for text in texts:
 
 The traditional NLP pipeline typically consists of several stages:
 
-```mermaid
+```{mermaid}
 graph LR
     A[Text Input] --> B[Text Preprocessing]
     B --> C[Feature Extraction]

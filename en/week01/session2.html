@@ -90,6 +90,8 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week01/session2';</script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
@@ -525,16 +527,15 @@ document.write(`
 <li><p>Long Short-Term Memory networks (LSTMs)</p></li>
 <li><p>Convolutional Neural Networks (CNNs) for text</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[Deep Learning in NLP] --&gt; B[RNNs]
     A --&gt; C[LSTMs]
     A --&gt; D[CNNs for Text]
     B --&gt; E[Sequence Modeling]
     C --&gt; F[Long-term Dependencies]
     D --&gt; G[Feature Extraction]
-</pre></div>
-</div>
-<p>Example: Simple RNN for sentiment analysis using PyTorch</p>
+        </div><p>Example: Simple RNN for sentiment analysis using PyTorch</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
@@ -576,7 +577,8 @@ document.write(`
 <li><p>Positional encoding</p></li>
 <li><p>Feed-forward neural networks</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[Transformer] --&gt; B[Encoder]
     A --&gt; C[Decoder]
     B --&gt; D[Self-Attention]
@@ -584,9 +586,7 @@ document.write(`
     C --&gt; F[Masked Self-Attention]
     C --&gt; G[Encoder-Decoder Attention]
     C --&gt; H[Feed-Forward NN]
-</pre></div>
-</div>
-<p>Prominent Transformer-based models:</p>
+        </div><p>Prominent Transformer-based models:</p>
 <ol class="arabic simple">
 <li><p>BERT (Bidirectional Encoder Representations from Transformers)</p></li>
 <li><p>GPT (Generative Pre-trained Transformer)</p></li>
@@ -645,7 +645,8 @@ document.write(`
 <li><p>Code generation</p></li>
 <li><p>Few-shot and zero-shot learning</p></li>
 </ol>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div class="mermaid">
+            graph TD
     A[Large Language Models] --&gt; B[Few-shot Learning]
     A --&gt; C[Zero-shot Learning]
     A --&gt; D[Transfer Learning]
@@ -654,9 +655,7 @@ document.write(`
     C --&gt; G[Task Performance without Examples]
     D --&gt; H[Knowledge Transfer Across Domains]
     E --&gt; I[Simultaneous Performance on Multiple Tasks]
-</pre></div>
-</div>
-</section>
+        </div></section>
 <section id="examples-and-their-impact">
 <h3>7.2. Examples and Their Impact<a class="headerlink" href="#examples-and-their-impact" title="Link to this heading">#</a></h3>
 <p>Prominent examples of LLMs include:</p>
