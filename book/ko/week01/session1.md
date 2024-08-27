@@ -6,7 +6,7 @@
 
 자연어처리(NLP)는 언어학, 컴퓨터 과학, 인공지능을 결합한 학제간 분야로, 컴퓨터가 인간의 언어를 이해, 해석, 생성할 수 있게 합니다. NLP의 주요 목표는 인간 의사소통과 컴퓨터 이해 사이의 간극을 좁히는 것입니다.
 
-```mermaid
+```{mermaid}
 graph TD
     A[자연어처리] --> B[언어학]
     A --> C[컴퓨터 과학]
@@ -88,7 +88,7 @@ NLP는 다음과 같은 이유로 사회과학 연구에서 점점 더 중요해
 
 ## 2. NLP의 역사적 관점
 
-```mermaid
+```{mermaid}
 timeline
     title NLP의 진화
     1950년대 : 규칙 기반 시스템
@@ -199,7 +199,7 @@ print(classification_report(y_test, y_pred, target_names=['부정', '긍정', '�
 
 현재 NLP 시대는 특히 트랜스포머 기반 모델을 중심으로 한 딥러닝 접근법의 우세로 특징지어집니다.
 
-```mermaid
+```{mermaid}
 graph TD
     A[현대 NLP] --> B[단어 임베딩]
     A --> C[심층 신경망]
@@ -254,7 +254,7 @@ for text in texts:
 
 전통적인 NLP 파이프라인은 일반적으로 여러 단계로 구성됩니다:
 
-```mermaid
+```{mermaid}
 graph LR
     A[텍스트 입력] --> B[텍스트 전처리]
     B --> C[특징 추출]
