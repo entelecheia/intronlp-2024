@@ -1,4 +1,4 @@
-# Project
+# Team Project
 
 ## 1. Project Overview
 
