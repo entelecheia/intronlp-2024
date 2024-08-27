@@ -57,7 +57,7 @@ The adoption of deep learning techniques in NLP has led to significant improveme
 2. Long Short-Term Memory networks (LSTMs)
 3. Convolutional Neural Networks (CNNs) for text
 
-```mermaid
+```{mermaid}
 graph TD
     A[Deep Learning in NLP] --> B[RNNs]
     A --> C[LSTMs]
@@ -111,7 +111,7 @@ Key components of Transformer architecture:
 3. Positional encoding
 4. Feed-forward neural networks
 
-```mermaid
+```{mermaid}
 graph TD
     A[Transformer] --> B[Encoder]
     A --> C[Decoder]
@@ -182,7 +182,7 @@ Capabilities of LLMs include:
 5. Code generation
 6. Few-shot and zero-shot learning
 
-```mermaid
+```{mermaid}
 graph TD
     A[Large Language Models] --> B[Few-shot Learning]
     A --> C[Zero-shot Learning]
