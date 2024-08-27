@@ -1,4 +1,4 @@
-# Session 2 - Natural Language Processing
+# Session 2 - The Revolution in Modern NLP
 
 ## 6. Evolution Towards Modern NLP
 

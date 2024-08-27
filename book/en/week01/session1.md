@@ -1,4 +1,4 @@
-# Session 1 - Natural Language Processing
+# Session 1 - Foundations and Evolution of NLP
 
 ## 1. Introduction to Natural Language Processing (NLP)
 
