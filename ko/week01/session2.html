@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 2 &#8212; 언어모형과자연어처리 2024</title>
+    <title>세션 2 - 현대 자연어처리의 혁명 &#8212; 언어모형과자연어처리 2024</title>
   
   
   
@@ -97,7 +97,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Syllabus" href="../syllabus/index.html" />
-    <link rel="prev" title="Session 1" href="session1.html" />
+    <link rel="prev" title="세션 1 - 자연어처리의 기초와 발전" href="session1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,9 +213,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 2</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">1주차: 자연어처리 소개</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">세션 2 - 현대 자연어처리의 혁명</a></li>
 </ul>
 </details></li>
 </ul>
@@ -413,7 +413,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -424,11 +426,40 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Session 2</h1>
+    <h1>세션 2 - 현대 자연어처리의 혁명</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">6. 현대 NLP로의 진화</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.1. 단어 임베딩의 도입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.2. NLP에서의 딥 러닝 부상</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3. 트랜스포머 모델의 등장</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms">7. 대규모 언어 모델 (LLMs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.1. 정의와 능력</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.2. 예시와 그 영향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8. NLP 작업의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.1. 작업별 모델에서 범용 모델로</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8.2. 퓨샷 및 제로샷 학습</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">9. 현재 상태와 미래 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">9.1. LLM의 진행 중인 발전</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">9.2. 새로운 도전과 기회</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -438,8 +469,356 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="session-2">
-<h1>Session 2<a class="headerlink" href="#session-2" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>세션 2 - 현대 자연어처리의 혁명<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="nlp">
+<h2>6. 현대 NLP로의 진화<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h2>
+<p>전통적인 NLP 방법에서 현대적 접근 방식으로의 전환은 특히 딥 러닝 분야의 기계 학습 발전에 의해 주도되었습니다. 이러한 진화는 전통적인 NLP 시스템이 직면한 많은 도전 과제들을 해결하고 다양한 NLP 작업에서 성능을 크게 향상시켰습니다.</p>
+<section id="id2">
+<h3>6.1. 단어 임베딩의 도입<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>단어 임베딩은 NLP 시스템에서 단어를 표현하는 방식의 근본적인 변화를 나타냅니다. 전통적인 원-핫 인코딩이나 단어 주머니 모델과 달리, 단어 임베딩은 단어들을 연속적인 벡터 공간의 밀집 벡터로 표현하여 단어 간의 의미적 관계를 포착합니다.</p>
+<p>단어 임베딩의 주요 특징:</p>
+<ul class="simple">
+<li><p>유사한 의미를 가진 단어들은 벡터 공간에서 서로 가깝게 위치합니다.</p></li>
+<li><p>벡터 산술을 통해 의미적 관계를 포착할 수 있습니다.</p></li>
+<li><p>원-핫 인코딩에 비해 낮은 차원의 표현을 사용합니다.</p></li>
+</ul>
+<p>대표적인 단어 임베딩 모델:</p>
+<ol class="arabic simple">
+<li><p>Word2Vec (2013)</p></li>
+<li><p>GloVe (Global Vectors for Word Representation, 2014)</p></li>
+<li><p>FastText (2016)</p></li>
+</ol>
+<p>Gensim을 사용한 Word2Vec 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="nn">gensim.models.word2vec</span> <span class="kn">import</span> <span class="n">LineSentence</span>
+
+<span class="c1"># &#39;corpus.txt&#39; 파일에 문장당 한 줄씩 있다고 가정</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">LineSentence</span><span class="p">(</span><span class="s1">&#39;corpus.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Word2Vec 모델 훈련</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># 유사한 단어 찾기</span>
+<span class="n">similar_words</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;왕&#39;</span><span class="p">,</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;왕&#39;과 가장 유사한 단어들:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">similar_words</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 단어 산술 수행</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;왕&#39;</span><span class="p">,</span> <span class="s1">&#39;여자&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;남자&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">왕 - 남자 + 여자 =&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>단어 임베딩의 장점:</p>
+<ol class="arabic simple">
+<li><p>단어 간의 의미적 관계 포착</p></li>
+<li><p>단어 표현의 차원 축소</p></li>
+<li><p>사전 학습된 임베딩을 사용한 전이 학습 가능</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>6.2. NLP에서의 딥 러닝 부상<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>NLP에서 딥 러닝 기술의 채택은 다양한 작업에서 성능을 크게 향상시켰습니다. NLP에서 사용되는 주요 신경망 아키텍처는 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p>순환 신경망 (RNNs)</p></li>
+<li><p>장단기 메모리 네트워크 (LSTMs)</p></li>
+<li><p>텍스트를 위한 합성곱 신경망 (CNNs)</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[NLP에서의 딥 러닝] --&gt; B[RNNs]
+    A --&gt; C[LSTMs]
+    A --&gt; D[텍스트용 CNNs]
+    B --&gt; E[시퀀스 모델링]
+    C --&gt; F[장기 의존성]
+    D --&gt; G[특징 추출]
+</pre></div>
+</div>
+<p>PyTorch를 사용한 감성 분석을 위한 간단한 RNN 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="k">class</span> <span class="nc">SimpleRNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">hidden</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># 사용 예시 (전처리된 데이터 가정)</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">output_dim</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 이진 감성 (긍정/부정)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SimpleRNN</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>NLP에서 딥 러닝 모델의 장점:</p>
+<ol class="arabic simple">
+<li><p>자동 특징 학습</p></li>
+<li><p>복잡한 패턴과 장거리 의존성 포착 능력</p></li>
+<li><p>다양한 NLP 작업에 적응할 수 있는 유연성</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>6.3. 트랜스포머 모델의 등장<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>2017년 트랜스포머 아키텍처의 소개 (“Attention Is All You Need”, Vaswani et al.)는 NLP의 중요한 이정표가 되었습니다. 트랜스포머는 RNN과 LSTM의 한계, 예를 들어 계산의 병렬화 어려움과 장거리 의존성 포착의 어려움을 해결합니다.</p>
+<p>트랜스포머 아키텍처의 주요 구성 요소:</p>
+<ol class="arabic simple">
+<li><p>자기 주의 메커니즘</p></li>
+<li><p>다중 헤드 주의</p></li>
+<li><p>위치 인코딩</p></li>
+<li><p>피드포워드 신경망</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[트랜스포머] --&gt; B[인코더]
+    A --&gt; C[디코더]
+    B --&gt; D[자기 주의]
+    B --&gt; E[피드포워드 NN]
+    C --&gt; F[마스크드 자기 주의]
+    C --&gt; G[인코더-디코더 주의]
+    C --&gt; H[피드포워드 NN]
+</pre></div>
+</div>
+<p>주요 트랜스포머 기반 모델:</p>
+<ol class="arabic simple">
+<li><p>BERT (Bidirectional Encoder Representations from Transformers)</p></li>
+<li><p>GPT (Generative Pre-trained Transformer)</p></li>
+<li><p>T5 (Text-to-Text Transfer Transformer)</p></li>
+</ol>
+<p>시퀀스 분류를 위한 사전 학습된 BERT 모델 사용 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span><span class="p">,</span> <span class="n">BertForSequenceClassification</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># 사전 학습된 모델과 토크나이저 로드</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;bert-base-multilingual-uncased&#39;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="c1"># 예시 텍스트</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;이 영화는 정말 환상적이에요! 정말 즐겁게 봤습니다.&quot;</span>
+
+<span class="c1"># 텍스트 토큰화 및 인코딩</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+
+<span class="c1"># 예측</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+    <span class="n">predicted_class</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;예측된 클래스: </span><span class="si">{</span><span class="n">predicted_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>트랜스포머 모델의 장점:</p>
+<ol class="arabic simple">
+<li><p>병렬화 가능한 계산</p></li>
+<li><p>장거리 의존성 포착 능력</p></li>
+<li><p>대규모 코퍼스에 대한 효과적인 사전 학습</p></li>
+<li><p>다양한 NLP 작업에서 최고 수준의 성능</p></li>
+</ol>
+</section>
+</section>
+<section id="llms">
+<h2>7. 대규모 언어 모델 (LLMs)<a class="headerlink" href="#llms" title="Link to this heading">#</a></h2>
+<p>대규모 언어 모델은 현재 NLP 분야의 최첨단 기술을 대표하며, 언어 이해와 생성에 있어 전례 없는 능력을 제공합니다.</p>
+<section id="id5">
+<h3>7.1. 정의와 능력<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>LLM은 일반적으로 트랜스포머 아키텍처를 기반으로 한 대규모 신경망으로, 방대한 양의 텍스트 데이터로 훈련됩니다. LLM의 특징:</p>
+<ol class="arabic simple">
+<li><p>수십억 개의 매개변수</p></li>
+<li><p>다양하고 방대한 코퍼스에 대한 학습</p></li>
+<li><p>작업별 학습 없이 광범위한 언어 작업 수행 능력</p></li>
+</ol>
+<p>LLM의 주요 능력:</p>
+<ol class="arabic simple">
+<li><p>텍스트 생성</p></li>
+<li><p>질문 답변</p></li>
+<li><p>요약</p></li>
+<li><p>번역</p></li>
+<li><p>코드 생성</p></li>
+<li><p>퓨샷 및 제로샷 학습</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[대규모 언어 모델] --&gt; B[퓨샷 학습]
+    A --&gt; C[제로샷 학습]
+    A --&gt; D[전이 학습]
+    A --&gt; E[다중 작업 학습]
+    B --&gt; F[최소한의 예시로 작업 적응]
+    C --&gt; G[예시 없이 작업 수행]
+    D --&gt; H[도메인 간 지식 전이]
+    E --&gt; I[다중 작업 동시 수행]
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>7.2. 예시와 그 영향<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>주요 LLM 예시:</p>
+<ol class="arabic simple">
+<li><p>GPT-3 및 GPT-4 (OpenAI)</p></li>
+<li><p>PaLM (Google)</p></li>
+<li><p>BLOOM (BigScience)</p></li>
+<li><p>LLaMA (Meta)</p></li>
+</ol>
+<p>이러한 모델들은 다양한 분야에서 놀라운 능력을 보여주었습니다:</p>
+<ol class="arabic simple">
+<li><p>자연어 이해 및 생성</p></li>
+<li><p>코드 생성 및 디버깅</p></li>
+<li><p>창의적 글쓰기 및 스토리텔링</p></li>
+<li><p>언어 번역</p></li>
+<li><p>질문 답변 및 정보 검색</p></li>
+</ol>
+<p>OpenAI GPT-3 API를 사용한 텍스트 생성 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="c1"># OpenAI API 키 설정</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;여러분의-api-키&#39;</span>
+
+<span class="k">def</span> <span class="nf">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-002&quot;</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># 사용 예시</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;양자 컴퓨팅의 개념을 간단히 설명해주세요:&quot;</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generated_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>LLM의 영향:</p>
+<ol class="arabic simple">
+<li><p>자연어 인터페이스의 혁신</p></li>
+<li><p>더 정교한 AI 어시스턴트 구현</p></li>
+<li><p>다양한 분야의 연구 및 개발 가속화</p></li>
+<li><p>AI 능력과 잠재적 오용에 대한 윤리적 우려 제기</p></li>
+</ol>
+</section>
+</section>
+<section id="id7">
+<h2>8. NLP 작업의 패러다임 전환<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>LLM의 등장은 NLP 작업에 접근하고 해결하는 방식에 중요한 패러다임 전환을 가져왔습니다.</p>
+<section id="id8">
+<h3>8.1. 작업별 모델에서 범용 모델로<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>전통적인 NLP 접근 방식은 종종 각 특정 작업에 대해 별도의 모델을 개발하는 것이었습니다. 이와 대조적으로 LLM은 더 다재다능한 접근 방식을 제공합니다:</p>
+<ol class="arabic simple">
+<li><p>다중 작업을 위한 단일 모델</p></li>
+<li><p>미세 조정 또는 프롬프팅을 통한 적응</p></li>
+<li><p>작업별 데이터 주석 필요성 감소</p></li>
+</ol>
+<p>범용 모델의 장점:</p>
+<ol class="arabic simple">
+<li><p>개발 시간 및 리소스 감소</p></li>
+<li><p>전이 학습을 통한 성능 향상</p></li>
+<li><p>새로운 작업에 빠르게 적응할 수 있는 유연성</p></li>
+</ol>
+</section>
+<section id="id9">
+<h3>8.2. 퓨샷 및 제로샷 학습<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>LLM은 대규모 작업별 데이터셋의 필요성을 줄이는 새로운 학습 패러다임을 도입했습니다:</p>
+<ol class="arabic simple">
+<li><p>퓨샷 학습: 몇 가지 예시만으로 작업 수행</p></li>
+<li><p>제로샷 학습: 특정 학습 예시 없이 작업 완료</p></li>
+</ol>
+<p>GPT-3를 사용한 제로샷 분류 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zero_shot_classification</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">categories</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;다음 텍스트를 주어진 카테고리 중 하나로 분류하세요: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span><span class="si">}</span><span class="s2">.</span><span class="se">\n\n</span><span class="s2">텍스트: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">카테고리:&quot;</span>
+    <span class="k">return</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 사용 예시</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;오늘 주식 시장은 기술주 주도로 큰 상승세를 보였습니다.&quot;</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;정치&quot;</span><span class="p">,</span> <span class="s2">&quot;경제&quot;</span><span class="p">,</span> <span class="s2">&quot;스포츠&quot;</span><span class="p">,</span> <span class="s2">&quot;기술&quot;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">zero_shot_classification</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">categories</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;분류된 카테고리: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>퓨샷 및 제로샷 학습의 장점:</p>
+<ol class="arabic simple">
+<li><p>대규모 레이블링된 데이터셋에 대한 의존도 감소</p></li>
+<li><p>새로운 작업이나 도메인에 빠르게 적응할 수 있는 능력</p></li>
+<li><p>보지 못한 예시에 대한 일반화 능력 향상</p></li>
+</ol>
+</section>
+</section>
+<section id="id10">
+<h2>9. 현재 상태와 미래 방향<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="llm">
+<h3>9.1. LLM의 진행 중인 발전<a class="headerlink" href="#llm" title="Link to this heading">#</a></h3>
+<p>LLM 관련 현재 연구는 여러 주요 영역에 초점을 맞추고 있습니다:</p>
+<ol class="arabic simple">
+<li><p>모델 크기를 더욱 확장 (예: GPT-4, PaLM)</p></li>
+<li><p>효율성 개선 및 계산 요구사항 감소</p></li>
+<li><p>사실적 정확성 향상 및 환각 현상 감소</p></li>
+<li><p>더 제어 가능하고 조정 가능한 모델 개발</p></li>
+<li><p>텍스트, 이미지, 오디오를 처리할 수 있는 다중 모달 모델 생성</p></li>
+</ol>
+<p>새롭게 등장하는 기술:</p>
+<ol class="arabic simple">
+<li><p>검색 증강 생성</p></li>
+<li><p>개선된 안전성과 정렬을 위한 헌법적 AI</p></li>
+<li><p>효율적인 미세 조정 방법 (예: LoRA, 프리픽스 튜닝)</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>9.2. 새로운 도전과 기회<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>NLP가 계속 발전함에 따라 연구자들과 실무자들은 새로운 도전과 기회에 직면하고 있습니다:</p>
+<p>도전:</p>
+<ol class="arabic simple">
+<li><p>윤리적 문제 (편향, 프라이버시, 오용)</p></li>
+<li><p>모델 결정의 해석 가능성과 설명 가능성</p></li>
+<li><p>사실적 정확성 보장 및 잘못된 정보 감소</p></li>
+<li><p>대규모 모델 학습과 관련된 환경 문제 해결</p></li>
+</ol>
+<p>기회:</p>
+<ol class="arabic simple">
+<li><p>인간-AI 협업 발전</p></li>
+<li><p>강력한 NLP 도구에 대한 접근성 민주화</p></li>
+<li><p>AI 능력의 경계 확장</p></li>
+<li><p>다양한 분야의 복잡한 실제 문제 해결</p></li>
+</ol>
+<p>LLM의 잠재적 편향성 탐색 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">probe_model_bias</span><span class="p">(</span><span class="n">demographic_groups</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    다음 인구통계학적 그룹에 대한 언어 모델 응답의 잠재적 편향성을 분석하세요: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">demographic_groups</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">    컨텍스트: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+
+<span class="s2">    각 그룹에 대해 잠재적 편향성에 대한 간단한 분석을 제공하세요:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># 사용 예시</span>
+<span class="n">demographics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;성별&quot;</span><span class="p">,</span> <span class="s2">&quot;인종&quot;</span><span class="p">,</span> <span class="s2">&quot;나이&quot;</span><span class="p">,</span> <span class="s2">&quot;사회경제적 지위&quot;</span><span class="p">]</span>
+<span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;기술 업계에서의 구직자 평가&quot;</span>
+<span class="n">bias_analysis</span> <span class="o">=</span> <span class="n">probe_model_bias</span><span class="p">(</span><span class="n">demographics</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bias_analysis</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>결론<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>현대적 접근 방식, 특히 대규모 언어 모델의 발전으로 NLP는 크게 변화했습니다. 이러한 발전은 전통적인 방법의 많은 한계를 해결하고 자연어 이해와 생성의 새로운 가능성을 열었습니다.</p>
+<p>주요 요점:</p>
+<ol class="arabic simple">
+<li><p>단어 임베딩과 딥 러닝 기술은 NLP 성능을 크게 향상시켰습니다.</p></li>
+<li><p>트랜스포머 모델, 특히 LLM은 현재 NLP의 최첨단 기술을 대표합니다.</p></li>
+<li><p>범용 모델과 퓨샷/제로샷 학습으로의 패러다임 전환은 NLP 작업에 접근하는 방식을 변화시켰습니다.</p></li>
+<li><p>LLM의 지속적인 발전은 흥미로운 기회와 함께 중요한 도전 과제를 제시합니다.</p></li>
+</ol>
+<p>앞으로 나아가면서, 이러한 기술의 엄청난 잠재력과 그 한계 및 윤리적 함의를 신중히 고려하는 것이 중요합니다. NLP의 미래는 인간-AI 상호작용을 발전시키고 다양한 분야에서 복잡한 문제를 해결하는 데 큰 가능성을 보여줍니다.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +859,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Session 1</p>
+        <p class="prev-next-title">세션 1 - 자연어처리의 기초와 발전</p>
       </div>
     </a>
     <a class="right-next"
@@ -498,6 +877,42 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">6. 현대 NLP로의 진화</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.1. 단어 임베딩의 도입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.2. NLP에서의 딥 러닝 부상</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3. 트랜스포머 모델의 등장</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms">7. 대규모 언어 모델 (LLMs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.1. 정의와 능력</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.2. 예시와 그 영향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8. NLP 작업의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.1. 작업별 모델에서 범용 모델로</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8.2. 퓨샷 및 제로샷 학습</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">9. 현재 상태와 미래 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">9.1. LLM의 진행 중인 발전</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">9.2. 새로운 도전과 기회</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

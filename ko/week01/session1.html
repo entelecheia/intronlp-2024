@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 1 &#8212; 언어모형과자연어처리 2024</title>
+    <title>세션 1 - 자연어처리의 기초와 발전 &#8212; 언어모형과자연어처리 2024</title>
   
   
   
@@ -96,8 +96,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Session 2" href="session2.html" />
-    <link rel="prev" title="Week 1" href="index.html" />
+    <link rel="next" title="세션 2 - 현대 자연어처리의 혁명" href="session2.html" />
+    <link rel="prev" title="1주차: 자연어처리 소개" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,9 +213,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session2.html">Session 2</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">1주차: 자연어처리 소개</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
 </ul>
 </details></li>
 </ul>
@@ -413,7 +413,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -424,11 +426,38 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Session 1</h1>
+    <h1>세션 1 - 자연어처리의 기초와 발전</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">1. 자연어처리(NLP) 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 NLP의 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2 기본 개념</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.3 사회과학 연구에서의 중요성</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. NLP의 역사적 관점</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 초기 접근법 (1950년대-1980년대)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2 통계적 혁명 (1980년대-2000년대)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-2010">3. 현대 NLP와 딥러닝 (2010년대-현재)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4. 전통적인 NLP 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.1 텍스트 전처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.2 특징 추출</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.3 모델 학습 및 평가</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. 전통적인 NLP의 도전 과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결론</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -438,8 +467,507 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="session-1">
-<h1>Session 1<a class="headerlink" href="#session-1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>세션 1 - 자연어처리의 기초와 발전<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="nlp">
+<h2>1. 자연어처리(NLP) 소개<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>1.1 NLP의 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>자연어처리(NLP)는 언어학, 컴퓨터 과학, 인공지능을 결합한 학제간 분야로, 컴퓨터가 인간의 언어를 이해, 해석, 생성할 수 있게 합니다. NLP의 주요 목표는 인간 의사소통과 컴퓨터 이해 사이의 간극을 좁히는 것입니다.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[자연어처리] --&gt; B[언어학]
+    A --&gt; C[컴퓨터 과학]
+    A --&gt; D[인공지능]
+    B --&gt; E[구문론]
+    B --&gt; F[의미론]
+    B --&gt; G[화용론]
+    C --&gt; H[알고리즘]
+    C --&gt; I[데이터 구조]
+    D --&gt; J[기계학습]
+    D --&gt; K[딥러닝]
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>1.2 기본 개념<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>NLP의 주요 개념:</p>
+<ol class="arabic simple">
+<li><p><strong>토큰화</strong>: 텍스트를 개별 단어나 하위 단어로 분리</p></li>
+<li><p><strong>구문 분석</strong>: 문장의 문법 구조 분석</p></li>
+<li><p><strong>의미 분석</strong>: 단어와 문장의 의미 해석</p></li>
+<li><p><strong>개체명 인식(NER)</strong>: 텍스트에서 명명된 개체 식별 및 분류</p></li>
+<li><p><strong>품사 태깅(POS Tagging)</strong>: 단어에 문법적 범주 할당</p></li>
+<li><p><strong>감성 분석</strong>: 텍스트의 감정적 톤 결정</p></li>
+</ol>
+<p>파이썬의 Natural Language Toolkit (NLTK)를 사용한 간단한 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">pos_tag</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">names</span>
+<span class="kn">from</span> <span class="nn">nltk.chunk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;maxent_ne_chunker&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+
+<span class="c1"># 예문</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;존은 뉴욕의 구글에서 일합니다.&quot;</span>
+
+<span class="c1"># 토큰화</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;토큰:&quot;</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># 품사 태깅</span>
+<span class="n">pos_tags</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;품사 태그:&quot;</span><span class="p">,</span> <span class="n">pos_tags</span><span class="p">)</span>
+
+<span class="c1"># 개체명 인식</span>
+<span class="n">ner_tree</span> <span class="o">=</span> <span class="n">ne_chunk</span><span class="p">(</span><span class="n">pos_tags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;개체명:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">ner_tree</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>출력:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">토큰</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;존은&#39;</span><span class="p">,</span> <span class="s1">&#39;뉴욕의&#39;</span><span class="p">,</span> <span class="s1">&#39;구글에서&#39;</span><span class="p">,</span> <span class="s1">&#39;일합니다&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="n">품사</span> <span class="n">태그</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;존은&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;뉴욕의&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;구글에서&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;일합니다&#39;</span><span class="p">,</span> <span class="s1">&#39;VBP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)]</span>
+<span class="n">개체명</span><span class="p">:</span>
+<span class="n">PERSON</span> <span class="n">존은</span>
+<span class="n">GPE</span> <span class="n">뉴욕의</span>
+<span class="n">ORGANIZATION</span> <span class="n">구글에서</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>1.3 사회과학 연구에서의 중요성<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>NLP는 다음과 같은 이유로 사회과학 연구에서 점점 더 중요해지고 있습니다:</p>
+<ol class="arabic simple">
+<li><p>소셜 미디어 게시물, 역사적 문서, 설문 응답 등 대규모 텍스트 데이터 분석 가능</p></li>
+<li><p>비구조화된 텍스트에서 인사이트를 추출하여 인간 의사소통의 패턴과 트렌드 파악</p></li>
+<li><p>내용 분석 및 코딩 자동화로 시간 절약 및 질적 연구의 인간 편향 감소</p></li>
+<li><p>자동 번역 및 분석을 통한 문화 간, 다국어 연구 촉진</p></li>
+<li><p>여론 파악을 위한 감성 분석 및 의견 마이닝 개선</p></li>
+</ol>
+<p>예: 정치 담론을 연구하는 연구자는 NLP 기술을 사용하여 선거 캠페인 동안 수천 개의 트윗을 분석하여 주요 주제, 후보자에 대한 감성, 시간에 따른 여론 변화 등을 파악할 수 있습니다.</p>
+</section>
+</section>
+<section id="id5">
+<h2>2. NLP의 역사적 관점<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>timeline
+    title NLP의 진화
+    1950년대 : 규칙 기반 시스템
+    1960년대 : 초기 기계 번역
+    1970년대 : 개념적 온톨로지
+    1980년대 : 통계적 NLP 시작
+    1990년대 : 기계학습 접근법
+    2000년대 : 통계적 기계 번역 &amp; 웹 스케일 데이터
+    2010년대 : 딥러닝 &amp; 신경망
+    2020년대 : 대규모 언어 모델
+</pre></div>
+</div>
+<section id="id6">
+<h3>2.1 초기 접근법 (1950년대-1980년대)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>초기 NLP 시스템은 주로 규칙 기반으로, 수작업으로 만든 규칙과 전문가 지식에 의존했습니다. 이러한 접근법은 노암 촘스키의 형식 언어 이론의 영향을 받았으며, 이는 언어가 문법 규칙 집합으로 설명될 수 있다고 제안했습니다.</p>
+<p>주요 발전:</p>
+<ol class="arabic simple">
+<li><p><strong>ELIZA (1966)</strong>: 패턴 매칭과 대체 규칙을 사용하여 심리치료사의 응답을 시뮬레이션하는 초기 챗봇 중 하나.</p></li>
+<li><p><strong>SHRDLU (1970)</strong>: 단순화된 블록 세계에서 명령을 해석하고 응답할 수 있는 자연어 이해 프로그램.</p></li>
+<li><p><strong>개념 의존성 이론 (1970년대)</strong>: Roger Schank이 제안한 이론으로, 문장의 의미를 언어 독립적 형식으로 표현하는 것을 목표로 함.</p></li>
+</ol>
+<p>ELIZA와 유사한 패턴 매칭 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;나는 (.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;당신이 </span><span class="si">{}</span><span class="s2">라고 말씀하시는 이유가 무엇인가요?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;나는 당신을 (.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;당신이 저를 </span><span class="si">{}</span><span class="s2">하는 이유가 무엇인가요?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*) 죄송합니다 (.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;사과할 필요가 없습니다.&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;안녕(.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;안녕하세요! 오늘 어떤 도움이 필요하신가요?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;그것에 대해 좀 더 자세히 설명해 주시겠어요?&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">eliza_response</span><span class="p">(</span><span class="n">input_text</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">input_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.!&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+    <span class="k">return</span> <span class="s2">&quot;잘 이해하지 못했습니다. 다르게 표현해 주시겠어요?&quot;</span>
+
+<span class="c1"># 사용 예</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;당신: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;종료&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ELIZA:&quot;</span><span class="p">,</span> <span class="n">eliza_response</span><span class="p">(</span><span class="n">user_input</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>초기 접근법의 한계:</p>
+<ul class="simple">
+<li><p>복잡하거나 모호한 언어 처리 불가</p></li>
+<li><p>모든 가능한 언어적 변형을 포함하도록 확장하기 어려움</p></li>
+<li><p>새로운 도메인이나 언어에 적응하기 어려움</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>2.2 통계적 혁명 (1980년대-2000년대)<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>1980년대에는 NLP에서 통계적 방법으로의 전환이 일어났습니다. 이는 다음과 같은 요인에 의해 주도되었습니다:</p>
+<ol class="arabic simple">
+<li><p>디지털 텍스트 코퍼스의 가용성 증가</p></li>
+<li><p>컴퓨팅 파워의 성장</p></li>
+<li><p>기계학습 기술의 발전</p></li>
+</ol>
+<p>주요 발전:</p>
+<ol class="arabic simple">
+<li><p><strong>은닉 마르코프 모델(HMMs)</strong>: 품사 태깅 및 음성 인식에 사용</p></li>
+<li><p><strong>확률적 문맥 자유 문법(PCFGs)</strong>: 구문 분석 작업에 적용</p></li>
+<li><p><strong>IBM 모델</strong>: 통계적 기계 번역의 선구자</p></li>
+<li><p><strong>최대 엔트로피 모델</strong>: NLP의 다양한 분류 작업에 사용</p></li>
+</ol>
+<p>감성 분석을 위한 간단한 나이브 베이즈 분류기 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># 샘플 데이터</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;이 영화는 정말 좋았어요&quot;</span><span class="p">,</span> <span class="s2">&quot;훌륭한 영화, 강력 추천합니다&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;최악의 영화, 시간 낭비였어요&quot;</span><span class="p">,</span> <span class="s2">&quot;이 영화가 싫어요&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;이 영화에 대해 중립적인 의견이에요&quot;</span><span class="p">,</span> <span class="s2">&quot;그저 그랬어요, 특별한 건 없었어요&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 1: 긍정, 0: 부정, 2: 중립</span>
+
+<span class="c1"># 데이터 분할</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># 텍스트 벡터화</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">X_train_vec</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_vec</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># 나이브 베이즈 분류기 학습</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_vec</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 예측 및 평가</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_vec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;부정&#39;</span><span class="p">,</span> <span class="s1">&#39;긍정&#39;</span><span class="p">,</span> <span class="s1">&#39;중립&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>이 시기에는 또한 실제 세계의 대규모 텍스트 데이터 컬렉션을 통한 언어 연구를 강조하는 말뭉치 언어학이 등장했습니다.</p>
+</section>
+</section>
+<section id="nlp-2010">
+<h2>3. 현대 NLP와 딥러닝 (2010년대-현재)<a class="headerlink" href="#nlp-2010" title="Link to this heading">#</a></h2>
+<p>현재 NLP 시대는 특히 트랜스포머 기반 모델을 중심으로 한 딥러닝 접근법의 우세로 특징지어집니다.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[현대 NLP] --&gt; B[단어 임베딩]
+    A --&gt; C[심층 신경망]
+    A --&gt; D[트랜스포머 아키텍처]
+    B --&gt; E[Word2Vec]
+    B --&gt; F[GloVe]
+    C --&gt; G[RNN/LSTM]
+    C --&gt; H[NLP를 위한 CNN]
+    D --&gt; I[BERT]
+    D --&gt; J[GPT]
+    D --&gt; K[T5]
+</pre></div>
+</div>
+<p>주요 발전:</p>
+<ol class="arabic simple">
+<li><p><strong>단어 임베딩</strong>: 단어의 밀집 벡터 표현 (예: Word2Vec, GloVe)</p></li>
+<li><p><strong>순환 신경망(RNN)</strong>: 특히 시퀀스 모델링을 위한 LSTM(Long Short-Term Memory) 네트워크</p></li>
+<li><p><strong>트랜스포머 아키텍처</strong>: 다양한 NLP 작업에서 성능을 혁신한 주의 기반 모델</p></li>
+</ol>
+<p>감성 분석을 위한 사전 학습된 BERT 모델 사용 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSequenceClassification</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># 사전 학습된 모델과 토크나이저 로드</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;nlptown/bert-base-multilingual-uncased-sentiment&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">analyze_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 1부터 5까지의 점수</span>
+    <span class="k">return</span> <span class="n">sentiment_score</span>
+
+<span class="c1"># 사용 예</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;이 영화는 정말 좋았어요! 환상적이었습니다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;영화는 그저 그랬어요, 특별한 건 없었어요.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;최악의 영화였어요. 연기도 형편없고 줄거리도 엉망이었습니다.&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+    <span class="n">sentiment</span> <span class="o">=</span> <span class="n">analyze_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;텍스트: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;감성 점수 (1-5): </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2>4. 전통적인 NLP 파이프라인<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>전통적인 NLP 파이프라인은 일반적으로 여러 단계로 구성됩니다:</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    A[텍스트 입력] --&gt; B[텍스트 전처리]
+    B --&gt; C[특징 추출]
+    C --&gt; D[모델 학습]
+    D --&gt; E[평가]
+    E --&gt; F[응용]
+</pre></div>
+</div>
+<section id="id9">
+<h3>4.1 텍스트 전처리<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>텍스트 전처리는 원시 텍스트 데이터를 정제하고 표준화하는 데 중요합니다. 일반적인 단계는 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p>토큰화: 텍스트를 단어나 하위 단어로 분리</p></li>
+<li><p>소문자화: 모든 텍스트를 소문자로 변환하여 차원을 줄임</p></li>
+<li><p>노이즈 제거: 관련 없는 문자나 형식 제거</p></li>
+<li><p>어간 추출 및 표제어 추출: 단어를 어근 형태로 축소</p></li>
+</ol>
+<p>NLTK를 사용한 전처리 파이프라인 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span><span class="p">,</span> <span class="n">WordNetLemmatizer</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># 토큰화 및 소문자화</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="c1"># 불용어 제거 및 알파벳이 아닌 토큰 제거</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="ow">and</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+
+    <span class="c1"># 어간 추출</span>
+    <span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+    <span class="n">stemmed_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+
+    <span class="c1"># 표제어 추출</span>
+    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+    <span class="n">lemmatized_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;원본&#39;</span><span class="p">:</span> <span class="n">tokens</span><span class="p">,</span>
+        <span class="s1">&#39;어간 추출&#39;</span><span class="p">:</span> <span class="n">stemmed_tokens</span><span class="p">,</span>
+        <span class="s1">&#39;표제어 추출&#39;</span><span class="p">:</span> <span class="n">lemmatized_tokens</span>
+    <span class="p">}</span>
+
+<span class="c1"># 사용 예</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;고양이들이 숲을 통해 빠르게 달리고 있습니다.&quot;</span>
+<span class="n">preprocessed</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;원본 토큰:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;원본&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;어간 추출 토큰:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;어간 추출&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;표제어 추출 토큰:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;표제어 추출&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>4.2 특징 추출<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>특징 추출은 텍스트를 기계 학습 모델이 처리할 수 있는 수치 표현으로 변환하는 과정입니다. 일반적인 기법으로는:</p>
+<ol class="arabic simple">
+<li><p>단어 주머니 모델: 단어 빈도를 벡터로 표현</p></li>
+<li><p>TF-IDF (Term Frequency-Inverse Document Frequency): 문서와 말뭉치에서의 중요도에 따라 단어에 가중치 부여</p></li>
+<li><p>N-그램: N개의 인접한 단어 시퀀스 캡처</p></li>
+</ol>
+<p>scikit-learn을 사용하여 TF-IDF 특징을 생성하는 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># 샘플 문서</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;고양이가 매트 위에 앉았다&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;개가 고양이를 쫓았다&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;매트는 새것이었다&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># TF-IDF 특징 생성</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="c1"># 특징 이름 가져오기</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="c1"># 각 문서의 TF-IDF 점수 출력</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">documents</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;문서 </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">tfidf_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>4.3 모델 학습 및 평가<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>특징이 추출되면 특정 NLP 작업을 위해 다양한 기계 학습 알고리즘을 적용하여 모델을 학습할 수 있습니다. 일반적인 알고리즘으로는:</p>
+<ol class="arabic simple">
+<li><p>나이브 베이즈</p></li>
+<li><p>서포트 벡터 머신 (SVM)</p></li>
+<li><p>의사결정 트리 및 랜덤 포레스트</p></li>
+<li><p>로지스틱 회귀</p></li>
+</ol>
+<p>간단한 텍스트 분류 모델 학습 및 평가 예제:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># 샘플 데이터</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;이 영화는 정말 좋아요&quot;</span><span class="p">,</span> <span class="s2">&quot;훌륭한 영화, 강력 추천합니다&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;최악의 영화, 시간 낭비였어요&quot;</span><span class="p">,</span> <span class="s2">&quot;이 영화가 싫어요&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;이 영화에 대해 중립적인 의견이에요&quot;</span><span class="p">,</span> <span class="s2">&quot;그저 그랬어요, 특별한 건 없었어요&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 1: 긍정, 0: 부정, 2: 중립</span>
+
+<span class="c1"># 데이터를 학습 세트와 테스트 세트로 분할</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># TF-IDF 특징 생성</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># 나이브 베이즈 분류기 학습</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 테스트 세트에 대한 예측</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_tfidf</span><span class="p">)</span>
+
+<span class="c1"># 모델 평가</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;부정&#39;</span><span class="p">,</span> <span class="s1">&#39;긍정&#39;</span><span class="p">,</span> <span class="s1">&#39;중립&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>5. 전통적인 NLP의 도전 과제<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>언어 모호성 처리</strong> (계속):</p>
+<p>예: “나는 망원경으로 언덕 위의 사람을 보았다”</p>
+<ul class="simple">
+<li><p>그 사람이 망원경을 들고 있나요?</p></li>
+<li><p>화자가 망원경으로 그 사람을 보고 있나요?</p></li>
+<li><p>망원경이 언덕 위에 있나요?</p></li>
+</ul>
+<p>이 문장은 어휘적, 구문적 모호성을 모두 보여주며, 추가적인 맥락이나 복잡한 추론 없이는 전통적인 NLP 시스템이 해결하기 어려운 과제입니다.</p>
+</li>
+<li><p><strong>맥락과 의미론 다루기</strong>:
+전통적인 NLP 모델은 다음을 포착하는 데 어려움을 겪었습니다:</p>
+<ul class="simple">
+<li><p>텍스트의 장거리 의존성</p></li>
+<li><p>맥락적 뉘앙스와 함축된 의미</p></li>
+<li><p>화용론 및 담화 수준의 이해</p></li>
+</ul>
+<p>예: 풍자나 아이러니를 이해하려면 문자 그대로의 단어 의미를 넘어선 맥락 파악이 필요합니다.</p>
+<p>다음 대화를 고려해보세요:
+A: “오늘 어땠어요?”
+B: “아, 정말 좋았죠. 차가 고장 나고, 셔츠에 커피를 쏟고, 중요한 회의에 늦었어요.”</p>
+<p>전통적인 NLP 시스템은 “좋았죠”라는 단어 때문에 B의 응답을 긍정적으로 해석할 수 있지만, 이어지는 부정적인 사건들로 인해 이 응답이 실제로는 풍자임을 인식하지 못할 수 있습니다.</p>
+</li>
+<li><p><strong>희귀 단어 및 어휘 외 용어 처리</strong>:
+전통적인 모델은 다음과 같은 경우에 어려움을 겪었습니다:</p>
+<ul class="simple">
+<li><p>학습 중에 보지 못한 단어 (어휘 외 단어)</p></li>
+<li><p>고유 명사 및 전문 용어</p></li>
+<li><p>신조어 및 진화하는 언어</p></li>
+</ul>
+<p>예: 일반 텍스트로 학습된 모델은 의학 또는 법률 문서의 특정 도메인 용어를 처리하는 데 어려움을 겪을 수 있습니다.</p>
+</li>
+<li><p><strong>공지시 해결</strong>:
+텍스트 내에서 서로 다른 단어나 구가 동일한 개체를 가리키는 경우를 식별하는 것.</p>
+<p>예: “존이 상점에 갔습니다. 그는 우유를 샀습니다.”
+시스템은 “그”가 “존”을 가리킨다는 것을 이해해야 합니다.</p>
+</li>
+<li><p><strong>계산 복잡성</strong>:
+어휘와 데이터셋이 커짐에 따라 전통적인 NLP 방법은 확장성 문제에 직면했습니다:</p>
+<ul class="simple">
+<li><p>단어 주머니 모델의 고차원 특징 공간</p></li>
+<li><p>복잡한 문장 구문 분석의 계산 비용</p></li>
+<li><p>대규모 언어 모델 저장을 위한 메모리 요구 사항</p></li>
+</ul>
+</li>
+<li><p><strong>일반화 부족</strong>:
+전통적인 모델은 학습 데이터와 다른 도메인이나 텍스트 스타일에 적용될 때 성능이 저하되는 경우가 많았습니다.</p>
+<p>예: 영화 리뷰로 학습된 감성 분석 모델은 제품 리뷰나 소셜 미디어 게시물에 적용될 때 성능이 떨어질 수 있습니다.</p>
+</li>
+<li><p><strong>의미적 유사성 포착의 어려움</strong>:
+단어 주머니나 TF-IDF와 같은 전통적인 방법은 단어 간의 의미적 관계를 포착하는 데 어려움을 겪습니다.</p>
+<p>예: “개가 고양이를 쫓았다”와 “그 동물이 다른 동물을 추격했다”는 문장은 매우 다른 단어 주머니 표현을 가지지만 유사한 의미를 가집니다.</p>
+</li>
+<li><p><strong>다국어 및 교차 언어 작업 처리</strong>:
+전통적인 NLP 시스템은 종종 각 언어에 대해 별도의 모델을 필요로 했으며, 이로 인해 다국어 및 교차 언어 작업이 어려웠습니다.</p></li>
+</ol>
+<p>이러한 도전 과제들을 설명하기 위해 전통적인 NLP 기법을 사용한 간단한 예제를 살펴보겠습니다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+
+<span class="c1"># 샘플 문장</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;개가 고양이를 쫓았다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;그 동물이 다른 동물을 추격했다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;나는 개와 고양이를 좋아한다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;금융 기관은 강 옆에 있다.&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># 단어 주머니 표현 생성</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">bow_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+
+<span class="c1"># 문장 간 코사인 유사도 계산</span>
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">bow_matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;유사도 행렬:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">어휘:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>출력:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">유사도</span> <span class="n">행렬</span><span class="p">:</span>
+<span class="p">[[</span><span class="mf">1.</span>         <span class="mf">0.</span>         <span class="mf">0.40824829</span> <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.</span>         <span class="mf">1.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.40824829</span> <span class="mf">0.</span>         <span class="mf">1.</span>         <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">1.</span>        <span class="p">]]</span>
+
+<span class="n">어휘</span><span class="p">:</span>
+<span class="p">[</span><span class="s1">&#39;개가&#39;</span> <span class="s1">&#39;강&#39;</span> <span class="s1">&#39;고양이를&#39;</span> <span class="s1">&#39;그&#39;</span> <span class="s1">&#39;금융&#39;</span> <span class="s1">&#39;기관은&#39;</span> <span class="s1">&#39;나는&#39;</span> <span class="s1">&#39;다른&#39;</span> <span class="s1">&#39;동물이&#39;</span> <span class="s1">&#39;동물을&#39;</span>
+ <span class="s1">&#39;뿐에&#39;</span> <span class="s1">&#39;쫓았다&#39;</span> <span class="s1">&#39;좋아한다&#39;</span> <span class="s1">&#39;있다&#39;</span> <span class="s1">&#39;추격했다&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>이 예제는 전통적인 NLP 접근 방식의 여러 한계를 보여줍니다:</p>
+<ol class="arabic simple">
+<li><p><strong>의미적 유사성</strong>: 문장 1과 2는 매우 유사한 의미를 가지지만, 단어 주머니 표현이 완전히 다르기 때문에 유사도가 0입니다.</p></li>
+<li><p><strong>단어 순서</strong>: 단어 주머니 모델은 단어 순서에 대한 모든 정보를 잃어버리며, 이는 의미 이해에 중요할 수 있습니다.</p></li>
+<li><p><strong>모호성</strong>: 마지막 문장의 “강”이라는 단어가 강(river)을 의미하는지 아니면 형용사로 사용되었는지 모델은 구분할 수 없습니다.</p></li>
+<li><p><strong>어휘 불일치</strong>: “개”와 “동물”은 관련된 개념임에도 불구하고 완전히 다른 용어로 취급됩니다.</p></li>
+<li><p><strong>확장성</strong>: 어휘가 증가함에 따라 특징 공간이 점점 더 희소해지고 고차원화되어 계산적 문제가 발생합니다.</p></li>
+</ol>
+<p>이러한 도전 과제들은 분산 의미론, 단어 임베딩, 그리고 결국에는 딥 러닝 모델을 포함한 더 발전된 NLP 기술의 개발을 촉진했습니다. 다음 세션에서는 이러한 현대적 NLP 접근 방식이 이러한 한계를 어떻게 해결하고 자연어 이해 및 생성의 새로운 가능성을 열었는지 살펴볼 것입니다.</p>
+</section>
+<section id="id13">
+<h2>결론<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>이 세션에서는 자연어처리의 기본 사항을 다루었으며, 초기 규칙 기반 시스템부터 통계적 접근 방식에 이르기까지 그 진화를 추적했습니다. 우리는 기본 개념, 전통적인 NLP 파이프라인, 그리고 이러한 기존 방법이 직면한 중요한 도전 과제들을 살펴보았습니다.</p>
+<p>주요 내용 요약:</p>
+<ol class="arabic simple">
+<li><p>NLP는 언어학, 컴퓨터 과학, AI를 결합하여 컴퓨터가 인간의 언어를 처리하고 이해할 수 있게 하는 학제간 분야입니다.</p></li>
+<li><p>이 분야는 규칙 기반 시스템에서 통계적 방법을 거쳐 현대의 딥 러닝 접근 방식으로 발전해 왔습니다.</p></li>
+<li><p>전통적인 NLP 파이프라인은 텍스트 전처리, 특징 추출, 모델 학습/평가를 포함합니다.</p></li>
+<li><p>전통적인 NLP 방법은 언어 모호성 처리, 맥락, 희귀 단어, 의미적 유사성 처리에 있어 상당한 도전에 직면했습니다.</p></li>
+</ol>
+<p>다음 세션에서는 현대적인 NLP 기술을 더 깊이 살펴보며, 딥 러닝과 트랜스포머 모델이 이러한 많은 도전 과제들을 어떻게 해결하고 자연어 이해 및 생성의 경계를 넓히는지 탐구할 것입니다.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +1008,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 1</p>
+        <p class="prev-next-title">1주차: 자연어처리 소개</p>
       </div>
     </a>
     <a class="right-next"
@@ -488,7 +1016,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Session 2</p>
+        <p class="prev-next-title">세션 2 - 현대 자연어처리의 혁명</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -498,6 +1026,40 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">1. 자연어처리(NLP) 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 NLP의 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2 기본 개념</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.3 사회과학 연구에서의 중요성</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. NLP의 역사적 관점</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 초기 접근법 (1950년대-1980년대)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2 통계적 혁명 (1980년대-2000년대)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-2010">3. 현대 NLP와 딥러닝 (2010년대-현재)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4. 전통적인 NLP 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.1 텍스트 전처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.2 특징 추출</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.3 모델 학습 및 평가</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. 전통적인 NLP의 도전 과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

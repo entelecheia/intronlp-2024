@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 2 &#8212; Introduction to NLP and LLMs 2024</title>
+    <title>Session 2 - The Revolution in Modern NLP &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -97,7 +97,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Syllabus" href="../syllabus/index.html" />
-    <link rel="prev" title="Session 1" href="session1.html" />
+    <link rel="prev" title="Session 1 - Foundations and Evolution of NLP" href="session1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,9 +213,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 2</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1: Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 2 - The Revolution in Modern NLP</a></li>
 </ul>
 </details></li>
 </ul>
@@ -413,7 +413,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -424,11 +426,40 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Session 2</h1>
+    <h1>Session 2 - The Revolution in Modern NLP</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-towards-modern-nlp">6. Evolution Towards Modern NLP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-of-word-embeddings">6.1. Introduction of Word Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rise-of-deep-learning-in-nlp">6.2. Rise of Deep Learning in NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence-of-transformer-models">6.3. Emergence of Transformer Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-models-llms">7. Large Language Models (LLMs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-capabilities">7.1. Definition and Capabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-their-impact">7.2. Examples and Their Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-in-nlp-tasks">8. Paradigm Shift in NLP Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-task-specific-to-general-purpose-models">8.1. From Task-Specific to General-Purpose Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-and-zero-shot-learning">8.2. Few-Shot and Zero-Shot Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-state-and-future-directions">9. Current State and Future Directions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ongoing-developments-in-llms">9.1. Ongoing Developments in LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emerging-challenges-and-opportunities">9.2. Emerging Challenges and Opportunities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -438,8 +469,356 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="session-2">
-<h1>Session 2<a class="headerlink" href="#session-2" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="session-2-the-revolution-in-modern-nlp">
+<h1>Session 2 - The Revolution in Modern NLP<a class="headerlink" href="#session-2-the-revolution-in-modern-nlp" title="Link to this heading">#</a></h1>
+<section id="evolution-towards-modern-nlp">
+<h2>6. Evolution Towards Modern NLP<a class="headerlink" href="#evolution-towards-modern-nlp" title="Link to this heading">#</a></h2>
+<p>The transition from traditional NLP methods to modern approaches has been driven by advancements in machine learning, particularly in the field of deep learning. This evolution has addressed many of the challenges faced by traditional NLP systems and has led to significant improvements in performance across various NLP tasks.</p>
+<section id="introduction-of-word-embeddings">
+<h3>6.1. Introduction of Word Embeddings<a class="headerlink" href="#introduction-of-word-embeddings" title="Link to this heading">#</a></h3>
+<p>Word embeddings represent a fundamental shift in how we represent words in NLP systems. Unlike traditional one-hot encoding or bag-of-words models, word embeddings capture semantic relationships between words by representing them as dense vectors in a continuous vector space.</p>
+<p>Key characteristics of word embeddings:</p>
+<ul class="simple">
+<li><p>Words with similar meanings are close to each other in the vector space</p></li>
+<li><p>Semantic relationships can be captured through vector arithmetic</p></li>
+<li><p>Lower-dimensional representations compared to one-hot encoding</p></li>
+</ul>
+<p>Popular word embedding models:</p>
+<ol class="arabic simple">
+<li><p>Word2Vec (2013)</p></li>
+<li><p>GloVe (Global Vectors for Word Representation, 2014)</p></li>
+<li><p>FastText (2016)</p></li>
+</ol>
+<p>Example: Using Word2Vec with Gensim</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="nn">gensim.models.word2vec</span> <span class="kn">import</span> <span class="n">LineSentence</span>
+
+<span class="c1"># Assume we have a text file &#39;corpus.txt&#39; with one sentence per line</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">LineSentence</span><span class="p">(</span><span class="s1">&#39;corpus.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Train the Word2Vec model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Find similar words</span>
+<span class="n">similar_words</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;king&#39;</span><span class="p">,</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Words most similar to &#39;king&#39;:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">similar_words</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perform word arithmetic</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;king&#39;</span><span class="p">,</span> <span class="s1">&#39;woman&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">king - man + woman =&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Word embeddings have several advantages over traditional representations:</p>
+<ol class="arabic simple">
+<li><p>Capture semantic relationships between words</p></li>
+<li><p>Reduce dimensionality of word representations</p></li>
+<li><p>Enable transfer learning by using pre-trained embeddings</p></li>
+</ol>
+</section>
+<section id="rise-of-deep-learning-in-nlp">
+<h3>6.2. Rise of Deep Learning in NLP<a class="headerlink" href="#rise-of-deep-learning-in-nlp" title="Link to this heading">#</a></h3>
+<p>The adoption of deep learning techniques in NLP has led to significant improvements in performance across various tasks. Key neural network architectures used in NLP include:</p>
+<ol class="arabic simple">
+<li><p>Recurrent Neural Networks (RNNs)</p></li>
+<li><p>Long Short-Term Memory networks (LSTMs)</p></li>
+<li><p>Convolutional Neural Networks (CNNs) for text</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Deep Learning in NLP] --&gt; B[RNNs]
+    A --&gt; C[LSTMs]
+    A --&gt; D[CNNs for Text]
+    B --&gt; E[Sequence Modeling]
+    C --&gt; F[Long-term Dependencies]
+    D --&gt; G[Feature Extraction]
+</pre></div>
+</div>
+<p>Example: Simple RNN for sentiment analysis using PyTorch</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="k">class</span> <span class="nc">SimpleRNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">hidden</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Example usage (assuming preprocessed data)</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">output_dim</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Binary sentiment (positive/negative)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SimpleRNN</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Deep learning models have several advantages in NLP:</p>
+<ol class="arabic simple">
+<li><p>Automatic feature learning</p></li>
+<li><p>Ability to capture complex patterns and long-range dependencies</p></li>
+<li><p>Flexibility to adapt to various NLP tasks</p></li>
+</ol>
+</section>
+<section id="emergence-of-transformer-models">
+<h3>6.3. Emergence of Transformer Models<a class="headerlink" href="#emergence-of-transformer-models" title="Link to this heading">#</a></h3>
+<p>The introduction of the Transformer architecture in 2017 (Vaswani et al., “Attention Is All You Need”) marked a significant milestone in NLP. Transformers address limitations of RNNs and LSTMs, such as the difficulty in parallelizing computations and capturing long-range dependencies.</p>
+<p>Key components of Transformer architecture:</p>
+<ol class="arabic simple">
+<li><p>Self-attention mechanism</p></li>
+<li><p>Multi-head attention</p></li>
+<li><p>Positional encoding</p></li>
+<li><p>Feed-forward neural networks</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Transformer] --&gt; B[Encoder]
+    A --&gt; C[Decoder]
+    B --&gt; D[Self-Attention]
+    B --&gt; E[Feed-Forward NN]
+    C --&gt; F[Masked Self-Attention]
+    C --&gt; G[Encoder-Decoder Attention]
+    C --&gt; H[Feed-Forward NN]
+</pre></div>
+</div>
+<p>Prominent Transformer-based models:</p>
+<ol class="arabic simple">
+<li><p>BERT (Bidirectional Encoder Representations from Transformers)</p></li>
+<li><p>GPT (Generative Pre-trained Transformer)</p></li>
+<li><p>T5 (Text-to-Text Transfer Transformer)</p></li>
+</ol>
+<p>Example: Using a pre-trained BERT model for sequence classification</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span><span class="p">,</span> <span class="n">BertForSequenceClassification</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># Load pre-trained model and tokenizer</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;bert-base-uncased&#39;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="c1"># Example text</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;This movie is fantastic! I really enjoyed watching it.&quot;</span>
+
+<span class="c1"># Tokenize and encode the text</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+
+<span class="c1"># Make prediction</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+    <span class="n">predicted_class</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted class: </span><span class="si">{</span><span class="n">predicted_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Transformer models have several advantages:</p>
+<ol class="arabic simple">
+<li><p>Parallelizable computations</p></li>
+<li><p>Ability to capture long-range dependencies</p></li>
+<li><p>Effective pre-training on large corpora</p></li>
+<li><p>State-of-the-art performance on various NLP tasks</p></li>
+</ol>
+</section>
+</section>
+<section id="large-language-models-llms">
+<h2>7. Large Language Models (LLMs)<a class="headerlink" href="#large-language-models-llms" title="Link to this heading">#</a></h2>
+<p>Large Language Models represent the current state-of-the-art in NLP, offering unprecedented capabilities in language understanding and generation.</p>
+<section id="definition-and-capabilities">
+<h3>7.1. Definition and Capabilities<a class="headerlink" href="#definition-and-capabilities" title="Link to this heading">#</a></h3>
+<p>LLMs are massive neural networks, typically based on the Transformer architecture, trained on vast amounts of text data. They are characterized by:</p>
+<ol class="arabic simple">
+<li><p>Billions of parameters</p></li>
+<li><p>Training on diverse and extensive corpora</p></li>
+<li><p>Ability to perform a wide range of language tasks without task-specific training</p></li>
+</ol>
+<p>Capabilities of LLMs include:</p>
+<ol class="arabic simple">
+<li><p>Text generation</p></li>
+<li><p>Question answering</p></li>
+<li><p>Summarization</p></li>
+<li><p>Translation</p></li>
+<li><p>Code generation</p></li>
+<li><p>Few-shot and zero-shot learning</p></li>
+</ol>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Large Language Models] --&gt; B[Few-shot Learning]
+    A --&gt; C[Zero-shot Learning]
+    A --&gt; D[Transfer Learning]
+    A --&gt; E[Multitask Learning]
+    B --&gt; F[Task Adaptation with Minimal Examples]
+    C --&gt; G[Task Performance without Examples]
+    D --&gt; H[Knowledge Transfer Across Domains]
+    E --&gt; I[Simultaneous Performance on Multiple Tasks]
+</pre></div>
+</div>
+</section>
+<section id="examples-and-their-impact">
+<h3>7.2. Examples and Their Impact<a class="headerlink" href="#examples-and-their-impact" title="Link to this heading">#</a></h3>
+<p>Prominent examples of LLMs include:</p>
+<ol class="arabic simple">
+<li><p>GPT-3 and GPT-4 (OpenAI)</p></li>
+<li><p>PaLM (Google)</p></li>
+<li><p>BLOOM (BigScience)</p></li>
+<li><p>LLaMA (Meta)</p></li>
+</ol>
+<p>These models have demonstrated remarkable capabilities across various domains:</p>
+<ol class="arabic simple">
+<li><p>Natural language understanding and generation</p></li>
+<li><p>Code generation and debugging</p></li>
+<li><p>Creative writing and storytelling</p></li>
+<li><p>Language translation</p></li>
+<li><p>Question answering and information retrieval</p></li>
+</ol>
+<p>Example: Using the OpenAI GPT-3 API for text generation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="c1"># Set up your OpenAI API key</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;your-api-key-here&#39;</span>
+
+<span class="k">def</span> <span class="nf">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-002&quot;</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Explain the concept of quantum computing in simple terms:&quot;</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generated_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Impact of LLMs:</p>
+<ol class="arabic simple">
+<li><p>Revolutionizing natural language interfaces</p></li>
+<li><p>Enabling more sophisticated AI assistants</p></li>
+<li><p>Accelerating research and development in various fields</p></li>
+<li><p>Raising ethical concerns about AI capabilities and potential misuse</p></li>
+</ol>
+</section>
+</section>
+<section id="paradigm-shift-in-nlp-tasks">
+<h2>8. Paradigm Shift in NLP Tasks<a class="headerlink" href="#paradigm-shift-in-nlp-tasks" title="Link to this heading">#</a></h2>
+<p>The advent of LLMs has led to a significant paradigm shift in how NLP tasks are approached and solved.</p>
+<section id="from-task-specific-to-general-purpose-models">
+<h3>8.1. From Task-Specific to General-Purpose Models<a class="headerlink" href="#from-task-specific-to-general-purpose-models" title="Link to this heading">#</a></h3>
+<p>Traditional NLP approaches often involved developing separate models for each specific task. In contrast, LLMs offer a more versatile approach:</p>
+<ol class="arabic simple">
+<li><p>Single model for multiple tasks</p></li>
+<li><p>Adaptation through fine-tuning or prompting</p></li>
+<li><p>Reduced need for task-specific data annotation</p></li>
+</ol>
+<p>Advantages of general-purpose models:</p>
+<ol class="arabic simple">
+<li><p>Reduced development time and resources</p></li>
+<li><p>Improved performance through transfer learning</p></li>
+<li><p>Flexibility to adapt to new tasks quickly</p></li>
+</ol>
+</section>
+<section id="few-shot-and-zero-shot-learning">
+<h3>8.2. Few-Shot and Zero-Shot Learning<a class="headerlink" href="#few-shot-and-zero-shot-learning" title="Link to this heading">#</a></h3>
+<p>LLMs have introduced new learning paradigms that reduce the need for large task-specific datasets:</p>
+<ol class="arabic simple">
+<li><p>Few-shot learning: Performing tasks with only a few examples</p></li>
+<li><p>Zero-shot learning: Completing tasks without any specific training examples</p></li>
+</ol>
+<p>Example of zero-shot classification using GPT-3:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zero_shot_classification</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">categories</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Classify the following text into one of these categories: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span><span class="si">}</span><span class="s2">.</span><span class="se">\n\n</span><span class="s2">Text: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Category:&quot;</span>
+    <span class="k">return</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The stock market saw significant gains today, with tech stocks leading the rally.&quot;</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Politics&quot;</span><span class="p">,</span> <span class="s2">&quot;Economics&quot;</span><span class="p">,</span> <span class="s2">&quot;Sports&quot;</span><span class="p">,</span> <span class="s2">&quot;Technology&quot;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">zero_shot_classification</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">categories</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Classified category: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Advantages of few-shot and zero-shot learning:</p>
+<ol class="arabic simple">
+<li><p>Reduced reliance on large labeled datasets</p></li>
+<li><p>Ability to quickly adapt to new tasks or domains</p></li>
+<li><p>Improved generalization to unseen examples</p></li>
+</ol>
+</section>
+</section>
+<section id="current-state-and-future-directions">
+<h2>9. Current State and Future Directions<a class="headerlink" href="#current-state-and-future-directions" title="Link to this heading">#</a></h2>
+<section id="ongoing-developments-in-llms">
+<h3>9.1. Ongoing Developments in LLMs<a class="headerlink" href="#ongoing-developments-in-llms" title="Link to this heading">#</a></h3>
+<p>Current research in LLMs focuses on several key areas:</p>
+<ol class="arabic simple">
+<li><p>Scaling models to even larger sizes (e.g., GPT-4, PaLM)</p></li>
+<li><p>Improving efficiency and reducing computational requirements</p></li>
+<li><p>Enhancing factual accuracy and reducing hallucinations</p></li>
+<li><p>Developing more controllable and steerable models</p></li>
+<li><p>Creating multimodal models that can process text, images, and audio</p></li>
+</ol>
+<p>Emerging techniques:</p>
+<ol class="arabic simple">
+<li><p>Retrieval-augmented generation</p></li>
+<li><p>Constitutional AI for improved safety and alignment</p></li>
+<li><p>Efficient fine-tuning methods (e.g., LoRA, prefix tuning)</p></li>
+</ol>
+</section>
+<section id="emerging-challenges-and-opportunities">
+<h3>9.2. Emerging Challenges and Opportunities<a class="headerlink" href="#emerging-challenges-and-opportunities" title="Link to this heading">#</a></h3>
+<p>As NLP continues to evolve, researchers and practitioners face new challenges and opportunities:</p>
+<p>Challenges:</p>
+<ol class="arabic simple">
+<li><p>Ethical concerns (bias, privacy, misuse)</p></li>
+<li><p>Interpretability and explainability of model decisions</p></li>
+<li><p>Ensuring factual accuracy and reducing misinformation</p></li>
+<li><p>Addressing environmental concerns related to large-scale model training</p></li>
+</ol>
+<p>Opportunities:</p>
+<ol class="arabic simple">
+<li><p>Advancing human-AI collaboration</p></li>
+<li><p>Democratizing access to powerful NLP tools</p></li>
+<li><p>Pushing the boundaries of AI capabilities</p></li>
+<li><p>Solving complex, real-world problems across various domains</p></li>
+</ol>
+<p>Example: Probing an LLM for potential biases</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">probe_model_bias</span><span class="p">(</span><span class="n">demographic_groups</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Analyze potential biases in language model responses for the following demographic groups: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">demographic_groups</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">    Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+
+<span class="s2">    For each group, provide a brief analysis of potential biases:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">demographics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">,</span> <span class="s2">&quot;Race&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;Socioeconomic status&quot;</span><span class="p">]</span>
+<span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;Job applicant evaluation in the tech industry&quot;</span>
+<span class="n">bias_analysis</span> <span class="o">=</span> <span class="n">probe_model_bias</span><span class="p">(</span><span class="n">demographics</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bias_analysis</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The evolution of NLP towards modern approaches, particularly the development of Large Language Models, has dramatically transformed the field. These advancements have addressed many limitations of traditional methods and opened up new possibilities for natural language understanding and generation.</p>
+<p>Key takeaways:</p>
+<ol class="arabic simple">
+<li><p>Word embeddings and deep learning techniques have significantly improved NLP performance.</p></li>
+<li><p>Transformer models, especially LLMs, represent the current state-of-the-art in NLP.</p></li>
+<li><p>The paradigm shift towards general-purpose models and few-shot/zero-shot learning has changed how we approach NLP tasks.</p></li>
+<li><p>Ongoing developments in LLMs present both exciting opportunities and important challenges to address.</p></li>
+</ol>
+<p>As we move forward, it’s crucial to balance the immense potential of these technologies with careful consideration of their limitations and ethical implications. The future of NLP holds great promise for advancing human-AI interaction and solving complex problems across various domains.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +859,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Session 1</p>
+        <p class="prev-next-title">Session 1 - Foundations and Evolution of NLP</p>
       </div>
     </a>
     <a class="right-next"
@@ -498,6 +877,42 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-towards-modern-nlp">6. Evolution Towards Modern NLP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-of-word-embeddings">6.1. Introduction of Word Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rise-of-deep-learning-in-nlp">6.2. Rise of Deep Learning in NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence-of-transformer-models">6.3. Emergence of Transformer Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-models-llms">7. Large Language Models (LLMs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-capabilities">7.1. Definition and Capabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-their-impact">7.2. Examples and Their Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-in-nlp-tasks">8. Paradigm Shift in NLP Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-task-specific-to-general-purpose-models">8.1. From Task-Specific to General-Purpose Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-and-zero-shot-learning">8.2. Few-Shot and Zero-Shot Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-state-and-future-directions">9. Current State and Future Directions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ongoing-developments-in-llms">9.1. Ongoing Developments in LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emerging-challenges-and-opportunities">9.2. Emerging Challenges and Opportunities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

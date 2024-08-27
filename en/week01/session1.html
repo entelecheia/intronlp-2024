@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 1 &#8212; Introduction to NLP and LLMs 2024</title>
+    <title>Session 1 - Foundations and Evolution of NLP &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -96,8 +96,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Session 2" href="session2.html" />
-    <link rel="prev" title="Week 1" href="index.html" />
+    <link rel="next" title="Session 2 - The Revolution in Modern NLP" href="session2.html" />
+    <link rel="prev" title="Week 1: Introduction" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,9 +213,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session2.html">Session 2</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1: Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Session 2 - The Revolution in Modern NLP</a></li>
 </ul>
 </details></li>
 </ul>
@@ -413,7 +413,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -424,11 +426,38 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Session 1</h1>
+    <h1>Session 1 - Foundations and Evolution of NLP</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-natural-language-processing-nlp">1. Introduction to Natural Language Processing (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-nlp">1.1 Definition of NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">1.2 Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-social-science-research">1.3 Importance in Social Science Research</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historical-perspective-of-nlp">2. Historical Perspective of NLP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#early-approaches-1950s-1980s">2.1 Early Approaches (1950s-1980s)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-revolution-1980s-2000s">2.2 Statistical Revolution (1980s-2000s)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-nlp-and-deep-learning-2010s-present">3. Modern NLP and Deep Learning (2010s-Present)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-nlp-pipeline">4. Traditional NLP Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing">4.1 Text Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">4.2 Feature Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training-and-evaluation">4.3 Model Training and Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-traditional-nlp">5. Challenges in Traditional NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -438,8 +467,507 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="session-1">
-<h1>Session 1<a class="headerlink" href="#session-1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="session-1-foundations-and-evolution-of-nlp">
+<h1>Session 1 - Foundations and Evolution of NLP<a class="headerlink" href="#session-1-foundations-and-evolution-of-nlp" title="Link to this heading">#</a></h1>
+<section id="introduction-to-natural-language-processing-nlp">
+<h2>1. Introduction to Natural Language Processing (NLP)<a class="headerlink" href="#introduction-to-natural-language-processing-nlp" title="Link to this heading">#</a></h2>
+<section id="definition-of-nlp">
+<h3>1.1 Definition of NLP<a class="headerlink" href="#definition-of-nlp" title="Link to this heading">#</a></h3>
+<p>Natural Language Processing (NLP) is an interdisciplinary field that combines linguistics, computer science, and artificial intelligence to enable computers to understand, interpret, and generate human language. The primary goal of NLP is to bridge the gap between human communication and computer understanding.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Natural Language Processing] --&gt; B[Linguistics]
+    A --&gt; C[Computer Science]
+    A --&gt; D[Artificial Intelligence]
+    B --&gt; E[Syntax]
+    B --&gt; F[Semantics]
+    B --&gt; G[Pragmatics]
+    C --&gt; H[Algorithms]
+    C --&gt; I[Data Structures]
+    D --&gt; J[Machine Learning]
+    D --&gt; K[Deep Learning]
+</pre></div>
+</div>
+</section>
+<section id="basic-concepts">
+<h3>1.2 Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading">#</a></h3>
+<p>Key concepts in NLP include:</p>
+<ol class="arabic simple">
+<li><p><strong>Tokenization</strong>: Breaking text into individual words or subwords</p></li>
+<li><p><strong>Parsing</strong>: Analyzing the grammatical structure of sentences</p></li>
+<li><p><strong>Semantic analysis</strong>: Interpreting the meaning of words and sentences</p></li>
+<li><p><strong>Named Entity Recognition (NER)</strong>: Identifying and classifying named entities in text</p></li>
+<li><p><strong>Part-of-Speech (POS) Tagging</strong>: Assigning grammatical categories to words</p></li>
+<li><p><strong>Sentiment Analysis</strong>: Determining the emotional tone of a piece of text</p></li>
+</ol>
+<p>Let’s look at a simple example using Python’s Natural Language Toolkit (NLTK):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">pos_tag</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">names</span>
+<span class="kn">from</span> <span class="nn">nltk.chunk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;maxent_ne_chunker&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+
+<span class="c1"># Example sentence</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;John works at Google in New York.&quot;</span>
+
+<span class="c1"># Tokenization</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokens:&quot;</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># Part-of-speech tagging</span>
+<span class="n">pos_tags</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;POS Tags:&quot;</span><span class="p">,</span> <span class="n">pos_tags</span><span class="p">)</span>
+
+<span class="c1"># Named Entity Recognition</span>
+<span class="n">ner_tree</span> <span class="o">=</span> <span class="n">ne_chunk</span><span class="p">(</span><span class="n">pos_tags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Named Entities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">ner_tree</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tokens</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;works&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;Google&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> <span class="s1">&#39;York&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="n">POS</span> <span class="n">Tags</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;works&#39;</span><span class="p">,</span> <span class="s1">&#39;VBZ&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Google&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;New&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;York&#39;</span><span class="p">,</span> <span class="s1">&#39;NNP&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)]</span>
+<span class="n">Named</span> <span class="n">Entities</span><span class="p">:</span>
+<span class="n">PERSON</span> <span class="n">John</span>
+<span class="n">ORGANIZATION</span> <span class="n">Google</span>
+<span class="n">GPE</span> <span class="n">New</span> <span class="n">York</span>
+</pre></div>
+</div>
+</section>
+<section id="importance-in-social-science-research">
+<h3>1.3 Importance in Social Science Research<a class="headerlink" href="#importance-in-social-science-research" title="Link to this heading">#</a></h3>
+<p>NLP has become increasingly important in social science research due to its ability to:</p>
+<ol class="arabic simple">
+<li><p>Analyze large-scale textual data, such as social media posts, historical documents, or survey responses</p></li>
+<li><p>Extract insights from unstructured text, revealing patterns and trends in human communication</p></li>
+<li><p>Automate content analysis and coding, saving time and reducing human bias in qualitative research</p></li>
+<li><p>Facilitate cross-cultural and multilingual studies by enabling automated translation and analysis</p></li>
+<li><p>Enhance sentiment analysis and opinion mining for understanding public perceptions and attitudes</p></li>
+</ol>
+<p>Example: A researcher studying political discourse could use NLP techniques to analyze thousands of tweets during an election campaign, identifying key topics, sentiment towards candidates, and changes in public opinion over time.</p>
+</section>
+</section>
+<section id="historical-perspective-of-nlp">
+<h2>2. Historical Perspective of NLP<a class="headerlink" href="#historical-perspective-of-nlp" title="Link to this heading">#</a></h2>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>timeline
+    title Evolution of NLP
+    1950s : Rule-based systems
+    1960s : Early machine translation
+    1970s : Conceptual ontologies
+    1980s : Statistical NLP begins
+    1990s : Machine learning approaches
+    2000s : Statistical MT &amp; Web-scale data
+    2010s : Deep learning &amp; neural networks
+    2020s : Large language models
+</pre></div>
+</div>
+<section id="early-approaches-1950s-1980s">
+<h3>2.1 Early Approaches (1950s-1980s)<a class="headerlink" href="#early-approaches-1950s-1980s" title="Link to this heading">#</a></h3>
+<p>Early NLP systems were primarily rule-based, relying on hand-crafted rules and expert knowledge. These approaches were influenced by Noam Chomsky’s formal language theory, which proposed that language could be described by a set of grammatical rules.</p>
+<p>Key developments:</p>
+<ol class="arabic simple">
+<li><p><strong>ELIZA (1966)</strong>: One of the first chatbots, simulating a psychotherapist’s responses using pattern matching and substitution rules.</p></li>
+<li><p><strong>SHRDLU (1970)</strong>: A natural language understanding program that could interpret and respond to commands in a simplified blocks world.</p></li>
+<li><p><strong>Conceptual Dependency theory (1970s)</strong>: Proposed by Roger Schank, aimed to represent the meaning of sentences in a language-independent format.</p></li>
+</ol>
+<p>Example: ELIZA-like pattern matching</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;I am (.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;Why do you say you are </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;I (.*) you&#39;</span><span class="p">,</span> <span class="s2">&quot;Why do you </span><span class="si">{}</span><span class="s2"> me?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*) sorry (.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;There&#39;s no need to apologize.&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Hello(.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;Hello! How can I help you today?&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*)&#39;</span><span class="p">,</span> <span class="s2">&quot;Can you elaborate on that?&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">eliza_response</span><span class="p">(</span><span class="n">input_text</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">input_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.!&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+    <span class="k">return</span> <span class="s2">&quot;I&#39;m not sure I understand. Can you rephrase that?&quot;</span>
+
+<span class="c1"># Example usage</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;You: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quit&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ELIZA:&quot;</span><span class="p">,</span> <span class="n">eliza_response</span><span class="p">(</span><span class="n">user_input</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Limitations of early approaches:</p>
+<ul class="simple">
+<li><p>Inability to handle complex or ambiguous language</p></li>
+<li><p>Lack of scalability to cover all possible linguistic variations</p></li>
+<li><p>Difficulty in adapting to new domains or languages</p></li>
+</ul>
+</section>
+<section id="statistical-revolution-1980s-2000s">
+<h3>2.2 Statistical Revolution (1980s-2000s)<a class="headerlink" href="#statistical-revolution-1980s-2000s" title="Link to this heading">#</a></h3>
+<p>The 1980s saw a shift towards statistical methods in NLP, driven by:</p>
+<ol class="arabic simple">
+<li><p>Increased availability of digital text corpora</p></li>
+<li><p>Growth in computational power</p></li>
+<li><p>Development of machine learning techniques</p></li>
+</ol>
+<p>Key developments:</p>
+<ol class="arabic simple">
+<li><p><strong>Hidden Markov Models (HMMs)</strong>: Used for part-of-speech tagging and speech recognition</p></li>
+<li><p><strong>Probabilistic Context-Free Grammars (PCFGs)</strong>: Applied to parsing tasks</p></li>
+<li><p><strong>IBM Models</strong>: Pioneered statistical machine translation</p></li>
+<li><p><strong>Maximum Entropy Models</strong>: Used for various classification tasks in NLP</p></li>
+</ol>
+<p>Example: Simple Naive Bayes classifier for sentiment analysis</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;I love this movie&quot;</span><span class="p">,</span> <span class="s2">&quot;Great film, highly recommended&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Terrible movie, waste of time&quot;</span><span class="p">,</span> <span class="s2">&quot;I hate this film&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Neutral opinion about this movie&quot;</span><span class="p">,</span> <span class="s2">&quot;It was okay, nothing special&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 1: positive, 0: negative, 2: neutral</span>
+
+<span class="c1"># Split data</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Vectorize text</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">X_train_vec</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_vec</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Train Naive Bayes classifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_vec</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict and evaluate</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_vec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negative&#39;</span><span class="p">,</span> <span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This era also saw the emergence of corpus linguistics, which emphasized the study of language through large collections of real-world text data.</p>
+</section>
+</section>
+<section id="modern-nlp-and-deep-learning-2010s-present">
+<h2>3. Modern NLP and Deep Learning (2010s-Present)<a class="headerlink" href="#modern-nlp-and-deep-learning-2010s-present" title="Link to this heading">#</a></h2>
+<p>The current era of NLP is characterized by the dominance of deep learning approaches, particularly transformer-based models.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Modern NLP] --&gt; B[Word Embeddings]
+    A --&gt; C[Deep Neural Networks]
+    A --&gt; D[Transformer Architecture]
+    B --&gt; E[Word2Vec]
+    B --&gt; F[GloVe]
+    C --&gt; G[RNNs/LSTMs]
+    C --&gt; H[CNNs for NLP]
+    D --&gt; I[BERT]
+    D --&gt; J[GPT]
+    D --&gt; K[T5]
+</pre></div>
+</div>
+<p>Key developments:</p>
+<ol class="arabic simple">
+<li><p><strong>Word Embeddings</strong>: Dense vector representations of words (e.g., Word2Vec, GloVe)</p></li>
+<li><p><strong>Recurrent Neural Networks (RNNs)</strong>: Particularly Long Short-Term Memory (LSTM) networks for sequence modeling</p></li>
+<li><p><strong>Transformer Architecture</strong>: Attention-based models that have revolutionized NLP performance across various tasks</p></li>
+</ol>
+<p>Example: Using a pre-trained BERT model for sentiment analysis</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSequenceClassification</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># Load pre-trained model and tokenizer</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;nlptown/bert-base-multilingual-uncased-sentiment&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">analyze_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Score from 1 to 5</span>
+    <span class="k">return</span> <span class="n">sentiment_score</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;I absolutely loved this movie! It was fantastic.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The film was okay, but nothing special.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;This was the worst movie I&#39;ve ever seen. Terrible acting and plot.&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+    <span class="n">sentiment</span> <span class="o">=</span> <span class="n">analyze_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Text: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentiment score (1-5): </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="traditional-nlp-pipeline">
+<h2>4. Traditional NLP Pipeline<a class="headerlink" href="#traditional-nlp-pipeline" title="Link to this heading">#</a></h2>
+<p>The traditional NLP pipeline typically consists of several stages:</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    A[Text Input] --&gt; B[Text Preprocessing]
+    B --&gt; C[Feature Extraction]
+    C --&gt; D[Model Training]
+    D --&gt; E[Evaluation]
+    E --&gt; F[Application]
+</pre></div>
+</div>
+<section id="text-preprocessing">
+<h3>4.1 Text Preprocessing<a class="headerlink" href="#text-preprocessing" title="Link to this heading">#</a></h3>
+<p>Text preprocessing is crucial for cleaning and standardizing raw text data. Common steps include:</p>
+<ol class="arabic simple">
+<li><p>Tokenization: Breaking text into words or subwords</p></li>
+<li><p>Lowercasing: Converting all text to lowercase to reduce dimensionality</p></li>
+<li><p>Noise removal: Eliminating irrelevant characters or formatting</p></li>
+<li><p>Stemming and lemmatization: Reducing words to their root form</p></li>
+</ol>
+<p>Example of a preprocessing pipeline using NLTK:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span><span class="p">,</span> <span class="n">WordNetLemmatizer</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># Tokenization and lowercasing</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="c1"># Remove stopwords and non-alphabetic tokens</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="ow">and</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+
+    <span class="c1"># Stemming</span>
+    <span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+    <span class="n">stemmed_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+
+    <span class="c1"># Lemmatization</span>
+    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+    <span class="n">lemmatized_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;original&#39;</span><span class="p">:</span> <span class="n">tokens</span><span class="p">,</span>
+        <span class="s1">&#39;stemmed&#39;</span><span class="p">:</span> <span class="n">stemmed_tokens</span><span class="p">,</span>
+        <span class="s1">&#39;lemmatized&#39;</span><span class="p">:</span> <span class="n">lemmatized_tokens</span>
+    <span class="p">}</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The cats are running quickly through the forest.&quot;</span>
+<span class="n">preprocessed</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original tokens:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;original&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stemmed tokens:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;stemmed&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lemmatized tokens:&quot;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="p">[</span><span class="s1">&#39;lemmatized&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="feature-extraction">
+<h3>4.2 Feature Extraction<a class="headerlink" href="#feature-extraction" title="Link to this heading">#</a></h3>
+<p>Feature extraction involves converting text into numerical representations that machine learning models can process. Common techniques include:</p>
+<ol class="arabic simple">
+<li><p>Bag-of-words model: Representing text as a vector of word frequencies</p></li>
+<li><p>TF-IDF (Term Frequency-Inverse Document Frequency): Weighting terms based on their importance in a document and corpus</p></li>
+<li><p>N-grams: Capturing sequences of N adjacent words</p></li>
+</ol>
+<p>Example using scikit-learn to create TF-IDF features:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># Sample documents</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;The cat sat on the mat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The dog chased the cat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The mat was new&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Create TF-IDF features</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="c1"># Get feature names</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="c1"># Print TF-IDF scores for each document</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">documents</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Document </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">tfidf_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="model-training-and-evaluation">
+<h3>4.3 Model Training and Evaluation<a class="headerlink" href="#model-training-and-evaluation" title="Link to this heading">#</a></h3>
+<p>Once features are extracted, various machine learning algorithms can be applied to train models for specific NLP tasks. Common algorithms include:</p>
+<ol class="arabic simple">
+<li><p>Naive Bayes</p></li>
+<li><p>Support Vector Machines (SVM)</p></li>
+<li><p>Decision Trees and Random Forests</p></li>
+<li><p>Logistic Regression</p></li>
+</ol>
+<p>Example of training and evaluating a simple text classification model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;I love this movie&quot;</span><span class="p">,</span> <span class="s2">&quot;Great film, highly recommended&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Terrible movie, waste of time&quot;</span><span class="p">,</span> <span class="s2">&quot;I hate this film&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Neutral opinion about this movie&quot;</span><span class="p">,</span> <span class="s2">&quot;It was okay, nothing special&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 1: positive, 0: negative, 2: neutral</span>
+
+<span class="c1"># Split data into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Create TF-IDF features</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Train a Naive Bayes classifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions on the test set</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negative&#39;</span><span class="p">,</span> <span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="challenges-in-traditional-nlp">
+<h2>5. Challenges in Traditional NLP<a class="headerlink" href="#challenges-in-traditional-nlp" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Handling Language Ambiguity</strong> (continued):</p>
+<p>Example: “I saw a man on a hill with a telescope”</p>
+<ul class="simple">
+<li><p>Is the man holding the telescope?</p></li>
+<li><p>Is the speaker using the telescope to see the man?</p></li>
+<li><p>Is the telescope on the hill?</p></li>
+</ul>
+<p>This sentence demonstrates both lexical and syntactic ambiguity, which can be challenging for traditional NLP systems to resolve without additional context or complex reasoning.</p>
+</li>
+<li><p><strong>Dealing with Context and Semantics</strong>:
+Traditional NLP models often struggled to capture:</p>
+<ul class="simple">
+<li><p>Long-range dependencies in text</p></li>
+<li><p>Contextual nuances and implied meaning</p></li>
+<li><p>Pragmatics and discourse-level understanding</p></li>
+</ul>
+<p>Example: Understanding sarcasm or irony in text requires grasping context beyond literal word meanings.</p>
+<p>Consider the following exchange:
+A: “How was your day?”
+B: “Oh, just great. My car broke down, I spilled coffee on my shirt, and I missed an important meeting.”</p>
+<p>A traditional NLP system might interpret B’s response as positive due to the word “great,” failing to recognize the sarcasm conveyed by the subsequent negative events.</p>
+</li>
+<li><p><strong>Handling Rare Words and Out-of-Vocabulary Terms</strong>:
+Traditional models often struggled with:</p>
+<ul class="simple">
+<li><p>Words not seen during training (out-of-vocabulary words)</p></li>
+<li><p>Proper nouns and technical terms</p></li>
+<li><p>Neologisms and evolving language</p></li>
+</ul>
+<p>Example: A model trained on general text might struggle with domain-specific terms in medical or legal documents.</p>
+</li>
+<li><p><strong>Coreference Resolution</strong>:
+Identifying when different words or phrases refer to the same entity within a text.</p>
+<p>Example: “John went to the store. He bought some milk.”
+The system needs to understand that “He” refers to “John.”</p>
+</li>
+<li><p><strong>Computational Complexity</strong>:
+As vocabularies and datasets grew, traditional NLP methods faced scalability issues:</p>
+<ul class="simple">
+<li><p>High-dimensional feature spaces in bag-of-words models</p></li>
+<li><p>Computational costs of parsing complex sentences</p></li>
+<li><p>Memory requirements for storing large language models</p></li>
+</ul>
+</li>
+<li><p><strong>Lack of Generalization</strong>:
+Traditional models often performed poorly when applied to domains or text styles different from their training data.</p>
+<p>Example: A sentiment analysis model trained on movie reviews might perform poorly when applied to product reviews or social media posts.</p>
+</li>
+<li><p><strong>Difficulty in Capturing Semantic Similarity</strong>:
+Traditional methods like bag-of-words or TF-IDF struggle to capture the semantic relationships between words.</p>
+<p>Example: The sentences “The dog chased the cat” and “The feline was pursued by the canine” have very different bag-of-words representations despite having similar meanings.</p>
+</li>
+<li><p><strong>Handling Multilingual and Cross-lingual Tasks</strong>:
+Traditional NLP systems often required separate models for each language, making multilingual and cross-lingual tasks challenging.</p></li>
+</ol>
+<p>To illustrate some of these challenges, let’s look at a simple example using traditional NLP techniques:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+
+<span class="c1"># Sample sentences</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;The dog chased the cat.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The feline was pursued by the canine.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I love dogs and cats.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The financial institution is near the river bank.&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Create bag-of-words representations</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">bow_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+
+<span class="c1"># Calculate cosine similarity between sentences</span>
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">bow_matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Similarity matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vocabulary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Similarity</span> <span class="n">matrix</span><span class="p">:</span>
+<span class="p">[[</span><span class="mf">1.</span>         <span class="mf">0.</span>         <span class="mf">0.40824829</span> <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.</span>         <span class="mf">1.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.40824829</span> <span class="mf">0.</span>         <span class="mf">1.</span>         <span class="mf">0.</span>        <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">1.</span>        <span class="p">]]</span>
+
+<span class="n">Vocabulary</span><span class="p">:</span>
+<span class="p">[</span><span class="s1">&#39;and&#39;</span> <span class="s1">&#39;bank&#39;</span> <span class="s1">&#39;by&#39;</span> <span class="s1">&#39;cat&#39;</span> <span class="s1">&#39;chased&#39;</span> <span class="s1">&#39;dog&#39;</span> <span class="s1">&#39;dogs&#39;</span> <span class="s1">&#39;feline&#39;</span> <span class="s1">&#39;financial&#39;</span>
+ <span class="s1">&#39;institution&#39;</span> <span class="s1">&#39;is&#39;</span> <span class="s1">&#39;love&#39;</span> <span class="s1">&#39;near&#39;</span> <span class="s1">&#39;pursued&#39;</span> <span class="s1">&#39;river&#39;</span> <span class="s1">&#39;the&#39;</span> <span class="s1">&#39;was&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This example demonstrates several limitations of traditional NLP approaches:</p>
+<ol class="arabic simple">
+<li><p><strong>Semantic Similarity</strong>: Sentences 1 and 2 have very similar meanings, but their bag-of-words representations are completely different, resulting in zero similarity.</p></li>
+<li><p><strong>Word Order</strong>: The bag-of-words model loses all information about word order, which can be crucial for understanding meaning.</p></li>
+<li><p><strong>Ambiguity</strong>: The word “bank” in the last sentence could refer to a financial institution or a river bank, but the model has no way to disambiguate this.</p></li>
+<li><p><strong>Vocabulary Mismatch</strong>: “Dog” and “canine” are treated as completely different terms, even though they refer to the same concept.</p></li>
+<li><p><strong>Scalability</strong>: As the vocabulary grows, the feature space becomes increasingly sparse and high-dimensional, leading to computational challenges.</p></li>
+</ol>
+<p>These challenges motivated the development of more advanced NLP techniques, including distributional semantics, word embeddings, and eventually, deep learning models. In the next session, we’ll explore how modern NLP approaches address many of these limitations and open up new possibilities for natural language understanding and generation.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this session, we’ve covered the fundamentals of Natural Language Processing, tracing its evolution from early rule-based systems to statistical approaches. We’ve explored the basic concepts, the traditional NLP pipeline, and the significant challenges faced by these conventional methods.</p>
+<p>Key takeaways:</p>
+<ol class="arabic simple">
+<li><p>NLP is an interdisciplinary field combining linguistics, computer science, and AI to enable computers to process and understand human language.</p></li>
+<li><p>The field has evolved from rule-based systems through statistical methods to modern deep learning approaches.</p></li>
+<li><p>Traditional NLP pipelines involve text preprocessing, feature extraction, and model training/evaluation.</p></li>
+<li><p>Despite their successes, traditional NLP methods face significant challenges in handling language ambiguity, context, rare words, and semantic similarity.</p></li>
+</ol>
+<p>In our next session, we’ll dive into modern NLP techniques, exploring how deep learning and transformer models address many of these challenges and push the boundaries of what’s possible in natural language understanding and generation.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +1008,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 1</p>
+        <p class="prev-next-title">Week 1: Introduction</p>
       </div>
     </a>
     <a class="right-next"
@@ -488,7 +1016,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Session 2</p>
+        <p class="prev-next-title">Session 2 - The Revolution in Modern NLP</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -498,6 +1026,40 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-natural-language-processing-nlp">1. Introduction to Natural Language Processing (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-nlp">1.1 Definition of NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">1.2 Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-social-science-research">1.3 Importance in Social Science Research</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historical-perspective-of-nlp">2. Historical Perspective of NLP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#early-approaches-1950s-1980s">2.1 Early Approaches (1950s-1980s)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-revolution-1980s-2000s">2.2 Statistical Revolution (1980s-2000s)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-nlp-and-deep-learning-2010s-present">3. Modern NLP and Deep Learning (2010s-Present)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-nlp-pipeline">4. Traditional NLP Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing">4.1 Text Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">4.2 Feature Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training-and-evaluation">4.3 Model Training and Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-traditional-nlp">5. Challenges in Traditional NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
