@@ -15,6 +15,12 @@ parts:
       - file: projects/index
       - file: projects/proposal
       - file: projects/teams
+        sections:
+          - file: projects/team1/index
+          - file: projects/team2/index
+          - file: projects/team3/index
+          - file: projects/team4/index
+          - file: projects/team5/index
   - caption: About
     chapters:
       - file: syllabus/index
