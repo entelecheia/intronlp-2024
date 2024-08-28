@@ -14,6 +14,7 @@ parts:
     chapters:
       - file: projects/index
       - file: projects/proposal
+      - file: projects/research-note
       - file: projects/teams
         sections:
           - file: projects/team1/index
