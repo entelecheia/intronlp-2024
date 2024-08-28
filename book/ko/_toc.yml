@@ -14,6 +14,7 @@ parts:
     chapters:
       - file: projects/index
       - file: projects/proposal
+      - file: projects/teams
   - caption: About
     chapters:
       - file: syllabus/index
