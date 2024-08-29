@@ -27,16 +27,24 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 
 # 'corpus.txt' 파일에 문장당 한 줄씩 있다고 가정
+# 'corpus.txt' 문장예시
+# 조선의 왕은 백성을 사랑했다.
+# 왕은 나라를 다스리는 사람이다.
+# 왕비는 왕의 아내이다.
+# 왕자는 왕의 아들이다.
+# 왕궁은 왕이 사는 곳이다.
 sentences = LineSentence('corpus.txt')
 
 # Word2Vec 모델 훈련
 model = Word2Vec(sentences, vector_size=100, window=5, min_count=1, workers=4)
 
-# 유사한 단어 찾기
-similar_words = model.wv.most_similar('왕', topn=5)
-print("'왕'과 가장 유사한 단어들:")
-for word, score in similar_words:
-    print(f"{word}: {score:.4f}")
+# '왕' 단어가 어휘에 포함되어 있는지 확인
+if '왕' in model.wv.key_to_index:
+    # 유사한 단어 찾기
+    similar_words = model.wv.most_similar('왕', topn=5)
+    print("'왕'과 가장 유사한 단어들:")
+    for word, score in similar_words:
+        print(f"{word}: {score:.4f}")
 
 # 단어 산술 수행
 result = model.wv.most_similar(positive=['왕', '여자'], negative=['남자'], topn=1)
