@@ -34,6 +34,17 @@ NLP의 주요 개념:
 파이썬의 Natural Language Toolkit (NLTK)를 사용한 간단한 예제:
 
 ```python
+#실행 전 설치
+%pip install nltk
+%pip install numpy
+
+#창하나 뜨면 경로 설정후 설치, 다운로드 받은 경로 환경변수로 설정하면 실행됩니다.
+nltk.download()
+
+```
+
+```python
+
 import nltk
 from nltk import word_tokenize, pos_tag
 from nltk.corpus import names
