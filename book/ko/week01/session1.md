@@ -178,7 +178,7 @@ clf.fit(X_train_vec, y_train)
 
 # 예측 및 평가
 y_pred = clf.predict(X_test_vec)
-print(classification_report(y_test, y_pred, target_names=['부정', '긍정', '중립']))
+print(classification_report(y_test, y_pred, target_names=['부정', '긍정', '중립'], labels=[0, 1, 2]))
 ```
 
 이 시기에는 또한 실제 세계의 대규모 텍스트 데이터 컬렉션을 통한 언어 연구를 강조하는 말뭉치 언어학이 등장했습니다.
