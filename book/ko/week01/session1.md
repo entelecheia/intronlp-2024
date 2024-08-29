@@ -380,7 +380,7 @@ clf.fit(X_train_tfidf, y_train)
 y_pred = clf.predict(X_test_tfidf)
 
 # 모델 평가
-print(classification_report(y_test, y_pred, target_names=['부정', '긍정', '중립']))
+print(classification_report(y_test, y_pred, target_names=['부정', '긍정', '중립'], labels=[0, 1, 2]))
 ```
 
 ## 5. 전통적인 NLP의 도전 과제
