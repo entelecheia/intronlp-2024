@@ -24,6 +24,8 @@ parts:
           - file: projects/team1/index
           - file: projects/team2/index
           - file: projects/team3/index
+            sections:
+              - file: projects/team3/proposal
           - file: projects/team4/index
           - file: projects/team5/index
   - caption: About
