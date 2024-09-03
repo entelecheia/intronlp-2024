@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1주차: 자연어처리 소개 &#8212; 언어모형과자연어처리 2024</title>
+    <title>NLP 프로젝트 제안서 &#8212; 언어모형과자연어처리 2024</title>
   
   
   
@@ -18,59 +18,59 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/language_selector.css?v=6a8ebae4" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script src="../_static/tabs.js?v=3ee01567"></script>
-    <script src="../_static/js/hoverxref.js"></script>
-    <script src="../_static/js/tooltipster.bundle.min.js"></script>
-    <script src="../_static/js/micromodal.min.js"></script>
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -79,7 +79,7 @@
                 gtag('config', 'G-BQJE5V9RK2');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -90,14 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week01/index';</script>
-    <script src="../_static/language_switcher.js?v=730be77c"></script>
-    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/team3/proposal';</script>
+    <script src="../../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../../_static/chat.js?v=f0de43d7"></script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="세션 1 - 자연어처리의 기초와 발전" href="session1.html" />
-    <link rel="prev" title="홈" href="../index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Team 4" href="../team4/index.html" />
+    <link rel="prev" title="Team 3" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -130,7 +130,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -180,7 +180,7 @@
     
   
 
-<a class="navbar-brand logo" href="../index.html">
+<a class="navbar-brand logo" href="../../index.html">
   
   
   
@@ -206,45 +206,45 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
+                <a class="reference internal" href="../../index.html">
                     홈
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">1주차: 자연어처리 소개</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">세션 1 - 텍스트 전처리 기초</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/session1.html">세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/session2.html">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team1/index.html">Team 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team2/index.html">Team 2</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../teams.html">프로젝트 팀</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../team1/index.html">Team 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../team2/index.html">Team 2</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Team 3</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">NLP 프로젝트 제안서</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team4/index.html">Team 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team5/index.html">Team 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../team4/index.html">Team 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../team5/index.html">Team 5</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">만든 사람들</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
 </ul>
 
@@ -317,7 +317,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week01/index.md" target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/projects/team3/proposal.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +334,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek01/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/team3/proposal.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +364,7 @@
       
       
       
-      <li><a href="../_sources/week01/index.md" target="_blank"
+      <li><a href="../../_sources/projects/team3/proposal.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -435,7 +435,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -446,11 +448,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1주차: 자연어처리 소개</h1>
+    <h1>NLP 프로젝트 제안서</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 프로젝트 개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 프로젝트 배경 및 목적</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 프로젝트 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 주요 기능 및 특징</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -460,22 +475,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>1주차: 자연어처리 소개<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>자연어처리(NLP)와 고급 언어모델 기술에 대한 강좌의 1주차에 오신 것을 환영합니다. 이번 주에는 NLP의 세계를 탐험하며, 그 기본 개념, 역사적 발전, 그리고 최신 개발 동향에 대해 알아볼 것입니다.</p>
-<p>자연어처리는 언어학, 컴퓨터 과학, 인공지능을 결합한 학제간 분야로, 컴퓨터가 인간의 언어를 이해하고 해석하며 생성할 수 있게 합니다. 이 흥미로운 주제를 탐구하면서, NLP가 규칙 기반 시스템에서 다양한 언어 작업을 놀라운 수준으로 수행할 수 있는 정교한 대규모 언어 모델(LLM)로 어떻게 발전해 왔는지 알아볼 것입니다.</p>
-<p>우리의 탐구는 토큰화, 구문 분석, 의미 분석과 같은 NLP의 기본 개념부터 시작합니다. 그런 다음 NLP의 역사적 발전을 추적하여 초기의 규칙 기반 접근 방식에서 1980년대와 2000년대의 통계적 혁명까지 살펴볼 것입니다. 이러한 역사적 관점은 최근 몇 년간 딥 러닝과 트랜스포머 모델이 가져온 극적인 발전을 이해하는 데 도움이 될 것입니다.</p>
-<p>전통적인 NLP 파이프라인을 살펴보고, 그것이 직면한 도전과 현대적 접근 방식이 이러한 한계를 어떻게 해결했는지 논의할 것입니다. 단어 임베딩의 도입, NLP에서 딥 러닝의 부상, BERT와 GPT 같은 트랜스포머 모델의 출현이 주요 토론 주제가 될 것입니다.</p>
-<p>강의의 상당 부분은 대규모 언어 모델, 그 능력, 그리고 다양한 분야에 미치는 영향에 초점을 맞출 것입니다. 우리는 작업 특화 모델에서 범용 모델로의 패러다임 전환과 퓨샷 및 제로샷 학습이 제공하는 흥미로운 가능성을 탐구할 것입니다.</p>
-<p>마지막으로, NLP의 현재 상태와 미래 방향을 고려하며, LLM의 진행 중인 발전과 새롭게 부상하는 도전과 기회에 대해 논의할 것입니다.</p>
-<p>이번 주가 끝나면, 여러분은 NLP의 기초, 현재 능력, 그리고 다양한 분야를 혁신할 잠재력에 대한 포괄적인 이해를 갖게 될 것입니다. 이 지식은 앞으로 몇 주 동안 다룰 더 고급 주제들의 탄탄한 기초가 될 것입니다.</p>
-<p>자연어처리의 흥미진진한 세계로의 여정을 시작해봅시다!</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="nlp">
+<h1>NLP 프로젝트 제안서<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1. 프로젝트 개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>프로젝트명:</strong> 다국어 슬랭 변환기</p></li>
+<li><p><strong>팀명:</strong> [Nice]</p></li>
+<li><p><strong>팀원:</strong></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
-<li class="toctree-l1"><a class="reference internal" href="session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
+<li><p>이규범 (팀장)</p></li>
+<li><p>홍윤재 (백엔드 개발자)</p></li>
+<li><p>김형훈 (프론트엔드 개발자)</p></li>
+<li><p>주석훈 (데이터 사이언티스트/NLP 엔지니어)</p></li>
 </ul>
-</div>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>2. 프로젝트 배경 및 목적<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>프로젝트 주제 선정 배경:</strong><br />
+글로벌화된 시대에서 다양한 문화와 언어를 사용하는 사람들이 온라인상에서 활발하게 소통하고 있다. 하지만 이러한 대화에서 슬랭(속어)이나 지역 방언과 같은 비공식적 표현은 기존의 번역 시스템으로는 정확히 번역되기 어렵다. 이러한 언어적 차이는 오해를 낳을 수 있으며, 문화적 뉘앙스를 잘못 전달하는 문제를 야기할 수 있다. 이에 따라, 이 프로젝트는 다국어 간의 슬랭 변환을 통해 보다 자연스럽고 의미 있는 의사소통을 지원하는 시스템을 개발하고자 한다.</p></li>
+<li><p><strong>해결하고자 하는 문제 또는 목표:</strong><br />
+다국어 대화에서 슬랭과 같은 비공식적 표현을 정확히 전달하는 것이 주요 목표이다. 이를 통해 원래의 감정과 뉘앙스를 유지하면서도 의미를 명확하게 전달하는 번역을 제공하여, 글로벌 커뮤니케이션에서의 언어 장벽을 낮추고, 문화적 이해를 촉진하고자 한다.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>3. 프로젝트 내용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>3.1 주요 기능 및 특징<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>주요 기능:</strong><br />
+이 프로젝트의 핵심 기능은 사용자가 입력한 슬랭을 다른 언어의 유사한 슬랭으로 변환하는 것이다. 예를 들어, 영어 슬랭 “cool”을 한국어 슬랭 “쩐다”로 변환하거나, 스페인어 “guay”를 일본어 “スゴイ (Sugoi)”로 변환하는 기능을 제공한다. 이 변환은 슬랭의 의미와 사용되는 문맥을 이해하여 자연스러운 표현을 생성하는 데 중점을 둔다.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -491,7 +526,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week01"
+            path: "./projects/team3"
         },
         predefinedOutput: true
     }
@@ -511,20 +546,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">홈</p>
+        <p class="prev-next-title">Team 3</p>
       </div>
     </a>
     <a class="right-next"
-       href="session1.html"
+       href="../team4/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">세션 1 - 자연어처리의 기초와 발전</p>
+        <p class="prev-next-title">Team 4</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -534,6 +569,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 프로젝트 개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 프로젝트 배경 및 목적</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 프로젝트 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 주요 기능 및 특징</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -578,8 +633,8 @@ By Young Joon Lee
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
