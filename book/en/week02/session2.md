@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to Week 2, Session 2 of our "Introduction to NLP and LLMs 202" course. In this lecture, we'll explore advanced text preprocessing techniques and delve into methods for representing text data in a format suitable for machine learning algorithms. We'll build upon the foundational concepts covered in Session 1 and introduce more sophisticated approaches to prepare text data for analysis.
+In this lecture, we'll explore advanced text preprocessing techniques and delve into methods for representing text data in a format suitable for machine learning algorithms. We'll build upon the foundational concepts covered in Session 1 and introduce more sophisticated approaches to prepare text data for analysis.
 
 Let's start by importing the necessary libraries:
 
