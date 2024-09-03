@@ -1,4 +1,4 @@
-# 프로젝트 팀 구성
+# 프로젝트 팀
 
 ```{tableofcontents}
 
