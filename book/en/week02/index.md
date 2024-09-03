@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to Week 2 of our "Introduction to NLP and LLMs 202" course! This week, we'll dive into the fundamental techniques of text preprocessing, a crucial step in any Natural Language Processing (NLP) pipeline. Text preprocessing is essential for cleaning and standardizing raw text data, making it suitable for further analysis and model training.
+This week, we'll dive into the fundamental techniques of text preprocessing, a crucial step in any Natural Language Processing (NLP) pipeline. Text preprocessing is essential for cleaning and standardizing raw text data, making it suitable for further analysis and model training.
 
 ## Learning Objectives
 
