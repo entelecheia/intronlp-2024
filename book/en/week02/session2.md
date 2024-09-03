@@ -1,4 +1,4 @@
-# Session 2: Advanced Text Preprocessing and Representation
+# Session 2 - Advanced Text Preprocessing and Representation
 
 ## Introduction
 

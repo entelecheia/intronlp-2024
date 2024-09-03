@@ -1,4 +1,4 @@
-# Session 1: Text Preprocessing Fundamentals
+# Session 1 - Text Preprocessing Fundamentals
 
 ## Introduction
 
