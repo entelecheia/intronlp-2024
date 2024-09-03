@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>만든 사람들 &#8212; 언어모형과자연어처리 2024</title>
+    <title>Week 2: Basics of Text Preprocessing &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -90,13 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'about/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/index';</script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="수업계획서" href="../syllabus/index.html" />
+    <link rel="next" title="Session 1: Text Preprocessing Fundamentals" href="session1.html" />
+    <link rel="prev" title="Session 2 - The Revolution in Modern NLP" href="../week01/session2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -172,7 +173,7 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
         <div class="sidebar-primary-item">
 
   
@@ -186,7 +187,7 @@
   
   
   
-    <p class="title logo__title">언어모형과자연어처리 2024</p>
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -206,41 +207,33 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    홈
+                    Home
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Session 2 - The Revolution in Modern NLP</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">세션 1 - 텍스트 전처리 기초</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 2: Basics of Text Preprocessing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1: Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Session 2: Advanced Text Preprocessing and Representation</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">팀 프로젝트</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀 구성</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team1/index.html">Team 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team2/index.html">Team 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team3/index.html">Team 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team4/index.html">Team 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../projects/team5/index.html">Team 5</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">만든 사람들</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
 </ul>
 
@@ -313,7 +306,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/about/index.md" target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week02/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +323,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fabout/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +353,7 @@
       
       
       
-      <li><a href="../_sources/about/index.md" target="_blank"
+      <li><a href="../_sources/week02/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -444,7 +437,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>만든 사람들</h1>
+    <h1>Week 2: Basics of Text Preprocessing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -454,11 +447,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor">Instructor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">이영준</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-topics">Key Topics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">1. Tokenization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">2. Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-word-removal">3. Stop Word Removal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk-library-for-text-preprocessing">4. NLTK Library for Text Preprocessing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#students">Students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-component">Practical Component</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
 </ul>
             </nav>
         </div>
@@ -470,24 +470,82 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>만든 사람들<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>본 강의는 제주한라대학교 인공지능학과 이영준 교수가 직접 강의하고, 학부생들이 직접 참여하여 만들어졌습니다. 강의를 듣는 학생들은 강의를 듣는 것뿐만 아니라, 강의를 같이 만들어가는 과정에서 많은 것을 배울 수 있습니다.</p>
-<section id="instructor">
-<h2>Instructor<a class="headerlink" href="#instructor" title="Link to this heading">#</a></h2>
-<section id="id2">
-<h3>이영준<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-2-basics-of-text-preprocessing">
+<h1>Week 2: Basics of Text Preprocessing<a class="headerlink" href="#week-2-basics-of-text-preprocessing" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This week, we’ll dive into the fundamental techniques of text preprocessing, a crucial step in any Natural Language Processing (NLP) pipeline. Text preprocessing is essential for cleaning and standardizing raw text data, making it suitable for further analysis and model training.</p>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this week, you will be able to:</p>
+<ol class="arabic simple">
+<li><p>Understand the importance of text preprocessing in NLP tasks</p></li>
+<li><p>Implement and apply various tokenization techniques</p></li>
+<li><p>Perform text normalization, including case normalization and punctuation removal</p></li>
+<li><p>Identify and remove stop words from text data</p></li>
+<li><p>Use the NLTK (Natural Language Toolkit) library for text preprocessing tasks</p></li>
+</ol>
+</section>
+<section id="key-topics">
+<h2>Key Topics<a class="headerlink" href="#key-topics" title="Link to this heading">#</a></h2>
+<section id="tokenization">
+<h3>1. Tokenization<a class="headerlink" href="#tokenization" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>관심분야: 인공지능, 자연어처리, Generative AI, Multimodal AI, Robotics, Sustainability</p></li>
-<li><p>주요담당분야: 자연어처리, 생성형 AI, 빅데이터, DevOps &amp; MLOps</p></li>
-<li><p>E-Mail: <a class="reference external" href="mailto:yj&#46;lee&#37;&#52;&#48;chu&#46;ac&#46;kr">yj<span>&#46;</span>lee<span>&#64;</span>chu<span>&#46;</span>ac<span>&#46;</span>kr</a></p></li>
-<li><p><a class="reference external" href="https://entelecheia.me">🏠 Homepage</a> <a class="reference external" href="https://www.linkedin.com/in/entelecheia">📖 LinkedIn</a> <a class="reference external" href="https://github.com/entelecheia">🐙 GitHub</a></p></li>
+<li><p>Definition and importance of tokenization</p></li>
+<li><p>Word tokenization vs. sentence tokenization</p></li>
+<li><p>Challenges in tokenization (e.g., contractions, hyphenated words)</p></li>
+<li><p>Different tokenization approaches (rule-based, statistical, neural)</p></li>
+</ul>
+</section>
+<section id="normalization">
+<h3>2. Normalization<a class="headerlink" href="#normalization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Case normalization (lowercasing/uppercasing)</p></li>
+<li><p>Punctuation removal</p></li>
+<li><p>Handling special characters and numbers</p></li>
+<li><p>Spelling correction and text canonicalization</p></li>
+</ul>
+</section>
+<section id="stop-word-removal">
+<h3>3. Stop Word Removal<a class="headerlink" href="#stop-word-removal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Definition and purpose of stop words</p></li>
+<li><p>Common stop words in English</p></li>
+<li><p>Impact of stop word removal on NLP tasks</p></li>
+<li><p>Considerations for domain-specific stop words</p></li>
+</ul>
+</section>
+<section id="nltk-library-for-text-preprocessing">
+<h3>4. NLTK Library for Text Preprocessing<a class="headerlink" href="#nltk-library-for-text-preprocessing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Introduction to NLTK</p></li>
+<li><p>Using NLTK for tokenization</p></li>
+<li><p>NLTK’s built-in stop word lists</p></li>
+<li><p>Additional NLTK preprocessing utilities</p></li>
 </ul>
 </section>
 </section>
-<section id="students">
-<h2>Students<a class="headerlink" href="#students" title="Link to this heading">#</a></h2>
+<section id="practical-component">
+<h2>Practical Component<a class="headerlink" href="#practical-component" title="Link to this heading">#</a></h2>
+<p>In this week’s practical session, you will:</p>
+<ul class="simple">
+<li><p>Install and set up the NLTK library</p></li>
+<li><p>Implement a text preprocessing pipeline using NLTK</p></li>
+<li><p>Experiment with different tokenization methods</p></li>
+<li><p>Compare the effects of various preprocessing steps on sample texts</p></li>
+</ul>
 </section>
+<section id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Link to this heading">#</a></h2>
+<p>You will be given a dataset of raw text and tasked with creating a comprehensive preprocessing pipeline. Your solution should include tokenization, normalization, and stop word removal. You’ll also need to provide a brief report discussing the impact of each preprocessing step on the resulting text.</p>
+</section>
+<section id="looking-ahead">
+<h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h2>
+<p>The text preprocessing skills you learn this week will form the foundation for more advanced NLP tasks we’ll explore in the coming weeks. Next week, we’ll build upon these basics to delve into the fundamentals of language models.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -503,7 +561,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./about"
+            path: "./week02"
         },
         predefinedOutput: true
     }
@@ -518,18 +576,27 @@ document.write(`
               
               
     <div class="giscus"></div>
-<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../syllabus/index.html"
+       href="../week01/session2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">수업계획서</p>
+        <p class="prev-next-title">Session 2 - The Revolution in Modern NLP</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="session1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Session 1: Text Preprocessing Fundamentals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -547,11 +614,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor">Instructor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">이영준</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-topics">Key Topics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">1. Tokenization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">2. Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-word-removal">3. Stop Word Removal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk-library-for-text-preprocessing">4. NLTK Library for Text Preprocessing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#students">Students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-component">Practical Component</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
 </ul>
   </nav></div>
 

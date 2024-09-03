@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>만든 사람들 &#8212; 언어모형과자연어처리 2024</title>
+    <title>2주차: 텍스트 전처리 기초 &#8212; 언어모형과자연어처리 2024</title>
   
   
   
@@ -90,13 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'about/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/index';</script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="수업계획서" href="../syllabus/index.html" />
+    <link rel="next" title="세션 1 - 텍스트 전처리 기초" href="session1.html" />
+    <link rel="prev" title="세션 2 - 현대 자연어처리의 혁명" href="../week01/session2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -211,15 +212,15 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">세션 1 - 텍스트 전처리 기초</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2주차: 텍스트 전처리 기초</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="session1.html">세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
 </ul>
 </details></li>
 </ul>
@@ -238,9 +239,9 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
 </ul>
 
@@ -313,7 +314,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/about/index.md" target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week02/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +331,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fabout/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +361,7 @@
       
       
       
-      <li><a href="../_sources/about/index.md" target="_blank"
+      <li><a href="../_sources/week02/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -444,7 +445,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>만든 사람들</h1>
+    <h1>2주차: 텍스트 전처리 기초</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -454,11 +455,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor">Instructor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">이영준</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">학습 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">주요 주제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 토큰화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2. 정규화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3. 불용어 제거</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk">4. 텍스트 전처리를 위한 NLTK 라이브러리</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#students">Students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">실습 구성요소</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">앞으로의 전망</a></li>
 </ul>
             </nav>
         </div>
@@ -471,23 +479,81 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>만든 사람들<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>본 강의는 제주한라대학교 인공지능학과 이영준 교수가 직접 강의하고, 학부생들이 직접 참여하여 만들어졌습니다. 강의를 듣는 학생들은 강의를 듣는 것뿐만 아니라, 강의를 같이 만들어가는 과정에서 많은 것을 배울 수 있습니다.</p>
-<section id="instructor">
-<h2>Instructor<a class="headerlink" href="#instructor" title="Link to this heading">#</a></h2>
+<h1>2주차: 텍스트 전처리 기초<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
-<h3>이영준<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이번 주에는 모든 자연어 처리(NLP) 파이프라인에서 중요한 단계인 텍스트 전처리의 기본 기술에 대해 알아볼 것입니다. 텍스트 전처리는 원시 텍스트 데이터를 정제하고 표준화하여 추가 분석과 모델 훈련에 적합하게 만드는 데 필수적입니다.</p>
+</section>
+<section id="id3">
+<h2>학습 목표<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>이번 주가 끝날 때까지 여러분은 다음을 할 수 있게 될 것입니다:</p>
+<ol class="arabic simple">
+<li><p>NLP 작업에서 텍스트 전처리의 중요성 이해하기</p></li>
+<li><p>다양한 토큰화 기술 구현 및 적용하기</p></li>
+<li><p>대소문자 정규화와 구두점 제거를 포함한 텍스트 정규화 수행하기</p></li>
+<li><p>텍스트 데이터에서 불용어 식별 및 제거하기</p></li>
+<li><p>텍스트 전처리 작업에 NLTK(Natural Language Toolkit) 라이브러리 사용하기</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>주요 주제<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>1. 토큰화<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>관심분야: 인공지능, 자연어처리, Generative AI, Multimodal AI, Robotics, Sustainability</p></li>
-<li><p>주요담당분야: 자연어처리, 생성형 AI, 빅데이터, DevOps &amp; MLOps</p></li>
-<li><p>E-Mail: <a class="reference external" href="mailto:yj&#46;lee&#37;&#52;&#48;chu&#46;ac&#46;kr">yj<span>&#46;</span>lee<span>&#64;</span>chu<span>&#46;</span>ac<span>&#46;</span>kr</a></p></li>
-<li><p><a class="reference external" href="https://entelecheia.me">🏠 Homepage</a> <a class="reference external" href="https://www.linkedin.com/in/entelecheia">📖 LinkedIn</a> <a class="reference external" href="https://github.com/entelecheia">🐙 GitHub</a></p></li>
+<li><p>토큰화의 정의와 중요성</p></li>
+<li><p>단어 토큰화 vs. 문장 토큰화</p></li>
+<li><p>토큰화의 과제 (예: 축약어, 하이픈이 있는 단어)</p></li>
+<li><p>다양한 토큰화 접근 방식 (규칙 기반, 통계적, 신경망)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>2. 정규화<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>대소문자 정규화 (소문자화/대문자화)</p></li>
+<li><p>구두점 제거</p></li>
+<li><p>특수 문자와 숫자 처리</p></li>
+<li><p>맞춤법 교정과 텍스트 정규화</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>3. 불용어 제거<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>불용어의 정의와 목적</p></li>
+<li><p>영어의 일반적인 불용어</p></li>
+<li><p>NLP 작업에서 불용어 제거의 영향</p></li>
+<li><p>도메인 특정 불용어에 대한 고려사항</p></li>
+</ul>
+</section>
+<section id="nltk">
+<h3>4. 텍스트 전처리를 위한 NLTK 라이브러리<a class="headerlink" href="#nltk" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>NLTK 소개</p></li>
+<li><p>토큰화를 위한 NLTK 사용</p></li>
+<li><p>NLTK의 내장 불용어 목록</p></li>
+<li><p>추가 NLTK 전처리 유틸리티</p></li>
 </ul>
 </section>
 </section>
-<section id="students">
-<h2>Students<a class="headerlink" href="#students" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>실습 구성요소<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>이번 주 실습 세션에서는 다음을 수행할 것입니다:</p>
+<ul class="simple">
+<li><p>NLTK 라이브러리 설치 및 설정</p></li>
+<li><p>NLTK를 사용하여 텍스트 전처리 파이프라인 구현</p></li>
+<li><p>다양한 토큰화 방법 실험</p></li>
+<li><p>샘플 텍스트에 대한 다양한 전처리 단계의 효과 비교</p></li>
+</ul>
 </section>
+<section id="id9">
+<h2>과제<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>원시 텍스트 데이터셋이 주어지며, 여러분은 포괄적인 전처리 파이프라인을 만들어야 합니다. 여러분의 솔루션에는 토큰화, 정규화, 불용어 제거가 포함되어야 합니다. 또한 각 전처리 단계가 결과 텍스트에 미치는 영향에 대해 간단한 보고서를 제공해야 합니다.</p>
+</section>
+<section id="id10">
+<h2>앞으로의 전망<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>이번 주에 배우는 텍스트 전처리 기술은 앞으로 몇 주 동안 탐구할 더 고급 NLP 작업의 기초가 될 것입니다. 다음 주에는 이러한 기초를 바탕으로 언어 모델의 기본 사항을 자세히 살펴볼 것입니다.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -503,7 +569,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./about"
+            path: "./week02"
         },
         predefinedOutput: true
     }
@@ -523,13 +589,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../syllabus/index.html"
+       href="../week01/session2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">수업계획서</p>
+        <p class="prev-next-title">세션 2 - 현대 자연어처리의 혁명</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="session1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">세션 1 - 텍스트 전처리 기초</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -547,11 +622,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor">Instructor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">이영준</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">학습 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">주요 주제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 토큰화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2. 정규화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3. 불용어 제거</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk">4. 텍스트 전처리를 위한 NLTK 라이브러리</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#students">Students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">실습 구성요소</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">앞으로의 전망</a></li>
 </ul>
   </nav></div>
 
