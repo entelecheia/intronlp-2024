@@ -60,3 +60,7 @@ You will be given a dataset of raw text and tasked with creating a comprehensive
 ## Looking Ahead
 
 The text preprocessing skills you learn this week will form the foundation for more advanced NLP tasks we'll explore in the coming weeks. Next week, we'll build upon these basics to delve into the fundamentals of language models.
+
+```{tableofcontents}
+
+```
