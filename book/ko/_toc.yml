@@ -23,6 +23,8 @@ parts:
       - file: projects/teams
         sections:
           - file: projects/team1/index
+            sections:
+              - file: projects/team1/DPS_proposal
           - file: projects/team2/index
           - file: projects/team3/index
             sections:
