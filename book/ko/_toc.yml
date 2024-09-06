@@ -30,6 +30,8 @@ parts:
             sections:
               - file: projects/team3/proposal
           - file: projects/team4/index
+            sections:
+              - file: projects/team4/proposal
           - file: projects/team5/index
   - caption: About
     chapters:
