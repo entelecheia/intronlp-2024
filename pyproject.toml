@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "intronlp-2024"
-version = "0.2.0"
+version = "0.3.0"
 description = "Introduction to the fundamental concepts of Natural Language Processing (NLP) and advanced language model technologies."
 authors = ["Young Joon Lee <entelecheia@hotmail.com>"]
 license = "CC-BY-4.0"
