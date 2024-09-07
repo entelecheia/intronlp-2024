@@ -236,7 +236,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../team1/proposal.html">NLP 프로젝트 제안서</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../team2/index.html">Team 2</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../team3/index.html">Team 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../team3/proposal.html">NLP 프로젝트 제안서</a></li>
 </ul>
@@ -543,11 +546,11 @@ document.write(`
 <ul class="simple">
 <li><p><strong>NLP 기술</strong>:</p>
 <ul>
-<li><p>텍스트 전처리: 사건 관련 정보와 법률 문서의 정규화, 토큰화, 불용어 제거 등.</p></li>
+<li><p>텍스트 전처리: 사건 관련 정보와 법률 문서의 정규화, 토큰화 등.</p></li>
 <li><p>GPT 기반 생성 모델: GPT-4 또는 최신 트랜스포머 모델을 활용하여 역할별 AI 개발.</p></li>
 </ul>
 </li>
-<li><p><strong>언어모델 API</strong>: GPT-4 API 또는 Custom Fine-tuned GPT-3 모델.</p></li>
+<li><p><strong>언어모델 API</strong>: GPT-4 API 또는 Open source api 모델.</p></li>
 <li><p><strong>웹 애플리케이션 개발 프레임워크</strong>: Django (백엔드), React (프론트엔드), WebSocket을 통한 실시간 업데이트.</p></li>
 </ul>
 </section>
@@ -560,7 +563,7 @@ document.write(`
 <li><p>법정 기록 데이터셋: 실제 법정에서의 검사, 변호사, 판사의 발언 기록을 포함한 대화형 데이터셋.</p></li>
 </ul>
 </li>
-<li><p><strong>데이터 수집 및 전처리 방법</strong>: OpenLaw, Caselaw Access Project 등에서 법률 문서와 법정 대화 데이터를 수집. 법률 용어 정규화, 관련 불용어 제거 및 데이터 라벨링을 수행합니다.</p></li>
+<li><p><strong>데이터 수집 및 전처리 방법</strong>: OpenLaw, Caselaw Access Project 등에서 법률 문서와 법정 대화 데이터를 수집. 법률 용어 정규화 및 데이터 라벨링을 수행합니다.</p></li>
 </ul>
 </section>
 </section>
@@ -572,7 +575,7 @@ document.write(`
 <li><p><strong>기획 단계 (1-3주차)</strong>: 프로젝트 요구사항 분석, 법정 시뮬레이션 시나리오 설계. 데이터셋 수집 및 전처리 방법 결정.</p></li>
 <li><p><strong>개발 단계 (4-12주차)</strong>:</p>
 <ul>
-<li><p>GPT 모델의 역할별 학습 및 파인튜닝 (4-8주차).</p></li>
+<li><p>GPT 모델의 역할별 학습, RAG 기술 사용 (4-8주차).</p></li>
 <li><p>웹 애플리케이션 프론트엔드 및 백엔드 개발, API 연동 (6-10주차).</p></li>
 <li><p>상호작용 로직 및 실시간 시뮬레이션 기능 구현 (9-12주차).</p></li>
 </ul>
@@ -584,8 +587,8 @@ document.write(`
 <section id="id9">
 <h3>역할 분담<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>홍성관</strong>: 프로젝트 총괄, 모델 개발 및 데이터 수집.</p></li>
-<li><p><strong>김현서</strong>: NLP 모델 학습 및 역할별 튜닝, 데이터 전처리.</p></li>
+<li><p><strong>홍성관</strong>: 프로젝트 총괄, 모델 개발 및 데이터 수집, RAG 기술 적용.</p></li>
+<li><p><strong>김현서</strong>: NLP 모델 학습, 데이터 전처리.</p></li>
 <li><p><strong>박진우</strong>: 웹 애플리케이션 백엔드 및 프론트엔드 개발, API 연동.</p></li>
 </ul>
 </section>
