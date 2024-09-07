@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>세션 2 - 고급 텍스트 전처리 및 표현 &#8212; 언어모형과자연어처리 2024</title>
+    <title>2주차 세션 2 - 고급 텍스트 전처리 및 표현 &#8212; 언어모형과자연어처리 2024</title>
   
   
   
@@ -96,8 +96,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="세션 3 - 한국어 텍스트 전처리 및 토큰화" href="session3.html" />
-    <link rel="prev" title="세션 1 - 텍스트 전처리 기초" href="session1.html" />
+    <link rel="next" title="2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화" href="session3.html" />
+    <link rel="prev" title="2주차 세션 1 - 텍스트 전처리 기초" href="session1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,15 +213,16 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">세션 1 - 자연어처리의 기초와 발전</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2주차: 텍스트 전처리 기초</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="session1.html">세션 1 - 텍스트 전처리 기초</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">세션 2 - 고급 텍스트 전처리 및 표현</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session3.html">세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2주차 - 텍스트 전처리 기초</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
 </ul>
 </details></li>
 </ul>
@@ -458,7 +459,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>세션 2 - 고급 텍스트 전처리 및 표현</h1>
+    <h1>2주차 세션 2 - 고급 텍스트 전처리 및 표현</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -497,7 +498,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>세션 2 - 고급 텍스트 전처리 및 표현<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>2주차 세션 2 - 고급 텍스트 전처리 및 표현<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>소개<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>이번 강의에서는 고급 텍스트 전처리 기술을 살펴보고 기계 학습 알고리즘에 적합한 형식으로 텍스트 데이터를 표현하는 방법을 깊이 있게 다룰 것입니다. 1회차에서 다룬 기본 개념을 바탕으로 텍스트 데이터를 분석하기 위한 더 정교한 접근 방식을 소개할 것입니다.</p>
@@ -806,7 +807,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">세션 1 - 텍스트 전처리 기초</p>
+        <p class="prev-next-title">2주차 세션 1 - 텍스트 전처리 기초</p>
       </div>
     </a>
     <a class="right-next"
@@ -814,7 +815,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">세션 3 - 한국어 텍스트 전처리 및 토큰화</p>
+        <p class="prev-next-title">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
