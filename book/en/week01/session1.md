@@ -1,4 +1,4 @@
-# Session 1 - Foundations and Evolution of NLP
+# Week 1 Session 1 - Foundations and Evolution of NLP
 
 ## 1. Introduction to Natural Language Processing (NLP)
 
