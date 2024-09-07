@@ -24,7 +24,7 @@ parts:
         sections:
           - file: projects/team1/index
             sections:
-              - file: projects/team1/DPS_proposal
+              - file: projects/team1/proposal
           - file: projects/team2/index
           - file: projects/team3/index
             sections:
@@ -33,6 +33,8 @@ parts:
             sections:
               - file: projects/team4/proposal
           - file: projects/team5/index
+            sections:
+              - file: projects/team5/proposal
   - caption: About
     chapters:
       - file: syllabus/index
