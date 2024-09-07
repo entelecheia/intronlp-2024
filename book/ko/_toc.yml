@@ -27,6 +27,8 @@ parts:
             sections:
               - file: projects/team1/proposal
           - file: projects/team2/index
+            sections:
+              - file: projects/team2/proposal
           - file: projects/team3/index
             sections:
               - file: projects/team3/proposal
