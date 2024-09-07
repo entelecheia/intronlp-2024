@@ -1,4 +1,4 @@
-# Session 1 - Foundations and Evolution of NLP
+# Week 1 Session 1 - Foundations and Evolution of NLP
 
 ## 1. Introduction to Natural Language Processing (NLP)
 
@@ -73,18 +73,6 @@ PERSON John
 ORGANIZATION Google
 GPE New York
 ```
-
-### 1.3 Importance in Social Science Research
-
-NLP has become increasingly important in social science research due to its ability to:
-
-1. Analyze large-scale textual data, such as social media posts, historical documents, or survey responses
-2. Extract insights from unstructured text, revealing patterns and trends in human communication
-3. Automate content analysis and coding, saving time and reducing human bias in qualitative research
-4. Facilitate cross-cultural and multilingual studies by enabling automated translation and analysis
-5. Enhance sentiment analysis and opinion mining for understanding public perceptions and attitudes
-
-Example: A researcher studying political discourse could use NLP techniques to analyze thousands of tweets during an election campaign, identifying key topics, sentiment towards candidates, and changes in public opinion over time.
 
 ## 2. Historical Perspective of NLP
 

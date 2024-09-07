@@ -10,10 +10,32 @@ parts:
         sections:
           - file: week01/session1
           - file: week01/session2
+          - file: week01/wk1-lab1
+      - file: week02/index
+        sections:
+          - file: week02/session1
+          - file: week02/session2
+          - file: week02/session3
   - caption: Projects
     chapters:
       - file: projects/index
       - file: projects/proposal
+      - file: projects/research-note
+      - file: projects/teams
+        sections:
+          - file: projects/team1/index
+            sections:
+              - file: projects/team1/proposal
+          - file: projects/team2/index
+          - file: projects/team3/index
+            sections:
+              - file: projects/team3/proposal
+          - file: projects/team4/index
+            sections:
+              - file: projects/team4/proposal
+          - file: projects/team5/index
+            sections:
+              - file: projects/team5/proposal
   - caption: About
     chapters:
       - file: syllabus/index
