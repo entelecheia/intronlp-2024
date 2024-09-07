@@ -1,4 +1,4 @@
-# Team 1
+# Team 1 - MakeMZ
 
 ## 팀 구성원
 

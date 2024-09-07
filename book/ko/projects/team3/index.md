@@ -1,4 +1,4 @@
-# Team 3
+# Team 3 - Nice
 
 ## 팀 구성원
 
