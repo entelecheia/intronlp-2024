@@ -1,4 +1,4 @@
-# Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models
+# Week 3 Session 2 - Advanced Statistical Language Models
 
 ## 1. Advanced N-gram Techniques
 
