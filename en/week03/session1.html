@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 3 Session 1 - Introduction to Language Models and N-grams &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/session1';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models" href="session2.html" />
+    <link rel="prev" title="Week 3 - Fundamentals of Language Models" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2 - The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1 - Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2 - Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3 - Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 3 - Fundamentals of Language Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 3 Session 1 - Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week03/session1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/session1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week03/session1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 3 Session 1 - Introduction to Language Models and N-grams</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-language-models">1. Introduction to Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formal-definition">1.1 Formal Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-language-models">1.2 Applications of Language Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models">2. N-gram Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-n-grams">2.1 Types of N-grams</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-markov-assumption">2.2 The Markov Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-n-gram-probabilities">2.3 Calculating N-gram Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-n-gram-models">2.4 Advantages and Limitations of N-gram Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-unseen-n-grams-smoothing-techniques">3. Handling Unseen N-grams: Smoothing Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-add-1-smoothing">3.1 Laplace (Add-1) Smoothing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-smoothing-techniques">3.2 Other Smoothing Techniques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models-perplexity">4. Evaluating Language Models: Perplexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-n-gram-models">5. Visualizing N-gram Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-session-1-introduction-to-language-models-and-n-grams">
+<h1>Week 3 Session 1 - Introduction to Language Models and N-grams<a class="headerlink" href="#week-3-session-1-introduction-to-language-models-and-n-grams" title="Link to this heading">#</a></h1>
+<section id="introduction-to-language-models">
+<h2>1. Introduction to Language Models<a class="headerlink" href="#introduction-to-language-models" title="Link to this heading">#</a></h2>
+<p>Language models are probabilistic models that assign probabilities to sequences of words. They play a crucial role in many Natural Language Processing (NLP) tasks, including:</p>
+<ul class="simple">
+<li><p>Speech recognition</p></li>
+<li><p>Machine translation</p></li>
+<li><p>Text generation</p></li>
+<li><p>Spelling correction</p></li>
+<li><p>Sentiment analysis</p></li>
+</ul>
+<p>The main goal of a language model is to learn the joint probability distribution of sequences of words in a language.</p>
+<section id="formal-definition">
+<h3>1.1 Formal Definition<a class="headerlink" href="#formal-definition" title="Link to this heading">#</a></h3>
+<p>Given a sequence of words W = (w₁, w₂, …, wₙ), a language model computes the probability P(W):</p>
+<p>P(W) = P(w₁, w₂, …, wₙ)</p>
+<p>Using the chain rule of probability, we can decompose this into:</p>
+<p>P(W) = P(w₁) _ P(w₂|w₁) _ P(w₃|w₁,w₂) _ … _ P(wₙ|w₁,w₂,…,wₙ₋₁)</p>
+</section>
+<section id="applications-of-language-models">
+<h3>1.2 Applications of Language Models<a class="headerlink" href="#applications-of-language-models" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Predictive Text</strong>: Suggesting the next word in a sentence (e.g., smartphone keyboards)</p></li>
+<li><p><strong>Machine Translation</strong>: Ensuring fluent and grammatical translations</p></li>
+<li><p><strong>Speech Recognition</strong>: Distinguishing between similar-sounding phrases</p></li>
+<li><p><strong>Text Generation</strong>: Creating human-like text for chatbots or content generation</p></li>
+<li><p><strong>Information Retrieval</strong>: Improving search results by understanding query intent</p></li>
+</ol>
+</section>
+</section>
+<section id="n-gram-models">
+<h2>2. N-gram Models<a class="headerlink" href="#n-gram-models" title="Link to this heading">#</a></h2>
+<p>N-gram models are a type of probabilistic language model based on the Markov assumption. They predict the probability of a word given the N-1 previous words.</p>
+<section id="types-of-n-grams">
+<h3>2.1 Types of N-grams<a class="headerlink" href="#types-of-n-grams" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Unigram: P(wᵢ)</p></li>
+<li><p>Bigram: P(wᵢ|wᵢ₋₁)</p></li>
+<li><p>Trigram: P(wᵢ|wᵢ₋₂,wᵢ₋₁)</p></li>
+<li><p>4-gram: P(wᵢ|wᵢ₋₃,wᵢ₋₂,wᵢ₋₁)</p></li>
+</ul>
+</section>
+<section id="the-markov-assumption">
+<h3>2.2 The Markov Assumption<a class="headerlink" href="#the-markov-assumption" title="Link to this heading">#</a></h3>
+<p>N-gram models make the simplifying assumption that the probability of a word depends only on the N-1 previous words. This is known as the Markov assumption.</p>
+<p>For a trigram model:</p>
+<p>P(wᵢ|w₁,w₂,…,wᵢ₋₁) ≈ P(wᵢ|wᵢ₋₂,wᵢ₋₁)</p>
+</section>
+<section id="calculating-n-gram-probabilities">
+<h3>2.3 Calculating N-gram Probabilities<a class="headerlink" href="#calculating-n-gram-probabilities" title="Link to this heading">#</a></h3>
+<p>N-gram probabilities are typically calculated using Maximum Likelihood Estimation (MLE):</p>
+<p>P(wₙ|wₙ₋ᵢ,…,wₙ₋₁) = count(wₙ₋ᵢ,…,wₙ) / count(wₙ₋ᵢ,…,wₙ₋₁)</p>
+<p>Let’s implement a simple function to calculate bigram probabilities:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="c1"># Tokenize the corpus</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="c1"># Count bigrams and unigrams</span>
+    <span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">unigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Calculate probabilities</span>
+    <span class="n">bigram_probs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">bigram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span> <span class="o">=</span> <span class="n">bigram</span>
+        <span class="n">bigram_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">unigram_counts</span><span class="p">[</span><span class="n">w1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">bigram_probs</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="s2">&quot;the cat sat on the mat . the dog sat on the floor .&quot;</span>
+<span class="n">bigram_probs</span> <span class="o">=</span> <span class="n">calculate_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some bigram probabilities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="advantages-and-limitations-of-n-gram-models">
+<h3>2.4 Advantages and Limitations of N-gram Models<a class="headerlink" href="#advantages-and-limitations-of-n-gram-models" title="Link to this heading">#</a></h3>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Simple to understand and implement</p></li>
+<li><p>Computationally efficient</p></li>
+<li><p>Work well for many applications with sufficient data</p></li>
+</ul>
+<p>Limitations:</p>
+<ul class="simple">
+<li><p>Limited context (only consider N-1 previous words)</p></li>
+<li><p>Data sparsity (many possible N-grams never occur in training data)</p></li>
+<li><p>No generalization to semantically similar contexts</p></li>
+</ul>
+</section>
+</section>
+<section id="handling-unseen-n-grams-smoothing-techniques">
+<h2>3. Handling Unseen N-grams: Smoothing Techniques<a class="headerlink" href="#handling-unseen-n-grams-smoothing-techniques" title="Link to this heading">#</a></h2>
+<p>One major issue with N-gram models is the zero-probability problem: N-grams that don’t appear in the training data are assigned zero probability. Smoothing techniques address this issue.</p>
+<section id="laplace-add-1-smoothing">
+<h3>3.1 Laplace (Add-1) Smoothing<a class="headerlink" href="#laplace-add-1-smoothing" title="Link to this heading">#</a></h3>
+<p>Laplace smoothing adds 1 to all N-gram counts:</p>
+<p>P(wₙ|wₙ₋ᵢ,…,wₙ₋₁) = (count(wₙ₋ᵢ,…,wₙ) + 1) / (count(wₙ₋ᵢ,…,wₙ₋₁) + V)</p>
+<p>Where V is the vocabulary size.</p>
+<p>Let’s implement Laplace smoothing for bigrams:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace_smoothed_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">unigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>  <span class="c1"># Vocabulary size</span>
+
+    <span class="n">smoothed_probs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">w1</span> <span class="ow">in</span> <span class="n">unigram_counts</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w2</span> <span class="ow">in</span> <span class="n">unigram_counts</span><span class="p">:</span>
+            <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span>
+            <span class="n">smoothed_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">unigram_counts</span><span class="p">[</span><span class="n">w1</span><span class="p">]</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">smoothed_probs</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">smoothed_probs</span> <span class="o">=</span> <span class="n">laplace_smoothed_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some Laplace-smoothed bigram probabilities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">smoothed_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="other-smoothing-techniques">
+<h3>3.2 Other Smoothing Techniques<a class="headerlink" href="#other-smoothing-techniques" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add-k Smoothing: Similar to Laplace but adds k &lt; 1</p></li>
+<li><p>Good-Turing Smoothing: Estimates probability for unseen N-grams based on the frequency of N-grams that appear once</p></li>
+<li><p>Kneser-Ney Smoothing: Uses the frequency of more general N-grams to estimate probabilities for specific N-grams</p></li>
+</ul>
+</section>
+</section>
+<section id="evaluating-language-models-perplexity">
+<h2>4. Evaluating Language Models: Perplexity<a class="headerlink" href="#evaluating-language-models-perplexity" title="Link to this heading">#</a></h2>
+<p>Perplexity is a common metric for evaluating language models. It measures how well a probability distribution predicts a sample. Lower perplexity indicates better performance.</p>
+<p>For a test set W = w₁w₂…wₙ, the perplexity is:</p>
+<p>PP(W) = P(w₁w₂…wₙ)^(-1/n)</p>
+<p>Let’s implement a function to calculate perplexity for a bigram model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">calculate_perplexity</span><span class="p">(</span><span class="n">test_corpus</span><span class="p">,</span> <span class="n">bigram_probs</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">test_corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="n">log_probability</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">bigram</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="p">:</span>
+            <span class="n">log_probability</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log_probability</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span>  <span class="c1"># Small probability for unseen bigrams</span>
+
+    <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_probability</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">perplexity</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">test_corpus</span> <span class="o">=</span> <span class="s2">&quot;the cat sat on the floor .&quot;</span>
+<span class="n">perplexity</span> <span class="o">=</span> <span class="n">calculate_perplexity</span><span class="p">(</span><span class="n">test_corpus</span><span class="p">,</span> <span class="n">bigram_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Perplexity: </span><span class="si">{</span><span class="n">perplexity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualizing-n-gram-models">
+<h2>5. Visualizing N-gram Models<a class="headerlink" href="#visualizing-n-gram-models" title="Link to this heading">#</a></h2>
+<p>To better understand N-gram models, let’s create a visualization of bigram transitions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="k">def</span> <span class="nf">visualize_bigrams</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">),</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span>
+            <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">{(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">):</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">),</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bigram Transition Probabilities&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">visualize_bigrams</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This visualization shows the transitions between words in our bigram model, with edge weights representing transition probabilities.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this session, we’ve introduced the concept of language models and delved into N-gram models, particularly focusing on bigrams. We’ve covered:</p>
+<ol class="arabic simple">
+<li><p>The definition and applications of language models</p></li>
+<li><p>N-gram models and the Markov assumption</p></li>
+<li><p>Calculating N-gram probabilities</p></li>
+<li><p>Smoothing techniques for handling unseen N-grams</p></li>
+<li><p>Evaluating language models using perplexity</p></li>
+<li><p>Visualizing N-gram models</p></li>
+</ol>
+<p>In the next session, we’ll explore more advanced topics in statistical language modeling and begin to look at neural approaches to language modeling.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 3 - Fundamentals of Language Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-language-models">1. Introduction to Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formal-definition">1.1 Formal Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-language-models">1.2 Applications of Language Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models">2. N-gram Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-n-grams">2.1 Types of N-grams</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-markov-assumption">2.2 The Markov Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-n-gram-probabilities">2.3 Calculating N-gram Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-n-gram-models">2.4 Advantages and Limitations of N-gram Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-unseen-n-grams-smoothing-techniques">3. Handling Unseen N-grams: Smoothing Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-add-1-smoothing">3.1 Laplace (Add-1) Smoothing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-smoothing-techniques">3.2 Other Smoothing Techniques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models-perplexity">4. Evaluating Language Models: Perplexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-n-gram-models">5. Visualizing N-gram Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/session2';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team Project" href="../projects/index.html" />
+    <link rel="prev" title="Week 3 Session 1 - Introduction to Language Models and N-grams" href="session1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2 - The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1 - Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2 - Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3 - Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 3 - Fundamentals of Language Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 3 Session 1 - Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week03/session2.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/session2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week03/session2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-n-gram-techniques">1. Advanced N-gram Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-and-backoff">1.1 Interpolation and Backoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#katz-backoff">Katz Backoff</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-models">1.2 Skip-gram Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-based-language-models">2. Class-based Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-entropy-language-models">3. Maximum Entropy Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-language-models">4. Introduction to Neural Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings">4.1 Word Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feed-forward-neural-language-model">4.2 Simple Feed-forward Neural Language Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-statistical-and-neural-language-models">5. Comparing Statistical and Neural Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations">Practical Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-session-2-advanced-statistical-language-models-and-introduction-to-neural-language-models">
+<h1>Week 3 Session 2 - Advanced Statistical Language Models and Introduction to Neural Language Models<a class="headerlink" href="#week-3-session-2-advanced-statistical-language-models-and-introduction-to-neural-language-models" title="Link to this heading">#</a></h1>
+<section id="advanced-n-gram-techniques">
+<h2>1. Advanced N-gram Techniques<a class="headerlink" href="#advanced-n-gram-techniques" title="Link to this heading">#</a></h2>
+<section id="interpolation-and-backoff">
+<h3>1.1 Interpolation and Backoff<a class="headerlink" href="#interpolation-and-backoff" title="Link to this heading">#</a></h3>
+<p>Interpolation and backoff are techniques used to combine different order N-gram models to improve performance.</p>
+<section id="linear-interpolation">
+<h4>Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Link to this heading">#</a></h4>
+<p>Linear interpolation combines probabilities from different order N-grams:</p>
+<p>P(wᵢ|wᵢ₋₂wᵢ₋₁) = λ₃P(wᵢ|wᵢ₋₂wᵢ₋₁) + λ₂P(wᵢ|wᵢ₋₁) + λ₁P(wᵢ)</p>
+<p>Where λ₁ + λ₂ + λ₃ = 1</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="n">trigram_prob</span><span class="p">,</span> <span class="n">bigram_prob</span><span class="p">,</span> <span class="n">unigram_prob</span><span class="p">,</span> <span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span><span class="p">,</span> <span class="n">lambda3</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lambda3</span> <span class="o">*</span> <span class="n">trigram_prob</span> <span class="o">+</span> <span class="n">lambda2</span> <span class="o">*</span> <span class="n">bigram_prob</span> <span class="o">+</span> <span class="n">lambda1</span> <span class="o">*</span> <span class="n">unigram_prob</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">trigram_prob</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">bigram_prob</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">unigram_prob</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span><span class="p">,</span> <span class="n">lambda3</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span>
+
+<span class="n">interpolated_prob</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">trigram_prob</span><span class="p">,</span> <span class="n">bigram_prob</span><span class="p">,</span> <span class="n">unigram_prob</span><span class="p">,</span> <span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span><span class="p">,</span> <span class="n">lambda3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interpolated probability: </span><span class="si">{</span><span class="n">interpolated_prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="katz-backoff">
+<h4>Katz Backoff<a class="headerlink" href="#katz-backoff" title="Link to this heading">#</a></h4>
+<p>Katz backoff uses higher-order N-grams when available, but “backs off” to lower-order N-grams for unseen sequences:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">katz_backoff</span><span class="p">(</span><span class="n">trigram</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">unigram</span><span class="p">,</span> <span class="n">trigram_counts</span><span class="p">,</span> <span class="n">bigram_counts</span><span class="p">,</span> <span class="n">unigram_counts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">trigram</span> <span class="ow">in</span> <span class="n">trigram_counts</span> <span class="ow">and</span> <span class="n">trigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">trigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">]</span> <span class="o">/</span> <span class="n">bigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">bigram</span> <span class="ow">in</span> <span class="n">bigram_counts</span><span class="p">:</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="nb">len</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">trigram_counts</span> <span class="k">if</span> <span class="n">t</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">bigram</span><span class="p">]))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="nb">len</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bigram_counts</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
+        <span class="k">return</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">/</span> <span class="n">unigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">unigram_counts</span><span class="p">[</span><span class="n">unigram</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">unigram_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="c1"># Example usage (simplified)</span>
+<span class="n">trigram_counts</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">bigram_counts</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">unigram_counts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;the&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">katz_backoff</span><span class="p">((</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">),</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="n">trigram_counts</span><span class="p">,</span> <span class="n">bigram_counts</span><span class="p">,</span> <span class="n">unigram_counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Katz backoff probability: </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="skip-gram-models">
+<h3>1.2 Skip-gram Models<a class="headerlink" href="#skip-gram-models" title="Link to this heading">#</a></h3>
+<p>Skip-gram models allow for gaps in the N-gram sequence, capturing longer-range dependencies:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="k">def</span> <span class="nf">create_skipgram_model</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">skipgram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">context_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">ngram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">skipgram_counts</span><span class="p">[</span><span class="n">ngram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+                <span class="n">skipgram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+                <span class="n">skipgram_counts</span><span class="p">[</span><span class="n">skipgram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">context_counts</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">skipgram_probs</span> <span class="o">=</span> <span class="p">{</span><span class="n">gram</span><span class="p">:</span> <span class="n">count</span> <span class="o">/</span> <span class="n">context_counts</span><span class="p">[</span><span class="n">gram</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+                      <span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">skipgram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">return</span> <span class="n">skipgram_probs</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;the quick brown fox jumps over the lazy dog&quot;</span>
+<span class="n">skipgram_probs</span> <span class="o">=</span> <span class="n">create_skipgram_model</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some skip-gram probabilities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">skipgram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(</span><span class="si">{</span><span class="n">gram</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gram</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="class-based-language-models">
+<h2>2. Class-based Language Models<a class="headerlink" href="#class-based-language-models" title="Link to this heading">#</a></h2>
+<p>Class-based models group words into classes, reducing the number of parameters and addressing data sparsity:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+
+<span class="k">def</span> <span class="nf">create_class_based_model</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># Train Word2Vec model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Cluster word vectors</span>
+    <span class="n">word_vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">]</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
+
+    <span class="c1"># Assign words to classes</span>
+    <span class="n">word_classes</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">}</span>
+
+    <span class="c1"># Count class transitions</span>
+    <span class="n">class_transitions</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">class_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">word_classes</span><span class="p">[</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">word_classes</span><span class="p">[</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">class_transitions</span><span class="p">[(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">class_counts</span><span class="p">[</span><span class="n">c1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Calculate transition probabilities</span>
+    <span class="n">class_transition_probs</span> <span class="o">=</span> <span class="p">{(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span> <span class="n">count</span> <span class="o">/</span> <span class="n">class_counts</span><span class="p">[</span><span class="n">c1</span><span class="p">]</span>
+                              <span class="k">for</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">),</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">class_transitions</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">return</span> <span class="n">word_classes</span><span class="p">,</span> <span class="n">class_transition_probs</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">,</span> <span class="s1">&#39;jumps&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;barks&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">word_classes</span><span class="p">,</span> <span class="n">class_transition_probs</span> <span class="o">=</span> <span class="n">create_class_based_model</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Word classes:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">class_</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">word_classes</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">: Class </span><span class="si">{</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Some class transition probabilities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">),</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">class_transition_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(Class </span><span class="si">{</span><span class="n">c2</span><span class="si">}</span><span class="s2">|Class </span><span class="si">{</span><span class="n">c1</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="maximum-entropy-language-models">
+<h2>3. Maximum Entropy Language Models<a class="headerlink" href="#maximum-entropy-language-models" title="Link to this heading">#</a></h2>
+<p>Maximum Entropy (MaxEnt) models, also known as log-linear models, allow for incorporating various features into the language model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="k">def</span> <span class="nf">maxent_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">neg_log_likelihood</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)),</span> <span class="n">labels</span><span class="p">]))</span>
+
+    <span class="n">initial_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span> <span class="n">initial_weights</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+
+<span class="c1"># Example usage (simplified)</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="c1"># Feature vector for &quot;the cat&quot;</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c1"># Feature vector for &quot;the dog&quot;</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>   <span class="c1"># Feature vector for &quot;a dog&quot;</span>
+<span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># 0: &quot;cat&quot;, 1: &quot;dog&quot;</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="n">maxent_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MaxEnt model weights:&quot;</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="introduction-to-neural-language-models">
+<h2>4. Introduction to Neural Language Models<a class="headerlink" href="#introduction-to-neural-language-models" title="Link to this heading">#</a></h2>
+<p>Neural language models use neural networks to learn distributed representations of words and predict probabilities.</p>
+<section id="word-embeddings">
+<h3>4.1 Word Embeddings<a class="headerlink" href="#word-embeddings" title="Link to this heading">#</a></h3>
+<p>Word embeddings are dense vector representations of words that capture semantic relationships:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+
+<span class="k">def</span> <span class="nf">train_word2vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="k">def</span> <span class="nf">visualize_embeddings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+    <span class="n">word_vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
+    <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">embeddings_2d</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">embeddings_2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Word Embeddings Visualization&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t-SNE feature 0&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;t-SNE feature 1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">,</span> <span class="s1">&#39;jumps&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;barks&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">train_word2vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="n">words_to_plot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">]</span>
+<span class="n">visualize_embeddings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words_to_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-feed-forward-neural-language-model">
+<h3>4.2 Simple Feed-forward Neural Language Model<a class="headerlink" href="#simple-feed-forward-neural-language-model" title="Link to this heading">#</a></h3>
+<p>A basic feed-forward neural language model using TensorFlow:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+
+<span class="k">def</span> <span class="nf">create_ffnn_lm</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">context_size</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">context_size</span><span class="p">,))</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">flattened</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">embedding</span><span class="p">)</span>
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">flattened</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">hidden</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Example usage (simplified)</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">context_size</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_ffnn_lm</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">context_size</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="comparing-statistical-and-neural-language-models">
+<h2>5. Comparing Statistical and Neural Language Models<a class="headerlink" href="#comparing-statistical-and-neural-language-models" title="Link to this heading">#</a></h2>
+<p>Let’s compare the perplexity of a trigram model with a simple neural language model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="k">def</span> <span class="nf">calculate_trigram_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">trigram_probs</span><span class="p">):</span>
+    <span class="n">log_prob</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">test_data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)):</span>
+            <span class="n">trigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">trigram</span> <span class="ow">in</span> <span class="n">trigram_probs</span><span class="p">:</span>
+                <span class="n">log_prob</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">trigram_probs</span><span class="p">[</span><span class="n">trigram</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log_prob</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span>  <span class="c1"># Smoothing for unseen trigrams</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_prob</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">perplexity</span>
+
+<span class="k">def</span> <span class="nf">calculate_neural_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">):</span>
+    <span class="n">log_prob</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">test_data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)):</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_to_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">word_to_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">context</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">log_prob</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_prob</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">perplexity</span>
+
+<span class="c1"># Example usage (simplified)</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">,</span> <span class="s1">&#39;jumps&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;barks&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">test_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">,</span> <span class="s1">&#39;jumps&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;lazy&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;quick&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;barks&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;fox&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Calculate trigram probabilities</span>
+<span class="n">trigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">trigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">trigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">trigram_probs</span> <span class="o">=</span> <span class="p">{</span><span class="n">trigram</span><span class="p">:</span> <span class="n">count</span> <span class="o">/</span> <span class="n">bigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]</span>
+                 <span class="k">for</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">trigram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="c1"># Train neural model</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span> <span class="o">+</span> <span class="n">test_data</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">))</span>
+<span class="n">word_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+<span class="n">id_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)):</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_ffnn_lm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Calculate and compare perplexities</span>
+<span class="n">trigram_perplexity</span> <span class="o">=</span> <span class="n">calculate_trigram_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">trigram_probs</span><span class="p">)</span>
+<span class="n">neural_perplexity</span> <span class="o">=</span> <span class="n">calculate_neural_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trigram model perplexity: </span><span class="si">{</span><span class="n">trigram_perplexity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Neural model perplexity: </span><span class="si">{</span><span class="n">neural_perplexity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this session, we’ve explored advanced techniques in statistical language modeling and introduced neural approaches to language modeling. We’ve covered:</p>
+<ol class="arabic simple">
+<li><p>Advanced N-gram techniques, including interpolation and backoff methods</p></li>
+<li><p>Skip-gram models for capturing longer-range dependencies</p></li>
+<li><p>Class-based language models to address data sparsity</p></li>
+<li><p>Maximum Entropy language models for incorporating various features</p></li>
+<li><p>Introduction to neural language models, including word embeddings and a simple feed-forward neural network model</p></li>
+<li><p>Comparison of statistical and neural language models using perplexity</p></li>
+</ol>
+<p>These advanced techniques address some of the limitations of basic N-gram models that we discussed in the previous session. They offer improved performance and flexibility in modeling language.</p>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Interpolation and backoff</strong> techniques combine different order N-grams to improve model robustness.</p></li>
+<li><p><strong>Skip-gram models</strong> allow for gaps in the N-gram sequence, capturing longer-range dependencies.</p></li>
+<li><p><strong>Class-based models</strong> group words into classes, reducing the number of parameters and addressing data sparsity.</p></li>
+<li><p><strong>Maximum Entropy models</strong> provide a flexible framework for incorporating various linguistic features.</p></li>
+<li><p><strong>Neural language models</strong> learn distributed representations of words and can capture complex patterns in language.</p></li>
+<li><p><strong>Word embeddings</strong> represent words as dense vectors, capturing semantic relationships between words.</p></li>
+</ol>
+</section>
+<section id="future-directions">
+<h2>Future Directions<a class="headerlink" href="#future-directions" title="Link to this heading">#</a></h2>
+<p>As we move forward in our study of NLP and language models, we’ll explore more advanced neural architectures:</p>
+<ol class="arabic simple">
+<li><p><strong>Recurrent Neural Networks (RNNs)</strong>: These models are designed to handle sequential data and can capture long-range dependencies in text.</p></li>
+<li><p><strong>Long Short-Term Memory (LSTM) networks</strong>: A type of RNN that addresses the vanishing gradient problem, allowing for better modeling of long-term dependencies.</p></li>
+<li><p><strong>Transformer models</strong>: These attention-based models have revolutionized NLP, leading to state-of-the-art performance on various language tasks.</p></li>
+<li><p><strong>Pre-trained language models</strong>: Models like BERT, GPT, and their variants, which are pre-trained on large corpora and can be fine-tuned for specific tasks.</p></li>
+</ol>
+</section>
+<section id="practical-considerations">
+<h2>Practical Considerations<a class="headerlink" href="#practical-considerations" title="Link to this heading">#</a></h2>
+<p>When working with language models in real-world applications, consider the following:</p>
+<ol class="arabic simple">
+<li><p><strong>Model complexity vs. data size</strong>: More complex models require more data to train effectively. Choose a model appropriate for your dataset size.</p></li>
+<li><p><strong>Domain-specific adaptation</strong>: Pre-trained models may need to be fine-tuned or adapted for specific domains or tasks.</p></li>
+<li><p><strong>Computational resources</strong>: Neural models, especially large pre-trained models, can be computationally expensive to train and use. Consider the available resources when choosing a model.</p></li>
+<li><p><strong>Interpretability</strong>: While neural models often perform better, they can be less interpretable than statistical models. Consider the trade-off between performance and interpretability for your specific application.</p></li>
+<li><p><strong>Ethical considerations</strong>: Be aware of potential biases in language models, especially when using pre-trained models or working with sensitive applications.</p></li>
+</ol>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<p>To reinforce your understanding of the concepts covered in this session:</p>
+<ol class="arabic simple">
+<li><p>Implement a trigram model with linear interpolation using the provided code snippets as a starting point.</p></li>
+<li><p>Train the model on a small corpus (e.g., a collection of news articles or book chapters).</p></li>
+<li><p>Compare the perplexity of your interpolated model with a simple trigram model without interpolation.</p></li>
+<li><p>Experiment with different interpolation weights and observe their effect on the model’s performance.</p></li>
+<li><p>(Optional) If you’re comfortable with neural networks, try implementing a simple recurrent neural network (RNN) language model and compare its performance with your N-gram models.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+<p>By completing this exercise, you’ll gain hands-on experience with advanced statistical language modeling techniques and begin to appreciate the transition from traditional methods to neural approaches.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 3 Session 1 - Introduction to Language Models and N-grams</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Team Project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-n-gram-techniques">1. Advanced N-gram Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-and-backoff">1.1 Interpolation and Backoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#katz-backoff">Katz Backoff</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-models">1.2 Skip-gram Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-based-language-models">2. Class-based Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-entropy-language-models">3. Maximum Entropy Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-language-models">4. Introduction to Neural Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings">4.1 Word Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feed-forward-neural-language-model">4.2 Simple Feed-forward Neural Language Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-statistical-and-neural-language-models">5. Comparing Statistical and Neural Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations">Practical Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

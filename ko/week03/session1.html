@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3주차 세션 1 - 언어 모델과 N-gram 소개 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/session1';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3주차 세션 2 - 고급 통계적 언어 모델 및 신경망 언어 모델 소개" href="session2.html" />
+    <link rel="prev" title="3주차 - 언어 모델의 기초" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차 - 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3주차 - 언어 모델의 기초</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3주차 세션 1 - 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">3주차 세션 2 - 고급 통계적 언어 모델 및 신경망 언어 모델 소개</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - PKH</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week03/session1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/session1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week03/session1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3주차 세션 1 - 언어 모델과 N-gram 소개</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 언어 모델 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 형식적 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2 언어 모델의 응용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. N-gram 모델</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1 N-gram의 유형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2 마르코프 가정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.3 N-gram 확률 계산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.4 N-gram 모델의 장단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3. 미등장 N-gram 처리: 스무딩 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-1">3.1 라플라스 (Add-1) 스무딩</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2 기타 스무딩 기법</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4. 언어 모델 평가: 퍼플렉시티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. N-gram 모델 시각화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결론</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="n-gram">
+<h1>3주차 세션 1 - 언어 모델과 N-gram 소개<a class="headerlink" href="#n-gram" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1. 언어 모델 소개<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>언어 모델은 단어 시퀀스에 확률을 할당하는 확률 모델입니다. 이들은 다음과 같은 많은 자연어 처리(NLP) 작업에서 중요한 역할을 합니다:</p>
+<ul class="simple">
+<li><p>음성 인식</p></li>
+<li><p>기계 번역</p></li>
+<li><p>텍스트 생성</p></li>
+<li><p>맞춤법 교정</p></li>
+<li><p>감정 분석</p></li>
+</ul>
+<p>언어 모델의 주요 목표는 언어에서 단어 시퀀스의 결합 확률 분포를 학습하는 것입니다.</p>
+<section id="id2">
+<h3>1.1 형식적 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>단어 시퀀스 W = (w₁, w₂, …, wₙ)가 주어졌을 때, 언어 모델은 확률 P(W)를 계산합니다:</p>
+<p>P(W) = P(w₁, w₂, …, wₙ)</p>
+<p>확률의 연쇄 법칙을 사용하여 이를 다음과 같이 분해할 수 있습니다:</p>
+<p>P(W) = P(w₁) _ P(w₂|w₁) _ P(w₃|w₁,w₂) _ … _ P(wₙ|w₁,w₂,…,wₙ₋₁)</p>
+</section>
+<section id="id3">
+<h3>1.2 언어 모델의 응용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>예측 텍스트</strong>: 문장의 다음 단어 제안 (예: 스마트폰 키보드)</p></li>
+<li><p><strong>기계 번역</strong>: 유창하고 문법적으로 올바른 번역 보장</p></li>
+<li><p><strong>음성 인식</strong>: 유사한 소리의 구문 구별</p></li>
+<li><p><strong>텍스트 생성</strong>: 챗봇이나 콘텐츠 생성을 위한 인간과 유사한 텍스트 생성</p></li>
+<li><p><strong>정보 검색</strong>: 쿼리 의도를 이해하여 검색 결과 개선</p></li>
+</ol>
+</section>
+</section>
+<section id="id4">
+<h2>2. N-gram 모델<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>N-gram 모델은 마르코프 가정을 기반으로 한 확률적 언어 모델의 한 유형입니다. 이들은 이전 N-1개 단어가 주어졌을 때 단어의 확률을 예측합니다.</p>
+<section id="id5">
+<h3>2.1 N-gram의 유형<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>유니그램: P(wᵢ)</p></li>
+<li><p>바이그램: P(wᵢ|wᵢ₋₁)</p></li>
+<li><p>트라이그램: P(wᵢ|wᵢ₋₂,wᵢ₋₁)</p></li>
+<li><p>4-gram: P(wᵢ|wᵢ₋₃,wᵢ₋₂,wᵢ₋₁)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>2.2 마르코프 가정<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>N-gram 모델은 단어의 확률이 오직 이전 N-1개의 단어에만 의존한다는 단순화 가정을 합니다. 이를 마르코프 가정이라고 합니다.</p>
+<p>트라이그램 모델의 경우:</p>
+<p>P(wᵢ|w₁,w₂,…,wᵢ₋₁) ≈ P(wᵢ|wᵢ₋₂,wᵢ₋₁)</p>
+</section>
+<section id="id7">
+<h3>2.3 N-gram 확률 계산<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>N-gram 확률은 일반적으로 최대 우도 추정(MLE)을 사용하여 계산됩니다:</p>
+<p>P(wₙ|wₙ₋ᵢ,…,wₙ₋₁) = count(wₙ₋ᵢ,…,wₙ) / count(wₙ₋ᵢ,…,wₙ₋₁)</p>
+<p>바이그램 확률을 계산하는 간단한 함수를 구현해 보겠습니다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="c1"># 코퍼스 토큰화</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="c1"># 바이그램과 유니그램 카운트</span>
+    <span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">unigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 확률 계산</span>
+    <span class="n">bigram_probs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">bigram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span> <span class="o">=</span> <span class="n">bigram</span>
+        <span class="n">bigram_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">unigram_counts</span><span class="p">[</span><span class="n">w1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">bigram_probs</span>
+
+<span class="c1"># 사용 예</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="s2">&quot;고양이가 매트 위에 앉았다. 개가 바닥에 앉았다.&quot;</span>
+<span class="n">bigram_probs</span> <span class="o">=</span> <span class="n">calculate_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;일부 바이그램 확률:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>2.4 N-gram 모델의 장단점<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>장점:</p>
+<ul class="simple">
+<li><p>이해하고 구현하기 쉬움</p></li>
+<li><p>계산 효율성이 높음</p></li>
+<li><p>충분한 데이터가 있으면 많은 응용 프로그램에서 잘 작동함</p></li>
+</ul>
+<p>단점:</p>
+<ul class="simple">
+<li><p>제한된 문맥 (오직 이전 N-1개 단어만 고려)</p></li>
+<li><p>데이터 희소성 (많은 가능한 N-gram이 학습 데이터에 나타나지 않음)</p></li>
+<li><p>의미적으로 유사한 문맥에 대한 일반화 없음</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h2>3. 미등장 N-gram 처리: 스무딩 기법<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>N-gram 모델의 주요 문제 중 하나는 영확률 문제입니다: 학습 데이터에 나타나지 않은 N-gram에 0 확률이 할당됩니다. 스무딩 기법은 이 문제를 해결합니다.</p>
+<section id="add-1">
+<h3>3.1 라플라스 (Add-1) 스무딩<a class="headerlink" href="#add-1" title="Link to this heading">#</a></h3>
+<p>라플라스 스무딩은 모든 N-gram 카운트에 1을 더합니다:</p>
+<p>P(wₙ|wₙ₋ᵢ,…,wₙ₋₁) = (count(wₙ₋ᵢ,…,wₙ) + 1) / (count(wₙ₋ᵢ,…,wₙ₋₁) + V)</p>
+<p>여기서 V는 어휘 크기입니다.</p>
+<p>바이그램에 대한 라플라스 스무딩을 구현해 보겠습니다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace_smoothed_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">unigram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">unigram_counts</span><span class="p">[</span><span class="n">tokens</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>  <span class="c1"># 어휘 크기</span>
+
+    <span class="n">smoothed_probs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">w1</span> <span class="ow">in</span> <span class="n">unigram_counts</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w2</span> <span class="ow">in</span> <span class="n">unigram_counts</span><span class="p">:</span>
+            <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span>
+            <span class="n">smoothed_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">unigram_counts</span><span class="p">[</span><span class="n">w1</span><span class="p">]</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">smoothed_probs</span>
+
+<span class="c1"># 사용 예</span>
+<span class="n">smoothed_probs</span> <span class="o">=</span> <span class="n">laplace_smoothed_bigram_prob</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;일부 라플라스 스무딩된 바이그램 확률:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">smoothed_probs</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>3.2 기타 스무딩 기법<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add-k 스무딩: 라플라스와 유사하지만 k &lt; 1을 더함</p></li>
+<li><p>굿-튜링 스무딩: 한 번 나타난 N-gram의 빈도를 기반으로 미등장 N-gram의 확률을 추정</p></li>
+<li><p>크네서-네이 스무딩: 더 일반적인 N-gram의 빈도를 사용하여 특정 N-gram의 확률을 추정</p></li>
+</ul>
+</section>
+</section>
+<section id="id11">
+<h2>4. 언어 모델 평가: 퍼플렉시티<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>퍼플렉시티는 언어 모델을 평가하는 일반적인 지표입니다. 확률 분포가 샘플을 얼마나 잘 예측하는지 측정합니다. 낮은 퍼플렉시티는 더 나은 성능을 나타냅니다.</p>
+<p>테스트 세트 W = w₁w₂…wₙ에 대해 퍼플렉시티는 다음과 같습니다:</p>
+<p>PP(W) = P(w₁w₂…wₙ)^(-1/n)</p>
+<p>바이그램 모델의 퍼플렉시티를 계산하는 함수를 구현해 보겠습니다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">calculate_perplexity</span><span class="p">(</span><span class="n">test_corpus</span><span class="p">,</span> <span class="n">bigram_probs</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">test_corpus</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="n">log_probability</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">bigram</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="p">:</span>
+            <span class="n">log_probability</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">[</span><span class="n">bigram</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log_probability</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span>  <span class="c1"># 미등장 바이그램에 대한 작은 확률</span>
+
+    <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_probability</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">perplexity</span>
+
+<span class="c1"># 사용 예</span>
+<span class="n">test_corpus</span> <span class="o">=</span> <span class="s2">&quot;고양이가 바닥에 앉았다.&quot;</span>
+<span class="n">perplexity</span> <span class="o">=</span> <span class="n">calculate_perplexity</span><span class="p">(</span><span class="n">test_corpus</span><span class="p">,</span> <span class="n">bigram_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;퍼플렉시티: </span><span class="si">{</span><span class="n">perplexity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h2>5. N-gram 모델 시각화<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>N-gram 모델을 더 잘 이해하기 위해 바이그램 전이를 시각화해 보겠습니다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="k">def</span> <span class="nf">visualize_bigrams</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">),</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span>
+            <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">{(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">):</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">),</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">bigram_probs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;바이그램 전이 확률&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">visualize_bigrams</span><span class="p">(</span><span class="n">bigram_probs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>이 시각화는 우리의 바이그램 모델에서 단어 간 전이를 보여주며, 간선의 가중치는 전이 확률을 나타냅니다.</p>
+</section>
+<section id="id13">
+<h2>결론<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>이 세션에서는 언어 모델의 개념을 소개하고 N-gram 모델, 특히 바이그램에 초점을 맞추어 살펴보았습니다. 우리가 다룬 내용은 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p>언어 모델의 정의와 응용</p></li>
+<li><p>N-gram 모델과 마르코프 가정</p></li>
+<li><p>N-gram 확률 계산</p></li>
+<li><p>미등장 N-gram 처리를 위한 스무딩 기법</p></li>
+<li><p>퍼플렉시티를 사용한 언어 모델 평가</p></li>
+<li><p>N-gram 모델 시각화</p></li>
+</ol>
+<p>다음 세션에서는 통계적 언어 모델링의 더 고급 주제를 탐구하고 언어 모델링에 대한 신경망 접근법을 살펴보기 시작할 것입니다.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3주차 - 언어 모델의 기초</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3주차 세션 2 - 고급 통계적 언어 모델 및 신경망 언어 모델 소개</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 언어 모델 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 형식적 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2 언어 모델의 응용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. N-gram 모델</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1 N-gram의 유형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2 마르코프 가정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.3 N-gram 확률 계산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.4 N-gram 모델의 장단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3. 미등장 N-gram 처리: 스무딩 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-1">3.1 라플라스 (Add-1) 스무딩</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2 기타 스무딩 기법</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4. 언어 모델 평가: 퍼플렉시티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. N-gram 모델 시각화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
