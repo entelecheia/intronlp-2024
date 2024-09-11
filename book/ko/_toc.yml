@@ -30,21 +30,27 @@ parts:
           - file: projects/team1/index
             sections:
               - file: projects/team1/proposal
-              - file: projects/team1/0904
-              - file: projects/team1/0905
-              - file: projects/team1/0909
+              - file: projects/team1/notes
+                sections:
+                  - file: projects/team1/0904
+                  - file: projects/team1/0905
+                  - file: projects/team1/0909
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
           - file: projects/team3/index
             sections:
               - file: projects/team3/proposal
-              - file: projects/team3/research-note3w
+              - file: projects/team3/notes
+                sections:
+                  - file: projects/team3/research-note3w
           - file: projects/team4/index
             sections:
               - file: projects/team4/proposal
-              - file: projects/team4/Research-Log/W1.md
-              - file: projects/team4/Research-Log/W2.md
+              - file: projects/team4/notes
+                sections:
+                  - file: projects/team4/Research-Log/W1.md
+                  - file: projects/team4/Research-Log/W2.md
           - file: projects/team5/index
             sections:
               - file: projects/team5/proposal
