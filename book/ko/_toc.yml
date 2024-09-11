@@ -35,6 +35,7 @@ parts:
                   - file: projects/team1/0904
                   - file: projects/team1/0905
                   - file: projects/team1/0909
+                  - file: projects/team1/0911
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
