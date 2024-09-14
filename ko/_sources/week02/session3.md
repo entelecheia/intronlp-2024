@@ -65,6 +65,32 @@ plot_language_comparison()
 4. 높은 동음이의어 비율
 5. 복합 명사
 
+```python
+import sys #한국어 폰트 깨짐 부분 해결
+
+# Google Colab 환경에서 실행 중인지 확인
+if 'google.colab' in sys.modules:
+    # debconf를 Noninteractive 모드로 설정
+    !echo 'debconf debconf/frontend select Noninteractive' | \
+    debconf-set-selections
+
+    # fonts-nanum 패키지를 설치
+    !sudo apt-get -qq -y install fonts-nanum
+
+    # Matplotlib의 폰트 매니저 가져오기
+    import matplotlib.font_manager as fm
+
+    # 나눔 폰트의 시스템 경로 찾기
+    font_files = fm.findSystemFonts(fontpaths=['/usr/share/fonts/truetype/nanum'])
+
+    # 찾은 각 나눔 폰트를 Matplotlib 폰트 매니저에 추가
+    for fpath in font_files:
+        fm.fontManager.addfont(fpath)
+# 나눔 폰트 파일 직접 지정 (Colab에 설치된 나눔 폰트 경로 예시)
+font_path = '/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf'
+font_prop = fm.FontProperties(fname=font_path, size=12)
+```
+
 이러한 과제들을 예시와 함께 살펴보겠습니다:
 
 ```python
@@ -174,7 +200,15 @@ visualize_pos_tags(sample_text, okt)
 한국어 단어 임베딩은 언어의 형태론적 복잡성을 고려해야 합니다. 한국어 텍스트에 대해 간단한 Word2Vec 모델을 훈련시켜 보겠습니다:
 
 ```python
+import numpy as np  # NumPy 임포트 (수정된 부분)
+from gensim.models import Word2Vec
+from sklearn.manifold import TSNE  # scikit-learn에서 TSNE를 임포트 (수정된 부분)
+import matplotlib.pyplot as plt
+from konlpy.tag import Okt
+
+# Word2Vec 학습 함수
 def train_korean_word2vec(sentences, vector_size=100, window=5, min_count=1):
+    okt = Okt()  # Okt 인스턴스 생성
     tokenized_sentences = [okt.morphs(sent) for sent in sentences]
     model = Word2Vec(tokenized_sentences, vector_size=vector_size, window=window, min_count=min_count)
     return model
@@ -192,7 +226,10 @@ w2v_model = train_korean_word2vec(korean_sentences)
 # 단어 임베딩 시각화
 def plot_korean_word_embeddings(model, words):
     word_vectors = [model.wv[word] for word in words if word in model.wv]
-    tsne = TSNE(n_components=2, random_state=42)
+    word_vectors = np.array(word_vectors)  # 리스트를 NumPy 배열로 변환 (수정된 부분)
+
+    # TSNE의 perplexity 값을 2로 낮춤 (수정된 부분)
+    tsne = TSNE(n_components=2, random_state=42, perplexity=2)
     embedded = tsne.fit_transform(word_vectors)
 
     plt.figure(figsize=(12, 8))
@@ -207,6 +244,7 @@ def plot_korean_word_embeddings(model, words):
     plt.tight_layout()
     plt.show()
 
+okt = Okt()  # Okt 인스턴스 생성
 plot_korean_word_embeddings(w2v_model, okt.morphs("나 학교 공부 한국어 책 좋아하다"))
 ```
 
