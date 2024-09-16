@@ -1,4 +1,4 @@
-# Session 2 - The Revolution in Modern NLP
+# Week 1 Session 2 - The Revolution in Modern NLP
 
 ## 6. Evolution Towards Modern NLP
 

@@ -10,6 +10,16 @@ parts:
         sections:
           - file: week01/session1
           - file: week01/session2
+          - file: week01/wk1-lab1
+      - file: week02/index
+        sections:
+          - file: week02/session1
+          - file: week02/session2
+          - file: week02/session3
+      - file: week03/index
+        sections:
+          - file: week03/session1
+          - file: week03/session2
   - caption: Projects
     chapters:
       - file: projects/index
@@ -18,10 +28,36 @@ parts:
       - file: projects/teams
         sections:
           - file: projects/team1/index
+            sections:
+              - file: projects/team1/proposal
+              - file: projects/team1/notes
+                sections:
+                  - file: projects/team1/0904
+                  - file: projects/team1/0905
+                  - file: projects/team1/0909
+                  - file: projects/team1/0911
           - file: projects/team2/index
+            sections:
+              - file: projects/team2/proposal
           - file: projects/team3/index
+            sections:
+              - file: projects/team3/proposal
+              - file: projects/team3/notes
+                sections:
+                  - file: projects/team3/research-note3w
           - file: projects/team4/index
+            sections:
+              - file: projects/team4/proposal
+              - file: projects/team4/notes
+                sections:
+                  - file: projects/team4/Research-Log/W1
+                  - file: projects/team4/Research-Log/W2
           - file: projects/team5/index
+            sections:
+              - file: projects/team5/proposal
+              - file: projects/team5/notes
+                sections:
+                  - file: projects/team5/research-note-1-2-3
   - caption: About
     chapters:
       - file: syllabus/index
