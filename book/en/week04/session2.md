@@ -1,4 +1,4 @@
-# Week 4 Session 2: Advanced Word Embeddings
+# Week 4 Session 2 -  Advanced Word Embeddings
 
 ## 1. Introduction to GloVe (Global Vectors for Word Representation)
 
