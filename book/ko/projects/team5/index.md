@@ -1,4 +1,4 @@
-# Team 5 - PKH
+# Team 5 - AICS
 
 ## 팀 구성원
 
