@@ -27,37 +27,28 @@ GloVe는 2014년 Pennington 등이 소개한 또 다른 인기 있는 단어 임
 
 ### 1.3 Python으로 GloVe 구현하기
 
-공식적인 Python GloVe 구현은 없지만, 데모를 위해 `glove-python` 패키지를 사용할 수 있습니다:
+glove_python 라이브러리가 빌드되지 않고 설치에 실패하여 gensim을 사용
+```python
+# gensim 및 GloVe 파일 다운로드
+!pip install gensim
+!wget http://nlp.stanford.edu/data/glove.6B.zip
+!unzip glove.6B.zip
+```
 
 ```python
-!pip install glove_python
+from gensim.models import KeyedVectors
 
-import numpy as np
-from glove import Corpus, Glove
+# GloVe 파일을 gensim 형식으로 로드 (100차원 벡터 사용)
+glove_file = 'glove.6B.100d.txt'
+glove_model = KeyedVectors.load_word2vec_format(glove_file, binary=False, no_header=True)
 
-# 샘플 코퍼스
-sentences = [
-    ['빠른', '갈색', '여우가', '게으른', '개를', '뛰어넘습니다'],
-    ['고양이와', '개는', '천적입니다'],
-    ['개가', '고양이를', '나무', '위로', '쫓아갑니다']
-]
+# 'dog'과 유사한 단어 찾기
+similar_words = glove_model.most_similar('dog', topn=3)
+print("'dog'와 가장 유사한 단어들:", similar_words)
 
-# Corpus 객체 생성
-corpus = Corpus()
-corpus.fit(sentences, window=10)
-
-# GloVe 모델 학습
-glove = Glove(no_components=100, learning_rate=0.05)
-glove.fit(corpus.matrix, epochs=30, no_threads=4, verbose=True)
-glove.add_dictionary(corpus.dictionary)
-
-# 유사한 단어 찾기
-similar_words = glove.most_similar('개', number=3)
-print("'개'와 가장 유사한 단어들:", similar_words)
-
-# 단어 벡터 얻기
-dog_vector = glove.word_vectors[glove.dictionary['개']]
-print("'개'의 벡터:", dog_vector[:5])  # 처음 5차원만 표시
+# 'dog'의 벡터 출력 (처음 5차원만 표시)
+dog_vector = glove_model['dog']
+print("'dog'의 벡터:", dog_vector[:5])
 ```
 
 ## 2. FastText: 하위 단어 기반 단어 임베딩
