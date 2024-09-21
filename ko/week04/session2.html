@@ -572,35 +572,25 @@ document.write(`
 </section>
 <section id="python-glove">
 <h3>1.3 Python으로 GloVe 구현하기<a class="headerlink" href="#python-glove" title="Link to this heading">#</a></h3>
-<p>공식적인 Python GloVe 구현은 없지만, 데모를 위해 <code class="docutils literal notranslate"><span class="pre">glove-python</span></code> 패키지를 사용할 수 있습니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">glove_python</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># gensim 및 GloVe 파일 다운로드</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">gensim</span>
+<span class="err">!</span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nlp</span><span class="o">.</span><span class="n">stanford</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">glove</span><span class="mf">.6</span><span class="n">B</span><span class="o">.</span><span class="n">zip</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="n">glove</span><span class="mf">.6</span><span class="n">B</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">glove</span> <span class="kn">import</span> <span class="n">Corpus</span><span class="p">,</span> <span class="n">Glove</span>
+<span class="c1"># GloVe 파일을 gensim 형식으로 로드 (100차원 벡터 사용)</span>
+<span class="n">glove_file</span> <span class="o">=</span> <span class="s1">&#39;glove.6B.100d.txt&#39;</span>
+<span class="n">glove_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">glove_file</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># 샘플 코퍼스</span>
-<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;빠른&#39;</span><span class="p">,</span> <span class="s1">&#39;갈색&#39;</span><span class="p">,</span> <span class="s1">&#39;여우가&#39;</span><span class="p">,</span> <span class="s1">&#39;게으른&#39;</span><span class="p">,</span> <span class="s1">&#39;개를&#39;</span><span class="p">,</span> <span class="s1">&#39;뛰어넘습니다&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;고양이와&#39;</span><span class="p">,</span> <span class="s1">&#39;개는&#39;</span><span class="p">,</span> <span class="s1">&#39;천적입니다&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;개가&#39;</span><span class="p">,</span> <span class="s1">&#39;고양이를&#39;</span><span class="p">,</span> <span class="s1">&#39;나무&#39;</span><span class="p">,</span> <span class="s1">&#39;위로&#39;</span><span class="p">,</span> <span class="s1">&#39;쫓아갑니다&#39;</span><span class="p">]</span>
-<span class="p">]</span>
+<span class="c1"># &#39;dog&#39;과 유사한 단어 찾기</span>
+<span class="n">similar_words</span> <span class="o">=</span> <span class="n">glove_model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="n">topn</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;dog&#39;와 가장 유사한 단어들:&quot;</span><span class="p">,</span> <span class="n">similar_words</span><span class="p">)</span>
 
-<span class="c1"># Corpus 객체 생성</span>
-<span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">()</span>
-<span class="n">corpus</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="c1"># GloVe 모델 학습</span>
-<span class="n">glove</span> <span class="o">=</span> <span class="n">Glove</span><span class="p">(</span><span class="n">no_components</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">glove</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">no_threads</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">glove</span><span class="o">.</span><span class="n">add_dictionary</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">dictionary</span><span class="p">)</span>
-
-<span class="c1"># 유사한 단어 찾기</span>
-<span class="n">similar_words</span> <span class="o">=</span> <span class="n">glove</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;개&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;개&#39;와 가장 유사한 단어들:&quot;</span><span class="p">,</span> <span class="n">similar_words</span><span class="p">)</span>
-
-<span class="c1"># 단어 벡터 얻기</span>
-<span class="n">dog_vector</span> <span class="o">=</span> <span class="n">glove</span><span class="o">.</span><span class="n">word_vectors</span><span class="p">[</span><span class="n">glove</span><span class="o">.</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;개&#39;</span><span class="p">]]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;개&#39;의 벡터:&quot;</span><span class="p">,</span> <span class="n">dog_vector</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># 처음 5차원만 표시</span>
+<span class="c1"># &#39;dog&#39;의 벡터 출력 (처음 5차원만 표시)</span>
+<span class="n">dog_vector</span> <span class="o">=</span> <span class="n">glove_model</span><span class="p">[</span><span class="s1">&#39;dog&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;dog&#39;의 벡터:&quot;</span><span class="p">,</span> <span class="n">dog_vector</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
