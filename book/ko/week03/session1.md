@@ -70,6 +70,7 @@ def calculate_bigram_prob(corpus):
     bigram_counts = defaultdict(int)
     unigram_counts = defaultdict(int)
 
+    #마지막 단어는 바이그램에서 제외되므로, 별도로 마지막 단어의 유니그램 빈도를 추가
     for i in range(len(tokens) - 1):
         bigram = (tokens[i], tokens[i+1])
         bigram_counts[bigram] += 1
@@ -196,7 +197,29 @@ print(f"퍼플렉시티: {perplexity:.2f}")
 N-gram 모델을 더 잘 이해하기 위해 바이그램 전이를 시각화해 보겠습니다:
 
 ```python
+# 나눔고딕 폰트 설치
+!apt-get install -y fonts-nanum
+!sudo fc-cache -fv
+!rm ~/.cache/matplotlib -rf
+```
+
+
+```python
+# 폰트 캐시 갱신
+!fc-cache -fv
+
+# matplotlib에 나눔고딕 폰트 강제로 설정
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# 나눔고딕 폰트 경로를 가져와서 직접 설정
+font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
+fontprop = fm.FontProperties(fname=font_path)
+plt.rcParams['font.family'] = fontprop.get_name()
+
+# 폰트 적용 확인
+print(fm.FontProperties(fname=font_path).get_name())
+
 import networkx as nx
 
 def visualize_bigrams(bigram_probs, top_n=5):
@@ -207,8 +230,11 @@ def visualize_bigrams(bigram_probs, top_n=5):
 
     pos = nx.spring_layout(G)
     plt.figure(figsize=(12, 8))
+
+    # 노드에 한글 폰트 적용
     nx.draw(G, pos, with_labels=True, node_color='lightblue',
-            node_size=3000, font_size=10, font_weight='bold')
+            node_size=3000, font_size=10, font_weight='bold', 
+            font_family=fontprop.get_name())  # 노드 레이블에 한글 폰트 적용
 
     edge_labels = {(w1, w2): f"{prob:.2f}" for (w1, w2), prob in bigram_probs.items()}
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
@@ -218,7 +244,9 @@ def visualize_bigrams(bigram_probs, top_n=5):
     plt.tight_layout()
     plt.show()
 
+# 예시 실행
 visualize_bigrams(bigram_probs)
+
 ```
 
 이 시각화는 우리의 바이그램 모델에서 단어 간 전이를 보여주며, 간선의 가중치는 전이 확률을 나타냅니다.
