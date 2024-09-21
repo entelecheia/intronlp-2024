@@ -36,10 +36,11 @@ parts:
               - file: projects/team1/proposal
               - file: projects/team1/notes
                 sections:
-                  - file: projects/team1/0904
-                  - file: projects/team1/0905
-                  - file: projects/team1/0909
-                  - file: projects/team1/0911
+                  - file: projects/team1/research-note-1week-01
+                  - file: projects/team1/research-note-2week-01
+                  - file: projects/team1/research-note-3week-01
+                  - file: projects/team1/research-note-4week-01
+                  - file: projects/team1/research-note-4week-02
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
@@ -62,6 +63,7 @@ parts:
               - file: projects/team5/notes
                 sections:
                   - file: projects/team5/research-note-1-2-3
+                  - file: projects/team5/research-note-week4
   - caption: About
     chapters:
       - file: syllabus/index
