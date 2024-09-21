@@ -201,18 +201,19 @@ N-gram 모델을 더 잘 이해하기 위해 바이그램 전이를 시각화해
 !apt-get install -y fonts-nanum
 !sudo fc-cache -fv
 !rm ~/.cache/matplotlib -rf
-```
-
-
-```python
 # 폰트 캐시 갱신
 !fc-cache -fv
+```
 
+```python
 # matplotlib에 나눔고딕 폰트 강제로 설정
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 # 나눔고딕 폰트 경로를 가져와서 직접 설정
+# NanumGothic is a widely used Korean font that ensures proper display of Hangul characters.
+# It's freely available and provides good readability for Korean text in data visualizations.
+# This font is chosen to ensure that Korean characters are rendered correctly and legibly.
 font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
 fontprop = fm.FontProperties(fname=font_path)
 plt.rcParams['font.family'] = fontprop.get_name()
@@ -233,7 +234,7 @@ def visualize_bigrams(bigram_probs, top_n=5):
 
     # 노드에 한글 폰트 적용
     nx.draw(G, pos, with_labels=True, node_color='lightblue',
-            node_size=3000, font_size=10, font_weight='bold', 
+            node_size=3000, font_size=10, font_weight='bold',
             font_family=fontprop.get_name())  # 노드 레이블에 한글 폰트 적용
 
     edge_labels = {(w1, w2): f"{prob:.2f}" for (w1, w2), prob in bigram_probs.items()}
