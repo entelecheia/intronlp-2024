@@ -27,7 +27,6 @@ GloVe는 2014년 Pennington 등이 소개한 또 다른 인기 있는 단어 임
 
 ### 1.3 Python으로 GloVe 구현하기
 
-glove_python 라이브러리가 빌드되지 않고 설치에 실패하여 gensim을 사용
 ```python
 # gensim 및 GloVe 파일 다운로드
 !pip install gensim
