@@ -151,13 +151,6 @@ for (c1, c2), prob in list(class_transition_probs.items())[:5]:
 최대 엔트로피(MaxEnt) 모델, 또는 로그선형 모델이라고도 불리는 이 모델은 다양한 특성을 언어 모델에 통합할 수 있게 합니다:
 
 ```python
-'''수정사항 설명:
-시그모이드 함수로 변경: 소프트맥스 대신 시그모이드 함수를 사용하여 이진 분류 문제에 적합한 확률 계산을 하도록 수정했습니다.
-
-시그모이드 함수는 probs = 1 / (1 + np.exp(-scores))로 정의됩니다.
-음의 로그 우도 함수: neg_log_likelihood 함수에서 labels * np.log(probs) + (1 - labels) * np.log(1 - probs)를 사용하여 실제 레이블과 예측된 확률의 로그 차이를 계산합니다. 이 방식은 이진 분류 문제에서 자주 사용하는 방법입니다.
-
-최적화: scipy.optimize.minimize 함수를 사용하여 neg_log_likelihood 함수의 값을 최소화하는 가중치를 찾습니다. 이를 통해 최적화된 가중치를 반환합니다.'''
 import numpy as np
 from scipy.optimize import minimize
 
@@ -198,18 +191,6 @@ print("MaxEnt 모델 가중치:", weights)
 단어 임베딩은 의미적 관계를 포착하는 단어의 밀집 벡터 표현입니다:
 
 ```python
-'''
-1. KeyError: "Key '여우' not present" 문제
-문제: Word2Vec 모델의 어휘에 없는 단어를 시각화하려 할 때 발생.
-해결: 단어가 모델의 어휘에 존재하는지 확인하는 조건문을 추가하여 어휘에 없는 단어는 시각화에서 제외하고, 어휘에 있는 단어만 시각화함.
-2. AttributeError: 'list' object has no attribute 'shape' 문제
-문제: TSNE는 리스트가 아닌 numpy 배열을 입력으로 받아야 하는데, 리스트를 전달하면서 발생한 오류.
-해결: word_vectors 리스트를 numpy 배열로 변환하여 TSNE에 전달.
-3. ValueError: perplexity must be less than n_samples 문제
-문제: t-SNE의 perplexity 값이 입력된 샘플 수보다 클 때 발생.
-해결: perplexity 값을 샘플 수보다 작게 동적으로 설정. 샘플 수가 적을 때 자동으로 더 작은 perplexity 값 사용.
-4. FontError : 나눔 폰트 설치 및 코드에 한글 폰트 설정 부분 추가.
-'''
 from gensim.models import Word2Vec
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
@@ -257,11 +238,11 @@ def visualize_embeddings(model, words):
             valid_words.append(word)
         else:
             print(f"'{word}'가 어휘에 없습니다.")
-    
+
     if word_vectors:
         # 리스트를 numpy 배열로 변환
         word_vectors = np.array(word_vectors)
-        
+
         # perplexity를 샘플 수보다 작게 설정
         perplexity_value = min(len(word_vectors) - 1, 5)
         tsne = TSNE(n_components=2, random_state=42, perplexity=perplexity_value)
@@ -327,12 +308,6 @@ model.summary()
 트라이그램 모델과 간단한 신경망 언어 모델의 퍼플렉시티를 비교해 보겠습니다:
 
 ```python
-'''
-주요 수정 사항:
-create_ffnn_lm 함수를 정의하여 간단한 FFNN 모델을 생성합니다.
-bigram = tuple(sentence[i:i+2]) 부분의 오류를 수정했습니다.
-calculate_neural_perplexity 함수에서 모델 예측 후 퍼플렉시티 계산을 위한 확률 로그값을 반영했습니다. '''
-
 import numpy as np
 from collections import defaultdict
 import tensorflow as tf
