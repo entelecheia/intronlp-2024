@@ -594,6 +594,8 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span> <span class="c1">#nltk 다운로드 추가</span>
+
 <span class="k">def</span> <span class="nf">create_skipgram_model</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
     <span class="n">skipgram_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -686,17 +688,23 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 
+
 <span class="k">def</span> <span class="nf">maxent_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">neg_log_likelihood</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+        <span class="c1"># 점수 계산 (로짓)</span>
         <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
-        <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)),</span> <span class="n">labels</span><span class="p">]))</span>
+        <span class="c1"># 시그모이드 확률 계산</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">))</span>
+        <span class="c1"># 음의 로그 우도 계산 (이진 분류)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">labels</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">labels</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">probs</span><span class="p">))</span>
 
+    <span class="c1"># 초기 가중치 설정</span>
     <span class="n">initial_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># 최적화 함수 사용</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span> <span class="n">initial_weights</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
 
-<span class="c1"># 사용 예 (단순화)</span>
+<span class="c1"># 사용 예</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="c1"># &quot;고양이&quot;에 대한 특성 벡터</span>
     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c1"># &quot;개&quot;에 대한 특성 벡터</span>
@@ -718,25 +726,74 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="kn">import</span> <span class="nn">sys</span> <span class="c1">#한국어 폰트 깨짐 부분 해결</span>
+
+<span class="c1"># Google Colab 환경에서 실행 중인지 확인</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="c1"># debconf를 Noninteractive 모드로 설정</span>
+    <span class="err">!</span><span class="n">echo</span> <span class="s1">&#39;debconf debconf/frontend select Noninteractive&#39;</span> <span class="o">|</span> \
+    <span class="n">debconf</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">selections</span>
+
+    <span class="c1"># fonts-nanum 패키지를 설치</span>
+    <span class="err">!</span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">qq</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">fonts</span><span class="o">-</span><span class="n">nanum</span>
+
+    <span class="c1"># Matplotlib의 폰트 매니저 가져오기</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+
+    <span class="c1"># 나눔 폰트의 시스템 경로 찾기</span>
+    <span class="n">font_files</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">findSystemFonts</span><span class="p">(</span><span class="n">fontpaths</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;/usr/share/fonts/truetype/nanum&#39;</span><span class="p">])</span>
+
+    <span class="c1"># 찾은 각 나눔 폰트를 Matplotlib 폰트 매니저에 추가</span>
+    <span class="k">for</span> <span class="n">fpath</span> <span class="ow">in</span> <span class="n">font_files</span><span class="p">:</span>
+        <span class="n">fm</span><span class="o">.</span><span class="n">fontManager</span><span class="o">.</span><span class="n">addfont</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+
+<span class="c1"># 한글 폰트 설정</span>
+<span class="k">def</span> <span class="nf">set_korean_font</span><span class="p">():</span>
+    <span class="c1"># 나눔 고딕 폰트를 사용할 경우</span>
+    <span class="n">font_path</span> <span class="o">=</span> <span class="s1">&#39;/usr/share/fonts/truetype/nanum/NanumGothic.ttf&#39;</span>  <span class="c1"># 경로는 폰트 설치 위치에 따라 다를 수 있음</span>
+    <span class="n">fontprop</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">font_path</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">fontprop</span><span class="o">.</span><span class="n">get_name</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 마이너스 기호가 깨지는 것을 방지</span>
 
 <span class="k">def</span> <span class="nf">train_word2vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span>
 
 <span class="k">def</span> <span class="nf">visualize_embeddings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
-    <span class="n">word_vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
-    <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">embeddings_2d</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
+    <span class="n">word_vectors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">:</span>
+            <span class="n">word_vectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
+            <span class="n">valid_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39;가 어휘에 없습니다.&quot;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">embeddings_2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;단어 임베딩 시각화&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t-SNE 특성 0&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;t-SNE 특성 1&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">word_vectors</span><span class="p">:</span>
+        <span class="c1"># 리스트를 numpy 배열로 변환</span>
+        <span class="n">word_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
+
+        <span class="c1"># perplexity를 샘플 수보다 작게 설정</span>
+        <span class="n">perplexity_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="n">perplexity_value</span><span class="p">)</span>
+        <span class="n">embeddings_2d</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">valid_words</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">embeddings_2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;단어 임베딩 시각화&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t-SNE 특성 0&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;t-SNE 특성 1&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;시각화할 유효한 단어가 없습니다.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 한글 폰트 설정 함수 호출</span>
+<span class="n">set_korean_font</span><span class="p">()</span>
 
 <span class="c1"># 사용 예</span>
 <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
@@ -785,7 +842,9 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
 
+<span class="c1"># 트라이그램 퍼플렉시티 계산 함수</span>
 <span class="k">def</span> <span class="nf">calculate_trigram_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">trigram_probs</span><span class="p">):</span>
     <span class="n">log_prob</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
@@ -800,6 +859,7 @@ document.write(`
     <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_prob</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">perplexity</span>
 
+<span class="c1"># 신경망 퍼플렉시티 계산 함수</span>
 <span class="k">def</span> <span class="nf">calculate_neural_perplexity</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">):</span>
     <span class="n">log_prob</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
@@ -813,7 +873,17 @@ document.write(`
     <span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_prob</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">perplexity</span>
 
-<span class="c1"># 사용 예 (단순화)</span>
+<span class="c1"># 신경망 모델 생성 함수</span>
+<span class="k">def</span> <span class="nf">create_ffnn_lm</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">context_size</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="n">context_size</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">())</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># 사용 예 (단순화된 예시)</span>
 <span class="n">train_data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="s1">&#39;빠른&#39;</span><span class="p">,</span> <span class="s1">&#39;갈색&#39;</span><span class="p">,</span> <span class="s1">&#39;여우가&#39;</span><span class="p">,</span> <span class="s1">&#39;게으른&#39;</span><span class="p">,</span> <span class="s1">&#39;개를&#39;</span><span class="p">,</span> <span class="s1">&#39;뛰어넘었다&#39;</span><span class="p">],</span>
     <span class="p">[</span><span class="s1">&#39;한&#39;</span><span class="p">,</span> <span class="s1">&#39;빠른&#39;</span><span class="p">,</span> <span class="s1">&#39;갈색&#39;</span><span class="p">,</span> <span class="s1">&#39;개가&#39;</span><span class="p">,</span> <span class="s1">&#39;게으른&#39;</span><span class="p">,</span> <span class="s1">&#39;고양이에게&#39;</span><span class="p">,</span> <span class="s1">&#39;짖었다&#39;</span><span class="p">]</span>
@@ -831,17 +901,13 @@ document.write(`
 <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
         <span class="n">trigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
-        <span class="n">bigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i네</span><span class="p">,</span> <span class="n">이어서</span> <span class="n">번역해</span> <span class="n">드리겠습니다</span><span class="o">.</span>
-
-<span class="err">```</span><span class="n">python</span>
-<span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
         <span class="n">trigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">bigram_counts</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="n">trigram_probs</span> <span class="o">=</span> <span class="p">{</span><span class="n">trigram</span><span class="p">:</span> <span class="n">count</span> <span class="o">/</span> <span class="n">bigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]</span>
-                 <span class="k">for</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">trigram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">trigram_probs</span> <span class="o">=</span> <span class="p">{</span><span class="n">trigram</span><span class="p">:</span> <span class="n">count</span> <span class="o">/</span> <span class="n">bigram_counts</span><span class="p">[</span><span class="n">trigram</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]</span> <span class="k">for</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">trigram_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<span class="c1"># 신경망 모델 학습</span>
+<span class="c1"># 신경망 모델 학습 데이터 준비</span>
 <span class="n">vocab</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span> <span class="o">+</span> <span class="n">test_data</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">))</span>
 <span class="n">word_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
 <span class="n">id_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
@@ -856,6 +922,7 @@ document.write(`
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
+<span class="c1"># 신경망 모델 생성 및 학습</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">create_ffnn_lm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 

@@ -540,18 +540,31 @@ document.write(`
 <h2>소개<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>이번 강의에서는 고급 텍스트 전처리 기술을 살펴보고 기계 학습 알고리즘에 적합한 형식으로 텍스트 데이터를 표현하는 방법을 깊이 있게 다룰 것입니다. 1회차에서 다룬 기본 개념을 바탕으로 텍스트 데이터를 분석하기 위한 더 정교한 접근 방식을 소개할 것입니다.</p>
 <p>먼저 필요한 라이브러리를 가져오겠습니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">konlpy</span> <span class="n">emoji</span>
+
+<span class="c1"># 한글 폰트 설치</span>
+<span class="err">!</span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">fonts</span><span class="o">-</span><span class="n">nanum</span>
+
+<span class="c1"># en_core_web_sm 모델 다운로드 (한 번만 실행하면 됩니다)</span>
+<span class="err">!</span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">spacy</span> <span class="n">download</span> <span class="n">en_core_web_sm</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 <span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">pos_tag</span>
 <span class="kn">from</span> <span class="nn">nltk.chunk</span> <span class="kn">import</span> <span class="n">ne_chunk</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
 <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
-<span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">from</span> <span class="nn">konlpy.tag</span> <span class="kn">import</span> <span class="n">Okt</span>
 
 <span class="c1"># 필요한 NLTK 데이터 다운로드</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
@@ -586,11 +599,12 @@ document.write(`
 <section id="ascii">
 <h3>비 ASCII 문자 처리<a class="headerlink" href="#ascii" title="Link to this heading">#</a></h3>
 <p>비 ASCII 문자를 포함할 수 있는 텍스트 데이터의 경우, 이를 제거하거나 정규화할 수 있습니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 유니코드 관련 모듈 임포트</span>
+<span class="kn">import</span> <span class="nn">unicodedata</span>
 
 <span class="k">def</span> <span class="nf">normalize_unicode</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="c1"># 유니코드 문자 정규화</span>
-    <span class="k">return</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFKD&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ASCII&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ASCII&#39;</span><span class="p">)</span>
+    <span class="c1"># 유니코드 문자 정규화: NFKC 형태로 정규화 (한글을 유지)</span>
+    <span class="k">return</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFKC&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
 <span class="c1"># 사용 예시</span>
 <span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;카페 오 레는 맛있는 음료입니다&quot;</span>
@@ -632,13 +646,16 @@ document.write(`
 <section id="ner">
 <h2>3. 개체명 인식 (NER)<a class="headerlink" href="#ner" title="Link to this heading">#</a></h2>
 <p>개체명 인식은 텍스트에서 명명된 개체(예: 인명, 조직, 장소)를 식별하고 분류하는 과정입니다. spaCy를 사용하여 NER을 수행해 보겠습니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_ner</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># NER 모델 로드 (영어 모델 사용)</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">perform_ner</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="n">entities</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span> <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">entities</span>
 
 <span class="c1"># 사용 예시</span>
-<span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;애플은 스티브 잡스가 캘리포니아 쿠퍼티노에서 설립했습니다.&quot;</span>
+<span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;Apple was founded by Steve Jobs in Cupertino, California.&quot;</span>
 <span class="n">entities</span> <span class="o">=</span> <span class="n">perform_ner</span><span class="p">(</span><span class="n">sample_text</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;명명된 개체:&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">)</span>
 
@@ -651,12 +668,29 @@ document.write(`
 <section id="pos-tagging">
 <h2>4. 품사 태깅 (POS Tagging)<a class="headerlink" href="#pos-tagging" title="Link to this heading">#</a></h2>
 <p>품사 태깅은 단어에 문법적 범주(예: 명사, 동사, 형용사)를 라벨링하는 과정입니다. 이 작업에 NLTK를 사용해 보겠습니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pos_tag_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">pos_tags</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pos_tags</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
-<span class="c1"># 사용 예시</span>
+<span class="c1"># 필요한 모듈 임포트</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">konlpy.tag</span> <span class="kn">import</span> <span class="n">Okt</span>
+
+<span class="c1"># 나눔고딕 폰트 경로 설정</span>
+<span class="n">font_path</span> <span class="o">=</span> <span class="s1">&#39;/usr/share/fonts/truetype/nanum/NanumGothic.ttf&#39;</span>
+<span class="n">font_prop</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">font_path</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># 폰트 설정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NanumGothic&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 마이너스 기호 깨짐 방지</span>
+
+<span class="c1"># KoNLPy의 Okt 형태소 분석기 초기화</span>
+<span class="n">okt</span> <span class="o">=</span> <span class="n">Okt</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">pos_tag_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">okt</span><span class="o">.</span><span class="n">pos</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># 테스트 텍스트</span>
 <span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;빠른 갈색 여우가 게으른 개를 뛰어넘습니다.&quot;</span>
 <span class="n">pos_tags</span> <span class="o">=</span> <span class="n">pos_tag_text</span><span class="p">(</span><span class="n">sample_text</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;품사 태그:&quot;</span><span class="p">,</span> <span class="n">pos_tags</span><span class="p">)</span>
@@ -666,13 +700,17 @@ document.write(`
     <span class="n">words</span><span class="p">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">pos_tags</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">hue</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">tags</span><span class="p">),</span> <span class="n">dodge</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;품사 태그&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;단어&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;품사 태그&quot;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">font_prop</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;단어&quot;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">font_prop</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;품사 태그&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;품사 태그&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="n">font_prop</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">set_fontproperties</span><span class="p">(</span><span class="n">font_prop</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
+<span class="c1"># 그래프 출력</span>
 <span class="n">plot_pos_tags</span><span class="p">(</span><span class="n">pos_tags</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -715,12 +753,39 @@ document.write(`
 <section id="tf-idf">
 <h3>TF-IDF (단어 빈도-역문서 빈도)<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h3>
 <p>TF-IDF는 문서 집합에 대한 문서 내 단어의 중요도를 나타냅니다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_tfidf</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 폰트 경로 설정</span>
+<span class="n">font_path</span> <span class="o">=</span> <span class="s1">&#39;/usr/share/fonts/truetype/nanum/NanumGothic.ttf&#39;</span>
+<span class="n">fm</span><span class="o">.</span><span class="n">fontManager</span><span class="o">.</span><span class="n">addfont</span><span class="p">(</span><span class="n">font_path</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;NanumGothic&#39;</span><span class="p">)</span>
+
+<span class="c1"># 캐시 파일 삭제 (matplotlib가 캐시를 다시 생성하도록 강제)</span>
+<span class="n">font_cache_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.cache/matplotlib&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">font_cache_dir</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">shutil</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">font_cache_dir</span><span class="p">)</span>
+
+<span class="c1"># 마이너스 기호 깨짐 방지 설정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># TF-IDF 생성 함수</span>
+<span class="k">def</span> <span class="nf">create_tfidf</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
     <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
     <span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
 
 <span class="c1"># 사용 예시</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;빠른 갈색 여우가 게으른 개를 뛰어넘습니다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;종일 잠을 잡니다.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;빠른 여우는 게으른 개를 뛰어넘습니다.&quot;</span>
+<span class="p">]</span>
+
 <span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="n">create_tfidf</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TF-IDF 특성 이름:&quot;</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TF-IDF 행렬 형태:&quot;</span><span class="p">,</span> <span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -742,24 +807,51 @@ document.write(`
 <section id="id7">
 <h2>6. 단어 임베딩<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>단어 임베딩은 의미적 관계를 포착하는 단어의 밀집 벡터 표현입니다. 인기 있는 단어 임베딩 기술인 Word2Vec을 살펴보겠습니다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_word2vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">konlpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">konlpy.tag</span> <span class="kn">import</span> <span class="n">Okt</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+
+<span class="c1"># Word2Vec 학습 함수</span>
+<span class="k">def</span> <span class="nf">train_word2vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="n">vector_size</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="n">min_count</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span>
 
+<span class="c1"># 형태소 분석기 (Okt) 초기화</span>
+<span class="n">okt</span> <span class="o">=</span> <span class="n">Okt</span><span class="p">()</span>
+
+<span class="c1"># 한국어 문장을 토큰화하는 함수</span>
+<span class="k">def</span> <span class="nf">tokenize_korean</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">okt</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">]</span>
+
 <span class="c1"># 사용 예시</span>
-<span class="n">tokenized_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">]</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;빠른 갈색 여우가 게으른 개를 뛰어넘습니다.&quot;</span><span class="p">,</span> <span class="s2">&quot;종일 잠을 잡니다.&quot;</span><span class="p">,</span> <span class="s2">&quot;빠른 여우는 게으른 개를 뛰어넘습니다.&quot;</span><span class="p">]</span>
+<span class="n">tokenized_corpus</span> <span class="o">=</span> <span class="n">tokenize_korean</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
 <span class="n">w2v_model</span> <span class="o">=</span> <span class="n">train_word2vec</span><span class="p">(</span><span class="n">tokenized_corpus</span><span class="p">)</span>
 
-<span class="c1"># t-SNE를 사용하여 단어 임베딩 시각화</span>
-<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+<span class="c1"># 모델에 존재하는 단어만 추출하는 함수</span>
+<span class="k">def</span> <span class="nf">get_model_words</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">plot_word_embeddings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
-    <span class="n">word_vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
-    <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># t-SNE를 사용하여 단어 임베딩 시각화</span>
+<span class="k">def</span> <span class="nf">plot_word_embeddings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">words_in_model</span> <span class="o">=</span> <span class="n">get_model_words</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words_in_model</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;시각화할 단어가 충분하지 않습니다.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Word vectors를 numpy 배열로 변환</span>
+    <span class="n">word_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words_in_model</span><span class="p">])</span>
+
+    <span class="c1"># perplexity 값을 단어 수보다 작게 설정</span>
+    <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">perplexity</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">embedded</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">word_vectors</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words_in_model</span><span class="p">):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">embedded</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
@@ -769,7 +861,22 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">plot_word_embeddings</span><span class="p">(</span><span class="n">w2v_model</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;빠른&#39;</span><span class="p">,</span> <span class="s1">&#39;갈색&#39;</span><span class="p">,</span> <span class="s1">&#39;여우&#39;</span><span class="p">,</span> <span class="s1">&#39;게으른&#39;</span><span class="p">,</span> <span class="s1">&#39;개&#39;</span><span class="p">,</span> <span class="s1">&#39;뛰어넘습니다&#39;</span><span class="p">,</span> <span class="s1">&#39;잠을&#39;</span><span class="p">])</span>
+<span class="c1"># 모델에 존재하는 단어로 시각화</span>
+<span class="n">words_to_visualize</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;빠른&#39;</span><span class="p">,</span> <span class="s1">&#39;갈색&#39;</span><span class="p">,</span> <span class="s1">&#39;여우&#39;</span><span class="p">,</span> <span class="s1">&#39;게으른&#39;</span><span class="p">,</span> <span class="s1">&#39;개&#39;</span><span class="p">,</span> <span class="s1">&#39;뛰어넘습니다&#39;</span><span class="p">,</span> <span class="s1">&#39;잠을&#39;</span><span class="p">]</span>
+<span class="n">plot_word_embeddings</span><span class="p">(</span><span class="n">w2v_model</span><span class="p">,</span> <span class="n">words_to_visualize</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 학습된 모델에서 단어들을 확인해봅니다</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;모델에 포함된 단어들:&quot;</span><span class="p">,</span> <span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index_to_key</span><span class="p">)</span>
+
+<span class="c1"># 모델에 존재하는 단어들만 추출한 목록 확인</span>
+<span class="n">words_in_model</span> <span class="o">=</span> <span class="n">get_model_words</span><span class="p">(</span><span class="n">w2v_model</span><span class="p">,</span> <span class="n">words_to_visualize</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;시각화할 수 있는 단어들:&quot;</span><span class="p">,</span> <span class="n">words_in_model</span><span class="p">)</span>
+
+<span class="c1"># 시각화할 단어가 없는 경우, 이 부분을 통해 원인을 알 수 있습니다.</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words_in_model</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;시각화할 단어가 충분하지 않습니다. 모델에 단어가 학습되지 않았을 수 있습니다.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">plot_word_embeddings</span><span class="p">(</span><span class="n">w2v_model</span><span class="p">,</span> <span class="n">words_to_visualize</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
