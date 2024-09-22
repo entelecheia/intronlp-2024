@@ -7,6 +7,16 @@
 먼저 필요한 라이브러리를 가져오겠습니다:
 
 ```python
+!pip install konlpy emoji
+
+# 한글 폰트 설치
+!apt-get install -y fonts-nanum
+
+# en_core_web_sm 모델 다운로드 (한 번만 실행하면 됩니다)
+!python -m spacy download en_core_web_sm
+```
+
+```python
 import spacy
 import re
 import nltk
@@ -42,7 +52,6 @@ nlp = spacy.load("en_core_web_sm")
 이모지와 이모티콘은 감정 정보를 담고 있을 수 있습니다. 이들을 제거하거나 텍스트 설명으로 대체할 수 있습니다.
 
 ```python
-!pip install emoji
 import emoji
 
 def handle_emojis(text):
@@ -109,9 +118,6 @@ print("확장된 텍스트:", expanded_text)
 개체명 인식은 텍스트에서 명명된 개체(예: 인명, 조직, 장소)를 식별하고 분류하는 과정입니다. spaCy를 사용하여 NER을 수행해 보겠습니다:
 
 ```python
-# en_core_web_sm 모델 다운로드 (한 번만 실행하면 됩니다)
-!python -m spacy download en_core_web_sm
-
 # NER 모델 로드 (영어 모델 사용)
 nlp = spacy.load("en_core_web_sm")
 
@@ -135,10 +141,6 @@ displacy.render(nlp(sample_text), style="ent", jupyter=True)
 품사 태깅은 단어에 문법적 범주(예: 명사, 동사, 형용사)를 라벨링하는 과정입니다. 이 작업에 NLTK를 사용해 보겠습니다:
 
 ```python
-# 1. 한글 폰트 설치
-!apt-get install -y fonts-nanum
-
-# 2. Colab에서 그래프를 바로 표시하기 위한 매직 명령어 추가
 %matplotlib inline
 
 # 필요한 모듈 임포트
@@ -179,7 +181,7 @@ def plot_pos_tags(pos_tags):
     for label in plt.gca().get_xticklabels():
         label.set_fontproperties(font_prop)
     plt.tight_layout()
-    plt.show() 
+    plt.show()
 
 # 그래프 출력
 plot_pos_tags(pos_tags)
@@ -227,9 +229,6 @@ plt.show()
 TF-IDF는 문서 집합에 대한 문서 내 단어의 중요도를 나타냅니다.
 
 ```python
-!apt-get install -y fonts-nanum
-
-# 2. 폰트 캐시를 삭제하여 matplotlib가 다시 생성하도록 처리
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import seaborn as sns
