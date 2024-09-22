@@ -50,6 +50,7 @@ parts:
               - file: projects/team3/notes
                 sections:
                   - file: projects/team3/research-note3w
+                  - file: projects/team3/research-note4w
           - file: projects/team4/index
             sections:
               - file: projects/team4/proposal
@@ -57,6 +58,7 @@ parts:
                 sections:
                   - file: projects/team4/Research-Log/W1
                   - file: projects/team4/Research-Log/W2
+                  - file: projects/team4/Research-Log/W3
           - file: projects/team5/index
             sections:
               - file: projects/team5/proposal
