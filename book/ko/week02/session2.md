@@ -7,18 +7,32 @@
 먼저 필요한 라이브러리를 가져오겠습니다:
 
 ```python
+!pip install konlpy emoji
+
+# 한글 폰트 설치
+!apt-get install -y fonts-nanum
+
+# en_core_web_sm 모델 다운로드 (한 번만 실행하면 됩니다)
+!python -m spacy download en_core_web_sm
+```
+
+```python
+import spacy
 import re
 import nltk
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import spacy
+import matplotlib.font_manager as fm
+import matplotlib
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from nltk.chunk import ne_chunk
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from gensim.models import Word2Vec
-import spacy
+from konlpy.tag import Okt
 
 # 필요한 NLTK 데이터 다운로드
 nltk.download('averaged_perceptron_tagger')
@@ -56,11 +70,12 @@ print("처리된 텍스트:", processed_text)
 비 ASCII 문자를 포함할 수 있는 텍스트 데이터의 경우, 이를 제거하거나 정규화할 수 있습니다:
 
 ```python
+# 유니코드 관련 모듈 임포트
 import unicodedata
 
 def normalize_unicode(text):
-    # 유니코드 문자 정규화
-    return unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore').decode('ASCII')
+    # 유니코드 문자 정규화: NFKC 형태로 정규화 (한글을 유지)
+    return unicodedata.normalize('NFKC', text)
 
 # 사용 예시
 sample_text = "카페 오 레는 맛있는 음료입니다"
@@ -103,13 +118,16 @@ print("확장된 텍스트:", expanded_text)
 개체명 인식은 텍스트에서 명명된 개체(예: 인명, 조직, 장소)를 식별하고 분류하는 과정입니다. spaCy를 사용하여 NER을 수행해 보겠습니다:
 
 ```python
+# NER 모델 로드 (영어 모델 사용)
+nlp = spacy.load("en_core_web_sm")
+
 def perform_ner(text):
     doc = nlp(text)
     entities = [(ent.text, ent.label_) for ent in doc.ents]
     return entities
 
 # 사용 예시
-sample_text = "애플은 스티브 잡스가 캘리포니아 쿠퍼티노에서 설립했습니다."
+sample_text = "Apple was founded by Steve Jobs in Cupertino, California."
 entities = perform_ner(sample_text)
 print("명명된 개체:", entities)
 
@@ -123,12 +141,29 @@ displacy.render(nlp(sample_text), style="ent", jupyter=True)
 품사 태깅은 단어에 문법적 범주(예: 명사, 동사, 형용사)를 라벨링하는 과정입니다. 이 작업에 NLTK를 사용해 보겠습니다:
 
 ```python
-def pos_tag_text(text):
-    words = word_tokenize(text)
-    pos_tags = pos_tag(words)
-    return pos_tags
+%matplotlib inline
 
-# 사용 예시
+# 필요한 모듈 임포트
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import seaborn as sns
+from konlpy.tag import Okt
+
+# 나눔고딕 폰트 경로 설정
+font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
+font_prop = fm.FontProperties(fname=font_path, size=10)
+
+# 폰트 설정
+plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
+
+# KoNLPy의 Okt 형태소 분석기 초기화
+okt = Okt()
+
+def pos_tag_text(text):
+    return okt.pos(text)
+
+# 테스트 텍스트
 sample_text = "빠른 갈색 여우가 게으른 개를 뛰어넘습니다."
 pos_tags = pos_tag_text(sample_text)
 print("품사 태그:", pos_tags)
@@ -138,13 +173,17 @@ def plot_pos_tags(pos_tags):
     words, tags = zip(*pos_tags)
     plt.figure(figsize=(12, 6))
     sns.barplot(x=list(words), y=[1]*len(words), hue=list(tags), dodge=False)
-    plt.title("품사 태그")
-    plt.xlabel("단어")
+    plt.title("품사 태그", fontproperties=font_prop)
+    plt.xlabel("단어", fontproperties=font_prop)
     plt.ylabel("")
-    plt.legend(title="품사 태그", bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.legend(title="품사 태그", bbox_to_anchor=(1.05, 1), loc='upper left', prop=font_prop)
+    plt.xticks(rotation=45, ha='right')
+    for label in plt.gca().get_xticklabels():
+        label.set_fontproperties(font_prop)
     plt.tight_layout()
     plt.show()
 
+# 그래프 출력
 plot_pos_tags(pos_tags)
 ```
 
@@ -190,12 +229,39 @@ plt.show()
 TF-IDF는 문서 집합에 대한 문서 내 단어의 중요도를 나타냅니다.
 
 ```python
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import seaborn as sns
+from sklearn.feature_extraction.text import TfidfVectorizer
+import os
+
+# 폰트 경로 설정
+font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
+fm.fontManager.addfont(font_path)
+plt.rc('font', family='NanumGothic')
+
+# 캐시 파일 삭제 (matplotlib가 캐시를 다시 생성하도록 강제)
+font_cache_dir = os.path.expanduser('~/.cache/matplotlib')
+if os.path.exists(font_cache_dir):
+    import shutil
+    shutil.rmtree(font_cache_dir)
+
+# 마이너스 기호 깨짐 방지 설정
+plt.rcParams['axes.unicode_minus'] = False
+
+# TF-IDF 생성 함수
 def create_tfidf(corpus):
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(corpus)
     return tfidf_matrix, vectorizer.get_feature_names_out()
 
 # 사용 예시
+corpus = [
+    "빠른 갈색 여우가 게으른 개를 뛰어넘습니다.",
+    "종일 잠을 잡니다.",
+    "빠른 여우는 게으른 개를 뛰어넘습니다."
+]
+
 tfidf_matrix, feature_names = create_tfidf(corpus)
 print("TF-IDF 특성 이름:", feature_names)
 print("TF-IDF 행렬 형태:", tfidf_matrix.shape)
@@ -217,24 +283,51 @@ plt.show()
 단어 임베딩은 의미적 관계를 포착하는 단어의 밀집 벡터 표현입니다. 인기 있는 단어 임베딩 기술인 Word2Vec을 살펴보겠습니다.
 
 ```python
+!pip install konlpy
+import numpy as np
+from konlpy.tag import Okt
+from gensim.models import Word2Vec
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+
+# Word2Vec 학습 함수
 def train_word2vec(sentences, vector_size=100, window=5, min_count=1):
     model = Word2Vec(sentences, vector_size=vector_size, window=window, min_count=min_count)
     return model
 
+# 형태소 분석기 (Okt) 초기화
+okt = Okt()
+
+# 한국어 문장을 토큰화하는 함수
+def tokenize_korean(corpus):
+    return [okt.morphs(sentence) for sentence in corpus]
+
 # 사용 예시
-tokenized_corpus = [word_tokenize(doc.lower()) for doc in corpus]
+corpus = ["빠른 갈색 여우가 게으른 개를 뛰어넘습니다.", "종일 잠을 잡니다.", "빠른 여우는 게으른 개를 뛰어넘습니다."]
+tokenized_corpus = tokenize_korean(corpus)
 w2v_model = train_word2vec(tokenized_corpus)
 
-# t-SNE를 사용하여 단어 임베딩 시각화
-from sklearn.manifold import TSNE
+# 모델에 존재하는 단어만 추출하는 함수
+def get_model_words(model, words):
+    return [word for word in words if word in model.wv]
 
-def plot_word_embeddings(model, words):
-    word_vectors = [model.wv[word] for word in words]
-    tsne = TSNE(n_components=2, random_state=42)
+# t-SNE를 사용하여 단어 임베딩 시각화
+def plot_word_embeddings(model, words, perplexity=2):
+    words_in_model = get_model_words(model, words)
+
+    if len(words_in_model) < 2:
+        print("시각화할 단어가 충분하지 않습니다.")
+        return
+
+    # Word vectors를 numpy 배열로 변환
+    word_vectors = np.array([model.wv[word] for word in words_in_model])
+
+    # perplexity 값을 단어 수보다 작게 설정
+    tsne = TSNE(n_components=2, random_state=42, perplexity=min(perplexity, len(word_vectors) - 1))
     embedded = tsne.fit_transform(word_vectors)
 
     plt.figure(figsize=(12, 8))
-    for i, word in enumerate(words):
+    for i, word in enumerate(words_in_model):
         x, y = embedded[i]
         plt.scatter(x, y)
         plt.annotate(word, (x, y), xytext=(5, 2), textcoords='offset points', ha='right', va='bottom')
@@ -244,7 +337,22 @@ def plot_word_embeddings(model, words):
     plt.tight_layout()
     plt.show()
 
-plot_word_embeddings(w2v_model, ['빠른', '갈색', '여우', '게으른', '개', '뛰어넘습니다', '잠을'])
+# 모델에 존재하는 단어로 시각화
+words_to_visualize = ['빠른', '갈색', '여우', '게으른', '개', '뛰어넘습니다', '잠을']
+plot_word_embeddings(w2v_model, words_to_visualize, perplexity=2)
+
+# 학습된 모델에서 단어들을 확인해봅니다
+print("모델에 포함된 단어들:", w2v_model.wv.index_to_key)
+
+# 모델에 존재하는 단어들만 추출한 목록 확인
+words_in_model = get_model_words(w2v_model, words_to_visualize)
+print("시각화할 수 있는 단어들:", words_in_model)
+
+# 시각화할 단어가 없는 경우, 이 부분을 통해 원인을 알 수 있습니다.
+if len(words_in_model) < 2:
+    print("시각화할 단어가 충분하지 않습니다. 모델에 단어가 학습되지 않았을 수 있습니다.")
+else:
+    plot_word_embeddings(w2v_model, words_to_visualize, perplexity=2)
 ```
 
 ## 7. 결론 및 모범 사례
