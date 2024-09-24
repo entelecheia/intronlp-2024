@@ -6,15 +6,6 @@ In this session, we will focus on the practical aspects of the Transformer archi
 
 ---
 
-## Recap of Session 1
-
-- **Limitations of RNNs**: Difficulty in capturing long-range dependencies and lack of parallelization.
-- **Attention Mechanisms**: Introduction to self-attention and multi-head attention.
-- **Transformer Architecture**: Overview of encoder-decoder structure, positional encoding, and feed-forward networks.
-- **Advantages of Transformers**: Improved performance, scalability, and efficiency over traditional models.
-
----
-
 ## Visualization of Attention Mechanisms
 
 Understanding how attention works internally is crucial. Visualizations can help demystify the "black box" nature of neural networks.

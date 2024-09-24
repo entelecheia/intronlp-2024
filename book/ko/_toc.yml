@@ -24,6 +24,11 @@ parts:
         sections:
           - file: week04/session1
           - file: week04/session2
+      - file: week05/index
+        sections:
+          - file: week05/session1
+          - file: week05/session2
+          - file: week05/session3
   - caption: Projects
     chapters:
       - file: projects/index
