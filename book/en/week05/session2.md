@@ -167,32 +167,6 @@ BERT uses multiple attention mechanisms (heads) operating simultaneously:
 - Outputs of all heads are concatenated and fed into a feed-forward neural network
 - Allows the model to learn a variety of relationships between words
 
-```{mermaid}
-:align: center
-graph TD
-    A[Input Embeddings] --> B[Multi-head Attention 1]
-    B --> C[Layer Normalization 1]
-    C --> D[Feed-forward Neural Network 1]
-    D --> E[Layer Normalization 2]
-    E --> F[Multi-head Attention 2]
-    F --> G[Layer Normalization 3]
-    G --> H[Feed-forward Neural Network 2]
-    H --> I[Layer Normalization 4]
-    I --> J[Output]
-    B -->|Head 1| K[Concatenate]
-    B -->|Head 2| K
-    B -->|Head 3| K
-    K --> L[Feed-forward Neural Network 1']
-    L --> C
-    F -->|Head 1| M[Concatenate]
-    F -->|Head 2| M
-    F -->|Head 3| M
-    M --> N[Feed-forward Neural Network 2']
-    N --> G
-```
-
-This diagram illustrates the multi-head attention architecture in BERT, showing how multiple attention heads are used and how their outputs are combined.
-
 ## 5. Pre-training and Fine-tuning
 
 BERT uses a two-step training process:
