@@ -59,6 +59,8 @@ print(f"Katz 백오프 확률: {prob:.4f}")
 from collections import defaultdict
 import nltk
 
+nltk.download('punkt') #nltk 다운로드 추가
+
 def create_skipgram_model(text, n=3, k=1):
     tokens = nltk.word_tokenize(text.lower())
     skipgram_counts = defaultdict(int)
@@ -152,17 +154,23 @@ for (c1, c2), prob in list(class_transition_probs.items())[:5]:
 import numpy as np
 from scipy.optimize import minimize
 
+
 def maxent_model(features, labels):
     def neg_log_likelihood(weights):
+        # 점수 계산 (로짓)
         scores = np.dot(features, weights)
-        probs = np.exp(scores) / np.sum(np.exp(scores), axis=1, keepdims=True)
-        return -np.sum(np.log(probs[np.arange(len(labels)), labels]))
+        # 시그모이드 확률 계산
+        probs = 1 / (1 + np.exp(-scores))
+        # 음의 로그 우도 계산 (이진 분류)
+        return -np.sum(labels * np.log(probs) + (1 - labels) * np.log(1 - probs))
 
+    # 초기 가중치 설정
     initial_weights = np.zeros(features.shape[1])
+    # 최적화 함수 사용
     result = minimize(neg_log_likelihood, initial_weights, method='L-BFGS-B')
     return result.x
 
-# 사용 예 (단순화)
+# 사용 예
 features = np.array([
     [1, 0, 1],  # "고양이"에 대한 특성 벡터
     [1, 1, 0],  # "개"에 대한 특성 벡터
@@ -186,25 +194,74 @@ print("MaxEnt 모델 가중치:", weights)
 from gensim.models import Word2Vec
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+import numpy as np
+import matplotlib.font_manager as fm
+import sys #한국어 폰트 깨짐 부분 해결
+
+# Google Colab 환경에서 실행 중인지 확인
+if 'google.colab' in sys.modules:
+    # debconf를 Noninteractive 모드로 설정
+    !echo 'debconf debconf/frontend select Noninteractive' | \
+    debconf-set-selections
+
+    # fonts-nanum 패키지를 설치
+    !sudo apt-get -qq -y install fonts-nanum
+
+    # Matplotlib의 폰트 매니저 가져오기
+    import matplotlib.font_manager as fm
+
+    # 나눔 폰트의 시스템 경로 찾기
+    font_files = fm.findSystemFonts(fontpaths=['/usr/share/fonts/truetype/nanum'])
+
+    # 찾은 각 나눔 폰트를 Matplotlib 폰트 매니저에 추가
+    for fpath in font_files:
+        fm.fontManager.addfont(fpath)
+
+# 한글 폰트 설정
+def set_korean_font():
+    # 나눔 고딕 폰트를 사용할 경우
+    font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'  # 경로는 폰트 설치 위치에 따라 다를 수 있음
+    fontprop = fm.FontProperties(fname=font_path, size=10)
+    plt.rc('font', family=fontprop.get_name())
+    plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호가 깨지는 것을 방지
 
 def train_word2vec(sentences):
     model = Word2Vec(sentences, vector_size=100, window=5, min_count=1, workers=4)
     return model
 
 def visualize_embeddings(model, words):
-    word_vectors = [model.wv[word] for word in words]
-    tsne = TSNE(n_components=2, random_state=42)
-    embeddings_2d = tsne.fit_transform(word_vectors)
+    word_vectors = []
+    valid_words = []
+    for word in words:
+        if word in model.wv:
+            word_vectors.append(model.wv[word])
+            valid_words.append(word)
+        else:
+            print(f"'{word}'가 어휘에 없습니다.")
 
-    plt.figure(figsize=(10, 8))
-    for i, word in enumerate(words):
-        x, y = embeddings_2d[i]
-        plt.scatter(x, y)
-        plt.annotate(word, (x, y), xytext=(5, 2), textcoords='offset points')
-    plt.title("단어 임베딩 시각화")
-    plt.xlabel("t-SNE 특성 0")
-    plt.ylabel("t-SNE 특성 1")
-    plt.show()
+    if word_vectors:
+        # 리스트를 numpy 배열로 변환
+        word_vectors = np.array(word_vectors)
+
+        # perplexity를 샘플 수보다 작게 설정
+        perplexity_value = min(len(word_vectors) - 1, 5)
+        tsne = TSNE(n_components=2, random_state=42, perplexity=perplexity_value)
+        embeddings_2d = tsne.fit_transform(word_vectors)
+
+        plt.figure(figsize=(10, 8))
+        for i, word in enumerate(valid_words):
+            x, y = embeddings_2d[i]
+            plt.scatter(x, y)
+            plt.annotate(word, (x, y), xytext=(5, 2), textcoords='offset points')
+        plt.title("단어 임베딩 시각화")
+        plt.xlabel("t-SNE 특성 0")
+        plt.ylabel("t-SNE 특성 1")
+        plt.show()
+    else:
+        print("시각화할 유효한 단어가 없습니다.")
+
+# 한글 폰트 설정 함수 호출
+set_korean_font()
 
 # 사용 예
 sentences = [
@@ -250,11 +307,13 @@ model.summary()
 
 트라이그램 모델과 간단한 신경망 언어 모델의 퍼플렉시티를 비교해 보겠습니다:
 
-````python
+```python
 import numpy as np
 from collections import defaultdict
 import tensorflow as tf
+from tensorflow.keras import layers, models
 
+# 트라이그램 퍼플렉시티 계산 함수
 def calculate_trigram_perplexity(test_data, trigram_probs):
     log_prob = 0
     n = 0
@@ -269,6 +328,7 @@ def calculate_trigram_perplexity(test_data, trigram_probs):
     perplexity = 2 ** (-log_prob / n)
     return perplexity
 
+# 신경망 퍼플렉시티 계산 함수
 def calculate_neural_perplexity(test_data, model, word_to_id):
     log_prob = 0
     n = 0
@@ -282,7 +342,17 @@ def calculate_neural_perplexity(test_data, model, word_to_id):
     perplexity = 2 ** (-log_prob / n)
     return perplexity
 
-# 사용 예 (단순화)
+# 신경망 모델 생성 함수
+def create_ffnn_lm(vocab_size, embedding_dim, context_size):
+    model = models.Sequential()
+    model.add(layers.Embedding(vocab_size, embedding_dim, input_length=context_size))
+    model.add(layers.Flatten())
+    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(vocab_size, activation='softmax'))
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+    return model
+
+# 사용 예 (단순화된 예시)
 train_data = [
     ['빠른', '갈색', '여우가', '게으른', '개를', '뛰어넘었다'],
     ['한', '빠른', '갈색', '개가', '게으른', '고양이에게', '짖었다']
@@ -300,17 +370,13 @@ bigram_counts = defaultdict(int)
 for sentence in train_data:
     for i in range(len(sentence) - 2):
         trigram = tuple(sentence[i:i+3])
-        bigram = tuple(sentence[i:i네, 이어서 번역해 드리겠습니다.
-
-```python
-+2])
+        bigram = tuple(sentence[i:i+2])
         trigram_counts[trigram] += 1
         bigram_counts[bigram] += 1
 
-trigram_probs = {trigram: count / bigram_counts[trigram[:2]]
-                 for trigram, count in trigram_counts.items()}
+trigram_probs = {trigram: count / bigram_counts[trigram[:2]] for trigram, count in trigram_counts.items()}
 
-# 신경망 모델 학습
+# 신경망 모델 학습 데이터 준비
 vocab = list(set(word for sentence in train_data + test_data for word in sentence))
 word_to_id = {word: i for i, word in enumerate(vocab)}
 id_to_word = {i: word for word, i in word_to_id.items()}
@@ -325,6 +391,7 @@ for sentence in train_data:
 X = np.array(X)
 y = np.array(y)
 
+# 신경망 모델 생성 및 학습
 model = create_ffnn_lm(len(vocab), 50, 2)
 model.fit(X, y, epochs=50, verbose=0)
 
@@ -334,7 +401,7 @@ neural_perplexity = calculate_neural_perplexity(test_data, model, word_to_id)
 
 print(f"트라이그램 모델 퍼플렉시티: {trigram_perplexity:.2f}")
 print(f"신경망 모델 퍼플렉시티: {neural_perplexity:.2f}")
-````
+```
 
 ## 결론
 
