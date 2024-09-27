@@ -80,8 +80,8 @@ V = torch.rand(1, 3, 4)  # 밸류 벡터
 # 함수 호출 및 결과 출력
 output, attention_weights = scaled_dot_product_attention(Q, K, V)
 
-print("어텐션 출력:", output)
-print("어텐션 가중치:", attention_weights)
+print("어텐션 출력 (Query와 Key의 유사도에 따라 가중치가 적용된 Value):", output)
+print("어텐션 가중치 (Query와 Key 간의 유사도 점수):", attention_weights)
 
 ```
 
