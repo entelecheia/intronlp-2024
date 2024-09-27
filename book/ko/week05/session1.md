@@ -191,7 +191,10 @@ d_model = 16  # 임베딩 차원 수
 pos_encoding = positional_encoding(seq_len, d_model)
 
 print("포지셔널 인코딩 결과:")
+print("각 행은 시퀀스의 위치를, 각 열은 임베딩 차원을 나타냅니다.")
+print("값은 위치와 차원에 따른 사인/코사인 함수의 결과입니다.")
 print(pos_encoding)
+print("이 인코딩은 트랜스포머 모델에서 순서 정보를 제공합니다.")
 
 ```
 
