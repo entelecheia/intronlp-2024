@@ -56,14 +56,33 @@ $$
 #### 코드 예시: 스케일드 닷-프로덕트 어텐션
 
 ```python
+#torch는 PyTorch의 핵심 모듈로, 텐서 생성과 다양한 수학적 연산을 지원
 import torch
+#torch.nn.functional은 신경망에서 사용
 import torch.nn.functional as F
 
+# 스케일드 닷 프로덕트 어텐션 함수 정의
 def scaled_dot_product_attention(Q, K, V):
+    #Q(쿼리)의 마지막 차원의 크기를 가져오는 것으로, 이 값은 스케일링을 위한 계산에 사용됨
     d_k = Q.size(-1)
+    #Q(쿼리)와 K(키)의 행렬의 곱을 계산 후 스케일링(내적 값들을 벡터 차원의 제곱근으로 나눔)
     scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))
+    #Softmax 함수를 통해 scores 값을 확률처럼 정규화(가중치의 합이 1이 되도록)
     attention_weights = F.softmax(scores, dim=-1)
+    #어텐션 가중치와 밸류(V)를 곱한 결과를 반환
     return torch.matmul(attention_weights, V), attention_weights
+
+# 임의의 Q, K, V 입력 값 설정 (batch_size=1, num_heads=1, sequence_length=3, embedding_dim=4)
+Q = torch.rand(1, 3, 4)  # 쿼리 벡터
+K = torch.rand(1, 3, 4)  # 키 벡터
+V = torch.rand(1, 3, 4)  # 밸류 벡터
+
+# 함수 호출 및 결과 출력
+output, attention_weights = scaled_dot_product_attention(Q, K, V)
+
+print("어텐션 출력:", output)
+print("어텐션 가중치:", attention_weights)
+
 ```
 
 ---
@@ -151,13 +170,29 @@ $$
 import torch
 import math
 
+#positional_encoding함수는 문장의 길이와 단어 임베딩의 차원 크기를 인자로 받는다
 def positional_encoding(seq_len, d_model):
+    #0으로 채워진 텐서 PE에 각 단어의 포지셔널 인코딩 값을 저장할 예정
     PE = torch.zeros(seq_len, d_model)
+    #0부터 -1까지의 정수 배열을 생성, 차원을 늘려 2D 텐서로 만듬
     position = torch.arange(0, seq_len).unsqueeze(1)
+    #포지셔널 인코딩에서 위치 정보가 반영되는 방식
     div_term = torch.exp(torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model))
+    #각 단어의 위치에 대해 사인, 코사인 값이 반영된 포지셔널 인코딩 생성
     PE[:, 0::2] = torch.sin(position * div_term)
     PE[:, 1::2] = torch.cos(position * div_term)
+    #최종 인코딩 텐서 PE 반환
     return PE
+
+# 함수를 호출해서 포지셔널 인코딩을 계산
+seq_len = 10  # 문장의 길이
+d_model = 16  # 임베딩 차원 수
+
+pos_encoding = positional_encoding(seq_len, d_model)
+
+print("포지셔널 인코딩 결과:")
+print(pos_encoding)
+
 ```
 
 ### 피드포워드 네트워크
