@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>NLP 프로젝트 제안서 &#8212; 언어모형과자연어처리 2024</title>
+    <title>Week 6 - Understanding LLM APIs &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -90,14 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proposal';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week06/index';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="[n]주차 프로젝트 연구일지" href="research-note.html" />
-    <link rel="prev" title="프로젝트 가이드" href="index.html" />
+    <link rel="next" title="Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage" href="session1.html" />
+    <link rel="prev" title="Week 5 Session 3 - Practical Implementation and Visualization of Transformers" href="../week05/session3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -173,7 +173,7 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
         <div class="sidebar-primary-item">
 
   
@@ -187,7 +187,7 @@
   
   
   
-    <p class="title logo__title">언어모형과자연어처리 2024</p>
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -207,97 +207,56 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    홈
+                    Home
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2 - The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차 - 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1 - Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2 - Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3 - Korean Text Preprocessing and Tokenization</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차 - 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1 - 언어 모델과 N-gram 소개</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2 - 고급 통계적 언어 모델</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1 - Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2 - Advanced Statistical Language Models</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차 - 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 1세션 - 단어 임베딩과 Word2Vec 소개</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 2세션 - 고급 단어 임베딩</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1 - Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2 -  Advanced Word Embeddings</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 1세션 - 트랜스포머 소개</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 2세션 - BERT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 3세션 - 트랜스포머의 실제 구현 및 시각화</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1 - Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3 - Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 6 - Understanding LLM APIs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 6 Session 2 - Sampling Methods and Text Generation</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="index.html">프로젝트 가이드</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="research-note.html">[n]주차 프로젝트 연구일지</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="team1/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="team1/research-note-1week-01.html">1주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team1/research-note-2week-01.html">2주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team1/research-note-3week-01.html">3주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team1/research-note-4week-01.html">4주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="team2/proposal.html">NLP 프로젝트 제안서</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="team3/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="team4/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="team5/proposal.html">NLP 프로젝트 제안서</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
 </ul>
 
@@ -370,7 +329,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/projects/proposal.md" target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week06/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -387,7 +346,7 @@
       
       
       
-      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/proposal.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek06/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,7 +376,7 @@
       
       
       
-      <li><a href="../_sources/projects/proposal.md" target="_blank"
+      <li><a href="../_sources/week06/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -501,7 +460,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>NLP 프로젝트 제안서</h1>
+    <h1>Week 6 - Understanding LLM APIs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -511,24 +470,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 프로젝트 개요</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 프로젝트 배경 및 목적</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 프로젝트 내용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 주요 기능 및 특징</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2 사용 기술</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.3 데이터셋</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4. 개발 계획</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.1 개발 단계별 세부 계획</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.2 역할 분담</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 예상 결과물</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6. 평가 계획</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">7. 향후 발전 가능성</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8. 참고문헌 및 리소스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9. 첨부자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-learning-content">Key Learning Content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture">Lecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
 </ul>
             </nav>
         </div>
@@ -540,101 +487,66 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nlp">
-<h1>NLP 프로젝트 제안서<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>1. 프로젝트 개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-6-understanding-llm-apis">
+<h1>Week 6 - Understanding LLM APIs<a class="headerlink" href="#week-6-understanding-llm-apis" title="Link to this heading">#</a></h1>
+<section id="key-learning-content">
+<h2>Key Learning Content<a class="headerlink" href="#key-learning-content" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>프로젝트명: [프로젝트 이름]</p></li>
-<li><p>팀명: [팀 이름]</p></li>
-<li><p>팀원: [팀원 이름 및 역할]</p></li>
+<li><p><strong>OpenAI API Usage</strong>: Learn how to interact with OpenAI’s language model APIs for various NLP tasks.</p></li>
+<li><p><strong>Tokenization</strong>: Understand how tokenization works in large language models, including token counting and limitations.</p></li>
+<li><p><strong>Sampling Methods</strong>: Explore different sampling techniques like temperature, top-k, and top-p sampling to control output randomness and creativity.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>2. 프로젝트 배경 및 목적<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="lecture">
+<h2>Lecture<a class="headerlink" href="#lecture" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>프로젝트 주제 선정 배경</p></li>
-<li><p>해결하고자 하는 문제 또는 목표</p></li>
+<li><p><strong>Introduction to LLM APIs</strong>: Overview of Large Language Model APIs, their capabilities, and how they can be leveraged in NLP applications.</p></li>
+<li><p><strong>Deep Dive into OpenAI API</strong>: Walkthrough of OpenAI’s API features, authentication, rate limits, and best practices.</p></li>
+<li><p><strong>Tokenization in LLMs</strong>: Explanation of how text is tokenized in language models, the significance of tokens, and how to estimate token counts.</p></li>
+<li><p><strong>Sampling Methods Explained</strong>: Detailed look at sampling methods used during text generation, their parameters, and impact on the output.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>3. 프로젝트 내용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<section id="id4">
-<h3>3.1 주요 기능 및 특징<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="practice">
+<h2>Practice<a class="headerlink" href="#practice" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>개발하고자 하는 NLP 애플리케이션의 핵심 기능 설명</p></li>
-<li><p>차별화된 특징 또는 혁신적인 접근 방식</p></li>
+<li><p><strong>API Setup and Authentication</strong>: Hands-on exercise to set up the OpenAI API, including obtaining API keys and configuring the environment.</p></li>
+<li><p><strong>Simple Text Generation</strong>: Practice making API calls to generate text based on prompts.</p></li>
+<li><p><strong>Experimenting with Sampling Parameters</strong>: Modify temperature and top_p values to see how they affect text generation.</p></li>
+<li><p><strong>Token Counting</strong>: Use tokenizers to count tokens in prompts and outputs, ensuring adherence to model limits.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h3>3.2 사용 기술<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>활용할 NLP 기술 (예: 텍스트 전처리, 워드 임베딩, 트랜스포머 모델 등)</p></li>
-<li><p>사용할 언어모델 API (예: GPT-3, BERT 등)</p></li>
-<li><p>웹 애플리케이션 개발 프레임워크</p></li>
-</ul>
-</section>
-<section id="id6">
-<h3>3.3 데이터셋<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>사용할 데이터셋 설명</p></li>
-<li><p>데이터 수집 및 전처리 방법</p></li>
-</ul>
-</section>
-</section>
-<section id="id7">
-<h2>4. 개발 계획<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<section id="id8">
-<h3>4.1 개발 단계별 세부 계획<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of Week 6, students will be able to:</p>
 <ol class="arabic simple">
-<li><p>기획 단계 (1-3주차)</p></li>
-<li><p>개발 단계 (4-12주차)</p></li>
-<li><p>테스트 및 개선 단계 (13-14주차)</p></li>
-<li><p>최종 발표 준비 (15주차)</p></li>
+<li><p>Set up and authenticate with the OpenAI API.</p></li>
+<li><p>Understand how tokenization affects input and output in LLMs.</p></li>
+<li><p>Utilize different sampling methods to control text generation.</p></li>
+<li><p>Generate text using API calls and interpret the results.</p></li>
+<li><p>Handle common issues and errors when working with LLM APIs.</p></li>
 </ol>
 </section>
-<section id="id9">
-<h3>4.2 역할 분담<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="assignments">
+<h2>Assignments<a class="headerlink" href="#assignments" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>각 팀원의 주요 담당 업무 및 책임</p></li>
+<li><p><strong>Assignment 6.1</strong>: Write a script that generates text based on a user-provided prompt using the OpenAI API.</p></li>
+<li><p><strong>Assignment 6.2</strong>: Experiment with different sampling parameters (temperature, top_p) and document how they affect the generated text.</p></li>
+<li><p><strong>Assignment 6.3</strong>: Calculate the number of tokens in various prompts and outputs to ensure they are within model limits.</p></li>
 </ul>
 </section>
-</section>
-<section id="id10">
-<h2>5. 예상 결과물<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>개발될 NLP 애플리케이션의 주요 기능 및 특징</p></li>
-<li><p>사용자 인터페이스 초안 또는 목업</p></li>
-<li><p>기대되는 성과 및 영향</p></li>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/">OpenAI API Documentation</a></p></li>
+<li><p><a class="reference external" href="https://platform.openai.com/tokenizer">Understanding Tokenization</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/blog/how-to-generate">Sampling Techniques in Language Models</a></p></li>
 </ul>
-</section>
-<section id="id11">
-<h2>6. 평가 계획<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>프로젝트 성공 기준</p></li>
-<li><p>성능 평가 지표 및 방법</p></li>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="session1.html">Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session2.html">Week 6 Session 2 - Sampling Methods and Text Generation</a></li>
 </ul>
-</section>
-<section id="id12">
-<h2>7. 향후 발전 가능성<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>프로젝트의 확장 가능성</p></li>
-<li><p>실제 적용 분야 및 상용화 가능성</p></li>
-</ul>
-</section>
-<section id="id13">
-<h2>8. 참고문헌 및 리소스<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>관련 연구 및 참고 자료</p></li>
-<li><p>활용할 오픈소스 프로젝트 또는 라이브러리</p></li>
-</ul>
-</section>
-<section id="id14">
-<h2>9. 첨부자료<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>간트 차트 등의 프로젝트 일정표</p></li>
-<li><p>팀 운영 규칙 또는 협업 방식</p></li>
-</ul>
+</div>
 </section>
 </section>
 
@@ -651,7 +563,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./projects"
+            path: "./week06"
         },
         predefinedOutput: true
     }
@@ -666,25 +578,25 @@ document.write(`
               
               
     <div class="giscus"></div>
-<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="../week05/session3.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">프로젝트 가이드</p>
+        <p class="prev-next-title">Week 5 Session 3 - Practical Implementation and Visualization of Transformers</p>
       </div>
     </a>
     <a class="right-next"
-       href="research-note.html"
+       href="session1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">[n]주차 프로젝트 연구일지</p>
+        <p class="prev-next-title">Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -704,24 +616,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 프로젝트 개요</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 프로젝트 배경 및 목적</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 프로젝트 내용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 주요 기능 및 특징</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2 사용 기술</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.3 데이터셋</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4. 개발 계획</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.1 개발 단계별 세부 계획</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.2 역할 분담</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 예상 결과물</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6. 평가 계획</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">7. 향후 발전 가능성</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8. 참고문헌 및 리소스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9. 첨부자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-learning-content">Key Learning Content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture">Lecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
 </ul>
   </nav></div>
 

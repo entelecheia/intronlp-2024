@@ -287,7 +287,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-week4.html">4차 프로젝트 연구일지</a></li>
 </ul>
 </details></li>
 </ul>
@@ -619,14 +618,33 @@ document.write(`
 </ul>
 <section id="id8">
 <h4>코드 예시: 스케일드 닷-프로덕트 어텐션<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#torch는 PyTorch의 핵심 모듈로, 텐서 생성과 다양한 수학적 연산을 지원</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="c1">#torch.nn.functional은 신경망에서 사용</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 
+<span class="c1"># 스케일드 닷 프로덕트 어텐션 함수 정의</span>
 <span class="k">def</span> <span class="nf">scaled_dot_product_attention</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">):</span>
+    <span class="c1">#Q(쿼리)의 마지막 차원의 크기를 가져오는 것으로, 이 값은 스케일링을 위한 계산에 사용됨</span>
     <span class="n">d_k</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#Q(쿼리)와 K(키)의 행렬의 곱을 계산 후 스케일링(내적 값들을 벡터 차원의 제곱근으로 나눔)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">d_k</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+    <span class="c1">#Softmax 함수를 통해 scores 값을 확률처럼 정규화(가중치의 합이 1이 되도록)</span>
     <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#어텐션 가중치와 밸류(V)를 곱한 결과를 반환</span>
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attention_weights</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="n">attention_weights</span>
+
+<span class="c1"># 임의의 Q, K, V 입력 값 설정 (batch_size=1, num_heads=1, sequence_length=3, embedding_dim=4)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># 쿼리 벡터</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># 키 벡터</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># 밸류 벡터</span>
+
+<span class="c1"># 함수 호출 및 결과 출력</span>
+<span class="n">output</span><span class="p">,</span> <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">scaled_dot_product_attention</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;어텐션 출력 (Query와 Key의 유사도에 따라 가중치가 적용된 Value):&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;어텐션 가중치 (Query와 Key 간의 유사도 점수):&quot;</span><span class="p">,</span> <span class="n">attention_weights</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </section>
@@ -719,13 +737,32 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
+<span class="c1">#positional_encoding함수는 문장의 길이와 단어 임베딩의 차원 크기를 인자로 받는다</span>
 <span class="k">def</span> <span class="nf">positional_encoding</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">):</span>
+    <span class="c1">#0으로 채워진 텐서 PE에 각 단어의 포지셔널 인코딩 값을 저장할 예정</span>
     <span class="n">PE</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+    <span class="c1">#0부터 -1까지의 정수 배열을 생성, 차원을 늘려 2D 텐서로 만듬</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#포지셔널 인코딩에서 위치 정보가 반영되는 방식</span>
     <span class="n">div_term</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">10000.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_model</span><span class="p">))</span>
+    <span class="c1">#각 단어의 위치에 대해 사인, 코사인 값이 반영된 포지셔널 인코딩 생성</span>
     <span class="n">PE</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">position</span> <span class="o">*</span> <span class="n">div_term</span><span class="p">)</span>
     <span class="n">PE</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">position</span> <span class="o">*</span> <span class="n">div_term</span><span class="p">)</span>
+    <span class="c1">#최종 인코딩 텐서 PE 반환</span>
     <span class="k">return</span> <span class="n">PE</span>
+
+<span class="c1"># 함수를 호출해서 포지셔널 인코딩을 계산</span>
+<span class="n">seq_len</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 문장의 길이</span>
+<span class="n">d_model</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># 임베딩 차원 수</span>
+
+<span class="n">pos_encoding</span> <span class="o">=</span> <span class="n">positional_encoding</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;포지셔널 인코딩 결과:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;각 행은 시퀀스의 위치를, 각 열은 임베딩 차원을 나타냅니다.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;값은 위치와 차원에 따른 사인/코사인 함수의 결과입니다.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pos_encoding</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이 인코딩은 트랜스포머 모델에서 순서 정보를 제공합니다.&quot;</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </section>
