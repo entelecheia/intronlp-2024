@@ -392,6 +392,6 @@ for temp in temperatures:
 
 ---
 
-## 9. Closing Remarks
+## Conclusion
 
 Understanding and effectively using sampling methods is essential for harnessing the full potential of LLM APIs. By mastering these parameters, you can generate text that meets specific requirements for creativity, coherence, and format. Continue to experiment and explore the possibilities offered by these powerful tools.
