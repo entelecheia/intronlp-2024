@@ -158,3 +158,10 @@ print(f"이 텍스트는 {model} 모델에 대해 {token_count}개의 토큰을 
 ## 결론
 
 이 세션에서는 OpenAI API에 초점을 맞춰 LLM API 작업의 기초를 소개했습니다. API 설정, 기본 호출 만들기, 응답 이해하기, 그리고 토큰화와 같은 중요한 개념을 다뤘습니다. 다음 세션에서는 고급 사용 패턴을 더 깊이 살펴보고 텍스트 생성을 제어하기 위한 다양한 샘플링 방법을 탐구할 것입니다.
+
+## 참고 자료
+
+- [1] https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8
+- [2] https://huyenchip.com/2024/01/16/sampling.html
+- [3] https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/
+- [4] https://platform.openai.com/docs/quickstart

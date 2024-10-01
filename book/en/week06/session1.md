@@ -158,3 +158,10 @@ This function uses the `tiktoken` library (included in the OpenAI package) to ac
 ## Conclusion
 
 This session introduced the basics of working with LLM APIs, focusing on the OpenAI API. We covered API setup, making basic calls, understanding responses, and important concepts like tokenization. In the next session, we'll dive deeper into advanced usage patterns and explore different sampling methods to control text generation.
+
+## References
+
+- [1] https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8
+- [2] https://huyenchip.com/2024/01/16/sampling.html
+- [3] https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/
+- [4] https://platform.openai.com/docs/quickstart
