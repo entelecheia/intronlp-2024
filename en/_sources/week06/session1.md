@@ -26,10 +26,10 @@ The OpenAI API allows developers to access various models, including GPT-3.5 and
 
 To use the OpenAI API, follow these steps:
 
-a) Sign up for an OpenAI account at https://platform.openai.com/
-b) Navigate to the API keys section and create a new secret key
-c) Store your API key securely (never share or expose it publicly)
-d) Install the OpenAI Python library:
+- a) Sign up for an OpenAI account at https://platform.openai.com/
+- b) Navigate to the API keys section and create a new secret key
+- c) Store your API key securely (never share or expose it publicly)
+- d) Install the OpenAI Python library:
 
 ```bash
 pip install openai
@@ -159,9 +159,9 @@ This function uses the `tiktoken` library (included in the OpenAI package) to ac
 
 This session introduced the basics of working with LLM APIs, focusing on the OpenAI API. We covered API setup, making basic calls, understanding responses, and important concepts like tokenization. In the next session, we'll dive deeper into advanced usage patterns and explore different sampling methods to control text generation.
 
-Citations:
-[1] https://nn.labml.ai/sampling/index.html
-[2] https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8
-[3] https://huyenchip.com/2024/01/16/sampling.html
-[4] https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/
-[5] https://platform.openai.com/docs/quickstart
+## References
+
+- [1] https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8
+- [2] https://huyenchip.com/2024/01/16/sampling.html
+- [3] https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/
+- [4] https://platform.openai.com/docs/quickstart

@@ -536,8 +536,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">7. Summary and Key Takeaways</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments-for-next-week">8. Assignments for Next Week</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">9. Additional Resources</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-remarks">10. Closing Remarks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-remarks">9. Closing Remarks</a></li>
 </ul>
             </nav>
         </div>
@@ -554,8 +553,8 @@ document.write(`
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In this session, we’ll delve deeper into advanced usage of Large Language Model (LLM) APIs, focusing on sampling methods that control the randomness and creativity of generated text. We’ll explore how parameters like <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">top_p</span></code>, <code class="docutils literal notranslate"><span class="pre">top_k</span></code>, and others influence the model’s output. Through hands-on practice, we’ll learn how to fine-tune these parameters to achieve desired results in various natural language processing tasks.</p>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="recap-of-previous-session">
 <h2>1. Recap of Previous Session<a class="headerlink" href="#recap-of-previous-session" title="Link to this heading">#</a></h2>
 <p>In our last session, we:</p>
@@ -565,8 +564,8 @@ document.write(`
 <li><p><strong>Made Initial API Calls</strong>: Generated simple text based on prompts.</p></li>
 <li><p><strong>Discussed Best Practices</strong>: Covered error handling, cost management, and rate limits.</p></li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="understanding-sampling-methods">
 <h2>2. Understanding Sampling Methods<a class="headerlink" href="#understanding-sampling-methods" title="Link to this heading">#</a></h2>
 <p>Sampling methods determine how the language model selects the next word (token) during text generation. Adjusting these parameters allows us to control the creativity and randomness of the output.</p>
@@ -641,9 +640,9 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 <li><p><strong>Frequency Penalty</strong>: Reduces the likelihood of a token being selected again based on its frequency in the generated text.</p></li>
 <li><p><strong>Presence Penalty</strong>: Penalizes tokens that have already appeared, encouraging the model to introduce new topics.</p></li>
 </ul>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="practical-examples-with-code">
 <h2>3. Practical Examples with Code<a class="headerlink" href="#practical-examples-with-code" title="Link to this heading">#</a></h2>
 <p>Let’s apply these sampling methods in practice.</p>
@@ -793,10 +792,10 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 <li><p><strong>Temperature 0.9</strong>: High creativity.</p></li>
 <li><p><strong>Top-p 0.6</strong>: Limits the choices to the most probable tokens, even with high temperature.</p></li>
 </ul>
+</section>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
-</section>
 <section id="advanced-parameters-in-openai-api">
 <h2>4. Advanced Parameters in OpenAI API<a class="headerlink" href="#advanced-parameters-in-openai-api" title="Link to this heading">#</a></h2>
 <p>Beyond sampling methods, other parameters allow you to control the model’s output.</p>
@@ -878,10 +877,10 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
-</section>
 <section id="hands-on-exercise">
 <h2>5. Hands-On Exercise<a class="headerlink" href="#hands-on-exercise" title="Link to this heading">#</a></h2>
 <p><strong>Objective</strong>: Write a script that generates creative story prompts by adjusting sampling parameters.</p>
@@ -927,9 +926,9 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">, Top-p: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="common-issues-and-troubleshooting">
 <h2>6. Common Issues and Troubleshooting<a class="headerlink" href="#common-issues-and-troubleshooting" title="Link to this heading">#</a></h2>
 <section id="repetitive-or-nonsensical-output">
@@ -952,9 +951,9 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 <li><p><strong>Unwanted Text</strong>: Use <code class="docutils literal notranslate"><span class="pre">stop</span></code> sequences to prevent the model from generating beyond the desired point.</p></li>
 <li><p><strong>Incorrect Output Format</strong>: Provide clear instructions and examples in the prompt.</p></li>
 </ul>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="summary-and-key-takeaways">
 <h2>7. Summary and Key Takeaways<a class="headerlink" href="#summary-and-key-takeaways" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -963,8 +962,8 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 <li><p><strong>Advanced Controls</strong>: Use <code class="docutils literal notranslate"><span class="pre">max_tokens</span></code>, <code class="docutils literal notranslate"><span class="pre">stop</span></code> sequences, and formatting instructions to refine outputs.</p></li>
 <li><p><strong>Hands-On Practice</strong>: Experimenting with different settings is the best way to learn their effects.</p></li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="assignments-for-next-week">
 <h2>8. Assignments for Next Week<a class="headerlink" href="#assignments-for-next-week" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -987,33 +986,10 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 </ul>
 </li>
 </ol>
-<hr class="docutils" />
 </section>
-<section id="additional-resources">
-<h2>9. Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>OpenAI Documentation</strong>:</p>
-<ul>
-<li><p><a class="reference external" href="https://platform.openai.com/docs/api-reference/parameter-details">Sampling and Temperature</a></p></li>
-<li><p><a class="reference external" href="https://platform.openai.com/docs/guides/completion/best-practices">Best Practices for Prompt Engineering</a></p></li>
-</ul>
-</li>
-<li><p><strong>Blogs and Articles</strong>:</p>
-<ul>
-<li><p><a class="reference external" href="https://nn.labml.ai/sampling/index.html">LabML AI: Sampling Methods</a></p></li>
-<li><p><a class="reference external" href="https://huggingface.co/blog/how-to-generate">Hugging Face Blog: How to Generate Text</a></p></li>
-</ul>
-</li>
-<li><p><strong>Videos</strong>:</p>
-<ul>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=ZFVkrPk7g1c">Understanding Temperature and Top-p</a></p></li>
-</ul>
-</li>
-</ul>
 <hr class="docutils" />
-</section>
 <section id="closing-remarks">
-<h2>10. Closing Remarks<a class="headerlink" href="#closing-remarks" title="Link to this heading">#</a></h2>
+<h2>9. Closing Remarks<a class="headerlink" href="#closing-remarks" title="Link to this heading">#</a></h2>
 <p>Understanding and effectively using sampling methods is essential for harnessing the full potential of LLM APIs. By mastering these parameters, you can generate text that meets specific requirements for creativity, coherence, and format. Continue to experiment and explore the possibilities offered by these powerful tools.</p>
 </section>
 </section>
@@ -1150,8 +1126,7 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">7. Summary and Key Takeaways</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments-for-next-week">8. Assignments for Next Week</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">9. Additional Resources</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-remarks">10. Closing Remarks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-remarks">9. Closing Remarks</a></li>
 </ul>
   </nav></div>
 

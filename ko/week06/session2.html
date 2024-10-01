@@ -1,0 +1,1230 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6주차 세션 2 - 샘플링 방법과 텍스트 생성 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week06/session2';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="프로젝트 가이드" href="../projects/index.html" />
+    <link rel="prev" title="6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법" href="session1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차 - 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차 - 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1 - 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2 - 고급 통계적 언어 모델</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차 - 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 세션 1 - 단어 임베딩과 Word2Vec 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 세션 2 - 고급 단어 임베딩</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 세션 1 - 트랜스포머 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 세션 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 세션 3 - 트랜스포머의 실제 구현 및 시각화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">6주차 - LLM API 이해하기</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6주차 세션 2 - 샘플링 방법과 텍스트 생성</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-1week-01.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-2week-01.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-3week-01.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-01.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week06/session2.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek06/session2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week06/session2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6주차 세션 2 - 샘플링 방법과 텍스트 생성</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1. 이전 세션 복습</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. 샘플링 방법 이해하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>2.1 온도 샘플링</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>수학적 설명</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><strong>다이어그램: 확률 분포에 대한 온도의 영향</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p"><strong>2.2 Top-p (핵) 샘플링</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><strong>시각적 설명</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k"><strong>2.3 Top-k 샘플링</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><strong>2.4 빈도 및 존재 페널티</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3. 코드를 통한 실제 예시</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><strong>3.1 환경 설정</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"><strong>3.2 온도 실험</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13"><strong>프롬프트</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"><strong>코드 예시: 온도 변경</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"><strong>3.3 Top-p 샘플링 탐구</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"><strong>코드 예시: Top-p 변경</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19"><strong>3.4 온도와 Top-p 결합하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20"><strong>코드 예시</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21"><strong>설명</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api">4. OpenAI API의 고급 매개변수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22"><strong>4.1 출력 길이 제어하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23"><strong>예시</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24"><strong>4.2 중지 시퀀스 사용하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25"><strong>예시</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27"><strong>4.3 출력 형식 지정하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json"><strong>예시: JSON 생성하기</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">5. 실습 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30"><strong>지시사항</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31"><strong>샘플 코드</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">6. 일반적인 문제와 문제 해결</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33"><strong>반복적이거나 무의미한 출력</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><strong>API 오류</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34"><strong>형식 문제</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeaways">7. 요약 및 주요 takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">8. 다음 주 과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">9. 마무리 발언</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>6주차 세션 2 - 샘플링 방법과 텍스트 생성<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이번 세션에서는 대규모 언어 모델(LLM) API의 고급 사용법을 더 깊이 살펴보고, 생성된 텍스트의 무작위성과 창의성을 제어하는 샘플링 방법에 초점을 맞출 것입니다. <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">top_p</span></code>, <code class="docutils literal notranslate"><span class="pre">top_k</span></code> 등의 매개변수가 모델의 출력에 어떤 영향을 미치는지 살펴볼 것입니다. 실습을 통해 다양한 자연어 처리 작업에서 원하는 결과를 얻기 위해 이러한 매개변수를 미세 조정하는 방법을 배울 것입니다.</p>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>1. 이전 세션 복습<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>지난 세션에서 우리는:</p>
+<ul class="simple">
+<li><p><strong>OpenAI API 설정</strong>: 인증 방법과 기본 API 호출 방법을 배웠습니다.</p></li>
+<li><p><strong>토큰화 탐구</strong>: 텍스트가 어떻게 토큰으로 분해되는지와 API 사용에 미치는 영향을 이해했습니다.</p></li>
+<li><p><strong>초기 API 호출 수행</strong>: 프롬프트를 기반으로 간단한 텍스트를 생성했습니다.</p></li>
+<li><p><strong>모범 사례 논의</strong>: 오류 처리, 비용 관리, 비율 제한에 대해 다뤘습니다.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>2. 샘플링 방법 이해하기<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>샘플링 방법은 텍스트 생성 중 언어 모델이 다음 단어(토큰)를 선택하는 방식을 결정합니다. 이러한 매개변수를 조정하면 출력의 창의성과 무작위성을 제어할 수 있습니다.</p>
+<section id="id5">
+<h3><strong>2.1 온도 샘플링</strong><a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>정의</strong>: 소프트맥스 함수를 적용하여 확률을 생성하기 전에 로짓(원시 출력)을 조정하는 매개변수(<code class="docutils literal notranslate"><span class="pre">temperature</span></code>)입니다.</p></li>
+<li><p><strong>범위</strong>: 일반적으로 0.0에서 1.0 사이이지만, 더 높을 수 있습니다.</p>
+<ul>
+<li><p><strong>낮은 온도 (&lt;0.5)</strong>: 모델을 더 결정적이고 집중적으로 만듭니다.</p></li>
+<li><p><strong>높은 온도 (&gt;0.7)</strong>: 무작위성과 창의성을 증가시킵니다.</p></li>
+</ul>
+</li>
+</ul>
+<section id="id6">
+<h4><strong>수학적 설명</strong><a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>각 토큰 <span class="math notranslate nohighlight">\( i \)</span>의 확률 <span class="math notranslate nohighlight">\( p_i \)</span>는 다음과 같이 계산됩니다:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T} \right)}}
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( z_i \)</span>는 토큰 <span class="math notranslate nohighlight">\( i \)</span>의 로짓입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( T \)</span>는 온도입니다.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( T \)</span>가 증가할수록 확률 분포가 더 균일해집니다.</p>
+</section>
+<section id="id7">
+<h4><strong>다이어그램: 확률 분포에 대한 온도의 영향</strong><a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    A[로짓] --&gt; B[온도로 나누기]
+    B --&gt; C[소프트맥스 함수]
+    C --&gt; D[확률 분포]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="top-p">
+<h3><strong>2.2 Top-p (핵) 샘플링</strong><a class="headerlink" href="#top-p" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>정의</strong>: 모든 가능한 토큰을 고려하는 대신, 누적 확률이 임계값 <code class="docutils literal notranslate"><span class="pre">p</span></code>를 초과하는 가장 작은 토큰 집합만을 고려합니다.</p></li>
+<li><p><strong>매개변수</strong>: <code class="docutils literal notranslate"><span class="pre">top_p</span></code>는 0.0에서 1.0 사이의 값을 가집니다.</p>
+<ul>
+<li><p><strong>낮은 Top-p (&lt;0.5)</strong>: 가장 가능성이 높은 토큰들만 고려됩니다.</p></li>
+<li><p><strong>높은 Top-p (~1.0)</strong>: 더 넓은 범위의 토큰들을 고려합니다.</p></li>
+</ul>
+</li>
+</ul>
+<section id="id8">
+<h4><strong>시각적 설명</strong><a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>누적 확률 곡선</strong>: 확률로 정렬된 토큰들을 플롯팅합니다.</p></li>
+<li><p><strong>Top-p 임계값</strong>: 누적 확률 <code class="docutils literal notranslate"><span class="pre">p</span></code>에서의 수직선입니다.</p></li>
+</ul>
+</section>
+</section>
+<section id="top-k">
+<h3><strong>2.3 Top-k 샘플링</strong><a class="headerlink" href="#top-k" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>정의</strong>: 모델이 확률이 가장 높은 상위 <code class="docutils literal notranslate"><span class="pre">k</span></code>개의 토큰만을 고려합니다.</p></li>
+<li><p><strong>매개변수</strong>: <code class="docutils literal notranslate"><span class="pre">top_k</span></code>는 정수입니다.</p>
+<ul>
+<li><p><strong>낮은 Top-k</strong>: 가장 가능성이 높은 토큰들로 선택을 제한합니다.</p></li>
+<li><p><strong>높은 Top-k</strong>: 더 많은 다양성을 허용합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h3><strong>2.4 빈도 및 존재 페널티</strong><a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>빈도 페널티</strong>: 생성된 텍스트에서의 빈도에 기반하여 토큰이 다시 선택될 가능성을 줄입니다.</p></li>
+<li><p><strong>존재 페널티</strong>: 이미 등장한 토큰에 불이익을 주어 모델이 새로운 주제를 도입하도록 장려합니다.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>3. 코드를 통한 실제 예시<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>이제 이러한 샘플링 방법을 실제로 적용해 보겠습니다.</p>
+<section id="id11">
+<h3><strong>3.1 환경 설정</strong><a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>OpenAI 라이브러리가 설치되어 있고 API 키가 설정되어 있는지 확인하세요.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;여기에-당신의-api-키를-넣으세요&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;당신은 도움이 되는 어시스턴트입니다.&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h3><strong>3.2 온도 실험</strong><a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>온도 변화가 출력에 어떤 영향을 미치는지 살펴보겠습니다.</p>
+<section id="id13">
+<h4><strong>프롬프트</strong><a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;먼 옛날 먼 나라에 살았던&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4><strong>코드 예시: 온도 변경</strong><a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;온도 </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4><strong>예상 출력</strong><a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>온도 0.2</strong>: 더 예측 가능하고, 덜 창의적입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">온도</span> <span class="mf">0.2</span><span class="p">:</span>
+<span class="n">용감하고</span> <span class="n">친절한</span> <span class="n">젊은</span> <span class="n">왕자가</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">그는</span> <span class="n">숲을</span> <span class="n">탐험하고</span> <span class="n">새로운</span> <span class="n">생물들을</span> <span class="n">만나는</span> <span class="n">것을</span> <span class="n">좋아했습니다</span><span class="o">.</span> <span class="n">어느</span> <span class="n">날</span><span class="p">,</span> <span class="n">그는</span> <span class="n">아름다운</span> <span class="n">꽃들과</span> <span class="n">노래하는</span> <span class="n">새들로</span> <span class="n">가득한</span> <span class="n">마법의</span> <span class="n">정원으로</span> <span class="n">이어지는</span> <span class="n">숨겨진</span> <span class="n">길을</span> <span class="n">발견했습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>온도 0.7</strong>: 균형 잡힌 창의성을 보입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">온도</span> <span class="mf">0.7</span><span class="p">:</span>
+<span class="n">지혜로</span> <span class="n">유명한</span> <span class="n">신비로운</span> <span class="n">늙은</span> <span class="n">마법사가</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">사람들은</span> <span class="n">그의</span> <span class="n">조언을</span> <span class="n">구하기</span> <span class="n">위해</span> <span class="n">사방에서</span> <span class="n">찾아왔지만</span><span class="p">,</span> <span class="n">그는</span> <span class="n">좀처럼</span> <span class="n">자신의</span> <span class="n">비밀을</span> <span class="n">드러내지</span> <span class="n">않았습니다</span><span class="o">.</span> <span class="n">어느</span> <span class="n">날</span><span class="p">,</span> <span class="n">한</span> <span class="n">어린</span> <span class="n">소녀가</span> <span class="n">그의</span> <span class="n">관심을</span> <span class="n">끄는</span> <span class="n">질문을</span> <span class="n">가지고</span> <span class="n">그를</span> <span class="n">찾아왔습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>온도 1.0</strong>: 매우 창의적이지만, 가능한 덜 일관성 있습니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">온도</span> <span class="mf">1.0</span><span class="p">:</span>
+<span class="n">금</span> <span class="n">대신</span> <span class="n">도자기</span> <span class="n">찻잔을</span> <span class="n">수집하는</span> <span class="n">용이</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">마을</span> <span class="n">사람들은</span> <span class="n">이를</span> <span class="n">기이하게</span> <span class="n">여겼지만</span><span class="p">,</span> <span class="n">용은</span> <span class="n">신경</span> <span class="n">쓰지</span> <span class="n">않았습니다</span><span class="o">.</span> <span class="n">그는</span> <span class="n">매일</span> <span class="n">오후</span> <span class="n">별들에</span> <span class="n">대한</span> <span class="n">고대</span> <span class="n">두루마리를</span> <span class="n">읽으며</span> <span class="n">차를</span> <span class="n">마셨습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h3><strong>3.3 Top-p 샘플링 탐구</strong><a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">top_p</span></code>를 조정하면 출력에 어떤 영향을 미치는지 살펴보겠습니다.</p>
+<section id="id17">
+<h4><strong>코드 예시: Top-p 변경</strong><a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">top_p_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">top_p_values</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top-p </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h4><strong>예상 출력</strong><a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Top-p 0.3</strong>: 가장 가능성 높은 토큰들로 제한됩니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">0.3</span><span class="p">:</span>
+<span class="n">용감하고</span> <span class="n">친절한</span> <span class="n">젊은</span> <span class="n">왕자가</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">그는</span> <span class="n">왕국을</span> <span class="n">탐험하고</span> <span class="n">백성들을</span> <span class="n">돕는</span> <span class="n">것을</span> <span class="n">좋아했습니다</span><span class="o">.</span> <span class="n">어느</span> <span class="n">날</span><span class="p">,</span> <span class="n">그는</span> <span class="n">자신의</span> <span class="n">땅에</span> <span class="n">번영을</span> <span class="n">가져올</span> <span class="n">수</span> <span class="n">있는</span> <span class="n">전설적인</span> <span class="n">보물을</span> <span class="n">찾기</span> <span class="n">위한</span> <span class="n">여정을</span> <span class="n">떠났습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Top-p 0.7</strong>: 더 다양한 단어 선택을 보입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">0.7</span><span class="p">:</span>
+<span class="n">꿈으로</span> <span class="n">가득</span> <span class="n">찬</span> <span class="n">마음을</span> <span class="n">지닌</span> <span class="n">호기심</span> <span class="n">많은</span> <span class="n">모험가가</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">그녀는</span> <span class="n">미지의</span> <span class="n">것을</span> <span class="n">탐험하고</span> <span class="n">숨겨진</span> <span class="n">경이로움을</span> <span class="n">발견하기를</span> <span class="n">갈망했습니다</span><span class="o">.</span> <span class="n">지도를</span> <span class="n">손에</span> <span class="n">들고</span><span class="p">,</span> <span class="n">그녀는</span> <span class="n">자신의</span> <span class="n">인생을</span> <span class="n">영원히</span> <span class="n">바꿀</span> <span class="n">여정을</span> <span class="n">시작했습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Top-p 1.0</strong>: 가능한 모든 토큰의 전체 범위를 고려합니다 (top-p를 사용하지 않는 것과 유사).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">1.0</span><span class="p">:</span>
+<span class="n">귀를</span> <span class="n">기울이는</span> <span class="n">이들에게</span> <span class="n">비밀을</span> <span class="n">속삭이는</span> <span class="n">말하는</span> <span class="n">나무가</span> <span class="n">있었습니다</span><span class="o">.</span> <span class="n">여행자들은</span> <span class="n">먼</span> <span class="n">곳에서부터</span> <span class="n">그</span> <span class="n">나무의</span> <span class="n">고대의</span> <span class="n">시간과</span> <span class="n">잊혀진</span> <span class="n">영역에</span> <span class="n">대한</span> <span class="n">이야기를</span> <span class="n">듣기</span> <span class="n">위해</span> <span class="n">찾아왔고</span><span class="p">,</span> <span class="n">각</span> <span class="n">이야기는</span> <span class="n">전보다</span> <span class="n">더</span> <span class="n">매혹적이었습니다</span><span class="o">.</span>
+<span class="o">----------------------------------------</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h3><strong>3.4 온도와 Top-p 결합하기</strong><a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>두 매개변수를 함께 사용하여 출력을 미세 조정할 수 있습니다.</p>
+<section id="id20">
+<h4><strong>코드 예시</strong><a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;결합된 매개변수:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h4><strong>설명</strong><a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>온도 0.9</strong>: 높은 창의성</p></li>
+<li><p><strong>Top-p 0.6</strong>: 높은 온도에도 불구하고 가장 가능성 있는 토큰들로 선택을 제한합니다.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="openai-api">
+<h2>4. OpenAI API의 고급 매개변수<a class="headerlink" href="#openai-api" title="Link to this heading">#</a></h2>
+<p>샘플링 방법 외에도 모델의 출력을 제어할 수 있는 다른 매개변수들이 있습니다.</p>
+<section id="id22">
+<h3><strong>4.1 출력 길이 제어하기</strong><a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_tokens</span></code></strong>: 생성된 응답의 최대 토큰 수를 설정합니다.</p></li>
+<li><p><strong>제한사항</strong>: 총 토큰 수(프롬프트 + 완성)는 모델의 컨텍스트 길이 내에 있어야 합니다(예: <code class="docutils literal notranslate"><span class="pre">text-davinci-003</span></code>의 경우 4,096 토큰).</p></li>
+</ul>
+<section id="id23">
+<h4><strong>예시</strong><a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;양자 컴퓨팅을 간단한 용어로 설명해주세요.&quot;</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id24">
+<h3><strong>4.2 중지 시퀀스 사용하기</strong><a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>목적</strong>: 모델에게 텍스트 생성을 언제 중지할지 알려줍니다.</p></li>
+<li><p><strong>매개변수</strong>: <code class="docutils literal notranslate"><span class="pre">stop</span></code>은 문자열 또는 문자열 리스트를 받습니다.</p></li>
+</ul>
+<section id="id25">
+<h4><strong>예시</strong><a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;운동의 세 가지 이점을 나열하세요:</span><span class="se">\n</span><span class="s2">1.&quot;</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;생성된 목록:</span><span class="se">\n</span><span class="s2">1.</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4><strong>예상 출력</strong><a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">생성된</span> <span class="n">목록</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">심혈관</span> <span class="n">건강을</span> <span class="n">개선합니다</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id27">
+<h3><strong>4.3 출력 형식 지정하기</strong><a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>지시적 프롬프트</strong>: 모델에게 특정 방식으로 출력을 형식화하도록 요청합니다.</p></li>
+<li><p><strong>JSON 출력</strong>: 구조화된 데이터 추출에 유용합니다.</p></li>
+</ul>
+<section id="json">
+<h4><strong>예시: JSON 생성하기</strong><a class="headerlink" href="#json" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">다음 정보를 추출하여 JSON 형식으로 제공하세요:</span>
+<span class="s2">- 이름</span>
+<span class="s2">- 나이</span>
+<span class="s2">- 직업</span>
+
+<span class="s2">텍스트: &quot;홍길동은 서울에 사는 29세의 소프트웨어 엔지니어입니다.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h4><strong>예상 출력</strong><a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;이름&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;나이&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;직업&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;소프트웨어 엔지니어&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id29">
+<h2>5. 실습 연습<a class="headerlink" href="#id29" title="Link to this heading">#</a></h2>
+<p><strong>목표</strong>: 샘플링 매개변수를 조정하여 창의적인 이야기 프롬프트를 생성하는 스크립트를 작성합니다.</p>
+<section id="id30">
+<h3><strong>지시사항</strong><a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>기본 프롬프트 선택</strong>: 예를 들어, “감정을 가진 로봇들의 세계에서, 한 로봇이 시작합니다…”</p></li>
+<li><p><strong>다양한 값으로 실험</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">temperature</span></code>를 0.5에서 1.2 사이로 변경합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top_p</span></code>를 0.5에서 1.0 사이로 조정합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>출력 관찰</strong>:</p>
+<ul class="simple">
+<li><p>변경사항이 창의성과 일관성에 어떤 영향을 미치는지 주목합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>결과 문서화</strong>:</p>
+<ul class="simple">
+<li><p>매개변수 값과 해당 출력을 기록합니다.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id31">
+<h3><strong>샘플 코드</strong><a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;감정을 가진 로봇들의 세계에서, 한 로봇이 시작합니다&quot;</span>
+
+<span class="n">temperatures</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
+<span class="n">top_p_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">top_p_values</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
+            <span class="n">top_p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">stop</span><span class="o">=</span><span class="s2">&quot;.&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;온도: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">, Top-p: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id32">
+<h2>6. 일반적인 문제와 문제 해결<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
+<section id="id33">
+<h3><strong>반복적이거나 무의미한 출력</strong><a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>원인</strong>: 너무 낮거나 높은 온도.</p></li>
+<li><p><strong>해결책</strong>: <code class="docutils literal notranslate"><span class="pre">temperature</span></code>와 <code class="docutils literal notranslate"><span class="pre">top_p</span></code>를 조정하여 균형을 찾습니다.</p></li>
+</ul>
+</section>
+<section id="api">
+<h3><strong>API 오류</strong><a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>InvalidRequestError</strong>: 매개변수가 허용 범위 내에 있는지 확인합니다.</p></li>
+<li><p><strong>RateLimitError</strong>: 지수 백오프를 사용한 재시도를 구현합니다.</p></li>
+</ul>
+</section>
+<section id="id34">
+<h3><strong>형식 문제</strong><a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>원치 않는 텍스트</strong>: <code class="docutils literal notranslate"><span class="pre">stop</span></code> 시퀀스를 사용하여 모델이 원하는 지점 이상으로 생성하지 않도록 합니다.</p></li>
+<li><p><strong>잘못된 출력 형식</strong>: 프롬프트에 명확한 지침과 예시를 제공합니다.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="takeaways">
+<h2>7. 요약 및 주요 takeaways<a class="headerlink" href="#takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>샘플링 방법</strong>: <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">top_p</span></code>, <code class="docutils literal notranslate"><span class="pre">top_k</span></code>의 이해는 텍스트 생성 제어에 중요합니다.</p></li>
+<li><p><strong>매개변수 조정</strong>: 이러한 매개변수를 조정하면 창의성과 일관성의 균형을 맞출 수 있습니다.</p></li>
+<li><p><strong>고급 제어</strong>: <code class="docutils literal notranslate"><span class="pre">max_tokens</span></code>, <code class="docutils literal notranslate"><span class="pre">stop</span></code> 시퀀스, 형식 지정 지침을 사용하여 출력을 정제합니다.</p></li>
+<li><p><strong>실습</strong>: 다양한 설정으로 실험해보는 것이 그 효과를 배우는 가장 좋은 방법입니다.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id35">
+<h2>8. 다음 주 과제<a class="headerlink" href="#id35" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>샘플링 방법 보고서</strong>:</p>
+<ul class="simple">
+<li><p>선택한 프롬프트를 사용하여 <code class="docutils literal notranslate"><span class="pre">temperature</span></code>와 <code class="docutils literal notranslate"><span class="pre">top_p</span></code>의 다양한 조합을 실험합니다.</p></li>
+<li><p>코드 스니펫과 생성된 출력을 포함하여 발견한 내용을 요약한 짧은 보고서를 준비합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>제어된 출력 만들기</strong>:</p>
+<ul class="simple">
+<li><p>OpenAI API를 사용하여 최소 다섯 개의 항목을 생성하는 스크립트를 작성합니다 (예: “2024년 상위 5개 프로그래밍 언어”).</p></li>
+<li><p>출력이 올바르게 형식화되고 다섯 개 항목을 나열한 후 중지되도록 합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>구조화된 데이터 추출</strong>:</p>
+<ul class="simple">
+<li><p>API를 사용하여 텍스트 블록에서 특정 정보를 추출하고 JSON 형식으로 출력합니다.</p></li>
+<li><p>프롬프트, 코드, 결과를 공유합니다.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="id36">
+<h2>9. 마무리 발언<a class="headerlink" href="#id36" title="Link to this heading">#</a></h2>
+<p>샘플링 방법을 이해하고 효과적으로 사용하는 것은 LLM API의 잠재력을 최대한 활용하는 데 필수적입니다. 이러한 매개변수를 마스터함으로써 창의성, 일관성, 형식에 대한 특정 요구사항을 충족하는 텍스트를 생성할 수 있습니다. 계속해서 실험하고 이 강력한 도구들이 제공하는 가능성을 탐구하세요.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week06"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">프로젝트 가이드</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1. 이전 세션 복습</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. 샘플링 방법 이해하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>2.1 온도 샘플링</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>수학적 설명</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><strong>다이어그램: 확률 분포에 대한 온도의 영향</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p"><strong>2.2 Top-p (핵) 샘플링</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><strong>시각적 설명</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k"><strong>2.3 Top-k 샘플링</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><strong>2.4 빈도 및 존재 페널티</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3. 코드를 통한 실제 예시</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><strong>3.1 환경 설정</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"><strong>3.2 온도 실험</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13"><strong>프롬프트</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"><strong>코드 예시: 온도 변경</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"><strong>3.3 Top-p 샘플링 탐구</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"><strong>코드 예시: Top-p 변경</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19"><strong>3.4 온도와 Top-p 결합하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20"><strong>코드 예시</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21"><strong>설명</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api">4. OpenAI API의 고급 매개변수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22"><strong>4.1 출력 길이 제어하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23"><strong>예시</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24"><strong>4.2 중지 시퀀스 사용하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25"><strong>예시</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27"><strong>4.3 출력 형식 지정하기</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json"><strong>예시: JSON 생성하기</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28"><strong>예상 출력</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">5. 실습 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30"><strong>지시사항</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31"><strong>샘플 코드</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">6. 일반적인 문제와 문제 해결</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33"><strong>반복적이거나 무의미한 출력</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><strong>API 오류</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34"><strong>형식 문제</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeaways">7. 요약 및 주요 takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">8. 다음 주 과제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">9. 마무리 발언</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
