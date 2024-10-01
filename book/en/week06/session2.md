@@ -392,19 +392,6 @@ for temp in temperatures:
 
 ---
 
-### 9. Additional Resources
-
-- **OpenAI Documentation**:
-  - [Sampling and Temperature](https://platform.openai.com/docs/api-reference/parameter-details)
-  - [Best Practices for Prompt Engineering](https://platform.openai.com/docs/guides/completion/best-practices)
-- **Blogs and Articles**:
-  - [LabML AI: Sampling Methods](https://nn.labml.ai/sampling/index.html)
-  - [Hugging Face Blog: How to Generate Text](https://huggingface.co/blog/how-to-generate)
-- **Videos**:
-  - [Understanding Temperature and Top-p](https://www.youtube.com/watch?v=ZFVkrPk7g1c)
-
----
-
-### 10. Closing Remarks
+### 9. Closing Remarks
 
 Understanding and effectively using sampling methods is essential for harnessing the full potential of LLM APIs. By mastering these parameters, you can generate text that meets specific requirements for creativity, coherence, and format. Continue to experiment and explore the possibilities offered by these powerful tools.
