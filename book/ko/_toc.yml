@@ -29,6 +29,10 @@ parts:
           - file: week05/session1
           - file: week05/session2
           - file: week05/session3
+      - file: week06/index
+        sections:
+          - file: week06/session1
+          - file: week06/session2
   - caption: Projects
     chapters:
       - file: projects/index

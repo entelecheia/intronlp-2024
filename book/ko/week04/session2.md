@@ -1,4 +1,4 @@
-# 4주차 2세션 - 고급 단어 임베딩
+# 4주차 세션 2 - 고급 단어 임베딩
 
 ## 1. GloVe (Global Vectors for Word Representation) 소개
 
