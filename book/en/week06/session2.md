@@ -1,12 +1,12 @@
 # Week 6 Session 2 - Sampling Methods and Text Generation
 
-### Overview
+## Overview
 
 In this session, we'll delve deeper into advanced usage of Large Language Model (LLM) APIs, focusing on sampling methods that control the randomness and creativity of generated text. We'll explore how parameters like `temperature`, `top_p`, `top_k`, and others influence the model's output. Through hands-on practice, we'll learn how to fine-tune these parameters to achieve desired results in various natural language processing tasks.
 
 ---
 
-### 1. Recap of Previous Session
+## 1. Recap of Previous Session
 
 In our last session, we:
 
@@ -17,18 +17,18 @@ In our last session, we:
 
 ---
 
-### 2. Understanding Sampling Methods
+## 2. Understanding Sampling Methods
 
 Sampling methods determine how the language model selects the next word (token) during text generation. Adjusting these parameters allows us to control the creativity and randomness of the output.
 
-#### **2.1 Temperature Sampling**
+### **2.1 Temperature Sampling**
 
 - **Definition**: A parameter (`temperature`) that scales the logits (raw outputs) before applying the softmax function to generate probabilities.
 - **Range**: Typically between 0.0 and 1.0, but can go higher.
   - **Low Temperature (<0.5)**: Makes the model more deterministic and focused.
   - **High Temperature (>0.7)**: Increases randomness and creativity.
 
-##### **Mathematical Explanation**
+#### **Mathematical Explanation**
 
 The probability $ p_i $ of each token $ i $ is calculated as:
 
@@ -41,7 +41,7 @@ $$
 
 As $ T $ increases, the probability distribution becomes more uniform.
 
-##### **Diagram: Effect of Temperature on Probability Distribution**
+#### **Diagram: Effect of Temperature on Probability Distribution**
 
 ```mermaid
 graph LR
@@ -50,37 +50,37 @@ graph LR
     C --> D[Probability Distribution]
 ```
 
-#### **2.2 Top-p (Nucleus) Sampling**
+### **2.2 Top-p (Nucleus) Sampling**
 
 - **Definition**: Instead of considering all possible tokens, the model considers only the smallest set of tokens whose cumulative probability exceeds a threshold `p`.
 - **Parameter**: `top_p` ranges between 0.0 and 1.0.
   - **Low Top-p (<0.5)**: Only the most probable tokens are considered.
   - **High Top-p (~1.0)**: Considers a broader range of tokens.
 
-##### **Visual Explanation**
+#### **Visual Explanation**
 
 - **Cumulative Probability Curve**: Plotting tokens sorted by probability.
 - **Top-p Threshold**: A vertical line at cumulative probability `p`.
 
-#### **2.3 Top-k Sampling**
+### **2.3 Top-k Sampling**
 
 - **Definition**: The model considers only the top `k` tokens with the highest probabilities.
 - **Parameter**: `top_k` is an integer.
   - **Low Top-k**: Limits choices to the most probable tokens.
   - **High Top-k**: Allows more diversity.
 
-#### **2.4 Frequency and Presence Penalties**
+### **2.4 Frequency and Presence Penalties**
 
 - **Frequency Penalty**: Reduces the likelihood of a token being selected again based on its frequency in the generated text.
 - **Presence Penalty**: Penalizes tokens that have already appeared, encouraging the model to introduce new topics.
 
 ---
 
-### 3. Practical Examples with Code
+## 3. Practical Examples with Code
 
 Let's apply these sampling methods in practice.
 
-#### **3.1 Setting Up the Environment**
+### **3.1 Setting Up the Environment**
 
 Ensure you have the OpenAI library installed and your API key set up.
 
@@ -106,17 +106,17 @@ def generate_text(prompt, **kwargs):
     return response.choices[0].message.content
 ```
 
-#### **3.2 Experimenting with Temperature**
+### **3.2 Experimenting with Temperature**
 
 We'll see how changing the temperature affects the output.
 
-##### **Prompt**
+#### **Prompt**
 
 ```python
 prompt = "Once upon a time in a distant land, there lived a"
 ```
 
-##### **Code Example: Varying Temperature**
+#### **Code Example: Varying Temperature**
 
 ```python
 temperatures = [0.2, 0.7, 1.0]
@@ -132,7 +132,7 @@ for temp in temperatures:
     print(f"Temperature {temp}:\n{text}\n{'-'*40}")
 ```
 
-##### **Expected Output**
+#### **Expected Output**
 
 - **Temperature 0.2**: More predictable, less creative.
 
@@ -157,11 +157,11 @@ for temp in temperatures:
   ----------------------------------------
   ```
 
-#### **3.3 Exploring Top-p Sampling**
+### **3.3 Exploring Top-p Sampling**
 
 Let's see how adjusting `top_p` affects the output.
 
-##### **Code Example: Varying Top-p**
+#### **Code Example: Varying Top-p**
 
 ```python
 top_p_values = [0.3, 0.7, 1.0]
@@ -178,7 +178,7 @@ for p in top_p_values:
     print(f"Top-p {p}:\n{text}\n{'-'*40}")
 ```
 
-##### **Expected Output**
+#### **Expected Output**
 
 - **Top-p 0.3**: Limited to most probable tokens.
 
@@ -203,11 +203,11 @@ for p in top_p_values:
   ----------------------------------------
   ```
 
-#### **3.4 Combining Temperature and Top-p**
+### **3.4 Combining Temperature and Top-p**
 
 You can use both parameters together to fine-tune the output.
 
-##### **Code Example**
+#### **Code Example**
 
 ```python
 text = generate_text(
@@ -221,23 +221,23 @@ text = generate_text(
 print(f"Combined Parameters:\n{text}")
 ```
 
-##### **Explanation**
+#### **Explanation**
 
 - **Temperature 0.9**: High creativity.
 - **Top-p 0.6**: Limits the choices to the most probable tokens, even with high temperature.
 
 ---
 
-### 4. Advanced Parameters in OpenAI API
+## 4. Advanced Parameters in OpenAI API
 
 Beyond sampling methods, other parameters allow you to control the model's output.
 
-#### **4.1 Controlling Output Length**
+### **4.1 Controlling Output Length**
 
 - **`max_tokens`**: Sets the maximum number of tokens in the generated response.
 - **Limitation**: The total tokens (prompt + completion) must be within the model's context length (e.g., 4,096 tokens for `text-davinci-003`).
 
-##### **Example**
+#### **Example**
 
 ```python
 text = generate_text(
@@ -246,12 +246,12 @@ text = generate_text(
 )
 ```
 
-#### **4.2 Using Stop Sequences**
+### **4.2 Using Stop Sequences**
 
 - **Purpose**: Tells the model when to stop generating text.
 - **Parameter**: `stop` accepts a string or a list of strings.
 
-##### **Example**
+#### **Example**
 
 ```python
 text = generate_text(
@@ -263,19 +263,19 @@ text = response.choices[0].text.strip()
 print(f"Generated List:\n1.{text}")
 ```
 
-##### **Expected Output**
+#### **Expected Output**
 
 ```
 Generated List:
 1. Improves cardiovascular health.
 ```
 
-#### **4.3 Formatting Output**
+### **4.3 Formatting Output**
 
 - **Instructional Prompts**: Ask the model to format the output in a specific way.
 - **JSON Output**: Useful for structured data extraction.
 
-##### **Example: Generating JSON**
+#### **Example: Generating JSON**
 
 ```python
 prompt = """
@@ -296,7 +296,7 @@ text = generate_text(
 print(text)
 ```
 
-##### **Expected Output**
+#### **Expected Output**
 
 ```json
 {
@@ -308,11 +308,11 @@ print(text)
 
 ---
 
-### 5. Hands-On Exercise
+## 5. Hands-On Exercise
 
 **Objective**: Write a script that generates creative story prompts by adjusting sampling parameters.
 
-#### **Instructions**
+### **Instructions**
 
 1. **Choose a Base Prompt**: For example, "In a world where robots have emotions, a single robot begins to..."
 2. **Experiment with Different Values**:
@@ -323,7 +323,7 @@ print(text)
 4. **Document Findings**:
    - Record the parameter values and corresponding outputs.
 
-#### **Sample Code**
+### **Sample Code**
 
 ```python
 prompt = "In a world where robots have emotions, a single robot begins to"
@@ -346,26 +346,26 @@ for temp in temperatures:
 
 ---
 
-### 6. Common Issues and Troubleshooting
+## 6. Common Issues and Troubleshooting
 
-#### **Repetitive or Nonsensical Output**
+### **Repetitive or Nonsensical Output**
 
 - **Cause**: Too low or too high temperature.
 - **Solution**: Adjust `temperature` and `top_p` to find a balance.
 
-#### **API Errors**
+### **API Errors**
 
 - **InvalidRequestError**: Check if parameters are within allowed ranges.
 - **RateLimitError**: Implement retries with exponential backoff.
 
-#### **Formatting Issues**
+### **Formatting Issues**
 
 - **Unwanted Text**: Use `stop` sequences to prevent the model from generating beyond the desired point.
 - **Incorrect Output Format**: Provide clear instructions and examples in the prompt.
 
 ---
 
-### 7. Summary and Key Takeaways
+## 7. Summary and Key Takeaways
 
 - **Sampling Methods**: Understanding `temperature`, `top_p`, and `top_k` is crucial for controlling text generation.
 - **Parameter Tuning**: Adjusting these parameters allows you to balance creativity and coherence.
@@ -374,7 +374,7 @@ for temp in temperatures:
 
 ---
 
-### 8. Assignments for Next Week
+## 8. Assignments for Next Week
 
 1. **Sampling Methods Report**:
 
@@ -392,6 +392,6 @@ for temp in temperatures:
 
 ---
 
-### 9. Closing Remarks
+## 9. Closing Remarks
 
 Understanding and effectively using sampling methods is essential for harnessing the full potential of LLM APIs. By mastering these parameters, you can generate text that meets specific requirements for creativity, coherence, and format. Continue to experiment and explore the possibilities offered by these powerful tools.
