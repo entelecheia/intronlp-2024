@@ -39,7 +39,7 @@
 
 ## 학습 내용
 
-1. **[Cloud Speech-to-Text API 활용](https://streamlit.io/)**  
+1. **[Stream.io](https://streamlit.io/)**  
    - 주요 내용: streamlit
    - 적용 방안: ui 코드로서 작성 및 테스트
 2. **OpenAI API 통합 및 활용**  
