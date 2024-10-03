@@ -50,6 +50,8 @@ parts:
                   - file: projects/team1/research-note-3week-01
                   - file: projects/team1/research-note-4week-01
                   - file: projects/team1/research-note-4week-02
+                  - file: projects/team1/research-note-5week-01
+                  - file: projects/team1/research-note-6week-01
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
@@ -68,13 +70,17 @@ parts:
                   - file: projects/team4/Research-Log/W1
                   - file: projects/team4/Research-Log/W2
                   - file: projects/team4/Research-Log/W3
+                  - file: projects/team4/Research-Log/W4
+                  - file: projects/team4/Research-Log/W5
           - file: projects/team5/index
             sections:
               - file: projects/team5/proposal
               - file: projects/team5/notes
                 sections:
                   - file: projects/team5/research-note-1-2-3
-                  - file: projects/team5/research-note-week4
+                  - file: projects/team5/research-note-4
+                  - file: projects/team5/research-note-5
+                  - file: projects/team5/research-note-6
   - caption: About
     chapters:
       - file: syllabus/index
