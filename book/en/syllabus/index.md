@@ -49,6 +49,12 @@ Week 6
 - Key Learning Content: OpenAI API usage, tokenization, sampling methods
 - Note: Lecture, Practice (Simple text generation through API calls)
 
+Special Lecture: 2024 Nobel Prize in Physics - Foundations of Machine Learning
+
+- Overview: Foundational discoveries enabling machine learning with artificial neural networks
+- Key Learning Content: Hopfield networks, Boltzmann machines, and their impact on modern AI and NLP
+- Note: Discussion on the connection between physics and machine learning
+
 Week 7
 
 - Overview: Basics of Prompt Engineering
