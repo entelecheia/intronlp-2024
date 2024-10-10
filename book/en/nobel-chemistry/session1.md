@@ -21,10 +21,9 @@ This session will cover the advances in protein structure prediction that led to
 ## How AlphaFold2 Works
 
 - **Data Entry and Sequence Analysis**: AlphaFold2 takes an amino acid sequence as input and searches for similar sequences in existing databases. It aligns sequences to identify regions that have evolved together, which helps predict the folding patterns.
-  - **Figure Reference**: See **Figure 2** for an overview of how AlphaFold2 utilizes databases and sequence alignment to perform its predictions.
+  - ![](figs/fig2_ke_en_24.jpeg)
 - **Distance Maps and Neural Network Analysis**: The AI then creates a **distance map** that shows how closely amino acids are positioned to each other in the final 3D structure.
   - **Transformer Neural Networks**: Using transformers, AlphaFold2 identifies the most important elements of the protein to focus on, refining the predicted structure through iterative cycles until it arrives at a high-confidence model.
-  - **Figure Reference**: **Figure 2** illustrates the role of neural networks in producing a hypothetical protein structure.
 
 ## Impact and Applications
 
@@ -33,7 +32,7 @@ This session will cover the advances in protein structure prediction that led to
 - **Case Studies**:
   - **Drug Development**: AlphaFold2 has helped pharmaceutical companies identify drug targets by providing structural insights into proteins involved in diseases.
   - **Environmental Applications**: Understanding the structure of enzymes that can break down plastics has paved the way for innovations in **plastic recycling**.
-  - **Figure Reference**: **Figure 5** shows several practical examples where AlphaFold2 has been instrumental in determining protein structures for medical and environmental purposes.
+  - ![](figs/fig5_ke_en_24.jpeg)
 
 ## Key Takeaway
 
