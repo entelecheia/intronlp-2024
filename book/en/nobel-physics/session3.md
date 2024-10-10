@@ -6,6 +6,10 @@ This session delves into the insights gleaned from interviews with two pioneers 
 
 ### Geoffrey Hinton's Unexpected Honor
 
+```{youtube} -icD_KmvnnM
+:width: 100%
+```
+
 Geoffrey Hinton's Nobel Prize in Physics came as a surprise, even to him. Receiving the news in the early hours of the morning in a California hotel room, Hinton's first reaction was disbelief, wondering if the call was a prank. The Swedish accents of the callers eventually convinced him of its authenticity.
 
 This moment of recognition highlights several important aspects:
@@ -17,6 +21,10 @@ This moment of recognition highlights several important aspects:
 3. **Mixed Emotions**: While excited about the award, Hinton also expressed concern about the implications of his work, particularly regarding AI safety. This demonstrates the weight of responsibility felt by those at the forefront of transformative technologies.
 
 ### John Hopfield's Reflection
+
+```{youtube} baEp4k1wk1Y
+:width: 100%
+```
 
 John Hopfield learned of Hinton's award through a flood of congratulatory emails. His reaction, like Hinton's, was one of surprise and humility. Hopfield emphasized that his primary motivation had always been to understand how the mind works, rather than to develop specific tools.
 
