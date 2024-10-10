@@ -537,10 +537,16 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anns">인공 신경망(ANNs) 소개</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#j">존 J. 홉필드와 홉필드 네트워크</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">제프리 힌튼과 볼츠만 머신</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">홉필드와 힌튼 연구의 영향</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">응용 및 광범위한 영향</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주요 요점</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">제프리 힌튼과 볼츠만 머신</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbm"><strong>RBM의 구조</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-divergence-cd"><strong>훈련 알고리즘 - 대조발산 (Contrastive Divergence, CD)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>훈련 과정의 주요 개념</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>RBM 훈련의 의의와 응용</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">홉필드와 힌튼 연구의 영향</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">응용 및 광범위한 영향</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">주요 요점</a></li>
 </ul>
             </nav>
         </div>
@@ -595,9 +601,114 @@ document.write(`
 </ul>
 </li>
 </ul>
+<p><strong>Restricted Boltzmann Machine (RBM)의 훈련 과정</strong>은 기계 학습에서 매우 중요한 단계로, 특히 <strong>딥 러닝</strong>에서 깊은 네트워크를 훈련하기 위해 사용됩니다. RBM은 간단한 구조 덕분에 효율적으로 훈련할 수 있습니다. 다음은 RBM 훈련 과정을 단계별로 설명한 내용입니다.</p>
+<section id="rbm">
+<h3><strong>RBM의 구조</strong><a class="headerlink" href="#rbm" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>RBM은 두 개의 층으로 구성됩니다:</p>
+<ul>
+<li><p><strong>가시층 (Visible Layer)</strong>: 입력 데이터를 나타내는 노드들.</p></li>
+<li><p><strong>숨겨진 층 (Hidden Layer)</strong>: 입력 데이터의 잠재적 특성을 학습하는 노드들.</p></li>
+</ul>
+</li>
+<li><p><strong>양방향 연결</strong>: 가시층과 숨겨진 층 사이에는 양방향 연결이 존재하지만, 층 내의 노드들끼리는 연결되지 않습니다. 이로 인해 계산이 간단해지고 훈련이 보다 효율적입니다.</p></li>
+</ul>
+</section>
+<section id="contrastive-divergence-cd">
+<h3><strong>훈련 알고리즘 - 대조발산 (Contrastive Divergence, CD)</strong><a class="headerlink" href="#contrastive-divergence-cd" title="Link to this heading">#</a></h3>
+<p>RBM의 훈련 과정은 주로 <strong>대조발산 (Contrastive Divergence)</strong> 알고리즘을 사용하여 진행됩니다. 이 과정은 다음의 주요 단계로 이루어집니다:</p>
+<ol class="arabic simple">
+<li><p><strong>초기 가시층 설정</strong></p>
+<ul class="simple">
+<li><p>주어진 <strong>입력 데이터</strong>를 가시층에 넣습니다. 이때, 각 가시 노드의 상태는 데이터에서 나온 값을 반영합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>숨겨진 층 활성화 계산</strong></p>
+<ul class="simple">
+<li><p>가시층이 주어진 상태에서 <strong>숨겨진 층 노드들의 상태를 업데이트</strong>합니다.</p></li>
+<li><p>각 숨겨진 노드 <span class="math notranslate nohighlight">\( h_j \)</span>는 다음 확률로 활성화됩니다:
+$<span class="math notranslate nohighlight">\(
+P(h_j = 1) = \sigma\left(\sum_i v_i w_{ij} + b_j\right)
+\)</span>$
+여기서:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( v_i \)</span>는 가시층 노드 <span class="math notranslate nohighlight">\( i \)</span>의 상태입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( w\_{ij} \)</span>는 가시 노드 <span class="math notranslate nohighlight">\( i \)</span>와 숨겨진 노드 <span class="math notranslate nohighlight">\( j \)</span> 사이의 가중치입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( b_j \)</span>는 숨겨진 노드의 편향(bias)입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sigma \)</span>는 <strong>시그모이드 함수</strong>로, 노드의 활성화 여부를 결정하는 역할을 합니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>가시층 재구성</strong></p>
+<ul class="simple">
+<li><p>숨겨진 층의 상태를 이용해 <strong>가시층을 다시 구성</strong>합니다. 이 과정은 숨겨진 노드들이 주어졌을 때, 각 가시 노드의 상태를 확률적으로 결정하는 방식으로 이루어집니다:
+$<span class="math notranslate nohighlight">\(
+P(v_i = 1) = \sigma\left(\sum_j h_j w_{ij} + a_i\right)
+\)</span><span class="math notranslate nohighlight">\(
+여기서 \)</span> a_i $는 가시 노드의 편향입니다.</p></li>
+</ul>
+</li>
+<li><p><strong>숨겨진 층 다시 계산</strong></p>
+<ul class="simple">
+<li><p>재구성된 가시층을 기반으로 다시 <strong>숨겨진 층의 상태를 업데이트</strong>합니다. 이는 초기 상태와 비교하여 현재의 숨겨진 층 상태를 얻기 위한 과정입니다.</p></li>
+</ul>
+</li>
+<li><p><strong>가중치 업데이트</strong></p>
+<ul class="simple">
+<li><p><strong>가중치 업데이트</strong>는 초기 가시층과 숨겨진 층의 상호작용과 재구성된 가시층 및 숨겨진 층의 상호작용 간의 차이를 기반으로 이루어집니다.</p></li>
+<li><p><strong>가중치 변화량</strong>은 다음과 같습니다:
+$<span class="math notranslate nohighlight">\(
+\Delta w_{ij} = \eta \left( \langle v_i h_j \rangle_{\text{data}} - \langle v_i h_j \rangle_{\text{recon}} \right)
+\)</span>$
+여기서:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( \eta \)</span>는 **학습률 (learning rate)**입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \langle v*i h_j \rangle_{\text{data}} \)</span>는 데이터에 의해 계산된 기대값입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \langle v*i h_j \rangle_{\text{recon}} \)</span>은 재구성된 가시층을 이용해 계산된 기대값입니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>반복</strong></p>
+<ul class="simple">
+<li><p>위 과정을 여러 번 반복하여 가중치를 점차 조정하고, 네트워크가 입력 데이터의 잠재적인 구조를 더 잘 학습하도록 만듭니다.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="id3">
-<h2>홉필드와 힌튼 연구의 영향<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h3><strong>훈련 과정의 주요 개념</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>에너지 함수</strong>: RBM의 학습은 <strong>에너지 함수</strong>를 최소화하는 방향으로 이루어집니다. 에너지 함수는 다음과 같이 정의됩니다:</p>
+<div class="math notranslate nohighlight">
+\[
+  E(v, h) = -\sum_i a_i v_i - \sum_j b_j h_j - \sum_{i,j} v_i w_{ij} h_j
+  \]</div>
+<ul class="simple">
+<li><p>네트워크의 목표는 <strong>확률적 분포</strong>에서 데이터를 더 잘 설명할 수 있도록 이 에너지를 최소화하는 것입니다.</p></li>
+</ul>
+</li>
+<li><p><strong>대조발산(CD)</strong>: 데이터 분포와 네트워크의 모델 분포 간의 차이를 줄이기 위해 사용되는 기법으로, 일반적인 확률적 경사 하강법보다 계산량을 줄여주기 때문에 RBM 훈련에 널리 사용됩니다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3><strong>RBM 훈련의 의의와 응용</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>RBM은 딥 러닝 초기 단계에서 **계층별 사전 훈련 (layer-wise pre-training)**에 사용되어 **심층 신경망(DNN)**의 훈련을 안정화하고 효율적으로 만드는 데 중요한 역할을 했습니다.</p></li>
+<li><p><strong>특징 학습</strong>: RBM은 숨겨진 층을 통해 입력 데이터의 <strong>잠재적인 특징</strong>을 추출할 수 있습니다. 이로 인해 <strong>비지도 학습</strong>에서 좋은 성능을 보여줍니다.</p></li>
+</ul>
+<p><strong>핵심 요약</strong>:</p>
+<ul class="simple">
+<li><p><strong>RBM</strong>은 가시층과 숨겨진 층으로 구성된 이중층 네트워크입니다.</p></li>
+<li><p><strong>대조발산</strong>을 사용하여 네트워크의 가중치를 업데이트하며, 이는 데이터와 모델의 차이를 줄이는 과정입니다.</p></li>
+<li><p><strong>에너지 최소화</strong>와 확률적 모델링을 통해 데이터의 잠재적 분포를 학습합니다.</p></li>
+</ul>
+<p>이러한 RBM의 훈련 방식은 <strong>딥 러닝</strong> 발전에 중요한 기여를 했으며, 이후 <strong>심층 신경망</strong>의 학습 효율성과 성능을 크게 개선하는 데 사용되었습니다.</p>
+</section>
+</section>
+<section id="id5">
+<h2>홉필드와 힌튼 연구의 영향<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>물리학과의 연결</strong>: 홉필드와 힌튼 모두 ANN 모델을 개발하기 위해 <strong>통계 역학</strong>의 원리를 사용했습니다.</p>
 <ul>
@@ -607,8 +718,8 @@ document.write(`
 </li>
 </ul>
 </section>
-<section id="id4">
-<h2>응용 및 광범위한 영향<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>응용 및 광범위한 영향<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>과학적 영향</strong>: 홉필드와 힌튼의 획기적인 발견은 다양한 분야를 혁신했습니다:</p>
 <ul>
@@ -619,8 +730,8 @@ document.write(`
 </li>
 </ul>
 </section>
-<section id="id5">
-<h2>주요 요점<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>주요 요점<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>생물학적 영감</strong>: ANN은 생물학적 뉴런의 기능에서 영감을 받았지만 특정 작업을 해결하기 위해 수학적, 계산적으로 작동하도록 설계되었습니다.</p></li>
 <li><p><strong>에너지 지형 유추</strong>: 홉필드 네트워크의 에너지 최소화 개념은 신경망이 어떻게 정보를 최적화하고 저장하는지 이해하는 데 유용한 비유를 제공합니다.</p></li>
@@ -697,10 +808,16 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anns">인공 신경망(ANNs) 소개</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#j">존 J. 홉필드와 홉필드 네트워크</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">제프리 힌튼과 볼츠만 머신</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">홉필드와 힌튼 연구의 영향</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">응용 및 광범위한 영향</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주요 요점</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">제프리 힌튼과 볼츠만 머신</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbm"><strong>RBM의 구조</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-divergence-cd"><strong>훈련 알고리즘 - 대조발산 (Contrastive Divergence, CD)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>훈련 과정의 주요 개념</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>RBM 훈련의 의의와 응용</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">홉필드와 힌튼 연구의 영향</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">응용 및 광범위한 영향</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">주요 요점</a></li>
 </ul>
   </nav></div>
 
