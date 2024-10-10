@@ -49,6 +49,21 @@ Week 6
 - Key Learning Content: OpenAI API usage, tokenization, sampling methods
 - Note: Lecture, Practice (Simple text generation through API calls)
 
+Special Lecture: 2024 Nobel Prize in Physics - Foundations of Machine Learning
+
+- Overview: Foundational discoveries enabling machine learning with artificial neural networks
+- Key Learning Content: Hopfield networks, Boltzmann machines, and their impact on modern AI and NLP
+- Note: Discussion on the connection between physics and machine learning
+
+Special Lecture: 2024 Nobel Prize in Chemistry - Computational Protein Design and Structure Prediction
+
+- Overview: Breakthrough discoveries in computational protein design and AI-driven protein structure prediction
+- Key Learning Content:
+  - David Baker's work on computational protein design
+  - Demis Hassabis and John Jumper's development of AlphaFold2 for protein structure prediction
+  - Implications for NLP and AI in scientific research
+- Note: Lecture, Discussion on the intersection of AI, computational biology, and chemistry
+
 Week 7
 
 - Overview: Basics of Prompt Engineering

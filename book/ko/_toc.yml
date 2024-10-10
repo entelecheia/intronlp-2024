@@ -16,6 +16,33 @@ parts:
           - file: week02/session1
           - file: week02/session2
           - file: week02/session3
+      - file: week03/index
+        sections:
+          - file: week03/session1
+          - file: week03/session2
+      - file: week04/index
+        sections:
+          - file: week04/session1
+          - file: week04/session2
+      - file: week05/index
+        sections:
+          - file: week05/session1
+          - file: week05/session2
+          - file: week05/session3
+      - file: week06/index
+        sections:
+          - file: week06/session1
+          - file: week06/session2
+      - file: nobel-physics/index
+        sections:
+          - file: nobel-physics/session1
+          - file: nobel-physics/session2
+          - file: nobel-physics/session3
+      - file: nobel-chemistry/index
+        sections:
+          - file: nobel-chemistry/session1
+          - file: nobel-chemistry/session2
+          - file: nobel-chemistry/session3
   - caption: Projects
     chapters:
       - file: projects/index
@@ -26,16 +53,44 @@ parts:
           - file: projects/team1/index
             sections:
               - file: projects/team1/proposal
+              - file: projects/team1/notes
+                sections:
+                  - file: projects/team1/research-note-1week-01
+                  - file: projects/team1/research-note-2week-01
+                  - file: projects/team1/research-note-3week-01
+                  - file: projects/team1/research-note-4week-01
+                  - file: projects/team1/research-note-4week-02
+                  - file: projects/team1/research-note-5week-01
+                  - file: projects/team1/research-note-6week-01
           - file: projects/team2/index
+            sections:
+              - file: projects/team2/proposal
           - file: projects/team3/index
             sections:
               - file: projects/team3/proposal
+              - file: projects/team3/notes
+                sections:
+                  - file: projects/team3/research-note3w
+                  - file: projects/team3/research-note4w
           - file: projects/team4/index
             sections:
               - file: projects/team4/proposal
+              - file: projects/team4/notes
+                sections:
+                  - file: projects/team4/Research-Log/W1
+                  - file: projects/team4/Research-Log/W2
+                  - file: projects/team4/Research-Log/W3
+                  - file: projects/team4/Research-Log/W4
+                  - file: projects/team4/Research-Log/W5
           - file: projects/team5/index
             sections:
               - file: projects/team5/proposal
+              - file: projects/team5/notes
+                sections:
+                  - file: projects/team5/research-note-1-2-3
+                  - file: projects/team5/research-note-4
+                  - file: projects/team5/research-note-5
+                  - file: projects/team5/research-note-6
   - caption: About
     chapters:
       - file: syllabus/index

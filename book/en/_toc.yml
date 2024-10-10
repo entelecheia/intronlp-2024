@@ -16,6 +16,33 @@ parts:
           - file: week02/session1
           - file: week02/session2
           - file: week02/session3
+      - file: week03/index
+        sections:
+          - file: week03/session1
+          - file: week03/session2
+      - file: week04/index
+        sections:
+          - file: week04/session1
+          - file: week04/session2
+      - file: week05/index
+        sections:
+          - file: week05/session1
+          - file: week05/session2
+          - file: week05/session3
+      - file: week06/index
+        sections:
+          - file: week06/session1
+          - file: week06/session2
+      - file: nobel-physics/index
+        sections:
+          - file: nobel-physics/session1
+          - file: nobel-physics/session2
+          - file: nobel-physics/session3
+      - file: nobel-chemistry/index
+        sections:
+          - file: nobel-chemistry/session1
+          - file: nobel-chemistry/session2
+          - file: nobel-chemistry/session3
   - caption: Projects
     chapters:
       - file: projects/index
