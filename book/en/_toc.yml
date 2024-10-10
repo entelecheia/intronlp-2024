@@ -33,6 +33,16 @@ parts:
         sections:
           - file: week06/session1
           - file: week06/session2
+      - file: nobel-physics/index
+        sections:
+          - file: nobel-physics/session1
+          - file: nobel-physics/session2
+          - file: nobel-physics/session3
+      - file: nobel-chemistry/index
+        sections:
+          - file: nobel-chemistry/session1
+          - file: nobel-chemistry/session2
+          - file: nobel-chemistry/session3
   - caption: Projects
     chapters:
       - file: projects/index
