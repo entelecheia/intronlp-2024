@@ -501,17 +501,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="session-1-foundational-discoveries-in-machine-learning-with-artificial-neural-networks">
 <h1>Session 1 - Foundational Discoveries in Machine Learning with Artificial Neural Networks<a class="headerlink" href="#session-1-foundational-discoveries-in-machine-learning-with-artificial-neural-networks" title="Link to this heading">#</a></h1>
+<p><img alt="" src="../_images/fig1_fy_24_svartvit.jpeg" /></p>
 <p>This session will cover the historical evolution, foundational concepts, and the pioneering work by John J. Hopfield and Geoffrey E. Hinton that led to the development of modern artificial neural networks (ANNs).</p>
 <section id="introduction-to-artificial-neural-networks-anns">
 <h2>Introduction to Artificial Neural Networks (ANNs)<a class="headerlink" href="#introduction-to-artificial-neural-networks-anns" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Historical Background</strong>: The concept of <strong>artificial neural networks</strong> (ANNs) dates back to the 1940s, inspired by the functioning of biological neurons.</p>
 <ul>
+<li><p><strong>Historical Background</strong>: The concept of <strong>artificial neural networks</strong> (ANNs) dates back to the 1940s, inspired by the functioning of biological neurons.</p>
+<p><img alt="" src="../_images/fig2_fy_en_24.jpeg" /></p>
+<ul class="simple">
 <li><p><strong>Warren McCulloch</strong> and <strong>Walter Pitts</strong> (1943): Proposed a model of artificial neurons using simple binary signals, serving as the basis for future developments in ANNs.</p></li>
 <li><p><strong>Donald Hebb</strong> (1949): Introduced the <strong>Hebbian learning principle</strong>, suggesting that neurons strengthen connections when activated together, a concept still used in training neural networks.</p></li>
 </ul>
 </li>
-<li><p><strong>First Era of ANN Development</strong> (1950s-1980s): ANNs initially struggled due to computational limitations, particularly highlighted by the <strong>XOR problem</strong> (Minsky and Papert, 1969), which demonstrated the shortcomings of early perceptron models. Research slowed until the 1980s, when new approaches emerged.</p></li>
+<li><p><strong>First Era of ANN Development</strong> (1950s-1980s): ANNs initially struggled due to computational limitations, particularly highlighted by the <strong>XOR problem</strong> (Minsky and Papert, 1969), which demonstrated the shortcomings of early perceptron models. Research slowed until the 1980s, when new approaches emerged.</p>
+<p><img alt="" src="../_images/fig4_fy_en_24.jpeg" /></p>
+</li>
 </ul>
 </section>
 <section id="john-j-hopfield-and-the-hopfield-network">
@@ -519,16 +523,9 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Associative Memory and Recurrent Networks</strong>: In 1982, <strong>John Hopfield</strong> introduced a type of recurrent neural network called the <strong>Hopfield network</strong>.</p>
 <ul>
-<li><p><strong>Structure</strong>: A <strong>fully connected network</strong> where each node is linked to every other node.</p>
-<ul>
-<li><p><img alt="Figure 1: Hopfield Network Structure" src="../_images/fig4_fy_en_24.jpeg" /></p></li>
-</ul>
-</li>
-<li><p><strong>Energy Landscape Analogy</strong>: The Hopfield network stores information as <strong>attractor states</strong> in a conceptual energy landscape. When an incomplete or noisy input is given, the network finds the nearest stored pattern by minimizing energy, much like a ball rolling into the nearest valley.</p>
-<ul>
-<li><p><img alt="Figure 2: Energy Landscape Analogy" src="../_images/fig3_fy_en_24.jpeg" /></p></li>
-</ul>
-</li>
+<li><p><strong>Structure</strong>: A <strong>fully connected network</strong> where each node is linked to every other node.</p></li>
+<li><p><strong>Energy Landscape Analogy</strong>: The Hopfield network stores information as <strong>attractor states</strong> in a conceptual energy landscape. When an incomplete or noisy input is given, the network finds the nearest stored pattern by minimizing energy, much like a ball rolling into the nearest valley.
+<img alt="Figure 2: Energy Landscape Analogy" src="../_images/fig3_fy_en_24.jpeg" /></p></li>
 <li><p><strong>Application</strong>: The network serves as an <strong>associative memory</strong>, useful for pattern recognition, error correction, and reconstructing distorted information. This ability resembles human memory retrieval, where similar memories are used to reconstruct partial information.</p></li>
 </ul>
 </li>
@@ -540,11 +537,7 @@ document.write(`
 <li><p><strong>Expansion on Hopfield’s Concepts</strong>: In the early 1980s, <strong>Geoffrey Hinton</strong> built on Hopfield’s work to create the <strong>Boltzmann machine</strong> (1983-1985), introducing stochastic elements and hidden nodes.</p>
 <ul>
 <li><p><strong>Stochastic Learning</strong>: The Boltzmann machine incorporates a probability-based approach to learning using <strong>Boltzmann’s equation</strong> from statistical physics. This approach allows the network to explore different configurations to find optimal patterns, making it a <strong>generative model</strong> capable of creating new data.</p></li>
-<li><p><strong>Structure and Learning</strong>: The Boltzmann machine is typically organized into visible and hidden nodes. Hidden nodes help model complex data relationships, capturing features that are not directly observable.</p>
-<ul>
-<li><p><img alt="Figure 3: Boltzmann Machine Structure" src="../_images/fig4_fy_en_24.jpeg" /></p></li>
-</ul>
-</li>
+<li><p><strong>Structure and Learning</strong>: The Boltzmann machine is typically organized into visible and hidden nodes. Hidden nodes help model complex data relationships, capturing features that are not directly observable.</p></li>
 <li><p><strong>Restricted Boltzmann Machine (RBM)</strong>: A simplified version, the RBM, removes certain connections to make training more efficient. <strong>Layer-wise pretraining</strong> using RBMs became a pivotal step towards training deep networks, providing the foundation for <strong>deep learning</strong>.</p></li>
 </ul>
 </li>

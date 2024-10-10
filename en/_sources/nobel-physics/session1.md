@@ -1,23 +1,28 @@
 # Session 1 - Foundational Discoveries in Machine Learning with Artificial Neural Networks
 
+![](figs/fig1_fy_24_svartvit.jpeg)
+
 This session will cover the historical evolution, foundational concepts, and the pioneering work by John J. Hopfield and Geoffrey E. Hinton that led to the development of modern artificial neural networks (ANNs).
 
 ## Introduction to Artificial Neural Networks (ANNs)
 
 - **Historical Background**: The concept of **artificial neural networks** (ANNs) dates back to the 1940s, inspired by the functioning of biological neurons.
 
+  ![](figs/fig2_fy_en_24.jpeg)
+
   - **Warren McCulloch** and **Walter Pitts** (1943): Proposed a model of artificial neurons using simple binary signals, serving as the basis for future developments in ANNs.
   - **Donald Hebb** (1949): Introduced the **Hebbian learning principle**, suggesting that neurons strengthen connections when activated together, a concept still used in training neural networks.
 
 - **First Era of ANN Development** (1950s-1980s): ANNs initially struggled due to computational limitations, particularly highlighted by the **XOR problem** (Minsky and Papert, 1969), which demonstrated the shortcomings of early perceptron models. Research slowed until the 1980s, when new approaches emerged.
 
+  ![](figs/fig4_fy_en_24.jpeg)
+
 ## John J. Hopfield and the Hopfield Network
 
 - **Associative Memory and Recurrent Networks**: In 1982, **John Hopfield** introduced a type of recurrent neural network called the **Hopfield network**.
   - **Structure**: A **fully connected network** where each node is linked to every other node.
-    - ![Figure 1: Hopfield Network Structure](figs/fig4_fy_en_24.jpeg)
   - **Energy Landscape Analogy**: The Hopfield network stores information as **attractor states** in a conceptual energy landscape. When an incomplete or noisy input is given, the network finds the nearest stored pattern by minimizing energy, much like a ball rolling into the nearest valley.
-    - ![Figure 2: Energy Landscape Analogy](figs/fig3_fy_en_24.jpeg)
+    ![Figure 2: Energy Landscape Analogy](figs/fig3_fy_en_24.jpeg)
   - **Application**: The network serves as an **associative memory**, useful for pattern recognition, error correction, and reconstructing distorted information. This ability resembles human memory retrieval, where similar memories are used to reconstruct partial information.
 
 ## Geoffrey Hinton and the Boltzmann Machine
@@ -25,7 +30,6 @@ This session will cover the historical evolution, foundational concepts, and the
 - **Expansion on Hopfield's Concepts**: In the early 1980s, **Geoffrey Hinton** built on Hopfield's work to create the **Boltzmann machine** (1983-1985), introducing stochastic elements and hidden nodes.
   - **Stochastic Learning**: The Boltzmann machine incorporates a probability-based approach to learning using **Boltzmann's equation** from statistical physics. This approach allows the network to explore different configurations to find optimal patterns, making it a **generative model** capable of creating new data.
   - **Structure and Learning**: The Boltzmann machine is typically organized into visible and hidden nodes. Hidden nodes help model complex data relationships, capturing features that are not directly observable.
-    - ![Figure 3: Boltzmann Machine Structure](figs/fig4_fy_en_24.jpeg)
   - **Restricted Boltzmann Machine (RBM)**: A simplified version, the RBM, removes certain connections to make training more efficient. **Layer-wise pretraining** using RBMs became a pivotal step towards training deep networks, providing the foundation for **deep learning**.
 
 ## Impact of Hopfield and Hinton's Work

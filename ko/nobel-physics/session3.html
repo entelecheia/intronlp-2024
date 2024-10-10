@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>세션 3 - 인터뷰에서 얻은 깨달음 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nobel-physics/session3';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="프로젝트 가이드" href="../projects/index.html" />
+    <link rel="prev" title="세션 2 - 딥 러닝의 진화와 고급 신경망 아키텍처" href="session2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차 - 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차 - 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1 - 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2 - 고급 통계적 언어 모델</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차 - 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 세션 1 - 단어 임베딩과 Word2Vec 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 세션 2 - 고급 단어 임베딩</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 세션 1 - 트랜스포머 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 세션 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 세션 3 - 트랜스포머의 실제 구현 및 시각화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">6주차 - LLM API 이해하기</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">6주차 세션 2 - 샘플링 방법과 텍스트 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">특강 - 2024년 노벨 물리학상</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">세션 1 - 인공 신경망을 이용한 기계 학습의 기초적 발견</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">세션 2 - 딥 러닝의 진화와 고급 신경망 아키텍처</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">세션 3 - 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-1week-01.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-2week-01.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-3week-01.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-01.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W4.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W5.html">5주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-4.html">4차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-5.html">5차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-6.html">6차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/nobel-physics/session3.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fnobel-physics/session3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/nobel-physics/session3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>세션 3 - 인터뷰에서 얻은 깨달음</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">노벨상: 인정과 성찰의 순간</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">제프리 힌튼의 예상치 못한 영예</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">존 홉필드의 성찰</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai">AI의 양날의 검: 잠재력과 위험</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">존재적 위험과 통제의 필요성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">AI 배치의 윤리적 고려사항</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">대논쟁: AI의 이해와 언어학</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">촘스키 학파 언어학 vs. 신경망</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">촘스키 학파 언어학 설명</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">신경망 접근법</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#christopher-manning">Christopher Manning의 관점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">논쟁에 대한 힌튼의 관점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">미래를 향하여: 협력적 노력과 지속적인 도전</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">학제간 협력의 필요성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">AI 미래를 위한 주요 시사점</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>세션 3 - 인터뷰에서 얻은 깨달음<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>이 세션에서는 인공지능과 신경망 분야의 두 선구자인 제프리 힌튼과 존 홉필드와의 인터뷰에서 얻은 깨달음을 깊이 있게 다룹니다. 그들의 성찰은 AI의 현재 상태와 미래에 대한 독특한 관점을 제공하며, AI의 엄청난 잠재력과 안전 연구 및 윤리적 고려사항에 대한 시급한 필요성을 모두 강조합니다.</p>
+<section id="id2">
+<h2>노벨상: 인정과 성찰의 순간<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>제프리 힌튼의 예상치 못한 영예<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>제프리 힌튼의 물리학 노벨상 수상은 그 자신에게도 놀라운 일이었습니다. 캘리포니아의 호텔 방에서 새벽에 소식을 받은 힌튼의 첫 반응은 불신이었으며, 전화가 장난인지 의심했습니다. 발신자들의 스웨덴 억양이 결국 그 진위를 확신시켰습니다.</p>
+<p>이 인정의 순간은 몇 가지 중요한 측면을 강조합니다:</p>
+<ol class="arabic simple">
+<li><p><strong>과학적 성취의 예측 불가능한 특성</strong>: 힌튼은 자신이 후보로 지명된 것조차 몰랐다는 점에서, 과학의 돌파구가 종종 예상치 못한 방식으로 인정받는다는 것을 강조합니다.</p></li>
+<li><p><strong>과학적 추구에서의 겸손</strong>: 그의 획기적인 업적에도 불구하고, 수상에 대한 힌튼의 놀라움은 헌신적인 연구자들 사이에서 흔히 볼 수 있는 겸손함을 반영합니다.</p></li>
+<li><p><strong>복합적인 감정</strong>: 수상에 대해 기쁨을 느끼면서도, 힌튼은 특히 AI 안전성과 관련하여 자신의 연구가 가져올 영향에 대한 우려를 표명했습니다. 이는 혁신적인 기술의 최전선에 있는 이들이 느끼는 책임의 무게를 보여줍니다.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>존 홉필드의 성찰<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>존 홉필드는 축하 이메일의 홍수를 통해 힌튼의 수상 소식을 알게 되었습니다. 그의 반응도 힌튼과 마찬가지로 놀라움과 겸손함이었습니다. 홉필드는 자신의 주된 동기가 항상 특정 도구를 개발하는 것보다는 마음이 어떻게 작동하는지 이해하는 것이었다고 강조했습니다.</p>
+<p>이 관점은 다음을 강조합니다:</p>
+<ol class="arabic simple">
+<li><p><strong>기초 과학에서 응용 기술로의 여정</strong>: 힌튼과 홉필드 모두 뇌의 기본적인 작동 방식에 대한 호기심에서 연구를 시작했습니다. 그들의 연구는 결국 기술적 돌파구로 이어졌으며, 이는 기초 과학에서 실용적 응용으로 가는 예상치 못한 경로를 보여줍니다.</p></li>
+<li><p><strong>호기심 주도 연구의 가치</strong>: 그들의 경험은 근본적인 질문에 의해 주도되는 연구를 지원하는 것의 중요성을 강조합니다. 이는 예상치 못한 혁명적인 발전으로 이어질 수 있기 때문입니다.</p></li>
+</ol>
+</section>
+</section>
+<section id="ai">
+<h2>AI의 양날의 검: 잠재력과 위험<a class="headerlink" href="#ai" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>존재적 위험과 통제의 필요성<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>힌튼은 AI 기술이 가져오는 존재적 위험을 강조하며, 우리의 현재 상황을 역사의 “분기점”으로 묘사했습니다. 이 개념은 인류가 AI를 어떻게 다룰 것인가에 대한 우리의 결정이 광범위한 결과를 가져올 중요한 시점에 있다는 것을 시사합니다.</p>
+<p>주요 요점은 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p><strong>기후 변화와의 비교</strong>: 기후 변화의 경우 해결책(탄소 배출 감소)이 구현의 어려움에도 불구하고 명확한 반면, AI 안전성에는 명확한 해결책이 없습니다. 이러한 불확실성은 안전 연구와 규제의 우선순위를 더욱 중요하게 만듭니다.</p></li>
+<li><p><strong>정부 개입 요구</strong>: 힌튼은 정부가 주요 AI 기업들에게 안전 연구에 더 많은 자원을 할당하도록 강제해야 한다고 주장했습니다. 이는 급속히 발전하는 분야에서 책임 있는 개발을 보장하기 위해 외부 압력이 필요함을 강조합니다.</p></li>
+<li><p><strong>생명공학과의 유사점</strong>: 힌튼은 과학자들이 유전자 공학의 위험을 집단적으로 다룬 생명공학에 관한 아실로마 회의와 비교했습니다. 그는 AI에서도 유사한 협력 노력이 필요하다고 제안했지만, AI의 더 넓고 즉각적인 응용으로 인해 더 어려울 수 있다고 인정했습니다.</p></li>
+</ol>
+</section>
+<section id="id6">
+<h3>AI 배치의 윤리적 고려사항<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>힌튼과 홉필드 모두 AI의 더 넓은 사회적 영향에 대한 우려를 표명했습니다:</p>
+<ol class="arabic simple">
+<li><p><strong>통제와 예측 가능성</strong>: 홉필드는 고도로 복잡한 AI 시스템의 행동을 완전히 이해하고 예측하는 것의 어려움을 강조했습니다. 이러한 예측 불가능성은 AI 기술의 안전한 배치에 대한 중요한 윤리적 질문을 제기합니다.</p></li>
+<li><p><strong>학제간 협력의 필요성</strong>: 홉필드는 물리학, 생물학, 컴퓨터 과학 등 다양한 분야의 연구자들로 구성된 협력적 커뮤니티를 육성하는 것의 중요성을 강조했습니다. 이러한 학제간 접근은 AI가 제기하는 다면적인 도전과제를 해결하는 데 중요합니다.</p></li>
+</ol>
+</section>
+</section>
+<section id="id7">
+<h2>대논쟁: AI의 이해와 언어학<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="vs">
+<h3>촘스키 학파 언어학 vs. 신경망<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<p>인터뷰에서 가장 흥미로운 측면 중 하나는 AI 시스템, 특히 대규모 언어 모델(LLMs)이 진정으로 언어를 이해하는지에 대한 진행 중인 논쟁에 대한 힌튼의 논의였습니다. 이 논쟁은 전통적인 언어학과 현대 AI 접근법 사이의 근본적인 의견 불일치를 드러냅니다.</p>
+<section id="id8">
+<h4>촘스키 학파 언어학 설명<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>노암 촘스키의 이름을 딴 촘스키 학파 언어학은 수십 년 동안 이 분야를 지배해온 언어 이해에 대한 이론적 접근법입니다. 주요 측면은 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p><strong>보편 문법</strong>: 촘스키는 인간이 보편적인 문법 규칙의 집합에 의해 안내되는 선천적인 언어 학습 능력을 가지고 태어난다고 제안했습니다.</p></li>
+<li><p><strong>구문 중심 접근법</strong>: 이 학파는 의미론이나 화용론과 같은 언어의 다른 측면보다 구문(문법적 문장을 형성하는 규칙)의 중요성을 강조합니다.</p></li>
+<li><p><strong>능력 vs. 수행</strong>: 촘스키는 언어적 능력(언어의 기본 지식)과 수행(실제 상황에서 언어가 실제로 사용되는 방식) 사이를 구분했습니다.</p></li>
+<li><p><strong>기호 조작</strong>: 전통적인 언어학 모델은 종종 언어 처리를 명시적인 규칙에 기반한 기호 조작의 형태로 취급합니다.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h4>신경망 접근법<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>대조적으로, 힌튼과 같은 연구자들이 주창하는 언어에 대한 신경망 접근법은 상당히 다릅니다:</p>
+<ol class="arabic simple">
+<li><p><strong>데이터로부터의 학습</strong>: 신경망은 미리 프로그래밍된 규칙에 의존하는 대신 방대한 양의 데이터에서 언어 패턴을 학습합니다.</p></li>
+<li><p><strong>분산 표현</strong>: 명시적인 기호 대신, 신경망은 의미가 많은 뉴런에 걸쳐 인코딩되는 분산 표현을 사용합니다.</p></li>
+<li><p><strong>구조의 출현</strong>: 문법 규칙과 의미적 이해는 명시적으로 프로그래밍되는 대신 네트워크의 학습 과정에서 출현합니다.</p></li>
+<li><p><strong>수행에 초점</strong>: 신경망은 인간의 언어 수행을 모방하는 것을 목표로 하며, 종종 번역이나 텍스트 생성과 같은 작업에서 인상적인 결과를 달성합니다.</p></li>
+</ol>
+</section>
+</section>
+<section id="christopher-manning">
+<h3>Christopher Manning의 관점<a class="headerlink" href="#christopher-manning" title="Link to this heading">#</a></h3>
+<p>스탠포드 대학교의 계산 언어학 및 자연어 처리 분야의 저명한 인물인 Christopher Manning은 두 접근법의 측면을 연결하는 미묘한 견해를 제시합니다:</p>
+<ol class="arabic simple">
+<li><p><strong>학습 중심적 견해</strong>: Manning은 신경망 접근법에 더 가까우며, 인간의 언어 습득에 상당한 학습이 관여한다고 믿습니다.</p></li>
+<li><p><strong>경험적 언어학</strong>: 그는 언어학에 대한 더 경험적인 접근법을 지지하며, 대규모 언어 모델과 언어학적 이해 사이에 가치 있는 연결점이 있다고 봅니다.</p></li>
+<li><p><strong>신경망 모델의 구조</strong>: Manning의 연구는 대규모 언어 모델이 주어, 목적어, 관계절과 같은 언어 구조를 학습하고 표현할 수 있음을 보여주었습니다.</p></li>
+<li><p><strong>경험주의와 구조의 균형</strong>: 학습 기반 접근법을 선호하면서도, Manning은 극단적인 경험주의에 대해 주의를 촉구합니다. 그는 AI 모델에 구조적 사전 지식을 포함시키는 것의 중요성을 주장하며, 이를 “필요악”이 아닌 “필요선”으로 봅니다.</p></li>
+<li><p><strong>인간 vs. AI 학습</strong>: Manning은 특히 어린이의 놀라운 언어 습득 효율성을 강조합니다. 그는 이를 현재 AI 시스템과 대조하는데, 그는 AI 시스템이 인상적인 성능에도 불구하고 상대적으로 비효율적인 학습자로 보고 있습니다.</p></li>
+<li><p><strong>AI 아키텍처의 미래</strong>: Manning은 더 많은 선천적 구조와 학습 능력을 갖춘 AI 아키텍처 개발을 지지하며, 인간만큼 효율적으로 학습하는 시스템을 만드는 것을 목표로 합니다.</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>논쟁에 대한 힌튼의 관점<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>힌튼은 신경망이 전통적인 언어학의 이전 모델들보다 언어 처리에 대해 훨씬 더 나은 능력을 보여주었다고 주장했습니다. 그는 노벨상 수상이 LLM이 이해의 한 형태를 나타낸다는 입장에 신뢰성을 부여할 것이라는 희망을 표현했으며, 이는 잠재적으로 언어학과 AI 윤리에 대한 더 넓은 논쟁에 영향을 미칠 수 있습니다.</p>
+<p>이 논쟁은 몇 가지 중요한 질문을 제기합니다:</p>
+<ol class="arabic simple">
+<li><p><strong>AI 시스템에서 “이해”를 구성하는 것은 무엇인가?</strong></p></li>
+<li><p><strong>언어 처리의 다른 모델들을 어떻게 평가하고 비교할 수 있는가?</strong></p></li>
+<li><p><strong>이 논쟁이 AI 윤리와 언어 기술의 발전에 미치는 영향은 무엇인가?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="id11">
+<h2>미래를 향하여: 협력적 노력과 지속적인 도전<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>학제간 협력의 필요성<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>힌튼과 홉필드 모두 AI가 제기하는 복잡한 도전과제를 해결하기 위해 다양한 과학 분야 간의 협력을 촉진하는 것의 중요성을 강조했습니다:</p>
+<ol class="arabic simple">
+<li><p><strong>물리학, 생물학, 컴퓨터 과학</strong>: 홉필드는 자신의 네트워크 모델이 다양한 분야의 연구자들을 한데 모으는 통합 프레임워크가 되었다고 회상했습니다. 이러한 학제간 접근법은 AI의 윤리적, 기술적 도전과제를 해결하는 데 여전히 중요합니다.</p></li>
+<li><p><strong>이론과 응용의 연결</strong>: 두 연구자 모두 이론적 작업에서 실용적 응용으로의 여정은 기초 연구와 실제 세계 구현을 연결하는 것의 중요성을 강조합니다.</p></li>
+</ol>
+</section>
+<section id="id13">
+<h3>AI 미래를 위한 주요 시사점<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>AI 안전성의 불확실성</strong>: AI 안전성을 보장하기 위한 명확한 해결책의 부재는 지속적인 연구 투자와 협력의 필요성을 강조합니다.</p></li>
+<li><p><strong>집단 행동</strong>: 아실로마 회의와 유사한 집단적 접근에 대한 요구는 윤리적 문제와 안전 문제를 해결하기 위해 AI 커뮤니티가 함께 모여야 할 필요성을 강조합니다.</p></li>
+<li><p><strong>진보와 주의의 균형</strong>: AI의 성과를 축하하면서도, 인터뷰들은 잠재적 위험과 사회적 영향에 대한 신중한 고려의 필요성을 강조합니다.</p></li>
+<li><p><strong>지속적인 논쟁</strong>: 언어학적 논쟁은 AI 발전이 인지, 언어, 지능에 대한 우리의 이해에 계속해서 도전하고 있음을 보여주며, 여러 연구 분야를 아우르는 지속적인 토론을 촉발합니다.</p></li>
+</ol>
+<p>AI 시대로 나아가면서, 힌튼과 홉필드와 같은 선구자들의 깨달음은 진보에 대한 축하와 행동에 대한 요구 모두로 작용합니다. 이는 우리 세계를 재형성할 수 있는 힘을 가진 기술을 개발하는 데 따르는 책임을 상기시킵니다.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nobel-physics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">세션 2 - 딥 러닝의 진화와 고급 신경망 아키텍처</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">프로젝트 가이드</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">노벨상: 인정과 성찰의 순간</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">제프리 힌튼의 예상치 못한 영예</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">존 홉필드의 성찰</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai">AI의 양날의 검: 잠재력과 위험</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">존재적 위험과 통제의 필요성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">AI 배치의 윤리적 고려사항</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">대논쟁: AI의 이해와 언어학</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">촘스키 학파 언어학 vs. 신경망</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">촘스키 학파 언어학 설명</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">신경망 접근법</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#christopher-manning">Christopher Manning의 관점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">논쟁에 대한 힌튼의 관점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">미래를 향하여: 협력적 노력과 지속적인 도전</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">학제간 협력의 필요성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">AI 미래를 위한 주요 시사점</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
