@@ -1,42 +1,108 @@
 # Session 3 - Insights from Interviews
 
-This session will cover insights from interviews with the 2024 Nobel Prize laureates in Chemistry, focusing on the **ethical considerations** and **societal impacts** of advances in computational protein design. We will discuss the potential benefits, risks, regulatory challenges, and broader societal implications of synthetic biology.
+This session explores the personal reflections and insights shared by David Baker, Demis Hassabis, and John Jumper in their first interviews after receiving the news of their Nobel Prize in Chemistry for 2024. These conversations provide valuable perspectives on the impact of their work, the future of AI in science, and the experience of receiving such a prestigious award.
 
-## Introduction to Ethical and Societal Implications
+## The Moment of Discovery
 
-- **The Responsibility of Scientific Innovation**: The rapid advances in **computational protein design** and **synthetic biology** have brought significant potential benefits, but also raised concerns about how these technologies will be used and controlled.
-  - **Interviews with David Baker and Others**: David Baker and fellow researchers have voiced their concerns regarding the need for careful consideration of ethical implications when designing new proteins with unprecedented functionalities.
-  - **Balance Between Innovation and Regulation**: The challenge lies in balancing **scientific progress** with **societal safety**, ensuring that these powerful technologies are used responsibly.
+### David Baker's Experience
 
-## Potential Benefits and Opportunities
+- Baker was awakened by an early morning phone call.
+- His wife realized the significance of the call before he did, reacting with excitement.
+- Baker expressed honor and excitement about sharing the prize with Hassabis and Jumper.
 
-- **Medical and Environmental Solutions**: Many of the laureates emphasized the tremendous potential for computational protein design to tackle some of the world’s most pressing problems.
-  - **Novel Therapeutics**: Custom-designed proteins can be used to create new **therapeutics** that can target diseases more precisely, reducing side effects and improving outcomes.
-  - **Environmental Applications**: De novo proteins can break down pollutants or recycle plastics, offering solutions for environmental conservation and **sustainable practices**.
-  - **Global Health**: Vaccine development and the creation of inexpensive diagnostic tools could make healthcare more accessible in developing countries.
+```{youtube} qSoQMn4rEwY
+:width: 100%
+```
 
-## Risks and Ethical Challenges
+### Demis Hassabis's Reaction
 
-- **Dual-Use Concerns**: A key theme from the interviews was the risk of **dual-use**. Technologies designed for good can also be misused.
-  - **Biosecurity Risks**: There is concern that engineered proteins could be misused to develop **biological weapons** or harmful pathogens. David Baker specifically highlighted the need for stringent regulations to prevent misuse.
-- **Unintended Consequences**: The complexity of biological systems makes it difficult to predict all outcomes of engineered proteins.
-  - **Uncontrolled Evolution**: Designed proteins, once introduced into the environment, could undergo mutations that lead to unforeseen and potentially harmful consequences.
-  - **Impact on Ecosystems**: Introducing novel proteins could disrupt natural ecosystems, leading to unintended ecological imbalances.
+- Hassabis described the experience as "unbelievably special" and "surreal."
+- He mentioned his mind going blank upon hearing the news, emphasizing the magnitude of the moment.
 
-## Regulatory and Policy Considerations
+```{youtube} 6Lm3_0JDn2U
+:width: 100%
+```
 
-- **International Collaboration for Safe Use**: The interviews highlighted the importance of international cooperation in establishing regulatory frameworks that govern synthetic biology.
-  - **Global Standards**: There is a need for **global standards** that ensure safe experimentation and application of computational protein design technologies.
-  - **Case Study - Biotechnology Conferences**: David Baker drew parallels with the **Asilomar Conference** on recombinant DNA in the 1970s, which set guidelines for the safe conduct of genetic engineering research. Similar approaches are needed today to address synthetic biology.
+### John Jumper's Surprise
 
-## Societal Impacts and Public Perception
+- Jumper had estimated his chances of winning at only 10%.
+- He had planned to sleep through the announcement to manage his nerves.
+- Jumper expressed amazement at the speed of recognition, noting it was just 3-4 years from their paper to the Nobel Prize.
 
-- **Public Engagement and Education**: Several of the laureates emphasized the need for greater public engagement to address concerns and educate society on the benefits and risks of synthetic biology.
-  - **Transparency**: Ensuring **transparency** in research and communicating the objectives, risks, and benefits of protein engineering is key to gaining public trust.
-  - **Social Inequality**: Access to advanced technologies could widen the gap between rich and poor nations. To mitigate this, researchers advocate for policies that ensure equitable access to the benefits of synthetic biology, particularly in areas like healthcare and environmental conservation.
+```{youtube} Rs8ofPvdwB4
+:width: 100%
+```
 
-## Key Takeaways
+## The Impact of Their Work
 
-- **Ethical Responsibility in Innovation**: The rapid progress in computational protein design requires a **careful ethical framework** to ensure responsible use. Researchers and governments must work together to prevent misuse and ensure the safety of society.
-- **Global Collaboration for Safe Regulation**: There is a need for **international cooperation** in creating and implementing standards that govern the use of synthetic biology.
-- **Public Trust and Transparency**: Effective public engagement and transparent communication are essential for fostering societal acceptance and ensuring that the benefits of synthetic biology reach everyone.
+### Baker on Protein Design Applications
+
+Baker highlighted several exciting areas where protein design could have significant impact:
+
+1. **Medicine**: More precise therapeutics that act only in the right time and place in the body.
+2. **Vaccines**: The first de novo designed medicine approved for human use is a vaccine designed by his colleague.
+3. **Environmental Solutions**: Developing catalysts for breaking down pollutants and plastics.
+4. **Green Chemistry**: Creating better routes to new molecules for more sustainable processes.
+
+### Hassabis on AI as a Scientific Tool
+
+- Hassabis sees AI, like AlphaFold, as the "ultimate tool to help scientists explore the universe around us."
+- He emphasizes that AI systems are tools for analyzing data and finding patterns, but human scientists are still crucial for asking the right questions and forming hypotheses.
+
+### Jumper on the Connection to Human Health
+
+- Jumper expressed enthusiasm about drawing a direct line from their computational work to improving human health.
+- He emphasized the importance of computation in solving biological problems.
+
+## The Future of AI in Science
+
+### The Role of Individual Scientists
+
+Both Hassabis and Jumper addressed the relationship between AI tools and individual scientists:
+
+- Hassabis believes AI tools will allow individual scientists to do much more, potentially even in smaller teams.
+- He stresses that human scientists are still essential for determining the right questions to ask and forming hypotheses.
+
+### The Pace of Progress
+
+- Jumper noted the incredibly fast pace of progress, with recognition coming just 3-4 years after their initial paper.
+- This rapid advancement highlights the transformative potential of AI in scientific research.
+
+## Research Environments and Collaboration
+
+### Google DeepMind's Approach
+
+Hassabis described the research environment at Google DeepMind:
+
+- Designed to be the "perfect environment" for cutting-edge research.
+- Brings together experts from various disciplines: machine learning, AI, engineering, physics, biology, and even philosophy.
+- Inspired by historical research centers like Bell Labs.
+
+### Collaboration Across Institutions
+
+- Baker mentioned the inspiration he drew from Jumper's work on AlphaFold2, highlighting the collaborative nature of scientific progress.
+- The prize recognizes work from both academic (Baker at the University of Washington) and private sector (Hassabis and Jumper at Google DeepMind) institutions.
+
+## Personal Reflections and Challenges
+
+### The Weight of Recognition
+
+- Jumper, as the youngest chemistry laureate in over 70 years, reflected on the challenge of continuing to work on "small things that become important" after receiving such a major prize.
+- He referenced Richard Hamming's speech "You and Your Research," which discusses the potential pitfall of only working on "important" things after receiving recognition.
+
+### Balancing Excitement and Normalcy
+
+- All three laureates mentioned the surreal nature of the experience and the immediate disruption to their planned activities.
+- There was a common theme of trying to process the news while also considering practical matters like upcoming meetings or commutes.
+
+## Conclusion
+
+The interviews with Baker, Hassabis, and Jumper provide valuable insights into the human side of groundbreaking scientific achievements. They highlight:
+
+1. The transformative potential of AI and computational methods in biology and chemistry.
+2. The continued importance of human creativity and insight in scientific discovery.
+3. The rapid pace of progress in AI-driven scientific research.
+4. The value of collaborative and interdisciplinary research environments.
+5. The personal challenges and rewards of receiving such prestigious recognition.
+
+These reflections offer inspiration for aspiring scientists and provide a glimpse into the future of AI-assisted scientific discovery. They underscore the excitement and potential of this new era in chemistry and biology, where computational tools and human ingenuity combine to tackle some of the most complex challenges in understanding and engineering the molecular machinery of life.

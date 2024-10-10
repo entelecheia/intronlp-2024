@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 2 - Computational Protein Design and De Novo Protein Engineering &#8212; Introduction to NLP and LLMs 2024</title>
+    <title>Session 2 - Protein Structure Prediction Using Artificial Intelligence &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -97,7 +97,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Session 3 - Insights from Interviews" href="session3.html" />
-    <link rel="prev" title="Session 1 - Protein Structure Prediction Using Artificial Intelligence" href="session1.html" />
+    <link rel="prev" title="Session 1 - Computational Protein Design and De Novo Protein Engineering" href="session1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -253,8 +253,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Special Lecture - 2024 Nobel Prize in Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1 - Protein Structure Prediction Using Artificial Intelligence</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 2 - Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Session 1 - Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 2 - Protein Structure Prediction Using Artificial Intelligence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="session3.html">Session 3 - Insights from Interviews</a></li>
 </ul>
 </details></li>
@@ -472,7 +472,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Session 2 - Computational Protein Design and De Novo Protein Engineering</h1>
+    <h1>Session 2 - Protein Structure Prediction Using Artificial Intelligence</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -482,10 +482,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-computational-protein-design">Introduction to Computational Protein Design</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rosetta-platform-and-protein-design-process">The Rosetta Platform and Protein Design Process</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-de-novo-proteins">Applications of De Novo Proteins</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broader-implications-and-challenges">Broader Implications and Challenges</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-proteins-nature-s-molecular-machines">Understanding Proteins: Nature’s Molecular Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-protein-structure-important">Why is Protein Structure Important?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-protein-folding-challenge">The Protein Folding Challenge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-alphafold-ai-tackles-protein-folding">Enter AlphaFold: AI Tackles Protein Folding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alphafold2-a-quantum-leap">AlphaFold2: A Quantum Leap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-alphafold2-work">How Does AlphaFold2 Work?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-impact-of-alphafold2">The Impact of AlphaFold2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-applications">Real-World Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-protein-science">The Future of Protein Science</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
 </ul>
             </nav>
@@ -498,77 +509,159 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="session-2-computational-protein-design-and-de-novo-protein-engineering">
-<h1>Session 2 - Computational Protein Design and De Novo Protein Engineering<a class="headerlink" href="#session-2-computational-protein-design-and-de-novo-protein-engineering" title="Link to this heading">#</a></h1>
-<p>This session will cover the advances in <strong>computational protein design</strong> that led to the 2024 Nobel Prize in Chemistry, awarded to <strong>David Baker</strong> for his pioneering work in <strong>de novo protein engineering</strong>. We will explore the key methods used in designing new proteins, the applications of these novel proteins in various fields, and the broader implications for synthetic biology and biotechnology.</p>
-<section id="introduction-to-computational-protein-design">
-<h2>Introduction to Computational Protein Design<a class="headerlink" href="#introduction-to-computational-protein-design" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="session-2-protein-structure-prediction-using-artificial-intelligence">
+<h1>Session 2 - Protein Structure Prediction Using Artificial Intelligence<a class="headerlink" href="#session-2-protein-structure-prediction-using-artificial-intelligence" title="Link to this heading">#</a></h1>
+<p>The 2024 Nobel Prize in Chemistry was awarded to Demis Hassabis and John Jumper for their groundbreaking work on AlphaFold2, an artificial intelligence system that revolutionized protein structure prediction. This session explores the journey from traditional methods to AI-powered solutions in understanding protein structures.</p>
+<section id="understanding-proteins-nature-s-molecular-machines">
+<h2>Understanding Proteins: Nature’s Molecular Machines<a class="headerlink" href="#understanding-proteins-nature-s-molecular-machines" title="Link to this heading">#</a></h2>
+<p>Before we dive into prediction methods, let’s understand what proteins are and why their structure is so important.</p>
+<p><img alt="Amino Acids and Protein Structure" src="../_images/fig1_ke_en_24_A.jpeg" /></p>
+<p>As shown in the image above, proteins are long chains of amino acids that fold into complex 3D shapes. There are 20 different types of amino acids, and their sequence determines how the protein will fold. This 3D structure is crucial because it defines the protein’s function.</p>
+<section id="why-is-protein-structure-important">
+<h3>Why is Protein Structure Important?<a class="headerlink" href="#why-is-protein-structure-important" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Biological Functions</strong>: Proteins are involved in nearly every biological process, acting as:</p>
 <ul class="simple">
-<li><p><strong>Protein Engineering and De Novo Design</strong>: Unlike natural proteins, which have evolved over millions of years, <strong>de novo protein design</strong> aims to create entirely new proteins with custom functions that do not exist in nature.</p>
-<ul>
-<li><p><strong>David Baker’s Vision</strong>: Baker’s goal was to harness computational power to design proteins with <strong>specific structures and functions</strong>. This led to the creation of the <strong>Rosetta</strong> software, a platform for designing novel proteins and predicting their structures.</p></li>
+<li><p>Enzymes (catalyzing chemical reactions)</p></li>
+<li><p>Hormones (signaling molecules)</p></li>
+<li><p>Antibodies (defending against pathogens)</p></li>
+<li><p>Structural components (giving cells and tissues their shape)</p></li>
 </ul>
 </li>
-<li><p><strong>Why De Novo Design Matters</strong>: The ability to design proteins from scratch provides immense opportunities for <strong>medicine</strong>, <strong>environmental solutions</strong>, and <strong>industrial biotechnology</strong>.</p>
-<ul>
-<li><p><strong>Figure Reference</strong>: <strong>Figure 3</strong> shows a depiction of the computational design of a protein structure, highlighting the key elements involved in the de novo engineering process.</p></li>
-</ul>
-</li>
-</ul>
+<li><p><strong>Drug Discovery</strong>: Understanding protein structures helps in designing drugs that can interact with specific proteins.</p></li>
+<li><p><strong>Disease Understanding</strong>: Many diseases occur due to misfolded proteins or mutations that affect protein structure.</p></li>
+</ol>
 </section>
-<section id="the-rosetta-platform-and-protein-design-process">
-<h2>The Rosetta Platform and Protein Design Process<a class="headerlink" href="#the-rosetta-platform-and-protein-design-process" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Rosetta Software</strong>: Developed by David Baker and his team, <strong>Rosetta</strong> is used to design proteins that fold in specific ways to perform desired functions. It utilizes <strong>energy minimization algorithms</strong> to predict the most stable structure for a given sequence.</p>
-<ul>
-<li><p><strong>Energy Landscape Exploration</strong>: Proteins adopt the lowest energy conformation in their folding process. Rosetta explores various folding pathways to identify the optimal conformation for designed sequences.</p></li>
-<li><p><strong>Figure Reference</strong>: <strong>Figure 2</strong> illustrates the workflow used by Rosetta, showing how protein sequences are computationally optimized to predict functional three-dimensional structures.</p></li>
-</ul>
-</li>
-<li><p><strong>From Sequence to Function</strong>: The design process begins with defining the <strong>desired function</strong>, such as binding a specific molecule or catalyzing a chemical reaction.</p>
-<ul>
-<li><p><strong>Amino Acid Selection</strong>: The sequence of amino acids is chosen to optimize the stability and functionality of the desired protein. Rosetta’s computational algorithms predict the sequence that will best achieve the target structure.</p></li>
-<li><p><strong>Experimental Validation</strong>: Once designed, the protein is synthesized in the lab, and its structure and function are validated through <strong>crystallography</strong>, <strong>NMR</strong>, or other experimental techniques.</p></li>
-</ul>
-</li>
-</ul>
 </section>
-<section id="applications-of-de-novo-proteins">
-<h2>Applications of De Novo Proteins<a class="headerlink" href="#applications-of-de-novo-proteins" title="Link to this heading">#</a></h2>
+<section id="the-protein-folding-challenge">
+<h2>The Protein Folding Challenge<a class="headerlink" href="#the-protein-folding-challenge" title="Link to this heading">#</a></h2>
+<p>For decades, determining protein structures was a monumental task:</p>
+<ol class="arabic simple">
+<li><p><strong>Experimental Methods</strong>:</p>
 <ul class="simple">
-<li><p><strong>Medical Innovations</strong>:</p>
-<ul>
-<li><p><strong>Novel Enzymes and Therapeutics</strong>: De novo proteins have been designed to act as enzymes that can catalyze reactions not found in nature, opening possibilities for <strong>drug development</strong> and <strong>gene editing</strong>.</p></li>
-<li><p><strong>Vaccine Development</strong>: Engineered proteins are being used as <strong>immunogens</strong> to develop vaccines for challenging diseases, including the development of nanoparticles that can mimic viruses and elicit immune responses.</p></li>
-<li><p><strong>Figure Reference</strong>: <strong>Figure 5</strong> presents examples of de novo proteins used for creating vaccines and therapeutic agents.</p></li>
+<li><p>X-ray crystallography and NMR spectroscopy were the primary methods.</p></li>
+<li><p>These methods are time-consuming, expensive, and don’t work for all proteins.</p></li>
 </ul>
 </li>
-<li><p><strong>Environmental and Industrial Applications</strong>:</p>
-<ul>
-<li><p><strong>Bioremediation</strong>: Custom proteins are being engineered to break down <strong>pollutants</strong> and <strong>plastic waste</strong>, providing environmentally-friendly solutions for managing industrial by-products.</p></li>
-<li><p><strong>Green Chemistry</strong>: Proteins that catalyze specific chemical reactions can be used in industrial processes to reduce the need for harmful chemicals, promoting <strong>sustainable production</strong>.</p></li>
+<li><p><strong>The Prediction Problem</strong>:</p>
+<ul class="simple">
+<li><p>Scientists have long sought to predict structure from amino acid sequence alone.</p></li>
+<li><p>This is incredibly difficult due to the astronomical number of possible configurations (known as Levinthal’s paradox).</p></li>
 </ul>
 </li>
+<li><p><strong>CASP Competition</strong>:</p>
+<ul class="simple">
+<li><p>Started in 1994, the Critical Assessment of Protein Structure Prediction (CASP) aimed to track progress in this field.</p></li>
+<li><p>For years, improvements were slow and incremental.</p></li>
 </ul>
+</li>
+</ol>
 </section>
-<section id="broader-implications-and-challenges">
-<h2>Broader Implications and Challenges<a class="headerlink" href="#broader-implications-and-challenges" title="Link to this heading">#</a></h2>
+<section id="enter-alphafold-ai-tackles-protein-folding">
+<h2>Enter AlphaFold: AI Tackles Protein Folding<a class="headerlink" href="#enter-alphafold-ai-tackles-protein-folding" title="Link to this heading">#</a></h2>
+<p>In 2018, DeepMind, led by Demis Hassabis, entered the CASP competition with AlphaFold, marking the beginning of a revolution.</p>
+<section id="alphafold2-a-quantum-leap">
+<h3>AlphaFold2: A Quantum Leap<a class="headerlink" href="#alphafold2-a-quantum-leap" title="Link to this heading">#</a></h3>
+<p>In 2020, AlphaFold2 achieved near-experimental accuracy in protein structure prediction, solving a 50-year-old grand challenge in biology.</p>
+</section>
+<section id="how-does-alphafold2-work">
+<h3>How Does AlphaFold2 Work?<a class="headerlink" href="#how-does-alphafold2-work" title="Link to this heading">#</a></h3>
+<p>Let’s break down the process:</p>
+<p><img alt="AlphaFold2 Process" src="../_images/fig2_ke_en_24.jpeg" /></p>
+<ol class="arabic simple">
+<li><p><strong>Data Input</strong>:</p>
 <ul class="simple">
-<li><p><strong>Synthetic Biology and the Future of Biotechnology</strong>: The success of de novo protein design is paving the way for <strong>synthetic biology</strong>, where organisms can be engineered to produce new biomolecules, addressing global challenges in health, environment, and energy.</p>
-<ul>
-<li><p><strong>Designing Life from Scratch</strong>: The ability to create custom proteins lays the foundation for designing new biological systems, effectively engineering life at the molecular level.</p></li>
+<li><p>The system takes an amino acid sequence as input.</p></li>
 </ul>
 </li>
-<li><p><strong>Challenges in Computational Design</strong>: Despite advancements, computational design still faces challenges in <strong>predicting protein dynamics</strong>, <strong>long-term stability</strong>, and <strong>unintended interactions</strong> with biological systems. Continued research is needed to overcome these barriers and enhance the reliability of protein engineering.</p></li>
+<li><p><strong>Database Search</strong>:</p>
+<ul class="simple">
+<li><p>It searches for similar sequences in protein databases.</p></li>
 </ul>
+</li>
+<li><p><strong>Evolutionary Analysis</strong>:</p>
+<ul class="simple">
+<li><p>AlphaFold2 aligns similar sequences to identify regions that have evolved together, providing clues about the structure.</p></li>
+</ul>
+</li>
+<li><p><strong>Distance Mapping</strong>:</p>
+<ul class="simple">
+<li><p>The AI creates a “distance map” predicting how close different amino acids will be in the final 3D structure.</p></li>
+</ul>
+</li>
+<li><p><strong>Transformer Neural Networks</strong>:</p>
+<ul class="simple">
+<li><p>These are the secret sauce of AlphaFold2. Transformers can process entire sequences at once, finding complex patterns and relationships.</p></li>
+<li><p>They’re excellent at understanding context, which is crucial for predicting how distant parts of a protein might interact.</p></li>
+</ul>
+</li>
+<li><p><strong>Iterative Refinement</strong>:</p>
+<ul class="simple">
+<li><p>The system goes through multiple cycles, refining its prediction each time.</p></li>
+</ul>
+</li>
+<li><p><strong>Final Structure</strong>:</p>
+<ul class="simple">
+<li><p>The output is a highly accurate 3D model of the protein.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="the-impact-of-alphafold2">
+<h2>The Impact of AlphaFold2<a class="headerlink" href="#the-impact-of-alphafold2" title="Link to this heading">#</a></h2>
+<p>The implications of this breakthrough are vast:</p>
+<ol class="arabic simple">
+<li><p><strong>Speed</strong>: What once took years can now be done in minutes.</p></li>
+<li><p><strong>Accessibility</strong>: The code is open-source, democratizing protein research.</p></li>
+<li><p><strong>Wide Adoption</strong>: By 2024, over two million researchers worldwide were using AlphaFold2.</p></li>
+</ol>
+<section id="real-world-applications">
+<h3>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading">#</a></h3>
+<p><img alt="Environmental Applications" src="../_images/fig5_ke_en_24.jpeg" /></p>
+<ol class="arabic simple">
+<li><p><strong>Drug Development</strong>:</p>
+<ul class="simple">
+<li><p>Faster identification of drug targets.</p></li>
+<li><p>Better understanding of how drugs interact with proteins.</p></li>
+</ul>
+</li>
+<li><p><strong>Environmental Solutions</strong>:</p>
+<ul class="simple">
+<li><p>As shown in the image, researchers are using AlphaFold2 to study enzymes that can break down plastics, potentially revolutionizing recycling.</p></li>
+</ul>
+</li>
+<li><p><strong>Disease Research</strong>:</p>
+<ul class="simple">
+<li><p>Understanding protein misfolding in diseases like Alzheimer’s.</p></li>
+</ul>
+</li>
+<li><p><strong>Synthetic Biology</strong>:</p>
+<ul class="simple">
+<li><p>Designing new proteins for specific functions.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="the-future-of-protein-science">
+<h2>The Future of Protein Science<a class="headerlink" href="#the-future-of-protein-science" title="Link to this heading">#</a></h2>
+<p>AlphaFold2 has opened new horizons:</p>
+<ol class="arabic simple">
+<li><p><strong>Integration with Other Methods</strong>: Combining AI predictions with experimental techniques for even better results.</p></li>
+<li><p><strong>Protein Design</strong>: Moving from prediction to designing entirely new proteins with desired functions.</p></li>
+<li><p><strong>Systems Biology</strong>: Understanding how proteins interact in complex biological systems.</p></li>
+</ol>
 </section>
 <section id="key-takeaways">
 <h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Rosetta’s Impact</strong>: David Baker’s <strong>Rosetta software</strong> has revolutionized the field of protein engineering, enabling scientists to design proteins with new and useful functions.</p></li>
-<li><p><strong>Wide Range of Applications</strong>: De novo designed proteins are finding applications in <strong>medicine</strong>, <strong>environmental science</strong>, and <strong>industrial chemistry</strong>, demonstrating the versatility of computational protein design.</p></li>
-<li><p><strong>Synthetic Biology’s Future</strong>: The work of David Baker has brought us closer to a future where proteins—and potentially entire organisms—can be designed to meet specific human needs, marking a major leap forward in <strong>synthetic biology</strong> and <strong>biotechnology</strong>.</p></li>
-</ul>
+<ol class="arabic simple">
+<li><p><strong>AI Revolution</strong>: Deep learning and transformer models have solved a decades-old problem in biochemistry.</p></li>
+<li><p><strong>Democratization of Science</strong>: Open-source AI tools are accelerating research across various fields.</p></li>
+<li><p><strong>Interdisciplinary Impact</strong>: From medicine to environmental science, the applications are vast and growing.</p></li>
+<li><p><strong>Ongoing Challenge</strong>: While structure prediction is largely solved, understanding protein dynamics and interactions remains a frontier.</p></li>
+</ol>
+<p>The work of Hassabis, Jumper, and the DeepMind team has not just advanced our understanding of proteins; it has fundamentally changed how we approach complex biological problems. As we continue to explore the potential of AI in science, we can expect even more groundbreaking discoveries at the intersection of technology and biology.</p>
 </section>
 </section>
 
@@ -610,7 +703,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Session 1 - Protein Structure Prediction Using Artificial Intelligence</p>
+        <p class="prev-next-title">Session 1 - Computational Protein Design and De Novo Protein Engineering</p>
       </div>
     </a>
     <a class="right-next"
@@ -638,10 +731,21 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-computational-protein-design">Introduction to Computational Protein Design</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rosetta-platform-and-protein-design-process">The Rosetta Platform and Protein Design Process</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-de-novo-proteins">Applications of De Novo Proteins</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broader-implications-and-challenges">Broader Implications and Challenges</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-proteins-nature-s-molecular-machines">Understanding Proteins: Nature’s Molecular Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-protein-structure-important">Why is Protein Structure Important?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-protein-folding-challenge">The Protein Folding Challenge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-alphafold-ai-tackles-protein-folding">Enter AlphaFold: AI Tackles Protein Folding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alphafold2-a-quantum-leap">AlphaFold2: A Quantum Leap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-alphafold2-work">How Does AlphaFold2 Work?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-impact-of-alphafold2">The Impact of AlphaFold2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-applications">Real-World Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-protein-science">The Future of Protein Science</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
 </ul>
   </nav></div>

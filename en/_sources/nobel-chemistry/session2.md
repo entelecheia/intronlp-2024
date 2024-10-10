@@ -1,45 +1,136 @@
-# Session 2 - Computational Protein Design and De Novo Protein Engineering
+# Session 2 - Protein Structure Prediction Using Artificial Intelligence
 
-This session will cover the advances in **computational protein design** that led to the 2024 Nobel Prize in Chemistry, awarded to **David Baker** for his pioneering work in **de novo protein engineering**. We will explore the key methods used in designing new proteins, the applications of these novel proteins in various fields, and the broader implications for synthetic biology and biotechnology.
+The 2024 Nobel Prize in Chemistry was awarded to Demis Hassabis and John Jumper for their groundbreaking work on AlphaFold2, an artificial intelligence system that revolutionized protein structure prediction. This session explores the journey from traditional methods to AI-powered solutions in understanding protein structures.
 
-## Introduction to Computational Protein Design
+## Understanding Proteins: Nature's Molecular Machines
 
-- **Protein Engineering and De Novo Design**: Unlike natural proteins, which have evolved over millions of years, **de novo protein design** aims to create entirely new proteins with custom functions that do not exist in nature.
-  - **David Baker's Vision**: Baker's goal was to harness computational power to design proteins with **specific structures and functions**. This led to the creation of the **Rosetta** software, a platform for designing novel proteins and predicting their structures.
-- **Why De Novo Design Matters**: The ability to design proteins from scratch provides immense opportunities for **medicine**, **environmental solutions**, and **industrial biotechnology**.
-  - **Figure Reference**: **Figure 3** shows a depiction of the computational design of a protein structure, highlighting the key elements involved in the de novo engineering process.
+Before we dive into prediction methods, let's understand what proteins are and why their structure is so important.
 
-## The Rosetta Platform and Protein Design Process
+![Amino Acids and Protein Structure](figs/fig1_ke_en_24_A.jpeg)
 
-- **Rosetta Software**: Developed by David Baker and his team, **Rosetta** is used to design proteins that fold in specific ways to perform desired functions. It utilizes **energy minimization algorithms** to predict the most stable structure for a given sequence.
+As shown in the image above, proteins are long chains of amino acids that fold into complex 3D shapes. There are 20 different types of amino acids, and their sequence determines how the protein will fold. This 3D structure is crucial because it defines the protein's function.
 
-  - **Energy Landscape Exploration**: Proteins adopt the lowest energy conformation in their folding process. Rosetta explores various folding pathways to identify the optimal conformation for designed sequences.
-  - **Figure Reference**: **Figure 2** illustrates the workflow used by Rosetta, showing how protein sequences are computationally optimized to predict functional three-dimensional structures.
+### Why is Protein Structure Important?
 
-- **From Sequence to Function**: The design process begins with defining the **desired function**, such as binding a specific molecule or catalyzing a chemical reaction.
-  - **Amino Acid Selection**: The sequence of amino acids is chosen to optimize the stability and functionality of the desired protein. Rosetta's computational algorithms predict the sequence that will best achieve the target structure.
-  - **Experimental Validation**: Once designed, the protein is synthesized in the lab, and its structure and function are validated through **crystallography**, **NMR**, or other experimental techniques.
+1. **Biological Functions**: Proteins are involved in nearly every biological process, acting as:
 
-## Applications of De Novo Proteins
+   - Enzymes (catalyzing chemical reactions)
+   - Hormones (signaling molecules)
+   - Antibodies (defending against pathogens)
+   - Structural components (giving cells and tissues their shape)
 
-- **Medical Innovations**:
+2. **Drug Discovery**: Understanding protein structures helps in designing drugs that can interact with specific proteins.
 
-  - **Novel Enzymes and Therapeutics**: De novo proteins have been designed to act as enzymes that can catalyze reactions not found in nature, opening possibilities for **drug development** and **gene editing**.
-  - **Vaccine Development**: Engineered proteins are being used as **immunogens** to develop vaccines for challenging diseases, including the development of nanoparticles that can mimic viruses and elicit immune responses.
-  - **Figure Reference**: **Figure 5** presents examples of de novo proteins used for creating vaccines and therapeutic agents.
+3. **Disease Understanding**: Many diseases occur due to misfolded proteins or mutations that affect protein structure.
 
-- **Environmental and Industrial Applications**:
-  - **Bioremediation**: Custom proteins are being engineered to break down **pollutants** and **plastic waste**, providing environmentally-friendly solutions for managing industrial by-products.
-  - **Green Chemistry**: Proteins that catalyze specific chemical reactions can be used in industrial processes to reduce the need for harmful chemicals, promoting **sustainable production**.
+## The Protein Folding Challenge
 
-## Broader Implications and Challenges
+For decades, determining protein structures was a monumental task:
 
-- **Synthetic Biology and the Future of Biotechnology**: The success of de novo protein design is paving the way for **synthetic biology**, where organisms can be engineered to produce new biomolecules, addressing global challenges in health, environment, and energy.
-  - **Designing Life from Scratch**: The ability to create custom proteins lays the foundation for designing new biological systems, effectively engineering life at the molecular level.
-- **Challenges in Computational Design**: Despite advancements, computational design still faces challenges in **predicting protein dynamics**, **long-term stability**, and **unintended interactions** with biological systems. Continued research is needed to overcome these barriers and enhance the reliability of protein engineering.
+1. **Experimental Methods**:
+
+   - X-ray crystallography and NMR spectroscopy were the primary methods.
+   - These methods are time-consuming, expensive, and don't work for all proteins.
+
+2. **The Prediction Problem**:
+
+   - Scientists have long sought to predict structure from amino acid sequence alone.
+   - This is incredibly difficult due to the astronomical number of possible configurations (known as Levinthal's paradox).
+
+3. **CASP Competition**:
+   - Started in 1994, the Critical Assessment of Protein Structure Prediction (CASP) aimed to track progress in this field.
+   - For years, improvements were slow and incremental.
+
+## Enter AlphaFold: AI Tackles Protein Folding
+
+In 2018, DeepMind, led by Demis Hassabis, entered the CASP competition with AlphaFold, marking the beginning of a revolution.
+
+### AlphaFold2: A Quantum Leap
+
+In 2020, AlphaFold2 achieved near-experimental accuracy in protein structure prediction, solving a 50-year-old grand challenge in biology.
+
+### How Does AlphaFold2 Work?
+
+Let's break down the process:
+
+![AlphaFold2 Process](figs/fig2_ke_en_24.jpeg)
+
+1. **Data Input**:
+
+   - The system takes an amino acid sequence as input.
+
+2. **Database Search**:
+
+   - It searches for similar sequences in protein databases.
+
+3. **Evolutionary Analysis**:
+
+   - AlphaFold2 aligns similar sequences to identify regions that have evolved together, providing clues about the structure.
+
+4. **Distance Mapping**:
+
+   - The AI creates a "distance map" predicting how close different amino acids will be in the final 3D structure.
+
+5. **Transformer Neural Networks**:
+
+   - These are the secret sauce of AlphaFold2. Transformers can process entire sequences at once, finding complex patterns and relationships.
+   - They're excellent at understanding context, which is crucial for predicting how distant parts of a protein might interact.
+
+6. **Iterative Refinement**:
+
+   - The system goes through multiple cycles, refining its prediction each time.
+
+7. **Final Structure**:
+   - The output is a highly accurate 3D model of the protein.
+
+## The Impact of AlphaFold2
+
+The implications of this breakthrough are vast:
+
+1. **Speed**: What once took years can now be done in minutes.
+
+2. **Accessibility**: The code is open-source, democratizing protein research.
+
+3. **Wide Adoption**: By 2024, over two million researchers worldwide were using AlphaFold2.
+
+### Real-World Applications
+
+![Environmental Applications](figs/fig5_ke_en_24.jpeg)
+
+1. **Drug Development**:
+
+   - Faster identification of drug targets.
+   - Better understanding of how drugs interact with proteins.
+
+2. **Environmental Solutions**:
+
+   - As shown in the image, researchers are using AlphaFold2 to study enzymes that can break down plastics, potentially revolutionizing recycling.
+
+3. **Disease Research**:
+
+   - Understanding protein misfolding in diseases like Alzheimer's.
+
+4. **Synthetic Biology**:
+   - Designing new proteins for specific functions.
+
+## The Future of Protein Science
+
+AlphaFold2 has opened new horizons:
+
+1. **Integration with Other Methods**: Combining AI predictions with experimental techniques for even better results.
+
+2. **Protein Design**: Moving from prediction to designing entirely new proteins with desired functions.
+
+3. **Systems Biology**: Understanding how proteins interact in complex biological systems.
 
 ## Key Takeaways
 
-- **Rosetta's Impact**: David Baker's **Rosetta software** has revolutionized the field of protein engineering, enabling scientists to design proteins with new and useful functions.
-- **Wide Range of Applications**: De novo designed proteins are finding applications in **medicine**, **environmental science**, and **industrial chemistry**, demonstrating the versatility of computational protein design.
-- **Synthetic Biology's Future**: The work of David Baker has brought us closer to a future where proteins—and potentially entire organisms—can be designed to meet specific human needs, marking a major leap forward in **synthetic biology** and **biotechnology**.
+1. **AI Revolution**: Deep learning and transformer models have solved a decades-old problem in biochemistry.
+
+2. **Democratization of Science**: Open-source AI tools are accelerating research across various fields.
+
+3. **Interdisciplinary Impact**: From medicine to environmental science, the applications are vast and growing.
+
+4. **Ongoing Challenge**: While structure prediction is largely solved, understanding protein dynamics and interactions remains a frontier.
+
+The work of Hassabis, Jumper, and the DeepMind team has not just advanced our understanding of proteins; it has fundamentally changed how we approach complex biological problems. As we continue to explore the potential of AI in science, we can expect even more groundbreaking discoveries at the intersection of technology and biology.
