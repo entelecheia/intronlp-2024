@@ -2,14 +2,14 @@
 
 This session will cover the advances in **computational protein design** that led to the 2024 Nobel Prize in Chemistry, awarded to **David Baker** for his pioneering work in **de novo protein engineering**. We will explore the key methods used in designing new proteins, the applications of these novel proteins in various fields, and the broader implications for synthetic biology and biotechnology.
 
-## 1. Introduction to Computational Protein Design
+## Introduction to Computational Protein Design
 
 - **Protein Engineering and De Novo Design**: Unlike natural proteins, which have evolved over millions of years, **de novo protein design** aims to create entirely new proteins with custom functions that do not exist in nature.
   - **David Baker's Vision**: Baker's goal was to harness computational power to design proteins with **specific structures and functions**. This led to the creation of the **Rosetta** software, a platform for designing novel proteins and predicting their structures.
 - **Why De Novo Design Matters**: The ability to design proteins from scratch provides immense opportunities for **medicine**, **environmental solutions**, and **industrial biotechnology**.
   - **Figure Reference**: **Figure 3** shows a depiction of the computational design of a protein structure, highlighting the key elements involved in the de novo engineering process.
 
-## 2. The Rosetta Platform and Protein Design Process
+## The Rosetta Platform and Protein Design Process
 
 - **Rosetta Software**: Developed by David Baker and his team, **Rosetta** is used to design proteins that fold in specific ways to perform desired functions. It utilizes **energy minimization algorithms** to predict the most stable structure for a given sequence.
 
@@ -20,7 +20,7 @@ This session will cover the advances in **computational protein design** that le
   - **Amino Acid Selection**: The sequence of amino acids is chosen to optimize the stability and functionality of the desired protein. Rosetta's computational algorithms predict the sequence that will best achieve the target structure.
   - **Experimental Validation**: Once designed, the protein is synthesized in the lab, and its structure and function are validated through **crystallography**, **NMR**, or other experimental techniques.
 
-## 3. Applications of De Novo Proteins
+## Applications of De Novo Proteins
 
 - **Medical Innovations**:
 
@@ -32,13 +32,13 @@ This session will cover the advances in **computational protein design** that le
   - **Bioremediation**: Custom proteins are being engineered to break down **pollutants** and **plastic waste**, providing environmentally-friendly solutions for managing industrial by-products.
   - **Green Chemistry**: Proteins that catalyze specific chemical reactions can be used in industrial processes to reduce the need for harmful chemicals, promoting **sustainable production**.
 
-## 4. Broader Implications and Challenges
+## Broader Implications and Challenges
 
 - **Synthetic Biology and the Future of Biotechnology**: The success of de novo protein design is paving the way for **synthetic biology**, where organisms can be engineered to produce new biomolecules, addressing global challenges in health, environment, and energy.
   - **Designing Life from Scratch**: The ability to create custom proteins lays the foundation for designing new biological systems, effectively engineering life at the molecular level.
 - **Challenges in Computational Design**: Despite advancements, computational design still faces challenges in **predicting protein dynamics**, **long-term stability**, and **unintended interactions** with biological systems. Continued research is needed to overcome these barriers and enhance the reliability of protein engineering.
 
-## 5. Key Takeaways
+## Key Takeaways
 
 - **Rosetta's Impact**: David Baker's **Rosetta software** has revolutionized the field of protein engineering, enabling scientists to design proteins with new and useful functions.
 - **Wide Range of Applications**: De novo designed proteins are finding applications in **medicine**, **environmental science**, and **industrial chemistry**, demonstrating the versatility of computational protein design.
