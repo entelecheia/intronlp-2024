@@ -2,14 +2,7 @@
 
 **Foundations of Machine Learning**
 
-::::{grid} 2
-:::{grid-item}
-![](figs/Hopfield.jpeg)
-:::
-:::{grid-item}
-![](figs/Hinton.jpeg)
-:::
-::::
+![](figs/2024-physics-laureates.jpeg)
 
 The **2024 Nobel Prize in Physics** has been awarded to **John J. Hopfield** and **Geoffrey E. Hinton** for their foundational contributions to **machine learning using artificial neural networks (ANNs)**. Their work has laid the groundwork for today's advanced machine learning systems and inspired countless developments across AI and computational sciences.
 
