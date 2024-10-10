@@ -10,16 +10,28 @@ This session explores the personal reflections and insights shared by David Bake
 - His wife realized the significance of the call before he did, reacting with excitement.
 - Baker expressed honor and excitement about sharing the prize with Hassabis and Jumper.
 
+```{youtube} qSoQMn4rEwY
+:width: 100%
+```
+
 ### Demis Hassabis's Reaction
 
 - Hassabis described the experience as "unbelievably special" and "surreal."
 - He mentioned his mind going blank upon hearing the news, emphasizing the magnitude of the moment.
+
+```{youtube} 6Lm3_0JDn2U
+:width: 100%
+```
 
 ### John Jumper's Surprise
 
 - Jumper had estimated his chances of winning at only 10%.
 - He had planned to sleep through the announcement to manage his nerves.
 - Jumper expressed amazement at the speed of recognition, noting it was just 3-4 years from their paper to the Nobel Prize.
+
+```{youtube} Rs8ofPvdwB4
+:width: 100%
+```
 
 ## The Impact of Their Work
 
