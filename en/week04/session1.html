@@ -90,8 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week04/session1';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
@@ -573,23 +579,23 @@ document.write(`
 <section id="cbow-architecture">
 <h3>2.1 CBOW Architecture<a class="headerlink" href="#cbow-architecture" title="Link to this heading">#</a></h3>
 <p>CBOW predicts a target word given its context words.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[Input Context Words] --&gt; B[Input Layer]
     B --&gt; C[Hidden Layer]
     C --&gt; D[Output Layer]
     D --&gt; E[Target Word]
-        </div></section>
+    </pre></section>
 <section id="skip-gram-architecture">
 <h3>2.2 Skip-gram Architecture<a class="headerlink" href="#skip-gram-architecture" title="Link to this heading">#</a></h3>
 <p>Skip-gram predicts context words given a target word.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[Input Target Word] --&gt; B[Input Layer]
     B --&gt; C[Hidden Layer]
     C --&gt; D[Output Layer]
     D --&gt; E[Context Words]
-        </div></section>
+    </pre></section>
 <section id="training-process">
 <h3>2.3 Training Process<a class="headerlink" href="#training-process" title="Link to this heading">#</a></h3>
 <p>Word2Vec uses a neural network to learn word embeddings:</p>

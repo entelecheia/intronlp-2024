@@ -90,8 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week01/session1';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
@@ -521,8 +527,8 @@ document.write(`
 <section id="definition-of-nlp">
 <h3>1.1 Definition of NLP<a class="headerlink" href="#definition-of-nlp" title="Link to this heading">#</a></h3>
 <p>Natural Language Processing (NLP) is an interdisciplinary field that combines linguistics, computer science, and artificial intelligence to enable computers to understand, interpret, and generate human language. The primary goal of NLP is to bridge the gap between human communication and computer understanding.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[Natural Language Processing] --&gt; B[Linguistics]
     A --&gt; C[Computer Science]
     A --&gt; D[Artificial Intelligence]
@@ -533,7 +539,7 @@ document.write(`
     C --&gt; I[Data Structures]
     D --&gt; J[Machine Learning]
     D --&gt; K[Deep Learning]
-        </div></section>
+    </pre></section>
 <section id="basic-concepts">
 <h3>1.2 Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading">#</a></h3>
 <p>Key concepts in NLP include:</p>
@@ -588,8 +594,8 @@ document.write(`
 </section>
 <section id="historical-perspective-of-nlp">
 <h2>2. Historical Perspective of NLP<a class="headerlink" href="#historical-perspective-of-nlp" title="Link to this heading">#</a></h2>
-<div class="mermaid">
-            timeline
+<pre  class="mermaid">
+        timeline
     title Evolution of NLP
     1950s : Rule-based systems
     1960s : Early machine translation
@@ -599,7 +605,7 @@ document.write(`
     2000s : Statistical MT &amp; Web-scale data
     2010s : Deep learning &amp; neural networks
     2020s : Large language models
-        </div><section id="early-approaches-1950s-1980s">
+    </pre><section id="early-approaches-1950s-1980s">
 <h3>2.1 Early Approaches (1950s-1980s)<a class="headerlink" href="#early-approaches-1950s-1980s" title="Link to this heading">#</a></h3>
 <p>Early NLP systems were primarily rule-based, relying on hand-crafted rules and expert knowledge. These approaches were influenced by Noam Chomsky’s formal language theory, which proposed that language could be described by a set of grammatical rules.</p>
 <p>Key developments:</p>
@@ -693,8 +699,8 @@ document.write(`
 <section id="modern-nlp-and-deep-learning-2010s-present">
 <h2>3. Modern NLP and Deep Learning (2010s-Present)<a class="headerlink" href="#modern-nlp-and-deep-learning-2010s-present" title="Link to this heading">#</a></h2>
 <p>The current era of NLP is characterized by the dominance of deep learning approaches, particularly transformer-based models.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[Modern NLP] --&gt; B[Word Embeddings]
     A --&gt; C[Deep Neural Networks]
     A --&gt; D[Transformer Architecture]
@@ -705,7 +711,7 @@ document.write(`
     D --&gt; I[BERT]
     D --&gt; J[GPT]
     D --&gt; K[T5]
-        </div><p>Key developments:</p>
+    </pre><p>Key developments:</p>
 <ol class="arabic simple">
 <li><p><strong>Word Embeddings</strong>: Dense vector representations of words (e.g., Word2Vec, GloVe)</p></li>
 <li><p><strong>Recurrent Neural Networks (RNNs)</strong>: Particularly Long Short-Term Memory (LSTM) networks for sequence modeling</p></li>
@@ -744,14 +750,14 @@ document.write(`
 <section id="traditional-nlp-pipeline">
 <h2>4. Traditional NLP Pipeline<a class="headerlink" href="#traditional-nlp-pipeline" title="Link to this heading">#</a></h2>
 <p>The traditional NLP pipeline typically consists of several stages:</p>
-<div class="mermaid">
-            graph LR
+<pre  class="mermaid">
+        graph LR
     A[Text Input] --&gt; B[Text Preprocessing]
     B --&gt; C[Feature Extraction]
     C --&gt; D[Model Training]
     D --&gt; E[Evaluation]
     E --&gt; F[Application]
-        </div><section id="text-preprocessing">
+    </pre><section id="text-preprocessing">
 <h3>4.1 Text Preprocessing<a class="headerlink" href="#text-preprocessing" title="Link to this heading">#</a></h3>
 <p>Text preprocessing is crucial for cleaning and standardizing raw text data. Common steps include:</p>
 <ol class="arabic simple">

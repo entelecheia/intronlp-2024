@@ -90,8 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week01/session2';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
@@ -277,6 +283,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-7week-01.html">7주차 프로젝트 연구일지 -1</a></li>
 </ul>
 </details></li>
 </ul>
@@ -290,6 +297,9 @@
 <li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note5w.html">5주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note6w.html">6주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note7w.html">7주차 프로젝트 연구일지</a></li>
 </ul>
 </details></li>
 </ul>
@@ -626,15 +636,15 @@ document.write(`
 <li><p>장단기 메모리 네트워크 (LSTMs)</p></li>
 <li><p>텍스트를 위한 합성곱 신경망 (CNNs)</p></li>
 </ol>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[NLP에서의 딥 러닝] --&gt; B[RNNs]
     A --&gt; C[LSTMs]
     A --&gt; D[텍스트용 CNNs]
     B --&gt; E[시퀀스 모델링]
     C --&gt; F[장기 의존성]
     D --&gt; G[특징 추출]
-        </div><p>PyTorch를 사용한 감성 분석을 위한 간단한 RNN 예제:</p>
+    </pre><p>PyTorch를 사용한 감성 분석을 위한 간단한 RNN 예제:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
@@ -676,8 +686,8 @@ document.write(`
 <li><p>위치 인코딩</p></li>
 <li><p>피드포워드 신경망</p></li>
 </ol>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[트랜스포머] --&gt; B[인코더]
     A --&gt; C[디코더]
     B --&gt; D[자기 주의]
@@ -685,7 +695,7 @@ document.write(`
     C --&gt; F[마스크드 자기 주의]
     C --&gt; G[인코더-디코더 주의]
     C --&gt; H[피드포워드 NN]
-        </div><p>주요 트랜스포머 기반 모델:</p>
+    </pre><p>주요 트랜스포머 기반 모델:</p>
 <ol class="arabic simple">
 <li><p>BERT (Bidirectional Encoder Representations from Transformers)</p></li>
 <li><p>GPT (Generative Pre-trained Transformer)</p></li>
@@ -744,8 +754,8 @@ document.write(`
 <li><p>코드 생성</p></li>
 <li><p>퓨샷 및 제로샷 학습</p></li>
 </ol>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[대규모 언어 모델] --&gt; B[퓨샷 학습]
     A --&gt; C[제로샷 학습]
     A --&gt; D[전이 학습]
@@ -754,7 +764,7 @@ document.write(`
     C --&gt; G[예시 없이 작업 수행]
     D --&gt; H[도메인 간 지식 전이]
     E --&gt; I[다중 작업 동시 수행]
-        </div></section>
+    </pre></section>
 <section id="id6">
 <h3>7.2. 예시와 그 영향<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>주요 LLM 예시:</p>

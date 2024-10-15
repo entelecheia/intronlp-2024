@@ -90,8 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week04/session1';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
@@ -277,6 +283,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-7week-01.html">7주차 프로젝트 연구일지 -1</a></li>
 </ul>
 </details></li>
 </ul>
@@ -290,6 +297,9 @@
 <li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note5w.html">5주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note6w.html">6주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note7w.html">7주차 프로젝트 연구일지</a></li>
 </ul>
 </details></li>
 </ul>
@@ -626,23 +636,23 @@ document.write(`
 <section id="cbow">
 <h3>2.1 CBOW 아키텍처<a class="headerlink" href="#cbow" title="Link to this heading">#</a></h3>
 <p>CBOW는 주변 단어들을 통해 목표 단어를 예측합니다.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[입력 주변 단어들] --&gt; B[입력 레이어]
     B --&gt; C[은닉 레이어]
     C --&gt; D[출력 레이어]
     D --&gt; E[목표 단어]
-        </div></section>
+    </pre></section>
 <section id="skip-gram">
 <h3>2.2 Skip-gram 아키텍처<a class="headerlink" href="#skip-gram" title="Link to this heading">#</a></h3>
 <p>Skip-gram은 목표 단어를 통해 주변 단어들을 예측합니다.</p>
-<div class="mermaid">
-            graph TD
+<pre  class="mermaid">
+        graph TD
     A[입력 목표 단어] --&gt; B[입력 레이어]
     B --&gt; C[은닉 레이어]
     C --&gt; D[출력 레이어]
     D --&gt; E[주변 단어들]
-        </div></section>
+    </pre></section>
 <section id="id5">
 <h3>2.3 학습 과정<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Word2Vec은 신경망을 사용하여 단어 임베딩을 학습합니다:</p>

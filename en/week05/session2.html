@@ -90,8 +90,14 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week05/session2';</script>
     <script src="../_static/chat.js?v=f0de43d7"></script>
     <script src="../_static/language_switcher.js?v=730be77c"></script>
@@ -583,16 +589,14 @@ Example: cat - kitten ≈ dog - puppy</p>
 </section>
 <section id="attention-mechanism-simplified">
 <h3>2.3 Attention Mechanism Simplified<a class="headerlink" href="#attention-mechanism-simplified" title="Link to this heading">#</a></h3>
-<div align="center" class="mermaid align-center">
-            graph TD
+<pre align="center" class="mermaid align-center">
+        graph TD
 A[Input: the cat ran] --&gt; B[Attention Weights] --&gt; C[Output: cat]
-        </div>
-        <p>This diagram illustrates a simplified version of the attention mechanism, showing how it focuses on important words in a sentence.</p>
-<div align="center" class="mermaid align-center">
-            graph LR
+    </pre><p>This diagram illustrates a simplified version of the attention mechanism, showing how it focuses on important words in a sentence.</p>
+<pre align="center" class="mermaid align-center">
+        graph LR
 A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output: cat]
-        </div>
-        <p>This diagram shows the attention mechanism with specific attention weights, demonstrating how the model focuses more on the word “cat” in this example.</p>
+    </pre><p>This diagram shows the attention mechanism with specific attention weights, demonstrating how the model focuses more on the word “cat” in this example.</p>
 </section>
 </section>
 <section id="deconstructing-attention">
