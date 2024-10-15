@@ -62,6 +62,7 @@ parts:
                   - file: projects/team1/research-note-4week-02
                   - file: projects/team1/research-note-5week-01
                   - file: projects/team1/research-note-6week-01
+                  - file: projects/team1/research-note-7week-01
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
@@ -72,6 +73,9 @@ parts:
                 sections:
                   - file: projects/team3/research-note3w
                   - file: projects/team3/research-note4w
+                  - file: projects/team3/research-note5w
+                  - file: projects/team3/research-note6w
+                  - file: projects/team3/research-note7w
           - file: projects/team4/index
             sections:
               - file: projects/team4/proposal
