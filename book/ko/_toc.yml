@@ -95,6 +95,8 @@ parts:
                   - file: projects/team5/research-note-4
                   - file: projects/team5/research-note-5
                   - file: projects/team5/research-note-6
+                  - file: projects/team5/research-note-7
+                  - file: projects/team5/research-note-8
   - caption: About
     chapters:
       - file: syllabus/index
