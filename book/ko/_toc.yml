@@ -43,6 +43,10 @@ parts:
           - file: nobel-chemistry/session1
           - file: nobel-chemistry/session2
           - file: nobel-chemistry/session3
+      - file: week09/index
+        sections:
+          - file: week09/session1
+          - file: week09/session2
   - caption: Projects
     chapters:
       - file: projects/index
