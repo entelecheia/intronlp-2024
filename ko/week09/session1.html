@@ -1,0 +1,1002 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week09/session1';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9주차 세션 2: 고급 프롬프트 전략과 프롬프트 디자인 원칙" href="session2.html" />
+    <link rel="prev" title="9주차: 프롬프트 엔지니어링 기초" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차 - 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1 - 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2 - 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차 - 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1 - 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2 - 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3 - 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차 - 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1 - 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2 - 고급 통계적 언어 모델</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차 - 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 세션 1 - 단어 임베딩과 Word2Vec 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 세션 2 - 고급 단어 임베딩</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 세션 1 - 트랜스포머 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 세션 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 세션 3 - 트랜스포머의 실제 구현 및 시각화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">6주차 - LLM API 이해하기</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">6주차 세션 2 - 샘플링 방법과 텍스트 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">특강 - 2024년 노벨 물리학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">세션 1 - 인공 신경망을 이용한 기계 학습의 기초적 발견</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">세션 2 - 딥 러닝의 진화와 고급 신경망 아키텍처</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">세션 3 - 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">특강 - 2024년 노벨 화학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">세션 1 - 전산 단백질 설계와 데 노보 단백질 공학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">세션 2 - 인공지능을 이용한 단백질 구조 예측</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">세션 3 - 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">9주차: 프롬프트 엔지니어링 기초</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">9주차 세션 2: 고급 프롬프트 전략과 프롬프트 디자인 원칙</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-1week-01.html">1주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-2week-01.html">2주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-3week-01.html">3주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-01.html">4주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-7week-01.html">7주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-8week-01.html">8주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note5w.html">5주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note6w.html">6주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note7w.html">7주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W4.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W5.html">5주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-4.html">4차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-5.html">5차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-6.html">6차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-7.html">7차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-8.html">8차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week09/session1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek09/session1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week09/session1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. 프롬프트 엔지니어링이란 무엇인가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 프롬프트 기법의 발전</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 핵심 프롬프트 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.1 제로샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2 퓨샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.3 체인-오브-생각 기법</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">실용적인 예제와 연습 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">예제 1: 제로샷 vs. 퓨샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">예제 2: 체인-오브-생각 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이번 세션에서는 <strong>프롬프트 엔지니어링</strong>의 기본 개념을 탐구하며, 이는 **대형 언어 모델(LLMs)**을 효과적으로 활용하기 위한 필수 기술입니다. 프롬프트 엔지니어링이 무엇인지, **자연어 처리(NLP)**에서의 중요성, 그리고 어떻게 발전해왔는지를 논의할 것입니다. 또한 <strong>제로샷 프롬프트</strong>, <strong>퓨샷 프롬프트</strong>, <strong>체인-오브-생각(Chain-of-Thought)</strong> 접근법과 같은 핵심 프롬프트 기법을 소개합니다. 이 세션이 끝나면, 다양한 NLP 작업에서 LLM의 성능을 최적화하기 위한 효과적인 프롬프트를 설계하는 데 필요한 탄탄한 기반을 갖추게 될 것입니다.</p>
+</section>
+<section id="id3">
+<h2>소개<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><strong>대형 언어 모델</strong>이 점점 더 강력해지고 AI 애플리케이션에 필수적인 요소가 됨에 따라, 이들과 상호 작용하는 방법이 매우 중요해졌습니다. <strong>프롬프트 엔지니어링</strong>은 원하는 출력을 생성하도록 LLM을 안내하는 입력을 설계하는 예술이자 과학입니다. 이는 텍스트 생성, 번역, 문제 해결, 코드 완성 등 다양한 NLP 작업에서 LLM의 모든 잠재력을 활용하는 데 중요한 역할을 합니다. 프롬프트 엔지니어링을 이해하면 광범위한 미세 조정이나 대용량 데이터 세트 없이도 모델 성능을 최적화할 수 있습니다.</p>
+</section>
+<section id="id4">
+<h2>1. 프롬프트 엔지니어링이란 무엇인가?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>정의</strong>: 프롬프트 엔지니어링은 LLM으로부터 특정하고 최적의 응답을 이끌어내기 위해 입력 프롬프트를 설계하고 개선하는 과정입니다.</p>
+<ul>
+<li><p>사용자의 의도에 맞는 출력을 생성하도록 모델을 안내하는 질문, 명령문 또는 지시사항을 작성하는 것을 포함합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM에서의 중요성</strong>:</p>
+<ul>
+<li><p>LLM은 입력 프롬프트에 매우 민감하며, 작은 변화도 출력에 큰 영향을 미칠 수 있습니다.</p></li>
+<li><p>효과적인 프롬프트 엔지니어링은 추가적인 학습이나 데이터 없이도 모델의 성능을 향상시킬 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM 성능 최적화에서의 역할</strong>:</p>
+<ul>
+<li><p>프롬프트를 신중하게 설계함으로써 모델의 <strong>정확성</strong>, <strong>관련성</strong>, <strong>유용성</strong>을 개선할 수 있습니다.</p></li>
+<li><p>모델의 동작을 더 잘 제어할 수 있어, 특정 응용 분야에 적합한 출력을 보장합니다.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>요약</strong>: 프롬프트 엔지니어링은 LLM과 효과적으로 상호 작용하는 데 필수적이며, 우리의 목표에 맞는 잘 설계된 프롬프트를 작성함으로써 출력물을 최적화할 수 있게 해줍니다.</p>
+</section>
+<section id="id5">
+<h2>2. 프롬프트 기법의 발전<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>단순한 질의에서 정교한 전략으로</strong>:</p>
+<ul>
+<li><p><strong>초기 NLP 시스템</strong>: 엄격한 키워드 기반 입력이 필요했습니다 (예: “날씨 서울”).</p></li>
+<li><p><strong>현대의 LLM</strong>: 자연어를 이해하고 복잡하고 미묘한 프롬프트를 처리할 수 있습니다 (예: “오늘 서울의 날씨는 어떻습니까?”).</p></li>
+</ul>
+</li>
+<li><p><strong>LLM 출력 품질과 작업 성능에 대한 영향</strong>:</p>
+<ul>
+<li><p>고급 프롬프트 기법은 LLM의 모든 기능을 활용하게 해줍니다.</p></li>
+<li><p>번역, 요약, 추론, 창의적 글쓰기와 같은 작업에서 출력이 향상되었습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>발전의 예시</strong>:</p>
+<ul>
+<li><p><strong>규칙 기반 입력</strong>에서 <strong>자연어 프롬프트</strong>로의 전환.</p></li>
+<li><p>복잡한 작업의 성능을 향상시키는 <strong>퓨샷 프롬프트</strong>와 <strong>체인-오브-생각 프롬프트</strong>와 같은 기법의 도입.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>요약</strong>: 프롬프트 기법은 크게 발전하여 LLM의 성능을 향상시키고 인간과 AI 사이의 더 자연스럽고 효과적인 상호 작용을 가능하게 했습니다.</p>
+</section>
+<section id="id6">
+<h2>3. 핵심 프롬프트 기법<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h3>3.1 제로샷 프롬프트<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>개념과 적용</strong>:</p>
+<ul>
+<li><p><strong>제로샷 프롬프트</strong>는 모델에게 특정 작업에 대한 예제나 사전 학습 없이 작업을 수행하도록 요청하는 것을 의미합니다.</p></li>
+<li><p>모델은 사전에 학습한 지식을 기반으로 작업을 이해하고 수행합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점</strong>:</p>
+<ul>
+<li><p><strong>효율성</strong>: 추가 데이터나 예제가 필요 없습니다.</p></li>
+<li><p><strong>유연성</strong>: 다양한 작업에 적용할 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>제한사항</strong>:</p>
+<ul>
+<li><p>복잡하거나 모호한 작업에서 어려움을 겪을 수 있습니다.</p></li>
+<li><p>프롬프트의 명확성에 따라 출력 품질이 달라질 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p><strong>번역</strong>:</p>
+<ul>
+<li><p>프롬프트: <em>“다음 문장을 독일어로 번역하세요: ‘회의는 내일 오전 9시에 시작합니다.’”</em></p></li>
+</ul>
+</li>
+<li><p><strong>요약</strong>:</p>
+<ul>
+<li><p>프롬프트: <em>“다음 기사를 한 문장으로 요약하세요: [기사 내용]”</em></p></li>
+</ul>
+</li>
+<li><p><strong>감정 분석</strong>:</p>
+<ul>
+<li><p>프롬프트: <em>“다음 리뷰의 감정을 긍정, 부정 또는 중립으로 판단하세요: ‘제품은 광고된 대로 작동하지만 고객 서비스는 도움이 되지 않았습니다.’”</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>요약</strong>: 제로샷 프롬프트는 모델의 기존 지식을 활용하여 예제 없이 작업을 수행하며, 간단한 작업에 적합하지만 더 복잡하거나 미묘한 요청에서는 어려움을 겪을 수 있습니다.</p>
+</section>
+<section id="id8">
+<h3>3.2 퓨샷 프롬프트<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>정의와 사용 사례</strong>:</p>
+<ul class="simple">
+<li><p><strong>퓨샷 프롬프트</strong>는 프롬프트 내에 몇 가지 예제를 제공하여 모델이 작업을 이해하도록 돕습니다.</p></li>
+<li><p>제로샷 프롬프트로 만족스러운 결과를 얻지 못할 때 유용합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>제로샷 프롬프트와의 비교</strong>:</p>
+<ul class="simple">
+<li><p><strong>성능 향상</strong>: 예제는 모델이 원하는 출력 형식과 작업의 구체성을 추론하는 데 도움을 줍니다.</p></li>
+<li><p><strong>복잡성</strong>: 혼란이나 편향을 피하기 위해 예제를 신중하게 선택해야 합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>효과적인 퓨샷 프롬프트 설계 기법</strong>:</p>
+<ul class="simple">
+<li><p><strong>명확하고 대표적인 예제 선택</strong>: 예제가 관련성이 있고 작업을 정확하게 보여주는지 확인합니다.</p></li>
+<li><p><strong>일관된 형식 유지</strong>: 모든 예제에 동일한 구조를 사용합니다.</p></li>
+<li><p><strong>예제 수 제한</strong>: 토큰 제한을 고려하고, 양보다 질에 집중합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p><strong>감정 분석</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">리뷰</span><span class="p">:</span> <span class="s2">&quot;영화는 환상적이고 놀라움으로 가득했습니다.&quot;</span>
+<span class="n">감정</span><span class="p">:</span> <span class="n">긍정</span>
+
+<span class="n">리뷰</span><span class="p">:</span> <span class="s2">&quot;영화를 즐기지 못했습니다; 너무 길고 지루했어요.&quot;</span>
+<span class="n">감정</span><span class="p">:</span> <span class="n">부정</span>
+
+<span class="n">리뷰</span><span class="p">:</span> <span class="s2">&quot;사운드트랙은 놀라웠지만, 스토리는 약했어요.&quot;</span>
+<span class="n">감정</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>문법 교정</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">잘못된</span> <span class="n">문장</span><span class="p">:</span> <span class="s2">&quot;그녀는 사과를 좋아하지 않아요.&quot;</span>
+<span class="n">올바른</span> <span class="n">문장</span><span class="p">:</span> <span class="s2">&quot;그녀는 사과를 좋아하지 않습니다.&quot;</span>
+
+<span class="n">잘못된</span> <span class="n">문장</span><span class="p">:</span> <span class="s2">&quot;그들은 공원에 가고 있어요.&quot;</span>
+<span class="n">올바른</span> <span class="n">문장</span><span class="p">:</span> <span class="s2">&quot;그들은 공원에 가고 있습니다.&quot;</span>
+
+<span class="n">잘못된</span> <span class="n">문장</span><span class="p">:</span> <span class="s2">&quot;그는 차를 가지고 있어요.&quot;</span>
+<span class="n">올바른</span> <span class="n">문장</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>요약</strong>: 퓨샷 프롬프트는 예제를 제공하여 모델의 성능을 향상시키며, 이를 통해 모델이 작업을 더 잘 이해하고 정확한 출력을 생성하도록 돕습니다.</p>
+</section>
+<section id="id9">
+<h3>3.3 체인-오브-생각 기법<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>체인-오브-생각 접근법 설명</strong>:</p>
+<ul class="simple">
+<li><p>최종 답변을 내리기 전에 중간 추론 단계를 생성하도록 모델을 유도합니다.</p></li>
+<li><p>복잡한 문제를 더 간단한 구성 요소로 분해하여 인간의 문제 해결 방식을 모방합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>복잡한 추론 작업에서의 이점</strong>:</p>
+<ul class="simple">
+<li><p><strong>정확성 향상</strong>: 추론 과정을 명시적으로 만들어 계산 및 논리 오류를 줄입니다.</p></li>
+<li><p><strong>투명성</strong>: 모델이 답변에 도달하는 방법에 대한 통찰력을 제공합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>구현 전략과 모범 사례</strong>:</p>
+<ul class="simple">
+<li><p><strong>명시적 지시사항</strong>: 모델에게 “각 단계를 설명하세요” 또는 “당신의 추론을 보여주세요”라고 프롬프트합니다.</p></li>
+<li><p><strong>단계별 예제 포함</strong>: 추론 단계를 포함한 유사한 문제를 해결하는 방법을 보여줍니다.</p></li>
+<li><p><strong>일관된 형식 사용</strong>: 추론 단계를 안내하기 위해 명확하고 논리적인 형식을 사용합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p><strong>수학 문제</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">질문</span><span class="p">:</span> <span class="s2">&quot;한 서점에서 책 한 권을 $12에 판매합니다. 고객이 책 5권을 구입하면 총 얼마를 지불해야 합니까? 당신의 추론을 설명하세요.&quot;</span>
+
+<span class="n">답변</span><span class="p">:</span> <span class="s2">&quot;책 한 권은 $12입니다. 고객이 5권의 책을 삽니다. 따라서, 5권 * $12/권 = $60. 따라서, 고객은 총 $60를 지불합니다.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>논리적 추론</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">질문</span><span class="p">:</span> <span class="s2">&quot;모든 장미는 꽃입니다. 일부 꽃은 빨리 시듭니다. 따라서, 일부 장미는 빨리 시듭니까? 당신의 추론을 설명하세요.&quot;</span>
+
+<span class="n">답변</span><span class="p">:</span> <span class="s2">&quot;모든 장미는 꽃이므로, 장미는 &#39;꽃&#39; 그룹의 일부입니다. 일부 꽃은 빨리 시드므로, 장미도 꽃이기 때문에 일부 장미가 빨리 시들 수 있습니다.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>요약</strong>: 체인-오브-생각 기법은 중간 단계를 명시하도록 모델을 유도하여 복잡한 작업에서 더 정확하고 신뢰할 수 있는 출력을 제공합니다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>실용적인 예제와 연습 문제<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="vs">
+<h3>예제 1: 제로샷 vs. 퓨샷 프롬프트<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>목표</strong>: 텍스트 분류 작업에서 제로샷과 퓨샷 프롬프트의 성능을 비교합니다.</p></li>
+<li><p><strong>작업</strong>: 트윗을 <strong>스팸</strong> 또는 <strong>스팸 아님</strong>으로 분류합니다.</p></li>
+<li><p><strong>제로샷 프롬프트</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">다음</span> <span class="n">트윗을</span> <span class="s2">&quot;스팸&quot;</span> <span class="n">또는</span> <span class="s2">&quot;스팸 아님&quot;</span><span class="n">으로</span> <span class="n">분류하세요</span><span class="p">:</span>
+
+<span class="s2">&quot;축하합니다! $1,000 기프트 카드를 받으셨습니다. 지금 수령하세요.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>퓨샷 프롬프트</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">각</span> <span class="n">트윗을</span> <span class="s2">&quot;스팸&quot;</span> <span class="n">또는</span> <span class="s2">&quot;스팸 아님&quot;</span><span class="n">으로</span> <span class="n">분류하세요</span><span class="p">:</span>
+
+<span class="n">트윗</span><span class="p">:</span> <span class="s2">&quot;이번 주말 우리의 특별 세일을 놓치지 마세요!&quot;</span>
+<span class="n">분류</span><span class="p">:</span> <span class="n">스팸</span> <span class="n">아님</span>
+
+<span class="n">트윗</span><span class="p">:</span> <span class="s2">&quot;현금 보상을 받을 수 있도록 선정되었습니다! 지금 저희 사이트를 방문하세요.&quot;</span>
+<span class="n">분류</span><span class="p">:</span> <span class="n">스팸</span>
+
+<span class="n">트윗</span><span class="p">:</span> <span class="s2">&quot;AI 발전에 대한 웨비나에 참여하세요.&quot;</span>
+<span class="n">분류</span><span class="p">:</span> <span class="n">스팸</span> <span class="n">아님</span>
+
+<span class="n">트윗</span><span class="p">:</span> <span class="s2">&quot;축하합니다! $1,000 기프트 카드를 받으셨습니다. 지금 수령하세요.&quot;</span>
+<span class="n">분류</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>지침</strong>:</p>
+<ul class="simple">
+<li><p>LLM을 사용하여 두 프롬프트에 대한 응답을 생성합니다.</p></li>
+<li><p>출력을 비교하고 어느 접근 방식이 더 정확한 분류를 제공하는지 평가합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>토론</strong>:</p>
+<ul class="simple">
+<li><p>퓨샷 프롬프트에서 예제를 제공하는 것이 모델의 이해에 어떻게 영향을 미치는지 분석합니다.</p></li>
+<li><p>더 나은 결과를 위한 프롬프트 개선 방안을 논의합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h3>예제 2: 체인-오브-생각 구현<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>목표</strong>: 체인-오브-생각 기법을 사용하여 실제 문제를 해결합니다.</p></li>
+<li><p><strong>프롬프트</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">다음</span> <span class="n">문제를</span> <span class="n">단계별로</span> <span class="n">해결하세요</span><span class="p">:</span>
+
+<span class="s2">&quot;에밀리는 쿠키를 굽고 있습니다. 한 배치를 만드는 데 설탕 2컵이 필요합니다. 그녀가 3배치를 만들고 싶지만 설탕이 5컵밖에 없다면, 그녀는 얼마나 더 필요한가요?&quot;</span>
+
+<span class="n">답변</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>예상 출력</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">한</span> <span class="n">배치를</span> <span class="n">위해</span> <span class="n">에밀리는</span> <span class="n">설탕</span> <span class="mi">2</span><span class="n">컵이</span> <span class="n">필요합니다</span><span class="o">.</span>
+<span class="mi">3</span><span class="n">배치를</span> <span class="n">위해서는</span> <span class="mi">2</span><span class="n">컵</span><span class="o">/</span><span class="n">배치</span> <span class="o">*</span> <span class="mi">3</span><span class="n">배치</span> <span class="o">=</span> <span class="mi">6</span><span class="n">컵의</span> <span class="n">설탕이</span> <span class="n">필요합니다</span><span class="o">.</span>
+<span class="n">그녀에게는</span> <span class="n">설탕이</span> <span class="mi">5</span><span class="n">컵</span> <span class="n">있습니다</span><span class="o">.</span>
+<span class="n">그녀는</span> <span class="mi">6</span><span class="n">컵</span> <span class="o">-</span> <span class="mi">5</span><span class="n">컵</span> <span class="o">=</span> <span class="mi">1</span><span class="n">컵이</span> <span class="n">더</span> <span class="n">필요합니다</span><span class="o">.</span>
+<span class="n">따라서</span><span class="p">,</span> <span class="n">에밀리는</span> <span class="n">설탕</span> <span class="mi">1</span><span class="n">컵이</span> <span class="n">더</span> <span class="n">필요합니다</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>지침</strong>:</p>
+<ul class="simple">
+<li><p>프롬프트를 LLM에 입력하고 출력을 관찰합니다.</p></li>
+<li><p>모델이 단계별 추론을 정확하게 따르는지 확인합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>연습 문제</strong>:</p>
+<ul class="simple">
+<li><p>논리적 추론이 필요한 자신만의 문제를 만들어보세요.</p></li>
+<li><p>체인-오브-생각 기법을 적용하고 모델의 응답을 평가합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h2>결론<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>요약</strong>:</p>
+<ul>
+<li><p><strong>프롬프트 엔지니어링</strong>은 다양한 NLP 작업에서 LLM의 성능을 최적화하는 데 필수적입니다.</p></li>
+<li><p>프롬프트 기법의 발전과 출력 품질에 대한 영향을 탐구했습니다.</p></li>
+<li><p>핵심 프롬프트 기법을 논의했습니다:</p>
+<ul>
+<li><p><strong>제로샷 프롬프트</strong>: 예제 없이 작업 수행.</p></li>
+<li><p><strong>퓨샷 프롬프트</strong>: 모델을 안내하기 위해 예제 제공.</p></li>
+<li><p><strong>체인-오브-생각 기법</strong>: 복잡한 작업을 위해 단계별 추론 유도.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>미래 방향</strong>:</p>
+<ul>
+<li><p>다음 세션에서는 <strong>고급 프롬프트 전략</strong>인 컨텍스트 설정, 작업 명세, 출력 형식 지정을 다룰 것입니다.</p></li>
+<li><p>다양한 프롬프트 기법을 실험하여 LLM 출력에 미치는 영향을 이해하도록 권장합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week09"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">9주차: 프롬프트 엔지니어링 기초</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9주차 세션 2: 고급 프롬프트 전략과 프롬프트 디자인 원칙</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. 프롬프트 엔지니어링이란 무엇인가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 프롬프트 기법의 발전</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 핵심 프롬프트 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.1 제로샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2 퓨샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.3 체인-오브-생각 기법</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">실용적인 예제와 연습 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">예제 1: 제로샷 vs. 퓨샷 프롬프트</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">예제 2: 체인-오브-생각 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

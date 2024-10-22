@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week09/session2';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team Project" href="../projects/index.html" />
+    <link rel="prev" title="Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques" href="session1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1 - Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2 - The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1 - Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2 - Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3 - Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1 - Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2 - Advanced Statistical Language Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1 - Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2 -  Advanced Word Embeddings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1 - Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3 - Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - Understanding LLM APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">Week 6 Session 2 - Sampling Methods and Text Generation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture - 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">Session 1 - Foundational Discoveries in Machine Learning with Artificial Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">Session 2 - Deep Learning Evolution and Advanced Neural Network Architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">Session 3 - Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">Special Lecture - 2024 Nobel Prize in Chemistry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">Session 1 - Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">Session 2 - Protein Structure Prediction Using Artificial Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">Session 3 - Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 9: Basics of Prompt Engineering</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week09/session2.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek09/session2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week09/session2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-prompting-strategies">1. Advanced Prompting Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-setting">1.1 Context Setting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-specification">1.2 Task Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-formatting">1.3 Output Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-design-principles">2. Prompt Design Principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clarity-and-specificity">2.1 Clarity and Specificity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistency-and-coherence">2.2 Consistency and Coherence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethical-considerations">2.3 Ethical Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-crafting-a-context-rich-prompt">Example 1: Crafting a Context-Rich Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-specifying-output-format">Example 2: Specifying Output Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ethical-prompt-design">Exercise: Ethical Prompt Design</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-9-session-2-advanced-prompting-strategies-and-prompt-design-principles">
+<h1>Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles<a class="headerlink" href="#week-9-session-2-advanced-prompting-strategies-and-prompt-design-principles" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this session, we will delve into <strong>advanced prompting strategies</strong> and essential <strong>prompt design principles</strong> that enhance the effectiveness of interactions with <strong>Large Language Models (LLMs)</strong>. We will explore techniques such as <strong>context setting</strong>, <strong>task specification</strong>, and <strong>output formatting</strong>. Additionally, we’ll discuss the importance of clarity, specificity, consistency, coherence, and ethical considerations in prompt design. By the end of this session, you will be equipped with advanced skills to craft prompts that yield high-quality outputs for complex NLP tasks.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>As LLMs become more sophisticated, the way we craft prompts significantly impacts the quality of the model’s responses. Advanced prompting strategies allow us to guide LLMs more precisely, enabling them to perform complex tasks efficiently. Understanding and applying prompt design principles ensure that our interactions with LLMs are productive, ethical, and aligned with our objectives. This session is crucial for aspiring AI engineers who aim to harness the full potential of LLMs in various applications.</p>
+</section>
+<section id="advanced-prompting-strategies">
+<h2>1. Advanced Prompting Strategies<a class="headerlink" href="#advanced-prompting-strategies" title="Link to this heading">#</a></h2>
+<section id="context-setting">
+<h3>1.1 Context Setting<a class="headerlink" href="#context-setting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Importance of Providing Clear Context</strong>:</p>
+<ul>
+<li><p>LLMs generate responses based on the information provided in the prompt.</p></li>
+<li><p>Supplying relevant background information helps the model understand the scenario fully.</p></li>
+</ul>
+</li>
+<li><p><strong>Techniques for Effective Context Framing</strong>:</p>
+<ul>
+<li><p><strong>Set the Scene</strong>: Describe the situation or background before posing a question or task.</p>
+<ul>
+<li><p><em>Example</em>: “You are an assistant helping a user plan their weekly meals.”</p></li>
+</ul>
+</li>
+<li><p><strong>Define Roles</strong>: Specify the perspective or role the model should adopt.</p>
+<ul>
+<li><p><em>Example</em>: “As a financial advisor, explain the benefits of saving early for retirement.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p><strong>Medical Advice Context</strong>:</p>
+<ul>
+<li><p>Prompt: “As a nutritionist, provide dietary recommendations for someone with high cholesterol.”</p></li>
+</ul>
+</li>
+<li><p><strong>Historical Context</strong>:</p>
+<ul>
+<li><p>Prompt: “In the context of the Industrial Revolution, discuss the impact on urbanization.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Context setting enhances the relevance and accuracy of the model’s responses by providing necessary background information.</p>
+</section>
+<section id="task-specification">
+<h3>1.2 Task Specification<a class="headerlink" href="#task-specification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Methods for Clearly Defining the Desired Task</strong>:</p>
+<ul>
+<li><p><strong>Explicit Instructions</strong>: Clearly state what you want the model to do.</p>
+<ul>
+<li><p><em>Example</em>: “List the top three benefits of exercise.”</p></li>
+</ul>
+</li>
+<li><p><strong>Instructional Language</strong>: Use verbs like “explain,” “describe,” “compare,” “summarize.”</p></li>
+<li><p><strong>Specify the Format</strong>: Indicate the desired structure of the response.</p>
+<ul>
+<li><p><em>Example</em>: “Provide your answer in bullet points.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Examples of Well-Structured Task Prompts</strong>:</p>
+<ul>
+<li><p><strong>Educational Content</strong>:</p>
+<ul>
+<li><p>Prompt: “Explain the process of photosynthesis in simple terms suitable for a 10-year-old student.”</p></li>
+</ul>
+</li>
+<li><p><strong>Technical Instructions</strong>:</p>
+<ul>
+<li><p>Prompt: “Describe how to set up a secure Wi-Fi network at home, step by step.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Clear task specification ensures that the model understands exactly what is expected, leading to more accurate and useful outputs.</p>
+</section>
+<section id="output-formatting">
+<h3>1.3 Output Formatting<a class="headerlink" href="#output-formatting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Guiding LLMs to Produce Structured Outputs</strong>:</p>
+<ul>
+<li><p>Structured outputs are essential for tasks like data extraction, reporting, or code generation.</p></li>
+</ul>
+</li>
+<li><p><strong>Techniques for Specifying Desired Output Formats</strong>:</p>
+<ul>
+<li><p><strong>Templates</strong>: Provide a format or template for the model to follow.</p>
+<ul>
+<li><p><em>Example</em>: “Generate a JSON object with fields ‘name,’ ‘age,’ and ‘occupation.’”</p></li>
+</ul>
+</li>
+<li><p><strong>Explicit Formatting Instructions</strong>: Mention the desired format in the prompt.</p>
+<ul>
+<li><p><em>Example</em>: “Respond with a table comparing the features of Product A and Product B.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p><strong>JSON Output</strong>:</p>
+<ul>
+<li><p>Prompt: “Extract the following information and present it in JSON format: The user’s name is John Doe, he is 28 years old, and works as a software engineer.”</p></li>
+</ul>
+</li>
+<li><p><strong>Bullet Points</strong>:</p>
+<ul>
+<li><p>Prompt: “List the key findings from the research article in bullet points.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Specifying output formatting helps in obtaining responses that are structured and easier to process, especially for applications requiring consistent data formats.</p>
+</section>
+</section>
+<section id="prompt-design-principles">
+<h2>2. Prompt Design Principles<a class="headerlink" href="#prompt-design-principles" title="Link to this heading">#</a></h2>
+<section id="clarity-and-specificity">
+<h3>2.1 Clarity and Specificity<a class="headerlink" href="#clarity-and-specificity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Importance of Clear and Unambiguous Prompts</strong>:</p>
+<ul>
+<li><p>Reduces misunderstandings and irrelevant responses.</p></li>
+<li><p>Ensures the model focuses on the intended task.</p></li>
+</ul>
+</li>
+<li><p><strong>Strategies for Avoiding Ambiguity in Prompt Design</strong>:</p>
+<ul>
+<li><p><strong>Simple Language</strong>: Use clear and straightforward language.</p></li>
+<li><p><strong>Specific Details</strong>: Provide exact information and avoid vague terms.</p></li>
+<li><p><strong>Avoid Double Negatives and Ambiguous Questions</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p><strong>Ambiguous Prompt</strong>: “Tell me about the bank.”</p>
+<ul>
+<li><p><em>Issue</em>: Could refer to a financial institution or riverbank.</p></li>
+</ul>
+</li>
+<li><p><strong>Clear Prompt</strong>: “Provide information about the services offered by investment banks.”</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Clarity and specificity in prompts lead to more accurate and relevant model outputs.</p>
+</section>
+<section id="consistency-and-coherence">
+<h3>2.2 Consistency and Coherence<a class="headerlink" href="#consistency-and-coherence" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Maintaining Logical Flow in Multi-step Prompts</strong>:</p>
+<ul class="simple">
+<li><p>Ensures that the model’s response is organized and follows a logical sequence.</p></li>
+</ul>
+</li>
+<li><p><strong>Ensuring Consistency Across Related Prompts</strong>:</p>
+<ul class="simple">
+<li><p>Use consistent terminology and formatting throughout the prompt.</p></li>
+<li><p>Align the style and tone if multiple prompts are used together.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p><strong>Inconsistent Prompt</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Mix</span> <span class="n">the</span> <span class="n">ingredients</span><span class="o">.</span>
+<span class="n">Step</span> <span class="n">B</span><span class="p">:</span> <span class="n">Bake</span> <span class="n">at</span> <span class="mi">350</span> <span class="n">degrees</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><em>Issue</em>: Inconsistent step numbering.</p></li>
+</ul>
+</li>
+<li><p><strong>Consistent Prompt</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Mix</span> <span class="n">the</span> <span class="n">ingredients</span><span class="o">.</span>
+<span class="n">Step</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Bake</span> <span class="n">at</span> <span class="mi">350</span> <span class="n">degrees</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Consistency and coherence help the model produce responses that are organized and easy to follow.</p>
+</section>
+<section id="ethical-considerations">
+<h3>2.3 Ethical Considerations<a class="headerlink" href="#ethical-considerations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Addressing Bias and Fairness in Prompt Design</strong>:</p>
+<ul>
+<li><p>Be mindful of language that could elicit biased or discriminatory responses.</p></li>
+<li><p>Avoid stereotypes and ensure inclusivity.</p></li>
+</ul>
+</li>
+<li><p><strong>Responsible Use of Prompt Engineering Techniques</strong>:</p>
+<ul>
+<li><p>Use prompts that promote positive and ethical outputs.</p></li>
+<li><p>Be cautious when generating content on sensitive topics.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p><strong>Biased Prompt</strong>: “Why are group X less successful in Y?”</p>
+<ul>
+<li><p><em>Issue</em>: Assumes a negative stereotype.</p></li>
+</ul>
+</li>
+<li><p><strong>Neutral Prompt</strong>: “What factors contribute to varying levels of success in Y among different groups?”</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary</strong>: Ethical prompt design is crucial for generating fair, unbiased, and responsible AI outputs.</p>
+</section>
+</section>
+<section id="practical-examples-and-exercises">
+<h2>Practical Examples and Exercises<a class="headerlink" href="#practical-examples-and-exercises" title="Link to this heading">#</a></h2>
+<section id="example-1-crafting-a-context-rich-prompt">
+<h3>Example 1: Crafting a Context-Rich Prompt<a class="headerlink" href="#example-1-crafting-a-context-rich-prompt" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Objective</strong>: Enhance the quality of the model’s response by providing appropriate context.</p></li>
+<li><p><strong>Task</strong>: Write a prompt asking for investment advice.</p></li>
+<li><p><strong>Without Context</strong>:</p>
+<ul class="simple">
+<li><p>Prompt: “Give me investment advice.”</p></li>
+</ul>
+</li>
+<li><p><strong>With Context</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">As</span> <span class="n">a</span> <span class="n">financial</span> <span class="n">advisor</span><span class="p">,</span> <span class="n">provide</span> <span class="n">investment</span> <span class="n">advice</span> <span class="k">for</span> <span class="n">a</span> <span class="mi">30</span><span class="o">-</span><span class="n">year</span><span class="o">-</span><span class="n">old</span> <span class="n">individual</span> <span class="k">with</span> <span class="n">a</span> <span class="n">moderate</span> <span class="n">risk</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">aiming</span> <span class="n">to</span> <span class="n">save</span> <span class="k">for</span> <span class="n">retirement</span> <span class="n">over</span> <span class="n">the</span> <span class="nb">next</span> <span class="mi">35</span> <span class="n">years</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Instructions</strong>:</p>
+<ul class="simple">
+<li><p>Input both prompts into the LLM.</p></li>
+<li><p>Compare the responses and evaluate the impact of context on the quality of advice.</p></li>
+</ul>
+</li>
+<li><p><strong>Discussion</strong>:</p>
+<ul class="simple">
+<li><p>Analyze how context influences the specificity and relevance of the model’s recommendations.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example-2-specifying-output-format">
+<h3>Example 2: Specifying Output Format<a class="headerlink" href="#example-2-specifying-output-format" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Objective</strong>: Obtain a structured output by specifying the desired format.</p></li>
+<li><p><strong>Task</strong>: Extract information from a text and present it in a table.</p></li>
+<li><p><strong>Prompt</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Read</span> <span class="n">the</span> <span class="n">following</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">create</span> <span class="n">a</span> <span class="n">table</span> <span class="n">listing</span> <span class="n">each</span> <span class="n">country</span> <span class="n">mentioned</span><span class="p">,</span> <span class="n">along</span> <span class="k">with</span> <span class="n">its</span> <span class="n">capital</span> <span class="ow">and</span> <span class="n">population</span><span class="p">:</span>
+
+<span class="s2">&quot;France is known for its capital, Paris, which has a population of over 2 million. Germany&#39;s capital is Berlin, with a population of around 3.6 million. Spain, with its capital Madrid, has a population of approximately 3.2 million.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Expected Output</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Country</p></th>
+<th class="head"><p>Capital</p></th>
+<th class="head"><p>Population</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>France</p></td>
+<td><p>Paris</p></td>
+<td><p>over 2 million</p></td>
+</tr>
+<tr class="row-odd"><td><p>Germany</p></td>
+<td><p>Berlin</p></td>
+<td><p>around 3.6 million</p></td>
+</tr>
+<tr class="row-even"><td><p>Spain</p></td>
+<td><p>Madrid</p></td>
+<td><p>approximately 3.2 million</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><strong>Instructions</strong>:</p>
+<ul class="simple">
+<li><p>Use the prompt with the LLM and check if the output matches the expected format.</p></li>
+</ul>
+</li>
+<li><p><strong>Exercise</strong>:</p>
+<ul class="simple">
+<li><p>Modify the prompt to extract additional information, such as the official language, and observe the changes in the output.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="exercise-ethical-prompt-design">
+<h3>Exercise: Ethical Prompt Design<a class="headerlink" href="#exercise-ethical-prompt-design" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Objective</strong>: Practice designing prompts that encourage unbiased and ethical responses.</p></li>
+<li><p><strong>Task</strong>: Create a prompt asking for an analysis of crime rates without introducing bias.</p></li>
+<li><p><strong>Problematic Prompt</strong>:</p>
+<ul>
+<li><p>“Explain why crime rates are higher in urban areas compared to rural areas due to immigration.”</p></li>
+</ul>
+</li>
+<li><p><strong>Improved Prompt</strong>:</p>
+<ul>
+<li><p>“Analyze the various factors that contribute to differences in crime rates between urban and rural areas.”</p></li>
+</ul>
+</li>
+<li><p><strong>Instructions</strong>:</p>
+<ul>
+<li><p>Identify potential biases in the problematic prompt.</p></li>
+<li><p>Redesign the prompt to be neutral and inclusive.</p></li>
+</ul>
+</li>
+<li><p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>Discuss how the wording of prompts can influence the model’s outputs and the importance of ethical considerations.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Recap</strong>:</p>
+<ul>
+<li><p>Covered advanced prompting strategies: <strong>context setting</strong>, <strong>task specification</strong>, and <strong>output formatting</strong>.</p></li>
+<li><p>Discussed prompt design principles focusing on <strong>clarity</strong>, <strong>specificity</strong>, <strong>consistency</strong>, <strong>coherence</strong>, and <strong>ethical considerations</strong>.</p></li>
+<li><p>Practical exercises demonstrated the application of these concepts to enhance LLM outputs.</p></li>
+</ul>
+</li>
+<li><p><strong>Future Directions</strong>:</p>
+<ul>
+<li><p>In upcoming sessions, we’ll explore <strong>recent advances in prompt engineering</strong> and how to integrate these techniques into building <strong>LLM-based applications</strong>.</p></li>
+<li><p>Encourage continued practice in crafting prompts and being mindful of ethical implications.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week09"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Team Project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-prompting-strategies">1. Advanced Prompting Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-setting">1.1 Context Setting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-specification">1.2 Task Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-formatting">1.3 Output Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-design-principles">2. Prompt Design Principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clarity-and-specificity">2.1 Clarity and Specificity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistency-and-coherence">2.2 Consistency and Coherence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethical-considerations">2.3 Ethical Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-crafting-a-context-rich-prompt">Example 1: Crafting a Context-Rich Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-specifying-output-format">Example 2: Specifying Output Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ethical-prompt-design">Exercise: Ethical Prompt Design</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

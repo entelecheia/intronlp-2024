@@ -64,12 +64,6 @@ Special Lecture: 2024 Nobel Prize in Chemistry - Computational Protein Design an
   - Implications for NLP and AI in scientific research
 - Note: Lecture, Discussion on the intersection of AI, computational biology, and chemistry
 
-Week 7
-
-- Overview: Basics of Prompt Engineering
-- Key Learning Content: Zero-shot, few-shot prompting, chain-of-thought technique
-- Note: Lecture, Practice (Applying various prompting techniques)
-
 Week 8
 
 - Overview: Midterm Project Presentation
@@ -78,9 +72,9 @@ Week 8
 
 Week 9
 
-- Overview: Text Classification
-- Key Learning Content: Sentiment analysis, topic classification, fine-tuning techniques
-- Note: Lecture, Practice (Implementing text classification model using BERT)
+- Overview: Basics of Prompt Engineering
+- Key Learning Content: Zero-shot, few-shot prompting, chain-of-thought technique
+- Note: Lecture, Practice (Applying various prompting techniques)
 
 Week 10
 
