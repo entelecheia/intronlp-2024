@@ -97,3 +97,7 @@ In this week's practical session, you will:
 ## Looking Ahead
 
 Next week, we will build upon your prompt engineering skills to explore how to construct **LLM-based Question Answering Systems**. You'll learn about integrating LLMs with **vector databases** and **document parsing** techniques to create interactive and efficient Q&A applications. This will involve combining retrieval mechanisms with LLMs, further enhancing your ability to develop advanced NLP solutions.
+
+```{tableofcontents}
+
+```
