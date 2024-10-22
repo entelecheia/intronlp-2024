@@ -1,5 +1,14 @@
 <!--next-version-placeholder-->
 
+## v0.5.0 (2024-10-22)
+
+### Feature
+
+* Add research note for week 8 to the table of contents ([`840ddb7`](https://github.com/entelecheia/intronlp-2024/commit/840ddb7cb0695caaeafe0396433661dea979a964))
+* Refactor table of contents to include Week 9 content ([`83ccc5f`](https://github.com/entelecheia/intronlp-2024/commit/83ccc5f6761809045df2a7e4803e723b790c063b))
+* Add Week 9 syllabus and content ([`c40d534`](https://github.com/entelecheia/intronlp-2024/commit/c40d5346a83022101ac5b93dcefbdf3aca354966))
+* Add Week 9 syllabus and content ([`f9bdf7a`](https://github.com/entelecheia/intronlp-2024/commit/f9bdf7abd8a987f56f2636648783fb340bbb272f))
+
 ## v0.4.0 (2024-10-10)
 
 ### Feature
