@@ -1,4 +1,4 @@
-# Special Lecture - 2024 Nobel Prize in Physics
+# Special Lecture: 2024 Nobel Prize in Physics
 
 **Foundations of Machine Learning**
 

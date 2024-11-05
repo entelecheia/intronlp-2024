@@ -1,4 +1,4 @@
-# Week 2 Session 3 - Korean Text Preprocessing and Tokenization
+# Week 2 Session 3: Korean Text Preprocessing and Tokenization
 
 ## Introduction
 

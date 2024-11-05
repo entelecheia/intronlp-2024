@@ -1,4 +1,4 @@
-# Session 1 - Foundational Discoveries in Machine Learning with Artificial Neural Networks
+# Session 1: Foundational Discoveries in Machine Learning with Artificial Neural Networks
 
 ![](figs/fig1_fy_24_svartvit.jpeg)
 

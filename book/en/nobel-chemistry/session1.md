@@ -1,4 +1,4 @@
-# Session 1 - Computational Protein Design and De Novo Protein Engineering
+# Session 1: Computational Protein Design and De Novo Protein Engineering
 
 The 2024 Nobel Prize in Chemistry was awarded to David Baker for his groundbreaking work in de novo protein engineering. This session explores the revolutionary field of computational protein design, its methods, applications, and broader implications for synthetic biology and biotechnology.
 

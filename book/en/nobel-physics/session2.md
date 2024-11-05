@@ -1,4 +1,4 @@
-# Session 2 - Deep Learning Evolution and Advanced Neural Network Architectures
+# Session 2: Deep Learning Evolution and Advanced Neural Network Architectures
 
 This session explores the fascinating journey from foundational neural network models to modern deep learning architectures. We'll focus on the pivotal contributions of Geoffrey Hinton, the development of convolutional neural networks (CNNs), and the groundbreaking introduction of transformer models. This evolution has revolutionized artificial intelligence, enabling machines to process and understand complex data in ways that were once thought impossible.
 

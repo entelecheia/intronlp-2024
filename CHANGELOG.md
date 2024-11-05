@@ -1,5 +1,102 @@
 <!--next-version-placeholder-->
 
+## v0.5.1 (2024-10-29)
+
+### Bug Fixes
+
+* fix(deps): bump python-semantic-release from 7.33.1 to 9.0.0 ([`d921c4e`](https://github.com/entelecheia/intronlp-2024/commit/d921c4eba1d92d99d2d0571ab95dfc77fc934939))
+
+* fix(pyproject): update build-system and semantic release settings ([`30a6dde`](https://github.com/entelecheia/intronlp-2024/commit/30a6dde3cc0a572d051b298f95d3053a979ea25a))
+
+### Chores
+
+* chore(deps): bump huggingface-hub from 0.26.1 to 0.26.2
+
+Bumps [huggingface-hub](https://github.com/huggingface/huggingface_hub) from 0.26.1 to 0.26.2.
+- [Release notes](https://github.com/huggingface/huggingface_hub/releases)
+- [Commits](https://github.com/huggingface/huggingface_hub/compare/v0.26.1...v0.26.2)
+
+---
+updated-dependencies:
+- dependency-name: huggingface-hub
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`071cb36`](https://github.com/entelecheia/intronlp-2024/commit/071cb365060500a41f2793def868258299b6d666))
+
+* chore(deps): bump openai from 1.52.1 to 1.52.2
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.52.1 to 1.52.2.
+- [Release notes](https://github.com/openai/openai-python/releases)
+- [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/openai/openai-python/compare/v1.52.1...v1.52.2)
+
+---
+updated-dependencies:
+- dependency-name: openai
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`fff2021`](https://github.com/entelecheia/intronlp-2024/commit/fff2021137d21cb0aa2cfac17324a00a0a76062d))
+
+* chore: typo ([`a8cf015`](https://github.com/entelecheia/intronlp-2024/commit/a8cf015bcb56d8de0a9f485c561c026df6d794b3))
+
+* chore(deps): bump openai from 1.52.0 to 1.52.1
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.52.0 to 1.52.1.
+- [Release notes](https://github.com/openai/openai-python/releases)
+- [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/openai/openai-python/compare/v1.52.0...v1.52.1)
+
+---
+updated-dependencies:
+- dependency-name: openai
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`ab76bfc`](https://github.com/entelecheia/intronlp-2024/commit/ab76bfc72c9d1ee1292a4cc88b5a92bb036e43b8))
+
+### Unknown
+
+* Merge pull request #156 from entelecheia/main ([`8a9a64d`](https://github.com/entelecheia/intronlp-2024/commit/8a9a64d0d3b7b6dc7176f992e1b96edf46893e52))
+
+* Merge pull request #155 from entelecheia/dependabot/pip/huggingface-hub-0.26.2
+
+chore(deps): bump huggingface-hub from 0.26.1 to 0.26.2 ([`60bdc4d`](https://github.com/entelecheia/intronlp-2024/commit/60bdc4d421a6193bf4a80d10ab64571ac62be27f))
+
+* Merge pull request #154 from entelecheia/dependabot/pip/openai-1.52.2
+
+chore(deps): bump openai from 1.52.1 to 1.52.2 ([`7682549`](https://github.com/entelecheia/intronlp-2024/commit/7682549756c9cb744f6307efc47c09dce98944d5))
+
+* Merge pull request #152 from booyuncheol/patch-1
+
+Create research-note-9.md ([`5a4a03e`](https://github.com/entelecheia/intronlp-2024/commit/5a4a03e15e75648cd084f0d7786540e1989725c8))
+
+* Create research-note-9.md
+
+Create research-note-9 ([`3eb3d3e`](https://github.com/entelecheia/intronlp-2024/commit/3eb3d3e029d3a95e14850833f53f273ac48d0da7))
+
+* Merge pull request #153 from entelecheia/dependabot/pip/openai-1.52.1
+
+chore(deps): bump openai from 1.52.0 to 1.52.1 ([`ddd80c6`](https://github.com/entelecheia/intronlp-2024/commit/ddd80c6e06acf3154312b2df57c34b63d35b827a))
+
+* Merge pull request #151 from entelecheia/release
+
+Release ([`a7e6e20`](https://github.com/entelecheia/intronlp-2024/commit/a7e6e20e6d36d473f95ff75706d75e098cb39e90))
+
+
+## v0.5.0 (2024-10-22)
+
+### Feature
+
+* Add research note for week 8 to the table of contents ([`840ddb7`](https://github.com/entelecheia/intronlp-2024/commit/840ddb7cb0695caaeafe0396433661dea979a964))
+* Refactor table of contents to include Week 9 content ([`83ccc5f`](https://github.com/entelecheia/intronlp-2024/commit/83ccc5f6761809045df2a7e4803e723b790c063b))
+* Add Week 9 syllabus and content ([`c40d534`](https://github.com/entelecheia/intronlp-2024/commit/c40d5346a83022101ac5b93dcefbdf3aca354966))
+* Add Week 9 syllabus and content ([`f9bdf7a`](https://github.com/entelecheia/intronlp-2024/commit/f9bdf7abd8a987f56f2636648783fb340bbb272f))
+
 ## v0.4.0 (2024-10-10)
 
 ### Feature

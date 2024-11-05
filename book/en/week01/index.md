@@ -1,4 +1,4 @@
-# Week 1 - Introduction
+# Week 1: Introduction
 
 Welcome to Week 1 of our course on Natural Language Processing (NLP) and advanced language model technologies. This week, we'll embark on an exciting journey through the world of NLP, exploring its fundamental concepts, historical evolution, and cutting-edge developments.
 
