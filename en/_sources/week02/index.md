@@ -1,4 +1,4 @@
-# Week 2 - Basics of Text Preprocessing
+# Week 2: Basics of Text Preprocessing
 
 ## Overview
 

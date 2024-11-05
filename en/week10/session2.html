@@ -1,0 +1,1164 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 10 Session 2: Vector Databases and Embeddings &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/session2';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 10 Session 3: System Integration and Implementation" href="session3.html" />
+    <link rel="prev" title="Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems" href="session1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1: Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2: The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2: Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1: Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2: Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3: Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3: Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1: Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2: Advanced Statistical Language Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4: Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1: Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2:  Advanced Word Embeddings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5: Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1: Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2: BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3: Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6: Understanding LLM APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">Session 1: Foundational Discoveries in Machine Learning with Artificial Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">Session 2: Deep Learning Evolution and Advanced Neural Network Architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">Special Lecture: 2024 Nobel Prize in Chemistry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">Session 1: Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">Session 2: Protein Structure Prediction Using Artificial Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">Week 9: Basics of Prompt Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 10 - Building LLM-based Q&amp;A Systems</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 10 Session 2: Vector Databases and Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">Week 10 Session 3: System Integration and Implementation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week10/session2.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek10/session2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/session2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 10 Session 2: Vector Databases and Embeddings</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-databases-and-their-importance">Vector Databases and Their Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose-and-advantages">Purpose and Advantages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-solutions">Popular Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pinecone">Pinecone</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weaviate">Weaviate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#milvus">Milvus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-embeddings">Document Embeddings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-models-and-techniques">Embedding Models and Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-embeddings">Generating Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-reduction-strategies">Dimension Reduction Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-search-methods">Similarity Search Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-database-operations">Vector Database Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-documents">Indexing Documents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-and-retrieval">Querying and Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-and-maintenance">Updating and Maintenance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-building-a-document-embedding-and-retrieval-pipeline">Example 1: Building a Document Embedding and Retrieval Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-using-weaviate-for-hybrid-search">Example 2: Using Weaviate for Hybrid Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-10-session-2-vector-databases-and-embeddings">
+<h1>Week 10 Session 2: Vector Databases and Embeddings<a class="headerlink" href="#week-10-session-2-vector-databases-and-embeddings" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this session, we’ll delve into the critical role of vector databases and embeddings in building LLM-based Q&amp;A systems. We’ll explore how embeddings convert textual data into numerical vectors that capture semantic meaning, enabling efficient similarity searches. You’ll learn about popular vector database solutions, how to generate and utilize embeddings, and how these components enhance the performance and scalability of Q&amp;A systems.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>As the amount of textual data grows exponentially, efficiently storing and retrieving relevant information becomes a significant challenge. Embeddings provide a way to represent text in a high-dimensional vector space, capturing the semantic relationships between words, sentences, or documents. Vector databases are specialized systems optimized for storing and querying these high-dimensional vectors. Understanding embeddings and vector databases is essential for AI engineers aiming to build advanced, scalable Q&amp;A systems that can quickly retrieve and process information.</p>
+</section>
+<section id="vector-databases-and-their-importance">
+<h2>Vector Databases and Their Importance<a class="headerlink" href="#vector-databases-and-their-importance" title="Link to this heading">#</a></h2>
+<section id="purpose-and-advantages">
+<h3>Purpose and Advantages<a class="headerlink" href="#purpose-and-advantages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Vector databases are specialized storage systems designed to handle high-dimensional vector data efficiently.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p><strong>Efficient Similarity Searches</strong>: Use algorithms optimized for high-dimensional data to perform quick similarity searches.</p></li>
+<li><p><strong>Scalability</strong>: Capable of handling millions or even billions of vectors.</p></li>
+<li><p><strong>Real-time Retrieval</strong>: Support fast querying, essential for responsive applications.</p></li>
+</ul>
+</li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><p><strong>Optimized Storage</strong>: Efficiently store large amounts of vector data without significant performance degradation.</p></li>
+<li><p><strong>Customizable Indexing</strong>: Offer various indexing methods to suit different use cases.</p></li>
+<li><p><strong>Flexible Integration</strong>: Provide APIs and connectors for seamless integration with applications.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="popular-solutions">
+<h3>Popular Solutions<a class="headerlink" href="#popular-solutions" title="Link to this heading">#</a></h3>
+<section id="pinecone">
+<h4>Pinecone<a class="headerlink" href="#pinecone" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Features</strong>:</p>
+<ul>
+<li><p>Fully managed, cloud-native vector database.</p></li>
+<li><p>Supports real-time indexing and querying.</p></li>
+<li><p>Offers high availability and security.</p></li>
+</ul>
+</li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><p>Easy to set up and scale.</p></li>
+<li><p>No infrastructure management required.</p></li>
+<li><p>Integrates with popular ML frameworks.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weaviate">
+<h4>Weaviate<a class="headerlink" href="#weaviate" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Features</strong>:</p>
+<ul>
+<li><p>Open-source, extensible vector search engine.</p></li>
+<li><p>Supports GraphQL and RESTful APIs.</p></li>
+<li><p>Offers hybrid search combining vector and keyword search.</p></li>
+</ul>
+</li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><p>Customizable with plugins.</p></li>
+<li><p>Community support and active development.</p></li>
+<li><p>Can be self-hosted for full control.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="milvus">
+<h4>Milvus<a class="headerlink" href="#milvus" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Features</strong>:</p>
+<ul>
+<li><p>Open-source vector database built for scalability.</p></li>
+<li><p>Supports multiple indexing algorithms.</p></li>
+<li><p>Designed for high-performance vector similarity search.</p></li>
+</ul>
+</li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><p>Handles massive datasets efficiently.</p></li>
+<li><p>Provides flexible deployment options.</p></li>
+<li><p>Integrates with data science tools.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="document-embeddings">
+<h2>Document Embeddings<a class="headerlink" href="#document-embeddings" title="Link to this heading">#</a></h2>
+<section id="embedding-models-and-techniques">
+<h3>Embedding Models and Techniques<a class="headerlink" href="#embedding-models-and-techniques" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Embeddings are numerical representations of text that capture the semantic meaning and relationships between words or phrases.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p><strong>Word Embeddings</strong>: Represent individual words (e.g., Word2Vec, GloVe).</p></li>
+<li><p><strong>Sentence Embeddings</strong>: Represent entire sentences or phrases (e.g., Sentence-BERT).</p></li>
+<li><p><strong>Document Embeddings</strong>: Represent larger text blocks, such as paragraphs or documents.</p></li>
+</ul>
+</li>
+<li><p><strong>Models</strong>:</p>
+<ul>
+<li><p><strong>Word2Vec</strong>:</p>
+<ul>
+<li><p>Predicts context words from a target word (Skip-gram) or vice versa (CBOW).</p></li>
+<li><p>Captures semantic relationships (e.g., king - man + woman ≈ queen).</p></li>
+</ul>
+</li>
+<li><p><strong>GloVe</strong>:</p>
+<ul>
+<li><p>Uses global word-word co-occurrence statistics.</p></li>
+<li><p>Produces embeddings that capture meaning based on word context.</p></li>
+</ul>
+</li>
+<li><p><strong>Sentence-BERT (SBERT)</strong>:</p>
+<ul>
+<li><p>Extends BERT to generate sentence embeddings.</p></li>
+<li><p>Fine-tuned for semantic similarity tasks.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="generating-embeddings">
+<h3>Generating Embeddings<a class="headerlink" href="#generating-embeddings" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Process</strong>:</p>
+<ul class="simple">
+<li><p><strong>Tokenization</strong>: Split text into tokens (words, subwords).</p></li>
+<li><p><strong>Encoding</strong>: Convert tokens into vectors using embedding models.</p></li>
+<li><p><strong>Aggregation</strong>: Combine token vectors into a single vector (for sentences or documents).</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">)</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;Machine learning enables computers to learn from data.&quot;</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="dimension-reduction-strategies">
+<h3>Dimension Reduction Strategies<a class="headerlink" href="#dimension-reduction-strategies" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Reduce computational complexity and storage requirements while retaining essential information.</p></li>
+<li><p><strong>Techniques</strong>:</p>
+<ul>
+<li><p><strong>Principal Component Analysis (PCA)</strong>:</p>
+<ul>
+<li><p>Projects data onto a lower-dimensional space.</p></li>
+<li><p>Preserves variance to the maximum extent.</p></li>
+</ul>
+</li>
+<li><p><strong>t-Distributed Stochastic Neighbor Embedding (t-SNE)</strong>:</p>
+<ul>
+<li><p>Visualizes high-dimensional data in 2D or 3D.</p></li>
+<li><p>Preserves local structure of data.</p></li>
+</ul>
+</li>
+<li><p><strong>Autoencoders</strong>:</p>
+<ul>
+<li><p>Neural networks trained to reconstruct input data.</p></li>
+<li><p>The bottleneck layer provides a compressed representation.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="similarity-search-methods">
+<h3>Similarity Search Methods<a class="headerlink" href="#similarity-search-methods" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Distance Metrics</strong>:</p>
+<ul>
+<li><p><strong>Cosine Similarity</strong>:</p>
+<ul>
+<li><p>Measures the cosine of the angle between two vectors.</p></li>
+<li><p>Values range from -1 (opposite) to 1 (identical).</p></li>
+</ul>
+</li>
+<li><p><strong>Euclidean Distance</strong>:</p>
+<ul>
+<li><p>Measures the straight-line distance between two points in space.</p></li>
+<li><p>Sensitive to vector magnitude.</p></li>
+</ul>
+</li>
+<li><p><strong>Manhattan Distance</strong>:</p>
+<ul>
+<li><p>Sum of absolute differences across dimensions.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Search Algorithms</strong>:</p>
+<ul>
+<li><p><strong>Brute-Force Search</strong>:</p>
+<ul>
+<li><p>Computes similarity between the query and all vectors.</p></li>
+<li><p>Accurate but not scalable.</p></li>
+</ul>
+</li>
+<li><p><strong>Approximate Nearest Neighbors (ANN)</strong>:</p>
+<ul>
+<li><p>Balances accuracy and speed.</p></li>
+<li><p>Examples include HNSW (Hierarchical Navigable Small World) graphs.</p></li>
+</ul>
+</li>
+<li><p><strong>Inverted Indexes</strong>:</p>
+<ul>
+<li><p>Used in hybrid search combining keyword and vector search.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<p>Embeddings transform textual data into vectors that capture semantic meaning, enabling similarity searches in vector databases. Choosing the right embedding model and similarity metrics is crucial for the performance of Q&amp;A systems.</p>
+</section>
+</section>
+<section id="vector-database-operations">
+<h2>Vector Database Operations<a class="headerlink" href="#vector-database-operations" title="Link to this heading">#</a></h2>
+<section id="indexing-documents">
+<h3>Indexing Documents<a class="headerlink" href="#indexing-documents" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Process</strong>:</p>
+<ul class="simple">
+<li><p><strong>Embedding Generation</strong>: Convert documents into embeddings.</p></li>
+<li><p><strong>Metadata Association</strong>: Attach relevant information (e.g., document ID, source).</p></li>
+<li><p><strong>Upserting</strong>: Insert or update entries in the vector database.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming embeddings and metadata are prepared</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">embedding1</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Introduction to AI&#39;</span><span class="p">}),</span>
+    <span class="p">(</span><span class="s1">&#39;doc2&#39;</span><span class="p">,</span> <span class="n">embedding2</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Deep Learning Basics&#39;</span><span class="p">}),</span>
+    <span class="c1"># More items...</span>
+<span class="p">]</span>
+<span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Best Practices</strong>:</p>
+<ul class="simple">
+<li><p>Batch operations for efficiency.</p></li>
+<li><p>Monitor indexing performance.</p></li>
+<li><p>Validate data integrity after insertion.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="querying-and-retrieval">
+<h3>Querying and Retrieval<a class="headerlink" href="#querying-and-retrieval" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Process</strong>:</p>
+<ul class="simple">
+<li><p><strong>Query Embedding</strong>: Generate an embedding for the user’s question.</p></li>
+<li><p><strong>Similarity Search</strong>: Retrieve top-K similar embeddings from the database.</p></li>
+<li><p><strong>Result Processing</strong>: Extract and present relevant information.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Explain the concept of reinforcement learning.&quot;</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Title: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Considerations</strong>:</p>
+<ul class="simple">
+<li><p>Choose appropriate <code class="docutils literal notranslate"><span class="pre">top_k</span></code> value balancing relevance and performance.</p></li>
+<li><p>Use filters if supported to narrow down results.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="updating-and-maintenance">
+<h3>Updating and Maintenance<a class="headerlink" href="#updating-and-maintenance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Updating Vectors</strong>:</p>
+<ul>
+<li><p><strong>Re-indexing</strong>: If embedding models are updated, regenerate embeddings.</p></li>
+<li><p><strong>Deletion</strong>: Remove obsolete or irrelevant entries.</p></li>
+</ul>
+</li>
+<li><p><strong>Performance Optimization</strong>:</p>
+<ul>
+<li><p><strong>Index Refresh</strong>: Periodically rebuild indexes to maintain efficiency.</p></li>
+<li><p><strong>Monitoring</strong>: Track query latency and index health.</p></li>
+</ul>
+</li>
+<li><p><strong>Scaling Strategies</strong>:</p>
+<ul>
+<li><p><strong>Sharding</strong>: Distribute data across multiple nodes.</p></li>
+<li><p><strong>Replication</strong>: Duplicate data for redundancy and load balancing.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id1">
+<h3>Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Effective management of vector databases involves proper indexing, querying, and maintenance practices. This ensures that the Q&amp;A system remains responsive and accurate as data grows.</p>
+</section>
+</section>
+<section id="practical-examples-and-exercises">
+<h2>Practical Examples and Exercises<a class="headerlink" href="#practical-examples-and-exercises" title="Link to this heading">#</a></h2>
+<section id="example-1-building-a-document-embedding-and-retrieval-pipeline">
+<h3>Example 1: Building a Document Embedding and Retrieval Pipeline<a class="headerlink" href="#example-1-building-a-document-embedding-and-retrieval-pipeline" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Generate embeddings for a set of documents and perform similarity searches using Pinecone.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Install Required Libraries</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentence-transformers<span class="w"> </span>pinecone-client
+</pre></div>
+</div>
+</li>
+<li><p><strong>Initialize Pinecone</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pinecone</span>
+
+<span class="n">pinecone</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;YOUR_API_KEY&#39;</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="s1">&#39;us-west1-gcp&#39;</span><span class="p">)</span>
+<span class="n">index_name</span> <span class="o">=</span> <span class="s1">&#39;document-embeddings&#39;</span>
+<span class="k">if</span> <span class="n">index_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pinecone</span><span class="o">.</span><span class="n">list_indexes</span><span class="p">():</span>
+    <span class="n">pinecone</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">index_name</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">384</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">pinecone</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Load Embedding Model</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Prepare and Embed Documents</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;Machine learning is a field of artificial intelligence...&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;doc2&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;Neural networks are computing systems inspired by the brain...&#39;</span><span class="p">},</span>
+    <span class="c1"># Add more documents</span>
+<span class="p">]</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">embedding</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]}))</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Upsert Embeddings into Pinecone</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Perform a Similarity Search</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;How do neural networks function?&quot;</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Text: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-2-using-weaviate-for-hybrid-search">
+<h3>Example 2: Using Weaviate for Hybrid Search<a class="headerlink" href="#example-2-using-weaviate-for-hybrid-search" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Combine keyword search with vector search using Weaviate.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Install Weaviate Client</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>weaviate-client
+</pre></div>
+</div>
+</li>
+<li><p><strong>Initialize Weaviate Client</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weaviate</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">weaviate</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Define Schema and Import Data</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;classes&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;Document&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">]},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+<span class="c1"># Import documents similar to previous example</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Perform a Hybrid Search</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Explain deep learning&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Document&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">])</span> \
+    <span class="o">.</span><span class="n">with_hybrid</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">do</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement a Q&amp;A retrieval system using Milvus and Sentence-BERT embeddings.</p>
+<p><strong>Instructions</strong>:</p>
+<ol class="arabic simple">
+<li><p>Install Milvus and its Python SDK.</p></li>
+<li><p>Prepare a dataset of documents.</p></li>
+<li><p>Generate embeddings and insert them into Milvus.</p></li>
+<li><p>Create a function that accepts a user’s question and returns the most relevant documents.</p></li>
+</ol>
+<p><strong>Expected Outcome</strong>:</p>
+<ul class="simple">
+<li><p>A functional script that integrates Milvus for vector storage and retrieval.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<section id="recap">
+<h3>Recap<a class="headerlink" href="#recap" title="Link to this heading">#</a></h3>
+<p>In this session, we explored how vector databases and embeddings are integral to LLM-based Q&amp;A systems. You learned about different embedding models, how to generate and manipulate embeddings, and how vector databases like Pinecone, Weaviate, and Milvus store and retrieve these embeddings efficiently.</p>
+</section>
+<section id="future-directions">
+<h3>Future Directions<a class="headerlink" href="#future-directions" title="Link to this heading">#</a></h3>
+<p>With a solid understanding of embeddings and vector databases, you’re now equipped to integrate these components into a full Q&amp;A system. In the next session, we’ll focus on system integration and implementation, bringing together document processing, embeddings, vector databases, and LLMs to build a functional Q&amp;A application.</p>
+</section>
+</section>
+<section id="references-and-additional-resources">
+<h2>References and Additional Resources<a class="headerlink" href="#references-and-additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Books</strong>:</p>
+<ul>
+<li><p><em>Deep Learning</em> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p></li>
+</ul>
+</li>
+<li><p><strong>Online Resources</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.pinecone.io/">Pinecone Documentation</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate">Weaviate Documentation</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/">Milvus Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.sbert.net/">SentenceTransformers Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Tutorials</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://towardsdatascience.com/building-a-semantic-search-engine-using-pinecone-and-sentence-transformers-3e2665ad72d8">Building a Semantic Search Engine with Pinecone and Sentence Transformers</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate/quickstart">Implementing Semantic Search with Weaviate</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/tutorials/quick_start">Using Milvus for Similarity Search</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 10 Session 3: System Integration and Implementation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-databases-and-their-importance">Vector Databases and Their Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose-and-advantages">Purpose and Advantages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-solutions">Popular Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pinecone">Pinecone</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weaviate">Weaviate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#milvus">Milvus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-embeddings">Document Embeddings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-models-and-techniques">Embedding Models and Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-embeddings">Generating Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-reduction-strategies">Dimension Reduction Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-search-methods">Similarity Search Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-database-operations">Vector Database Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-documents">Indexing Documents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-and-retrieval">Querying and Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-and-maintenance">Updating and Maintenance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-building-a-document-embedding-and-retrieval-pipeline">Example 1: Building a Document Embedding and Retrieval Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-using-weaviate-for-hybrid-search">Example 2: Using Weaviate for Hybrid Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

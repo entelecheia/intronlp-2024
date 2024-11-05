@@ -1,4 +1,4 @@
-# Special Lecture - 2024 Nobel Prize in Chemistry
+# Special Lecture: 2024 Nobel Prize in Chemistry
 
 **Computational Protein Design and Protein Structure Prediction**
 

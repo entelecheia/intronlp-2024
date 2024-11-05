@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10주차 세션 2: 벡터 데이터베이스와 임베딩 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/session2';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10주차 세션 3: 시스템 통합 및 구현" href="session3.html" />
+    <link rel="prev" title="10주차 세션 1: LLM 기반 Q&amp;A 시스템 소개" href="session1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1: 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2: 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1: 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2: 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3: 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차: 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1: 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2: 고급 통계적 언어 모델</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차: 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 세션 1: 단어 임베딩과 Word2Vec 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 세션 2: 고급 단어 임베딩</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 세션 1 - 트랜스포머 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 세션 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 세션 3 - 트랜스포머의 실제 구현 및 시각화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">6주차: LLM API 이해하기</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">6주차 세션 1: LLM API 소개 및 OpenAI API 사용법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">6주차 세션 2: 샘플링 방법과 텍스트 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">특강: 2024년 노벨 물리학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">세션 1: 인공 신경망을 이용한 기계 학습의 기초적 발견</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">세션 2: 딥 러닝의 진화와 고급 신경망 아키텍처</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">세션 3: 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">특강: 2024년 노벨 화학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">세션 1: 전산 단백질 설계와 데 노보 단백질 공학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">세션 2: 인공지능을 이용한 단백질 구조 예측</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">세션 3: 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">9주차: 프롬프트 엔지니어링 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">9주차 세션 2: 고급 프롬프트 전략과 프롬프트 디자인 원칙</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">10주차: LLM 기반 Q&amp;A 시스템 구축</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">10주차 세션 1: LLM 기반 Q&amp;A 시스템 소개</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10주차 세션 2: 벡터 데이터베이스와 임베딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">10주차 세션 3: 시스템 통합 및 구현</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-1week-01.html">1주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-2week-01.html">2주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-3week-01.html">3주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-01.html">4주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-7week-01.html">7주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-8week-01.html">8주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note5w.html">5주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note6w.html">6주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note7w.html">7주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W4.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W5.html">5주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-4.html">4차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-5.html">5차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-6.html">6차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-7.html">7차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-8.html">8차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week10/session2.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek10/session2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/session2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10주차 세션 2: 벡터 데이터베이스와 임베딩</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">벡터 데이터베이스와 그 중요성</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">목적과 장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">주요 솔루션</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pinecone">Pinecone</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weaviate">Weaviate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#milvus">Milvus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문서 임베딩</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">임베딩 모델과 기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">임베딩 생성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">차원 축소 전략</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">유사도 검색 방법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">벡터 데이터베이스 작업</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">문서 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">쿼리 및 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">업데이트 및 유지보수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">실습 예제 및 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">예제 1: 문서 임베딩 및 검색 파이프라인 구축</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">예제 2: Weaviate를 사용한 하이브리드 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">실습 과제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">결론</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">향후 방향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">참고문헌 및 추가 자료</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>10주차 세션 2: 벡터 데이터베이스와 임베딩<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이번 세션에서는 LLM 기반 Q&amp;A 시스템 구축에 있어서 벡터 데이터베이스와 임베딩이 갖는 중요한 역할에 대해 알아보겠습니다. 텍스트 데이터를 의미론적 의미를 포착하는 수치 벡터로 변환하는 임베딩과, 이를 통해 효율적인 유사도 검색이 가능해지는 과정을 살펴볼 것입니다. 인기 있는 벡터 데이터베이스 솔루션들과 임베딩의 생성 및 활용 방법, 그리고 이러한 구성 요소들이 Q&amp;A 시스템의 성능과 확장성을 어떻게 향상시키는지 학습하게 될 것입니다.</p>
+</section>
+<section id="id3">
+<h2>소개<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>텍스트 데이터가 기하급수적으로 증가함에 따라, 관련 정보를 효율적으로 저장하고 검색하는 것이 중요한 과제가 되었습니다. 임베딩은 텍스트를 고차원 벡터 공간에서 표현하여 단어, 문장, 또는 문서 간의 의미론적 관계를 포착할 수 있게 해줍니다. 벡터 데이터베이스는 이러한 고차원 벡터를 저장하고 쿼리하는데 최적화된 특수 시스템입니다. 정보를 빠르게 검색하고 처리할 수 있는 고급 확장형 Q&amp;A 시스템을 구축하고자 하는 AI 엔지니어에게 임베딩과 벡터 데이터베이스의 이해는 필수적입니다.</p>
+</section>
+<section id="id4">
+<h2>벡터 데이터베이스와 그 중요성<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>목적과 장점<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>정의</strong>: 벡터 데이터베이스는 고차원 벡터 데이터를 효율적으로 처리하도록 설계된 특수 저장 시스템입니다.</p></li>
+<li><p><strong>주요 특징</strong>:</p>
+<ul>
+<li><p><strong>효율적인 유사도 검색</strong>: 고차원 데이터에 최적화된 알고리즘을 사용하여 빠른 유사도 검색을 수행합니다.</p></li>
+<li><p><strong>확장성</strong>: 수백만 또는 수십억 개의 벡터를 처리할 수 있습니다.</p></li>
+<li><p><strong>실시간 검색</strong>: 응답성 높은 애플리케이션을 위한 빠른 쿼리를 지원합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점</strong>:</p>
+<ul>
+<li><p><strong>최적화된 저장</strong>: 성능 저하 없이 대량의 벡터 데이터를 효율적으로 저장합니다.</p></li>
+<li><p><strong>커스터마이즈 가능한 인덱싱</strong>: 다양한 사용 사례에 맞는 인덱싱 방법을 제공합니다.</p></li>
+<li><p><strong>유연한 통합</strong>: 애플리케이션과의 원활한 통합을 위한 API와 커넥터를 제공합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h3>주요 솔루션<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<section id="pinecone">
+<h4>Pinecone<a class="headerlink" href="#pinecone" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>특징</strong>:</p>
+<ul>
+<li><p>완전 관리형, 클라우드 네이티브 벡터 데이터베이스입니다.</p></li>
+<li><p>실시간 인덱싱과 쿼리를 지원합니다.</p></li>
+<li><p>높은 가용성과 보안을 제공합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점</strong>:</p>
+<ul>
+<li><p>설정과 확장이 쉽습니다.</p></li>
+<li><p>인프라 관리가 필요 없습니다.</p></li>
+<li><p>인기 있는 ML 프레임워크와 통합됩니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weaviate">
+<h4>Weaviate<a class="headerlink" href="#weaviate" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>특징</strong>:</p>
+<ul>
+<li><p>오픈소스, 확장 가능한 벡터 검색 엔진입니다.</p></li>
+<li><p>GraphQL과 RESTful API를 지원합니다.</p></li>
+<li><p>벡터 검색과 키워드 검색을 결합한 하이브리드 검색을 제공합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점</strong>:</p>
+<ul>
+<li><p>플러그인으로 커스터마이즈가 가능합니다.</p></li>
+<li><p>커뮤니티 지원과 활발한 개발이 이루어지고 있습니다.</p></li>
+<li><p>완전한 제어를 위해 자체 호스팅이 가능합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="milvus">
+<h4>Milvus<a class="headerlink" href="#milvus" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>특징</strong>:</p>
+<ul>
+<li><p>확장성을 위해 구축된 오픈소스 벡터 데이터베이스입니다.</p></li>
+<li><p>다양한 인덱싱 알고리즘을 지원합니다.</p></li>
+<li><p>고성능 벡터 유사도 검색을 위해 설계되었습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점</strong>:</p>
+<ul>
+<li><p>대규모 데이터셋을 효율적으로 처리합니다.</p></li>
+<li><p>유연한 배포 옵션을 제공합니다.</p></li>
+<li><p>데이터 과학 도구와 통합됩니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id7">
+<h2>문서 임베딩<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>임베딩 모델과 기법<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>정의</strong>: 임베딩은 단어나 구문 간의 의미론적 의미와 관계를 포착하는 텍스트의 수치 표현입니다.</p></li>
+<li><p><strong>주요 특징</strong>:</p>
+<ul>
+<li><p><strong>단어 임베딩</strong>: 개별 단어를 표현합니다 (예: Word2Vec, GloVe).</p></li>
+<li><p><strong>문장 임베딩</strong>: 전체 문장이나 구문을 표현합니다 (예: Sentence-BERT).</p></li>
+<li><p><strong>문서 임베딩</strong>: 단락이나 문서와 같은 더 큰 텍스트 블록을 표현합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>모델</strong>:</p>
+<ul>
+<li><p><strong>Word2Vec</strong>:</p>
+<ul>
+<li><p>목표 단어에서 문맥 단어를 예측하거나(Skip-gram) 그 반대(CBOW)를 수행합니다.</p></li>
+<li><p>의미론적 관계를 포착합니다 (예: king - man + woman ≈ queen).</p></li>
+</ul>
+</li>
+<li><p><strong>GloVe</strong>:</p>
+<ul>
+<li><p>전역 단어-단어 동시 발생 통계를 사용합니다.</p></li>
+<li><p>단어 문맥을 기반으로 의미를 포착하는 임베딩을 생성합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>Sentence-BERT (SBERT)</strong>:</p>
+<ul>
+<li><p>BERT를 확장하여 문장 임베딩을 생성합니다.</p></li>
+<li><p>의미론적 유사도 태스크를 위해 미세 조정되었습니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h3>임베딩 생성<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>과정</strong>:</p>
+<ul class="simple">
+<li><p><strong>토큰화</strong>: 텍스트를 토큰(단어, 하위 단어)으로 분할합니다.</p></li>
+<li><p><strong>인코딩</strong>: 임베딩 모델을 사용하여 토큰을 벡터로 변환합니다.</p></li>
+<li><p><strong>집계</strong>: 토큰 벡터를 단일 벡터로 결합합니다(문장이나 문서의 경우).</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">)</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;기계학습은 컴퓨터가 데이터로부터 학습할 수 있게 합니다.&quot;</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h3>차원 축소 전략<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>목적</strong>: 필수 정보를 유지하면서 계산 복잡성과 저장 요구사항을 줄입니다.</p></li>
+<li><p><strong>기법</strong>:</p>
+<ul>
+<li><p><strong>주성분 분석 (PCA)</strong>:</p>
+<ul>
+<li><p>데이터를 저차원 공간으로 투영합니다.</p></li>
+<li><p>최대한의 분산을 보존합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>t-분포 확률적 이웃 임베딩 (t-SNE)</strong>:</p>
+<ul>
+<li><p>고차원 데이터를 2D 또는 3D로 시각화합니다.</p></li>
+<li><p>데이터의 로컬 구조를 보존합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>오토인코더</strong>:</p>
+<ul>
+<li><p>입력 데이터를 재구성하도록 훈련된 신경망입니다.</p></li>
+<li><p>병목층이 압축된 표현을 제공합니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h3>유사도 검색 방법<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>거리 메트릭</strong>:</p>
+<ul>
+<li><p><strong>코사인 유사도</strong>:</p>
+<ul>
+<li><p>두 벡터 간의 각도의 코사인을 측정합니다.</p></li>
+<li><p>값의 범위는 -1(반대)에서 1(동일)입니다.</p></li>
+</ul>
+</li>
+<li><p><strong>유클리드 거리</strong>:</p>
+<ul>
+<li><p>공간상의 두 점 사이의 직선 거리를 측정합니다.</p></li>
+<li><p>벡터의 크기에 민감합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>맨해튼 거리</strong>:</p>
+<ul>
+<li><p>각 차원에서의 절대 차이의 합입니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>검색 알고리즘</strong>:</p>
+<ul>
+<li><p><strong>전수 검색</strong>:</p>
+<ul>
+<li><p>쿼리와 모든 벡터 간의 유사도를 계산합니다.</p></li>
+<li><p>정확하지만 확장성이 떨어집니다.</p></li>
+</ul>
+</li>
+<li><p><strong>근사 최근접 이웃 (ANN)</strong>:</p>
+<ul>
+<li><p>정확도와 속도의 균형을 맞춥니다.</p></li>
+<li><p>HNSW(Hierarchical Navigable Small World) 그래프 등이 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>역색인</strong>:</p>
+<ul>
+<li><p>키워드 검색과 벡터 검색을 결합한 하이브리드 검색에 사용됩니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h3>요약<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>임베딩은 텍스트 데이터를 의미론적 의미를 포착하는 벡터로 변환하여 벡터 데이터베이스에서 유사도 검색을 가능하게 합니다. Q&amp;A 시스템의 성능을 위해서는 적절한 임베딩 모델과 유사도 메트릭의 선택이 중요합니다.</p>
+</section>
+</section>
+<section id="id13">
+<h2>벡터 데이터베이스 작업<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h3>문서 인덱싱<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>과정</strong>:</p>
+<ul class="simple">
+<li><p><strong>임베딩 생성</strong>: 문서를 임베딩으로 변환합니다.</p></li>
+<li><p><strong>메타데이터 연결</strong>: 관련 정보(예: 문서 ID, 출처)를 첨부합니다.</p></li>
+<li><p><strong>업서트</strong>: 벡터 데이터베이스에 항목을 삽입하거나 업데이트합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 임베딩과 메타데이터가 준비되었다고 가정</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">embedding1</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;AI 소개&#39;</span><span class="p">}),</span>
+    <span class="p">(</span><span class="s1">&#39;doc2&#39;</span><span class="p">,</span> <span class="n">embedding2</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;딥러닝 기초&#39;</span><span class="p">}),</span>
+    <span class="c1"># 추가 항목...</span>
+<span class="p">]</span>
+<span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>모범 사례</strong>:</p>
+<ul class="simple">
+<li><p>효율성을 위해 배치 작업을 수행합니다.</p></li>
+<li><p>인덱싱 성능을 모니터링합니다.</p></li>
+<li><p>삽입 후 데이터 무결성을 검증합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h3>쿼리 및 검색<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>과정</strong>:</p>
+<ul class="simple">
+<li><p><strong>쿼리 임베딩</strong>: 사용자의 질문에 대한 임베딩을 생성합니다.</p></li>
+<li><p><strong>유사도 검색</strong>: 데이터베이스에서 상위 K개의 유사한 임베딩을 검색합니다.</p></li>
+<li><p><strong>결과 처리</strong>: 관련 정보를 추출하고 제시합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;강화학습의 개념을 설명해주세요.&quot;</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;점수: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, 제목: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>고려사항</strong>:</p>
+<ul class="simple">
+<li><p>관련성과 성능의 균형을 맞추어 적절한 <code class="docutils literal notranslate"><span class="pre">top_k</span></code> 값을 선택합니다.</p></li>
+<li><p>지원되는 경우 필터를 사용하여 결과를 좁힙니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id16">
+<h3>업데이트 및 유지보수<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>벡터 업데이트</strong>:</p>
+<ul>
+<li><p><strong>재인덱싱</strong>: 임베딩 모델이 업데이트된 경우 임베딩을 재생성합니다.</p></li>
+<li><p><strong>삭제</strong>: 쓸모없거나 관련 없는 항목을 제거합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>성능 최적화</strong>:</p>
+<ul>
+<li><p><strong>인덱스 새로고침</strong>: 효율성 유지를 위해 주기적으로 인덱스를 재구축합니다.</p></li>
+<li><p><strong>모니터링</strong>: 쿼리 지연 시간과 인덱스 상태를 추적합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>확장 전략</strong>:</p>
+<ul>
+<li><p><strong>샤딩</strong>: 여러 노드에 데이터를 분산합니다.</p></li>
+<li><p><strong>복제</strong>: 중복성과 부하 분산을 위해 데이터를 복제합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id17">
+<h3>요약<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>효과적인 벡터 데이터베이스 관리에는 적절한 인덱싱, 쿼리, 유지보수 사례가 포함됩니다. 이를 통해 데이터가 증가해도 Q&amp;A 시스템이 응답성과 정확성을 유지할 수 있습니다.</p>
+</section>
+</section>
+<section id="id18">
+<h2>실습 예제 및 연습<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<section id="id19">
+<h3>예제 1: 문서 임베딩 및 검색 파이프라인 구축<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p><strong>목표</strong>: Pinecone을 사용하여 문서 집합에 대한 임베딩을 생성하고 유사도 검색을 수행합니다.</p>
+<p><strong>단계</strong>:</p>
+<ol class="arabic">
+<li><p><strong>필요한 라이브러리 설치</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentence-transformers<span class="w"> </span>pinecone-client
+</pre></div>
+</div>
+</li>
+<li><p><strong>Pinecone 초기화</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pinecone</span>
+
+<span class="n">pinecone</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;YOUR_API_KEY&#39;</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="s1">&#39;us-west1-gcp&#39;</span><span class="p">)</span>
+<span class="n">index_name</span> <span class="o">=</span> <span class="s1">&#39;document-embeddings&#39;</span>
+<span class="k">if</span> <span class="n">index_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pinecone</span><span class="o">.</span><span class="n">list_indexes</span><span class="p">():</span>
+    <span class="n">pinecone</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">index_name</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">384</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">pinecone</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>임베딩 모델 로드</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>문서 준비 및 임베딩</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;기계학습은 인공지능의 한 분야입니다...&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;doc2&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;신경망은 뇌에서 영감을 받은 컴퓨팅 시스템입니다...&#39;</span><span class="p">},</span>
+    <span class="c1"># 추가 문서</span>
+<span class="p">]</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">embedding</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]}))</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Pinecone에 임베딩 업서트</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>유사도 검색 수행</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;신경망은 어떻게 작동하나요?&quot;</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;점수: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;텍스트: </span><span class="si">{</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id20">
+<h3>예제 2: Weaviate를 사용한 하이브리드 검색<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p><strong>목표</strong>: Weaviate를 사용하여 키워드 검색과 벡터 검색을 결합합니다.</p>
+<p><strong>단계</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Weaviate 클라이언트 설치</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>weaviate-client
+</pre></div>
+</div>
+</li>
+<li><p><strong>Weaviate 클라이언트 초기화</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weaviate</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">weaviate</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>스키마 정의 및 데이터 가져오기</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;classes&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;Document&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">]},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+<span class="c1"># 이전 예제와 유사하게 문서 가져오기</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>하이브리드 검색 수행</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;딥러닝 설명&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Document&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">])</span> \
+    <span class="o">.</span><span class="n">with_hybrid</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">do</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id21">
+<h3>실습 과제<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p><strong>과제</strong>: Milvus와 Sentence-BERT 임베딩을 사용하여 Q&amp;A 검색 시스템을 구현하세요.</p>
+<p><strong>지시사항</strong>:</p>
+<ol class="arabic simple">
+<li><p>Milvus와 Python SDK를 설치하세요.</p></li>
+<li><p>문서 데이터셋을 준비하세요.</p></li>
+<li><p>임베딩을 생성하고 Milvus에 삽입하세요.</p></li>
+<li><p>사용자의 질문을 받아 가장 관련성 높은 문서를 반환하는 함수를 만드세요.</p></li>
+</ol>
+<p><strong>기대 결과</strong>:</p>
+<ul class="simple">
+<li><p>Milvus를 벡터 저장 및 검색에 활용하는 기능적인 스크립트</p></li>
+</ul>
+</section>
+</section>
+<section id="id22">
+<h2>결론<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<section id="id23">
+<h3>요약<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>이번 세션에서는 벡터 데이터베이스와 임베딩이 LLM 기반 Q&amp;A 시스템에서 얼마나 중요한지 살펴보았습니다. 다양한 임베딩 모델, 임베딩의 생성 및 조작 방법, 그리고 Pinecone, Weaviate, Milvus와 같은 벡터 데이터베이스가 이러한 임베딩을 효율적으로 저장하고 검색하는 방법에 대해 학습했습니다.</p>
+</section>
+<section id="id24">
+<h3>향후 방향<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<p>임베딩과 벡터 데이터베이스에 대한 견고한 이해를 바탕으로, 이제 이러한 구성 요소들을 완전한 Q&amp;A 시스템에 통합할 수 있게 되었습니다. 다음 세션에서는 문서 처리, 임베딩, 벡터 데이터베이스, LLM을 결합하여 기능적인 Q&amp;A 애플리케이션을 구축하는 데 중점을 둘 것입니다.</p>
+</section>
+</section>
+<section id="id25">
+<h2>참고문헌 및 추가 자료<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>도서</strong>:</p>
+<ul>
+<li><p><em>Deep Learning</em> (Ian Goodfellow, Yoshua Bengio, Aaron Courville 저)</p></li>
+</ul>
+</li>
+<li><p><strong>온라인 자료</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.pinecone.io/">Pinecone 문서</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate">Weaviate 문서</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/">Milvus 문서</a></p></li>
+<li><p><a class="reference external" href="https://www.sbert.net/">SentenceTransformers 문서</a></p></li>
+</ul>
+</li>
+<li><p><strong>튜토리얼</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://towardsdatascience.com/building-a-semantic-search-engine-using-pinecone-and-sentence-transformers-3e2665ad72d8">Pinecone과 Sentence Transformers를 사용한 시맨틱 검색 엔진 구축</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate/quickstart">Weaviate를 사용한 시맨틱 검색 구현</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/tutorials/quick_start">유사도 검색을 위한 Milvus 활용</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">10주차 세션 1: LLM 기반 Q&amp;A 시스템 소개</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">10주차 세션 3: 시스템 통합 및 구현</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">벡터 데이터베이스와 그 중요성</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">목적과 장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">주요 솔루션</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pinecone">Pinecone</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weaviate">Weaviate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#milvus">Milvus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문서 임베딩</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">임베딩 모델과 기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">임베딩 생성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">차원 축소 전략</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">유사도 검색 방법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">벡터 데이터베이스 작업</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">문서 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">쿼리 및 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">업데이트 및 유지보수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">실습 예제 및 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">예제 1: 문서 임베딩 및 검색 파이프라인 구축</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">예제 2: Weaviate를 사용한 하이브리드 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">실습 과제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">결론</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">향후 방향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">참고문헌 및 추가 자료</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

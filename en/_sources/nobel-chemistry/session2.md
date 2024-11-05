@@ -1,4 +1,4 @@
-# Session 2 - Protein Structure Prediction Using Artificial Intelligence
+# Session 2: Protein Structure Prediction Using Artificial Intelligence
 
 The 2024 Nobel Prize in Chemistry was awarded to Demis Hassabis and John Jumper for their groundbreaking work on AlphaFold2, an artificial intelligence system that revolutionized protein structure prediction. This session explores the journey from traditional methods to AI-powered solutions in understanding protein structures.
 

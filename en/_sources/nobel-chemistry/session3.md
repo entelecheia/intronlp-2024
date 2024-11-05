@@ -1,4 +1,4 @@
-# Session 3 - Insights from Interviews
+# Session 3: Insights from Interviews
 
 This session explores the personal reflections and insights shared by David Baker, Demis Hassabis, and John Jumper in their first interviews after receiving the news of their Nobel Prize in Chemistry for 2024. These conversations provide valuable perspectives on the impact of their work, the future of AI in science, and the experience of receiving such a prestigious award.
 

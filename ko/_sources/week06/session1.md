@@ -1,4 +1,4 @@
-# 6주차 세션 1 - LLM API 소개 및 OpenAI API 사용법
+# 6주차 세션 1: LLM API 소개 및 OpenAI API 사용법
 
 ## 1. 대규모 언어 모델 API 소개
 

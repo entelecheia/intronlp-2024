@@ -1,0 +1,1337 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10주차 세션 3: 시스템 통합 및 구현 &#8212; 언어모형과자연어처리 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/session3';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="프로젝트 가이드" href="../projects/index.html" />
+    <link rel="prev" title="10주차 세션 2: 벡터 데이터베이스와 임베딩" href="session2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">언어모형과자연어처리 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    홈
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">1주차: 자연어처리 소개</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">1주차 세션 1: 자연어처리의 기초와 발전</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">1주차 세션 2: 현대 자연어처리의 혁명</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">1주차 실습 - 한국어 NLP 기초 소개</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">2주차: 텍스트 전처리 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">2주차 세션 1: 텍스트 전처리 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">2주차 세션 2: 고급 텍스트 전처리 및 표현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">2주차 세션 3: 한국어 텍스트 전처리 및 토큰화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">3주차: 언어 모델의 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">3주차 세션 1: 언어 모델과 N-gram 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">3주차 세션 2: 고급 통계적 언어 모델</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">4주차: 단어 임베딩</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">4주차 세션 1: 단어 임베딩과 Word2Vec 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">4주차 세션 2: 고급 단어 임베딩</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">5주차 - 트랜스포머</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">5주차 세션 1 - 트랜스포머 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">5주차 세션 2 - BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">5주차 세션 3 - 트랜스포머의 실제 구현 및 시각화</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">6주차: LLM API 이해하기</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">6주차 세션 1: LLM API 소개 및 OpenAI API 사용법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">6주차 세션 2: 샘플링 방법과 텍스트 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">특강: 2024년 노벨 물리학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">세션 1: 인공 신경망을 이용한 기계 학습의 기초적 발견</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">세션 2: 딥 러닝의 진화와 고급 신경망 아키텍처</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">세션 3: 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">특강: 2024년 노벨 화학상</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">세션 1: 전산 단백질 설계와 데 노보 단백질 공학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">세션 2: 인공지능을 이용한 단백질 구조 예측</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">세션 3: 인터뷰에서 얻은 깨달음</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">9주차: 프롬프트 엔지니어링 기초</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">9주차 세션 1: 프롬프트 엔지니어링 소개와 핵심 기법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">9주차 세션 2: 고급 프롬프트 전략과 프롬프트 디자인 원칙</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">10주차: LLM 기반 Q&amp;A 시스템 구축</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">10주차 세션 1: LLM 기반 Q&amp;A 시스템 소개</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">10주차 세션 2: 벡터 데이터베이스와 임베딩</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10주차 세션 3: 시스템 통합 및 구현</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">[n]주차 프로젝트 연구일지</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/teams.html">프로젝트 팀</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team1/index.html">Team 1 - MakeMZ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team1/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team1/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-1week-01.html">1주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-2week-01.html">2주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-3week-01.html">3주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-01.html">4주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-4week-02.html">4주차 프로젝트 연구일지 -2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-5week-01.html">5주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-6week-01.html">6주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-7week-01.html">7주차 프로젝트 연구일지 -1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team1/research-note-8week-01.html">8주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team2/index.html">Team 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team2/proposal.html">NLP 프로젝트 제안서</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team3/index.html">Team 3 - Nice</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team3/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team3/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note3w.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note4w.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note5w.html">5주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note6w.html">6주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team3/research-note7w.html">7주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team4/index.html">Team 4 - 원더우먼</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team4/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team4/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W1.html">1주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W2.html">2주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W3.html">3주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W4.html">4주차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team4/Research-Log/W5.html">5주차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/team5/index.html">Team 5 - AICS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projects/team5/proposal.html">NLP 프로젝트 제안서</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../projects/team5/notes.html">프로젝트 연구일지</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-1-2-3.html">1, 2, 3차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-4.html">4차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-5.html">5차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-6.html">6차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-7.html">7차 프로젝트 연구일지</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../projects/team5/research-note-8.html">8차 프로젝트 연구일지</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/ko/week10/session3.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek10/session3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/session3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10주차 세션 3: 시스템 통합 및 구현</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시스템 통합 및 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구성 요소 연결</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문서 프로세서 통합</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">임베딩 생성 및 저장</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api">LLM API 통합</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">쿼리 처리 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">쿼리 이해</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">컨텍스트 검색</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">응답 생성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">응답 전달</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">오류 처리 및 엣지 케이스</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">유효하지 않은 쿼리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">LLM API 통합</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">쿼리 처리 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">쿼리 이해</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">컨텍스트 검색</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">응답 생성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">응답 전달</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">오류 처리 및 엣지 케이스</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">유효하지 않은 쿼리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">정보 누락</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">LLM 오류</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">성능 문제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a">Q&amp;A 시스템 성능 평가 및 최적화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">정확도 메트릭</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">출력 포맷팅 및 표준화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">시스템 모니터링 및 유지보수</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">최적화 기법</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">실습 예제 및 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">예제 1: 쿼리 처리 파이프라인 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">예제 2: 오류 처리 강화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">실습 과제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">결론</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">향후 방향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">참고문헌 및 추가 자료</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>10주차 세션 3: 시스템 통합 및 구현<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>10주차의 마지막 세션에서는 지금까지 학습한 모든 구성 요소를 통합하여 기능적인 <strong>LLM 기반 질의응답(Q&amp;A) 시스템</strong>을 구축할 것입니다. <strong>문서 처리</strong>, <strong>임베딩</strong>, <strong>벡터 데이터베이스</strong>, 그리고 <strong>LLM</strong>을 하나의 통합된 파이프라인으로 구성하는 데 중점을 둘 것입니다. 사용자 쿼리를 처리하고, 관련 정보를 검색하며, 정확한 응답을 생성하고, 오류 처리 및 최적화 기법을 구현하는 방법을 배우게 됩니다. 이 세션이 끝나면 기본적인 Q&amp;A 시스템을 만들 수 있게 되며, 최종 프로젝트에서 더 고급 응용 프로그램을 개발할 준비가 될 것입니다.</p>
+</section>
+<section id="id3">
+<h2>소개<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>효과적인 Q&amp;A 시스템을 구축하기 위해서는 개별 구성 요소를 이해하는 것 이상이 필요합니다. 이러한 구성 요소들이 조화롭게 작동하도록 원활하게 통합하는 것이 중요합니다. 이 세션에서는 <strong>쿼리 처리 파이프라인</strong> 설계, <strong>오류 처리 메커니즘</strong> 구현, 시스템 성능 최적화 등 Q&amp;A 시스템 조립의 실질적인 측면에 중점을 둡니다. 복잡한 쿼리를 처리하고 정확한 답변을 신속하게 제공할 수 있는 실제 애플리케이션을 개발하고자 하는 예비 AI 엔지니어에게 이러한 기술의 습득은 필수적입니다.</p>
+</section>
+<section id="id4">
+<h2>시스템 통합 및 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>구성 요소 연결<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h4>문서 프로세서 통합<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 문서를 수집하고 전처리하여 임베딩 및 저장을 위해 준비합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>텍스트 추출</strong>: <code class="docutils literal notranslate"><span class="pre">PyPDF2</span></code>, <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code>, <code class="docutils literal notranslate"><span class="pre">textract</span></code> 등의 라이브러리를 사용하여 다양한 문서 형식에서 텍스트를 추출합니다.</p></li>
+<li><p><strong>텍스트 정제</strong>: 특수 문자 제거, 불용어 제거, 인코딩 문제 수정 등을 통해 텍스트를 정규화합니다.</p></li>
+<li><p><strong>청킹</strong>: 검색 세분성을 높이기 위해 문서를 더 작고 관리하기 쉬운 청크(예: 단락 또는 섹션)로 나눕니다.</p></li>
+<li><p><strong>메타데이터 추출</strong>: 향상된 검색 기능을 위해 문서 제목, 저자, 날짜 등의 추가 정보를 수집합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>PDF 연구 논문 모음에서 텍스트를 추출하고, 섹션별로 나누어 메타데이터를 저장하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h4>임베딩 생성 및 저장<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 처리된 텍스트를 임베딩으로 변환하고 효율적인 유사도 검색을 위해 벡터 데이터베이스에 저장합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>임베딩 생성</strong>: <strong>Sentence-BERT</strong> 또는 <strong>OpenAI의 임베딩 API</strong>를 사용하여 텍스트 청크를 수치 벡터로 변환합니다.</p></li>
+<li><p><strong>메타데이터 연결</strong>: 검색 시 문맥을 위해 각 임베딩에 관련 메타데이터를 첨부합니다.</p></li>
+<li><p><strong>벡터 데이터베이스 저장</strong>: <strong>Pinecone</strong>, <strong>Weaviate</strong>, <strong>Milvus</strong> 등의 서비스를 사용하여 임베딩을 저장합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>각 문서 청크에 대한 임베딩을 생성하고 문서 ID와 섹션 번호와 같은 메타데이터와 함께 Pinecone에 저장하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm-api">
+<h4>LLM API 통합<a class="headerlink" href="#llm-api" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: LLM을 사용하여 사용자 쿼리를 해석하고 검색된 정보를 바탕으로 응답을 생성합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>API 설정</strong>: LLM API(예: OpenAI의 GPT-3 또는 GPT-4) 접근을 구성합니다.</p></li>
+<li><p><strong>프롬프트 엔지니어링</strong>: LLM이 정확하고 관련성 있는 답변을 생성하도록 효과적으로 안내하는 프롬프트를 설계합니다.</p></li>
+<li><p><strong>응답 처리</strong>: LLM의 출력을 파싱하고 사용자에게 표시하기 위해 포맷팅합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자의 질문과 검색된 컨텍스트를 LLM에 전송하고 응답을 표시용으로 포맷팅하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h3>쿼리 처리 파이프라인<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h4>쿼리 이해<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 사용자의 쿼리를 해석하고 전처리합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>입력 검증</strong>: 빈 쿼리나 유효하지 않은 쿼리를 확인합니다.</p></li>
+<li><p><strong>정규화</strong>: 불필요한 공백이나 특수 문자를 제거하여 쿼리를 정제합니다.</p></li>
+<li><p><strong>쿼리 임베딩 생성</strong>: 문서에 사용된 것과 동일한 모델을 사용하여 쿼리의 임베딩을 생성합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자가 “신경망의 응용 분야는 무엇인가요?”라고 질문하면 시스템이 쿼리를 정제하고 임베딩을 생성합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h4>컨텍스트 검색<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 벡터 데이터베이스에서 관련 문서 청크를 검색합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>유사도 검색</strong>: 쿼리 임베딩을 사용하여 벡터 데이터베이스에서 가장 유사한 상위 K개의 임베딩을 찾습니다.</p></li>
+<li><p><strong>필터링</strong>: 필요한 경우 메타데이터 필터를 적용합니다(예: 날짜 범위, 문서 유형).</p></li>
+<li><p><strong>컨텍스트 조립</strong>: 검색된 텍스트 청크를 LLM을 위한 컨텍스트로 결합합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>신경망과 관련된 상위 5개의 문서 청크를 검색하고 이를 컨텍스트로 조립하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h4>응답 생성<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: LLM을 사용하여 일관성 있고 정확한 답변을 생성합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>프롬프트 구성</strong>: 사용자의 쿼리와 검색된 컨텍스트를 구조화된 프롬프트로 결합합니다.</p></li>
+<li><p><strong>LLM 호출</strong>: 구성된 프롬프트로 LLM API를 호출합니다.</p></li>
+<li><p><strong>후처리</strong>: LLM의 응답을 정제하고 관련 없는 정보를 제거합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>“다음 정보를 바탕으로 질문에 답변하세요: [컨텍스트] 질문: [사용자 쿼리]”와 같은 프롬프트 생성.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h4>응답 전달<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 답변을 사용자에게 명확하고 사용자 친화적인 방식으로 제시합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>포맷팅</strong>: 적절한 포맷팅(예: 단락, 글머리 기호)을 적용합니다.</p></li>
+<li><p><strong>신뢰도 표시</strong>: 선택적으로 신뢰도 점수나 면책 조항을 포함합니다.</p></li>
+<li><p><strong>사용자 인터페이스 업데이트</strong>: 응답을 애플리케이션의 UI에 표시합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>채팅 인터페이스에서 적절한 포맷팅과 함께 답변을 표시하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id13">
+<h3>오류 처리 및 엣지 케이스<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h4>유효하지 않은 쿼리<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>문제</strong>:</p>
+<ul>
+<li><p>빈 쿼리나 의미 없는 쿼리.</p></li>
+<li><p>지원되지 않는 언어나 형식.</p></li>
+</ul>
+</li>
+<li><p><strong>해결 방법</strong>:</p>
+<ul>
+<li><p>입력 검증을 구현하고 사용자 피드백을 제공합니다.</p></li>
+<li><p>필요한 경우 다국어를 지원하거나 제한 사항을 사용자에게 알립니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자가 빈 쿼리를 제출하면 “유효한 질문을 입력해 주세요.”라고 응답.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h4>LLM API 통합<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: LLM을 사용하여 사용자 쿼리를 해석하고 검색된 정보를 바탕으로 응답을 생성합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>API 설정</strong>: LLM API(예: OpenAI의 GPT-3 또는 GPT-4) 접근을 구성합니다.</p></li>
+<li><p><strong>프롬프트 엔지니어링</strong>: LLM이 정확하고 관련성 있는 답변을 생성하도록 효과적으로 안내하는 프롬프트를 설계합니다.</p></li>
+<li><p><strong>응답 처리</strong>: LLM의 출력을 파싱하고 사용자에게 표시하기 위해 포맷팅합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자의 질문과 검색된 컨텍스트를 LLM에 전송하고 응답을 표시용으로 포맷팅하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h3>쿼리 처리 파이프라인<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h4>쿼리 이해<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 사용자의 쿼리를 해석하고 전처리합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>입력 검증</strong>: 빈 쿼리나 유효하지 않은 쿼리를 확인합니다.</p></li>
+<li><p><strong>정규화</strong>: 불필요한 공백이나 특수 문자를 제거하여 쿼리를 정제합니다.</p></li>
+<li><p><strong>쿼리 임베딩 생성</strong>: 문서에 사용된 것과 동일한 모델을 사용하여 쿼리의 임베딩을 생성합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자가 “신경망의 응용 분야는 무엇인가요?”라고 질문하면 시스템이 쿼리를 정제하고 임베딩을 생성합니다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id18">
+<h4>컨텍스트 검색<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 벡터 데이터베이스에서 관련 문서 청크를 검색합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>유사도 검색</strong>: 쿼리 임베딩을 사용하여 벡터 데이터베이스에서 가장 유사한 상위 K개의 임베딩을 찾습니다.</p></li>
+<li><p><strong>필터링</strong>: 필요한 경우 메타데이터 필터를 적용합니다(예: 날짜 범위, 문서 유형).</p></li>
+<li><p><strong>컨텍스트 조립</strong>: 검색된 텍스트 청크를 LLM을 위한 컨텍스트로 결합합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>신경망과 관련된 상위 5개의 문서 청크를 검색하고 이를 컨텍스트로 조립하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id19">
+<h4>응답 생성<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: LLM을 사용하여 일관성 있고 정확한 답변을 생성합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>프롬프트 구성</strong>: 사용자의 쿼리와 검색된 컨텍스트를 구조화된 프롬프트로 결합합니다.</p></li>
+<li><p><strong>LLM 호출</strong>: 구성된 프롬프트로 LLM API를 호출합니다.</p></li>
+<li><p><strong>후처리</strong>: LLM의 응답을 정제하고 관련 없는 정보를 제거합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>“다음 정보를 바탕으로 질문에 답변하세요: [컨텍스트] 질문: [사용자 쿼리]”와 같은 프롬프트 생성.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id20">
+<h4>응답 전달<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>목적</strong>: 답변을 사용자에게 명확하고 사용자 친화적인 방식으로 제시합니다.</p></li>
+<li><p><strong>주요 단계</strong>:</p>
+<ul>
+<li><p><strong>포맷팅</strong>: 적절한 포맷팅(예: 단락, 글머리 기호)을 적용합니다.</p></li>
+<li><p><strong>신뢰도 표시</strong>: 선택적으로 신뢰도 점수나 면책 조항을 포함합니다.</p></li>
+<li><p><strong>사용자 인터페이스 업데이트</strong>: 응답을 애플리케이션의 UI에 표시합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>채팅 인터페이스에서 적절한 포맷팅과 함께 답변을 표시하는 과정.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id21">
+<h3>오류 처리 및 엣지 케이스<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h4>유효하지 않은 쿼리<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>문제</strong>:</p>
+<ul>
+<li><p>빈 쿼리나 의미 없는 쿼리.</p></li>
+<li><p>지원되지 않는 언어나 형식.</p></li>
+</ul>
+</li>
+<li><p><strong>해결 방법</strong>:</p>
+<ul>
+<li><p>입력 검증을 구현하고 사용자 피드백을 제공합니다.</p></li>
+<li><p>필요한 경우 다국어를 지원하거나 제한 사항을 사용자에게 알립니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>사용자가 빈 쿼리를 제출하면 “유효한 질문을 입력해 주세요.”라고 응답.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id23">
+<h4>정보 누락<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>문제</strong>:</p>
+<ul>
+<li><p>벡터 데이터베이스에서 관련 문서를 찾지 못함.</p></li>
+</ul>
+</li>
+<li><p><strong>해결 방법</strong>:</p>
+<ul>
+<li><p>사용 가능한 정보가 없음을 사용자에게 알립니다.</p></li>
+<li><p>쿼리를 다르게 표현해보도록 제안합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>“죄송합니다. 질문과 관련된 정보를 찾을 수 없습니다. 다른 방식으로 질문을 표현하거나 다른 주제에 대해 질문해 주세요.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm">
+<h4>LLM 오류<a class="headerlink" href="#llm" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>문제</strong>:</p>
+<ul>
+<li><p>API 시간 초과, 속도 제한 또는 예상치 못한 응답.</p></li>
+</ul>
+</li>
+<li><p><strong>해결 방법</strong>:</p>
+<ul>
+<li><p>재시도 메커니즘을 구현합니다.</p></li>
+<li><p>예외를 우아하게 처리하고 오류를 기록합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>LLM API 호출이 실패하면 “답변을 생성하는 중에 오류가 발생했습니다. 나중에 다시 시도해 주세요.”라고 응답.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h4>성능 문제<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>문제</strong>:</p>
+<ul>
+<li><p>느린 응답 시간.</p></li>
+<li><p>높은 계산 비용.</p></li>
+</ul>
+</li>
+<li><p><strong>해결 방법</strong>:</p>
+<ul>
+<li><p>코드와 쿼리를 최적화합니다.</p></li>
+<li><p>캐싱 전략을 구현합니다.</p></li>
+<li><p>비동기 처리를 사용합니다.</p></li>
+</ul>
+</li>
+<li><p><strong>예시</strong>:</p>
+<ul>
+<li><p>자주 사용되는 쿼리와 응답을 캐시하여 로드 시간을 단축.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="q-a">
+<h3>Q&amp;A 시스템 성능 평가 및 최적화<a class="headerlink" href="#q-a" title="Link to this heading">#</a></h3>
+<section id="id25">
+<h4>정확도 메트릭<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>관련성</strong>: 검색된 문서가 쿼리와 얼마나 잘 일치하는지.</p></li>
+<li><p><strong>정확성</strong>: LLM이 제공하는 답변의 정확도.</p></li>
+<li><p><strong>사용자 만족도</strong>: 시스템 성능에 대한 사용자 피드백 수집.</p></li>
+</ul>
+</section>
+<section id="id26">
+<h4>출력 포맷팅 및 표준화<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>일관성</strong>: 응답이 일관된 형식을 따르도록 보장.</p></li>
+<li><p><strong>명확성</strong>: 명확한 언어를 사용하고 모호성을 피함.</p></li>
+<li><p><strong>전문성</strong>: 중립적이고 유익한 톤을 유지.</p></li>
+</ul>
+</section>
+<section id="id27">
+<h4>시스템 모니터링 및 유지보수<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>모니터링 도구</strong>: 시스템 성능과 가동 시간을 추적하는 도구 사용.</p></li>
+<li><p><strong>로깅</strong>: 디버깅과 분석을 위한 상세한 로그 유지.</p></li>
+<li><p><strong>정기 업데이트</strong>: 새로운 데이터를 반영하기 위해 모델과 데이터베이스 업데이트.</p></li>
+</ul>
+</section>
+<section id="id28">
+<h4>최적화 기법<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>배치 처리</strong>: 가능한 경우 여러 쿼리나 문서를 동시에 처리.</p></li>
+<li><p><strong>리소스 관리</strong>: 비용 절감을 위해 컴퓨팅 리소스를 효율적으로 관리.</p></li>
+<li><p><strong>모델 미세조정</strong>: 더 나은 성능을 위해 도메인별 데이터로 LLM 미세조정.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id29">
+<h2>실습 예제 및 연습<a class="headerlink" href="#id29" title="Link to this heading">#</a></h2>
+<section id="id30">
+<h3>예제 1: 쿼리 처리 파이프라인 구현<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<p><strong>목표</strong>: 사용자의 쿼리를 처리하고 답변을 반환하는 함수를 구축합니다.</p>
+<p><strong>단계</strong>:</p>
+<ol class="arabic">
+<li><p><strong>쿼리 검증</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_query</span><span class="p">(</span><span class="n">user_query</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_query</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;유효한 질문을 입력해 주세요.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>쿼리 임베딩 생성</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">user_query</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>관련 문서 검색</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">search_results</span> <span class="o">=</span> <span class="n">vector_db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;죄송합니다, 관련 정보를 찾을 수 없습니다.&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>프롬프트 구성</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;컨텍스트: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">질문: </span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="se">\n</span><span class="s2">답변:&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>LLM을 사용하여 답변 생성</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;당신은 도움이 되는 어시스턴트입니다.&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+        <span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">answer</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;답변을 생성하는 중에 오류가 발생했습니다.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id31">
+<h3>예제 2: 오류 처리 강화<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<p><strong>목표</strong>: 예외 처리와 로깅을 추가하여 Q&amp;A 시스템의 안정성을 향상시킵니다.</p>
+<p><strong>단계</strong>:</p>
+<ol class="arabic">
+<li><p><strong>로깅 모듈 가져오기</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;qa_system.log&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Try-Except로 API 호출 감싸기</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># LLM API 호출</span>
+    <span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">RateLimitError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;속도 제한 오류: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;서비스가 현재 혼잡합니다. 나중에 다시 시도해 주세요.&quot;</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;예상치 못한 오류: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;예상치 못한 오류가 발생했습니다.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>빈 검색 결과 처리</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;쿼리에 대한 결과 없음: </span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;해당 주제에 대한 정보가 없습니다.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id32">
+<h3>실습 과제<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<p><strong>과제</strong>: Flask 또는 Streamlit을 사용하여 Q&amp;A 시스템의 기본 웹 인터페이스를 구축합니다.</p>
+<p><strong>지시사항</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>환경 설정</strong>:</p>
+<ul class="simple">
+<li><p>Flask 또는 Streamlit 설치.</p></li>
+</ul>
+</li>
+<li><p><strong>프론트엔드 인터페이스 생성</strong>:</p>
+<ul class="simple">
+<li><p>사용자가 질문을 입력할 수 있는 간단한 UI 설계.</p></li>
+</ul>
+</li>
+<li><p><strong>백엔드 로직 통합</strong>:</p>
+<ul class="simple">
+<li><p>쿼리 처리 함수를 프론트엔드와 연결.</p></li>
+</ul>
+</li>
+<li><p><strong>애플리케이션 실행 및 테스트</strong>:</p>
+<ul class="simple">
+<li><p>시스템이 종단간으로 작동하고 오류를 적절히 처리하는지 확인.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>기대 결과</strong>:</p>
+<ul class="simple">
+<li><p>사용자가 질문을 하고 Q&amp;A 시스템이 생성한 답변을 받을 수 있는 기능적인 웹 애플리케이션.</p></li>
+</ul>
+</section>
+</section>
+<section id="id33">
+<h2>결론<a class="headerlink" href="#id33" title="Link to this heading">#</a></h2>
+<section id="id34">
+<h3>요약<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<p>이번 세션에서는 주간 학습한 모든 구성 요소를 통합하여 기능적인 LLM 기반 Q&amp;A 시스템을 구축했습니다. 다룬 내용:</p>
+<ul class="simple">
+<li><p><strong>구성 요소 연결</strong>: 문서 처리, 임베딩 생성, 벡터 저장소, LLM을 통합하는 방법.</p></li>
+<li><p><strong>쿼리 처리 파이프라인</strong>: 사용자 쿼리에서 생성된 답변까지의 단계별 흐름.</p></li>
+<li><p><strong>오류 처리 및 엣지 케이스</strong>: 시스템을 견고하고 사용자 친화적으로 만드는 전략.</p></li>
+<li><p><strong>성능 평가 및 최적화</strong>: 시스템의 효과성을 평가하고 개선하는 방법.</p></li>
+</ul>
+</section>
+<section id="id35">
+<h3>향후 방향<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<p>이제 LLM 기반 Q&amp;A 시스템 구축에 대한 기초적인 이해를 갖추었으므로, 더 고급 주제를 탐구할 준비가 되었습니다. 앞으로의 주차에서는 시스템을 위한 사용자 친화적 인터페이스를 만들 수 있는 <strong>웹 애플리케이션 개발</strong>을 살펴볼 것입니다. 또한 <strong>검색 증강 생성(RAG) 시스템</strong>을 소개하고 특정 도메인을 위한 모델 미세조정 방법을 논의할 것입니다.</p>
+</section>
+</section>
+<section id="id36">
+<h2>참고문헌 및 추가 자료<a class="headerlink" href="#id36" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>프레임워크 및 라이브러리</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/api-reference/introduction">OpenAI API 문서</a></p></li>
+<li><p><a class="reference external" href="https://langchain.readthedocs.io/en/latest/">LangChain 문서</a></p></li>
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/">Flask 문서</a></p></li>
+<li><p><a class="reference external" href="https://docs.streamlit.io/">Streamlit 문서</a></p></li>
+</ul>
+</li>
+<li><p><strong>벡터 데이터베이스 문서</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.pinecone.io/">Pinecone 문서</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate">Weaviate 문서</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/overview.md">Milvus 문서</a></p></li>
+</ul>
+</li>
+<li><p><strong>튜토리얼</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.pinecone.io/learn/openai-pinecone-question-answering/">OpenAI와 Pinecone으로 Q&amp;A 봇 만들기</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/python-chatbot/">Flask와 OpenAI로 챗봇 만들기</a></p></li>
+</ul>
+</li>
+<li><p><strong>기사</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://ai.facebook.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/">검색 증강 생성: NLP 작업에 대한 새로운 접근 방식</a></p></li>
+<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">OpenAI API를 사용한 프롬프트 엔지니어링 모범 사례</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">10주차 세션 2: 벡터 데이터베이스와 임베딩</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">프로젝트 가이드</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시스템 통합 및 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구성 요소 연결</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문서 프로세서 통합</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">임베딩 생성 및 저장</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api">LLM API 통합</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">쿼리 처리 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">쿼리 이해</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">컨텍스트 검색</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">응답 생성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">응답 전달</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">오류 처리 및 엣지 케이스</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">유효하지 않은 쿼리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">LLM API 통합</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">쿼리 처리 파이프라인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">쿼리 이해</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">컨텍스트 검색</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">응답 생성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">응답 전달</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">오류 처리 및 엣지 케이스</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">유효하지 않은 쿼리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">정보 누락</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">LLM 오류</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">성능 문제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a">Q&amp;A 시스템 성능 평가 및 최적화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">정확도 메트릭</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">출력 포맷팅 및 표준화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">시스템 모니터링 및 유지보수</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">최적화 기법</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">실습 예제 및 연습</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">예제 1: 쿼리 처리 파이프라인 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">예제 2: 오류 처리 강화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">실습 과제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">결론</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">향후 방향</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">참고문헌 및 추가 자료</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

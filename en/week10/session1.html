@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/session1';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 10 Session 2: Vector Databases and Embeddings" href="session2.html" />
+    <link rel="prev" title="Week 10 - Building LLM-based Q&amp;A Systems" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1: Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2: The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2: Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1: Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2: Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3: Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3: Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1: Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2: Advanced Statistical Language Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4: Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1: Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2:  Advanced Word Embeddings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5: Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1: Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2: BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3: Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6: Understanding LLM APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">Session 1: Foundational Discoveries in Machine Learning with Artificial Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">Session 2: Deep Learning Evolution and Advanced Neural Network Architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">Special Lecture: 2024 Nobel Prize in Chemistry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">Session 1: Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">Session 2: Protein Structure Prediction Using Artificial Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">Week 9: Basics of Prompt Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 10 - Building LLM-based Q&amp;A Systems</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 10 Session 2: Vector Databases and Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">Week 10 Session 3: System Integration and Implementation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week10/session1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek10/session1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/session1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 10 Session 1: Introduction to LLM-based Q&A Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-of-llm-based-q-a-systems">Architecture of LLM-based Q&amp;A Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-and-their-interactions">Key Components and Their Interactions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-traditional-q-a-approaches">Comparison with Traditional Q&amp;A Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactions-between-components">Interactions Between Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-processing-and-parsing">Document Processing and Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-preprocessing-techniques">Document Preprocessing Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-extraction-and-cleaning">Text Extraction and Cleaning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking-strategies">Chunking Strategies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-extraction">Metadata Extraction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-document-formats">Handling Different Document Formats</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plain-text">Plain Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pdf-documents">PDF Documents</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#html-content">HTML Content</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-json-csv">Structured Data (JSON, CSV)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-extraction-methods">Information Extraction Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rule-based-parsing">Rule-Based Parsing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-assisted-extraction">LLM-Assisted Extraction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-extracting-and-cleaning-text-from-an-html-page">Example 1: Extracting and Cleaning Text from an HTML Page</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-chunking-a-large-text-document">Example 2: Chunking a Large Text Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-10-session-1-introduction-to-llm-based-q-a-systems">
+<h1>Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems<a class="headerlink" href="#week-10-session-1-introduction-to-llm-based-q-a-systems" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this session, we’ll explore the fundamentals of building Question-Answering (Q&amp;A) systems using Large Language Models (LLMs). We’ll begin by examining the architecture of modern Q&amp;A systems, highlighting how they differ from traditional approaches. You’ll learn about the key components—such as document processing pipelines, vector storage, and LLM integration—and how these elements interact to create efficient and intelligent Q&amp;A solutions.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The rise of LLMs has revolutionized the field of Natural Language Processing (NLP), enabling machines to understand and generate human-like text with remarkable accuracy. Q&amp;A systems powered by LLMs can comprehend complex queries and provide detailed answers by leveraging vast amounts of data. This session is crucial for aspiring AI engineers, as it lays the groundwork for developing advanced applications like Retrieval-Augmented Generation (RAG) systems and equips you with the skills needed for your final projects.</p>
+</section>
+<section id="architecture-of-llm-based-q-a-systems">
+<h2>Architecture of LLM-based Q&amp;A Systems<a class="headerlink" href="#architecture-of-llm-based-q-a-systems" title="Link to this heading">#</a></h2>
+<section id="key-components-and-their-interactions">
+<h3>Key Components and Their Interactions<a class="headerlink" href="#key-components-and-their-interactions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Document Processing Pipeline</strong>:</p>
+<ul>
+<li><p><em>Definition</em>: A system that ingests raw documents and preprocesses them for further analysis.</p></li>
+<li><p><em>Key Points</em>:</p>
+<ul>
+<li><p>Text extraction from various formats (PDFs, HTML, etc.).</p></li>
+<li><p>Cleaning and normalizing text data.</p></li>
+<li><p>Chunking documents into manageable pieces.</p></li>
+</ul>
+</li>
+<li><p><em>Example</em>: Converting a set of research papers into clean text snippets for indexing.</p></li>
+</ul>
+</li>
+<li><p><strong>Vector Storage and Retrieval</strong>:</p>
+<ul>
+<li><p><em>Definition</em>: A method of storing document embeddings in a vector database for efficient similarity search.</p></li>
+<li><p><em>Key Points</em>:</p>
+<ul>
+<li><p>Generates vector representations (embeddings) of text data.</p></li>
+<li><p>Stores embeddings in databases like Pinecone or Weaviate.</p></li>
+<li><p>Enables quick retrieval of relevant documents based on query similarity.</p></li>
+</ul>
+</li>
+<li><p><em>Example</em>: Retrieving the most relevant articles from a database when a user asks a question.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM Integration</strong>:</p>
+<ul>
+<li><p><em>Definition</em>: Incorporating an LLM to interpret queries and generate responses.</p></li>
+<li><p><em>Key Points</em>:</p>
+<ul>
+<li><p>Uses models like GPT-4 to understand natural language queries.</p></li>
+<li><p>Generates coherent and contextually appropriate answers.</p></li>
+</ul>
+</li>
+<li><p><em>Example</em>: Using OpenAI’s GPT-4 API to generate answers based on retrieved documents.</p></li>
+</ul>
+</li>
+<li><p><strong>Response Generation</strong>:</p>
+<ul>
+<li><p><em>Definition</em>: The process of composing the final answer delivered to the user.</p></li>
+<li><p><em>Key Points</em>:</p>
+<ul>
+<li><p>Combines information retrieved from documents with LLM capabilities.</p></li>
+<li><p>Formats the response in a user-friendly manner.</p></li>
+</ul>
+</li>
+<li><p><em>Example</em>: Presenting a concise summary that directly answers the user’s question.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="comparison-with-traditional-q-a-approaches">
+<h3>Comparison with Traditional Q&amp;A Approaches<a class="headerlink" href="#comparison-with-traditional-q-a-approaches" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Traditional Approaches</strong>:</p>
+<ul>
+<li><p>Relied heavily on keyword matching and predefined rules.</p></li>
+<li><p>Limited understanding of context and nuance.</p></li>
+<li><p>Examples include FAQ systems and basic search engines.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM-based Approaches</strong>:</p>
+<ul>
+<li><p>Understand context and can handle complex, conversational queries.</p></li>
+<li><p>Generate natural language responses.</p></li>
+<li><p>Adaptable to a wide range of topics without explicit reprogramming.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="interactions-between-components">
+<h3>Interactions Between Components<a class="headerlink" href="#interactions-between-components" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <strong>document processing pipeline</strong> prepares data for the <strong>vector storage</strong>, which enables efficient retrieval.</p></li>
+<li><p>The <strong>LLM</strong> uses both the user’s query and retrieved documents to generate accurate responses.</p></li>
+<li><p><strong>Response generation</strong> delivers the final answer, ensuring it’s coherent and relevant.</p></li>
+</ul>
+</section>
+</section>
+<section id="document-processing-and-parsing">
+<h2>Document Processing and Parsing<a class="headerlink" href="#document-processing-and-parsing" title="Link to this heading">#</a></h2>
+<section id="document-preprocessing-techniques">
+<h3>Document Preprocessing Techniques<a class="headerlink" href="#document-preprocessing-techniques" title="Link to this heading">#</a></h3>
+<section id="text-extraction-and-cleaning">
+<h4>Text Extraction and Cleaning<a class="headerlink" href="#text-extraction-and-cleaning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: The process of converting raw documents into clean, machine-readable text.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Remove unnecessary formatting, symbols, and metadata.</p></li>
+<li><p>Normalize text (e.g., lowercasing, removing stop words).</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">PyPDF2</span></code> library to extract text from PDFs and removing extraneous whitespace.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="chunking-strategies">
+<h4>Chunking Strategies<a class="headerlink" href="#chunking-strategies" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Dividing large texts into smaller, coherent sections.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Improves processing efficiency.</p></li>
+<li><p>Helps in retrieving more precise information.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Splitting a textbook chapter into paragraphs or sections for detailed indexing.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="metadata-extraction">
+<h4>Metadata Extraction<a class="headerlink" href="#metadata-extraction" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Capturing additional information about the document.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Includes author, publication date, keywords.</p></li>
+<li><p>Enhances search and retrieval capabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Extracting the author and date from a news article to provide context in responses.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="handling-different-document-formats">
+<h3>Handling Different Document Formats<a class="headerlink" href="#handling-different-document-formats" title="Link to this heading">#</a></h3>
+<section id="plain-text">
+<h4>Plain Text<a class="headerlink" href="#plain-text" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Simplest format to process.</p></li>
+<li><p>Requires minimal extraction efforts.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Reading <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files directly into your program for processing.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pdf-documents">
+<h4>PDF Documents<a class="headerlink" href="#pdf-documents" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>May contain complex layouts (columns, images).</p></li>
+<li><p>Requires libraries like <code class="docutils literal notranslate"><span class="pre">PyPDF2</span></code> or <code class="docutils literal notranslate"><span class="pre">pdfminer</span></code> for extraction.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Extracting text from academic papers provided in PDF format.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="html-content">
+<h4>HTML Content<a class="headerlink" href="#html-content" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Webpages contain HTML tags, scripts, and styles.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> to parse and extract meaningful content.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Scraping and cleaning blog articles for inclusion in the Q&amp;A system.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="structured-data-json-csv">
+<h4>Structured Data (JSON, CSV)<a class="headerlink" href="#structured-data-json-csv" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Data is already in a structured format.</p></li>
+<li><p>Can be directly parsed into data frames or dictionaries.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Importing a CSV file of product FAQs into the system.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="information-extraction-methods">
+<h3>Information Extraction Methods<a class="headerlink" href="#information-extraction-methods" title="Link to this heading">#</a></h3>
+<section id="regular-expressions">
+<h4>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Patterns used to match and extract specific text sequences.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Powerful for pattern matching (emails, dates).</p></li>
+<li><p>Requires careful crafting of patterns.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Extracting phone numbers from text using a regex pattern like <code class="docutils literal notranslate"><span class="pre">\(\d{3}\)</span> <span class="pre">\d{3}-\d{4}</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rule-based-parsing">
+<h4>Rule-Based Parsing<a class="headerlink" href="#rule-based-parsing" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Using predefined rules to identify and extract information.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Good for structured and semi-structured data.</p></li>
+<li><p>Less flexible with unstructured data.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Extracting the first sentence of each paragraph as a summary.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm-assisted-extraction">
+<h4>LLM-Assisted Extraction<a class="headerlink" href="#llm-assisted-extraction" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Leveraging LLMs to understand and extract information based on context.</p></li>
+<li><p><strong>Key Points</strong>:</p>
+<ul>
+<li><p>Handles unstructured data effectively.</p></li>
+<li><p>Can infer information not explicitly stated.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Asking an LLM to identify the main topics discussed in a passage.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<p>Understanding and implementing effective document processing and parsing techniques are vital for building a robust Q&amp;A system. By efficiently extracting and preparing data from various formats, we ensure that our system has high-quality information to work with, leading to more accurate and relevant answers.</p>
+</section>
+</section>
+<section id="practical-examples-and-exercises">
+<h2>Practical Examples and Exercises<a class="headerlink" href="#practical-examples-and-exercises" title="Link to this heading">#</a></h2>
+<section id="example-1-extracting-and-cleaning-text-from-an-html-page">
+<h3>Example 1: Extracting and Cleaning Text from an HTML Page<a class="headerlink" href="#example-1-extracting-and-cleaning-text-from-an-html-page" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Use <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> to extract and clean text from a webpage.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Import Necessary Libraries</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Fetch the Webpage Content</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.example.com&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">html_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Parse HTML Content</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Extract Text and Clean</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">script</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">([</span><span class="s2">&quot;script&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">]):</span>
+    <span class="n">script</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Print or Store the Cleaned Text</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-2-chunking-a-large-text-document">
+<h3>Example 2: Chunking a Large Text Document<a class="headerlink" href="#example-2-chunking-a-large-text-document" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Split a lengthy text into smaller chunks for indexing.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Load the Text Data</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;large_document.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Define Chunk Size</strong> (e.g., 500 words):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Split into Chunks</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">chunk_size</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">chunk_size</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Process Each Chunk</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
+    <span class="c1"># Perform embedding or indexing here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Write a script to extract all dates from a given text using regular expressions.</p>
+<p><strong>Instructions</strong>:</p>
+<ol class="arabic simple">
+<li><p>Prepare a text containing various date formats (e.g., “January 1, 2021”, “01/01/2021”, “2021-01-01”).</p></li>
+<li><p>Craft a regular expression pattern that matches these date formats.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">re.findall()</span></code> to extract all dates.</p></li>
+<li><p>Print the list of extracted dates.</p></li>
+</ol>
+<p><strong>Expected Outcome</strong>:</p>
+<ul class="simple">
+<li><p>A list of all date strings found in the text.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<section id="recap">
+<h3>Recap<a class="headerlink" href="#recap" title="Link to this heading">#</a></h3>
+<p>In this session, we covered the foundational aspects of LLM-based Q&amp;A systems, focusing on their architecture and key components. We delved into document processing and parsing techniques essential for preparing data, including handling various file formats and employing different extraction methods.</p>
+</section>
+<section id="future-directions">
+<h3>Future Directions<a class="headerlink" href="#future-directions" title="Link to this heading">#</a></h3>
+<p>In the next session, we’ll explore vector databases and embeddings, which are crucial for efficient information retrieval. You’ll learn how to generate embeddings, store them in vector databases, and perform similarity searches to find relevant information quickly.</p>
+</section>
+</section>
+<section id="references-and-additional-resources">
+<h2>References and Additional Resources<a class="headerlink" href="#references-and-additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Books</strong>:</p>
+<ul>
+<li><p><em>Speech and Language Processing</em> by Daniel Jurafsky and James H. Martin</p></li>
+</ul>
+</li>
+<li><p><strong>Online Resources</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://pypi.org/project/PyPDF2/">PyPDF2 Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/howto/regex.html">Regular Expressions HOWTO</a></p></li>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/introduction">OpenAI API</a></p></li>
+</ul>
+</li>
+<li><p><strong>Tutorials</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://realpython.com/pdf-python/">Working with PDF files in Python</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/beautiful-soup-web-scraper-python/">Web Scraping with Beautiful Soup</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 10 - Building LLM-based Q&amp;A Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="session2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 10 Session 2: Vector Databases and Embeddings</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-of-llm-based-q-a-systems">Architecture of LLM-based Q&amp;A Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-and-their-interactions">Key Components and Their Interactions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-traditional-q-a-approaches">Comparison with Traditional Q&amp;A Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactions-between-components">Interactions Between Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-processing-and-parsing">Document Processing and Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-preprocessing-techniques">Document Preprocessing Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-extraction-and-cleaning">Text Extraction and Cleaning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking-strategies">Chunking Strategies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-extraction">Metadata Extraction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-document-formats">Handling Different Document Formats</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plain-text">Plain Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pdf-documents">PDF Documents</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#html-content">HTML Content</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-json-csv">Structured Data (JSON, CSV)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-extraction-methods">Information Extraction Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rule-based-parsing">Rule-Based Parsing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-assisted-extraction">LLM-Assisted Extraction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-extracting-and-cleaning-text-from-an-html-page">Example 1: Extracting and Cleaning Text from an HTML Page</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-chunking-a-large-text-document">Example 2: Chunking a Large Text Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

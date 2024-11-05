@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 10 Session 3: System Integration and Implementation &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/session3';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team Project" href="../projects/index.html" />
+    <link rel="prev" title="Week 10 Session 2: Vector Databases and Embeddings" href="session2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1: Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2: The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2: Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1: Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2: Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3: Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3: Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1: Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2: Advanced Statistical Language Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4: Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1: Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2:  Advanced Word Embeddings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5: Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1: Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2: BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3: Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6: Understanding LLM APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">Session 1: Foundational Discoveries in Machine Learning with Artificial Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">Session 2: Deep Learning Evolution and Advanced Neural Network Architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">Special Lecture: 2024 Nobel Prize in Chemistry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">Session 1: Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">Session 2: Protein Structure Prediction Using Artificial Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">Week 9: Basics of Prompt Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 10 - Building LLM-based Q&amp;A Systems</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 10 Session 2: Vector Databases and Embeddings</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 10 Session 3: System Integration and Implementation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week10/session3.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek10/session3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/session3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 10 Session 3: System Integration and Implementation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-integration-and-implementation">System Integration and Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-components">Connecting Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#document-processor-integration">Document Processor Integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-generation-and-storage">Embedding Generation and Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api-integration">LLM API Integration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-processing-pipeline">Query Processing Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#query-understanding">Query Understanding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-retrieval">Context Retrieval</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#response-generation">Response Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#response-delivery">Response Delivery</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-edge-cases">Error Handling and Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#invalid-queries">Invalid Queries</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-information">Missing Information</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-errors">LLM Errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-and-optimizing-q-a-system-performance">Evaluating and Optimizing Q&amp;A System Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-metrics">Accuracy Metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-formatting-and-standardization">Output Formatting and Standardization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring-and-maintenance">System Monitoring and Maintenance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-implementing-the-query-processing-pipeline">Example 1: Implementing the Query Processing Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-enhancing-error-handling">Example 2: Enhancing Error Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-10-session-3-system-integration-and-implementation">
+<h1>Week 10 Session 3: System Integration and Implementation<a class="headerlink" href="#week-10-session-3-system-integration-and-implementation" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this final session of Week 10, we’ll bring together all the components you’ve learned so far to build a functional <strong>LLM-based Question-Answering (Q&amp;A) system</strong>. We’ll focus on integrating <strong>document processing</strong>, <strong>embeddings</strong>, <strong>vector databases</strong>, and <strong>LLMs</strong> into a cohesive pipeline. You’ll learn how to handle user queries, retrieve relevant information, generate accurate responses, and implement error handling and optimization techniques. By the end of this session, you’ll be equipped to create a basic Q&amp;A system and be prepared for more advanced applications in your final projects.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Building an effective Q&amp;A system requires more than understanding individual components; it demands a seamless integration of these components to work harmoniously. This session emphasizes the practical aspects of assembling a Q&amp;A system, including designing a <strong>query processing pipeline</strong>, implementing <strong>error handling mechanisms</strong>, and optimizing system performance. Mastering these skills is essential for aspiring AI engineers looking to develop real-world applications capable of handling complex queries and delivering precise answers promptly.</p>
+</section>
+<section id="system-integration-and-implementation">
+<h2>System Integration and Implementation<a class="headerlink" href="#system-integration-and-implementation" title="Link to this heading">#</a></h2>
+<section id="connecting-components">
+<h3>Connecting Components<a class="headerlink" href="#connecting-components" title="Link to this heading">#</a></h3>
+<section id="document-processor-integration">
+<h4>Document Processor Integration<a class="headerlink" href="#document-processor-integration" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Ingest and preprocess documents to prepare them for embedding and storage.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Text Extraction</strong>: Use libraries like <code class="docutils literal notranslate"><span class="pre">PyPDF2</span></code>, <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code>, or <code class="docutils literal notranslate"><span class="pre">textract</span></code> to extract text from various document formats.</p></li>
+<li><p><strong>Text Cleaning</strong>: Normalize text by removing special characters, stop words, and correcting encoding issues.</p></li>
+<li><p><strong>Chunking</strong>: Divide documents into smaller, manageable chunks (e.g., paragraphs or sections) to improve retrieval granularity.</p></li>
+<li><p><strong>Metadata Extraction</strong>: Collect additional information such as document titles, authors, or dates for enhanced search capabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Processing a collection of PDF research papers, extracting the text, splitting it into sections, and storing the metadata.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="embedding-generation-and-storage">
+<h4>Embedding Generation and Storage<a class="headerlink" href="#embedding-generation-and-storage" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Convert processed text into embeddings and store them in a vector database for efficient similarity search.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Embedding Generation</strong>: Use models like <strong>Sentence-BERT</strong> or <strong>OpenAI’s embeddings API</strong> to transform text chunks into numerical vectors.</p></li>
+<li><p><strong>Metadata Association</strong>: Attach relevant metadata to each embedding for context during retrieval.</p></li>
+<li><p><strong>Vector Database Storage</strong>: Use services like <strong>Pinecone</strong>, <strong>Weaviate</strong>, or <strong>Milvus</strong> to store embeddings.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Generating embeddings for each document chunk and storing them in Pinecone with associated metadata like document ID and section number.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm-api-integration">
+<h4>LLM API Integration<a class="headerlink" href="#llm-api-integration" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Use an LLM to interpret user queries and generate responses based on retrieved information.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>API Setup</strong>: Configure access to the LLM API (e.g., OpenAI’s GPT-3 or GPT-4).</p></li>
+<li><p><strong>Prompt Engineering</strong>: Design prompts that effectively guide the LLM to produce accurate and relevant answers.</p></li>
+<li><p><strong>Response Handling</strong>: Parse and format the LLM’s output for user presentation.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Sending a user’s question along with retrieved context to the LLM and formatting the response for display.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="query-processing-pipeline">
+<h3>Query Processing Pipeline<a class="headerlink" href="#query-processing-pipeline" title="Link to this heading">#</a></h3>
+<section id="query-understanding">
+<h4>Query Understanding<a class="headerlink" href="#query-understanding" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Interpret and preprocess the user’s query.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Input Validation</strong>: Check for empty or invalid queries.</p></li>
+<li><p><strong>Normalization</strong>: Clean the query by removing unnecessary whitespace or special characters.</p></li>
+<li><p><strong>Query Embedding Generation</strong>: Generate an embedding for the query using the same model used for documents.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>A user asks, “What are the applications of neural networks?” The system cleans the query and generates its embedding.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="context-retrieval">
+<h4>Context Retrieval<a class="headerlink" href="#context-retrieval" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Retrieve relevant document chunks from the vector database.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Similarity Search</strong>: Use the query embedding to find the top-K most similar embeddings in the vector database.</p></li>
+<li><p><strong>Filtering</strong>: Apply metadata filters if necessary (e.g., date range, document type).</p></li>
+<li><p><strong>Context Assembly</strong>: Concatenate retrieved text chunks to form a context for the LLM.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Retrieving the top 5 document chunks related to neural networks and assembling them as context.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="response-generation">
+<h4>Response Generation<a class="headerlink" href="#response-generation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Generate a coherent and accurate answer using the LLM.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Prompt Construction</strong>: Combine the user’s query and retrieved context into a structured prompt.</p></li>
+<li><p><strong>LLM Invocation</strong>: Call the LLM API with the constructed prompt.</p></li>
+<li><p><strong>Post-processing</strong>: Clean up the LLM’s response, remove any irrelevant information.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Creating a prompt like: “Based on the following information, answer the question: [Context] Question: [User’s Query]”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="response-delivery">
+<h4>Response Delivery<a class="headerlink" href="#response-delivery" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Present the answer to the user in a clear and user-friendly manner.</p></li>
+<li><p><strong>Key Steps</strong>:</p>
+<ul>
+<li><p><strong>Formatting</strong>: Apply appropriate formatting (e.g., paragraphs, bullet points).</p></li>
+<li><p><strong>Confidence Indication</strong>: Optionally include a confidence score or disclaimer.</p></li>
+<li><p><strong>User Interface Update</strong>: Display the response in the application’s UI.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Showing the answer in a chat interface with proper formatting.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="error-handling-and-edge-cases">
+<h3>Error Handling and Edge Cases<a class="headerlink" href="#error-handling-and-edge-cases" title="Link to this heading">#</a></h3>
+<section id="invalid-queries">
+<h4>Invalid Queries<a class="headerlink" href="#invalid-queries" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Issues</strong>:</p>
+<ul>
+<li><p>Empty or nonsensical queries.</p></li>
+<li><p>Unsupported languages or formats.</p></li>
+</ul>
+</li>
+<li><p><strong>Solutions</strong>:</p>
+<ul>
+<li><p>Implement input validation and provide user feedback.</p></li>
+<li><p>Support multiple languages if necessary or inform the user about limitations.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>If a user submits an empty query, respond with “Please enter a valid question.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="missing-information">
+<h4>Missing Information<a class="headerlink" href="#missing-information" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Issues</strong>:</p>
+<ul>
+<li><p>No relevant documents found in the vector database.</p></li>
+</ul>
+</li>
+<li><p><strong>Solutions</strong>:</p>
+<ul>
+<li><p>Inform the user that no information is available.</p></li>
+<li><p>Suggest rephrasing the query.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>“Sorry, I couldn’t find information related to your question. Please try rephrasing or ask about a different topic.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm-errors">
+<h4>LLM Errors<a class="headerlink" href="#llm-errors" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Issues</strong>:</p>
+<ul>
+<li><p>API timeouts, rate limits, or unexpected responses.</p></li>
+</ul>
+</li>
+<li><p><strong>Solutions</strong>:</p>
+<ul>
+<li><p>Implement retry mechanisms.</p></li>
+<li><p>Handle exceptions gracefully and log errors.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>If the LLM API call fails, respond with “An error occurred while generating the answer. Please try again later.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="performance-issues">
+<h4>Performance Issues<a class="headerlink" href="#performance-issues" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Issues</strong>:</p>
+<ul>
+<li><p>Slow response times.</p></li>
+<li><p>High computational costs.</p></li>
+</ul>
+</li>
+<li><p><strong>Solutions</strong>:</p>
+<ul>
+<li><p>Optimize code and queries.</p></li>
+<li><p>Implement caching strategies.</p></li>
+<li><p>Use asynchronous processing.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>Cache frequent queries and their responses to reduce load times.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="evaluating-and-optimizing-q-a-system-performance">
+<h3>Evaluating and Optimizing Q&amp;A System Performance<a class="headerlink" href="#evaluating-and-optimizing-q-a-system-performance" title="Link to this heading">#</a></h3>
+<section id="accuracy-metrics">
+<h4>Accuracy Metrics<a class="headerlink" href="#accuracy-metrics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Relevance</strong>: How well the retrieved documents match the query.</p></li>
+<li><p><strong>Correctness</strong>: Accuracy of the answers provided by the LLM.</p></li>
+<li><p><strong>User Satisfaction</strong>: Feedback collected from users regarding the system’s performance.</p></li>
+</ul>
+</section>
+<section id="output-formatting-and-standardization">
+<h4>Output Formatting and Standardization<a class="headerlink" href="#output-formatting-and-standardization" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Consistency</strong>: Ensure responses follow a consistent format.</p></li>
+<li><p><strong>Clarity</strong>: Use clear language and avoid ambiguity.</p></li>
+<li><p><strong>Professionalism</strong>: Maintain a neutral and informative tone.</p></li>
+</ul>
+</section>
+<section id="system-monitoring-and-maintenance">
+<h4>System Monitoring and Maintenance<a class="headerlink" href="#system-monitoring-and-maintenance" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Monitoring Tools</strong>: Use tools to track system performance and uptime.</p></li>
+<li><p><strong>Logging</strong>: Keep detailed logs for debugging and analysis.</p></li>
+<li><p><strong>Regular Updates</strong>: Update models and databases to incorporate new data.</p></li>
+</ul>
+</section>
+<section id="optimization-techniques">
+<h4>Optimization Techniques<a class="headerlink" href="#optimization-techniques" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Batch Processing</strong>: Process multiple queries or documents simultaneously where possible.</p></li>
+<li><p><strong>Resource Management</strong>: Efficiently manage computational resources to reduce costs.</p></li>
+<li><p><strong>Model Fine-tuning</strong>: Fine-tune LLMs on domain-specific data for better performance.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="practical-examples-and-exercises">
+<h2>Practical Examples and Exercises<a class="headerlink" href="#practical-examples-and-exercises" title="Link to this heading">#</a></h2>
+<section id="example-1-implementing-the-query-processing-pipeline">
+<h3>Example 1: Implementing the Query Processing Pipeline<a class="headerlink" href="#example-1-implementing-the-query-processing-pipeline" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Build a function that processes a user’s query and returns an answer.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Validate the Query</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_query</span><span class="p">(</span><span class="n">user_query</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_query</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Please enter a valid question.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generate Query Embedding</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">user_query</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Retrieve Relevant Documents</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">search_results</span> <span class="o">=</span> <span class="n">vector_db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">vector</span><span class="o">=</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;Sorry, no relevant information found.&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Construct the Prompt</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="se">\n</span><span class="s2">Answer:&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generate the Answer using LLM</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+        <span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">answer</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;An error occurred while generating the answer.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-2-enhancing-error-handling">
+<h3>Example 2: Enhancing Error Handling<a class="headerlink" href="#example-2-enhancing-error-handling" title="Link to this heading">#</a></h3>
+<p><strong>Objective</strong>: Improve the robustness of the Q&amp;A system by adding exception handling and logging.</p>
+<p><strong>Steps</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Import Logging Module</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;qa_system.log&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Wrap API Calls with Try-Except</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># LLM API call</span>
+    <span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">RateLimitError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rate limit error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;The service is currently busy. Please try again later.&quot;</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;An unexpected error occurred.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handle Empty Search Results</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">search_results</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No matches found for query: </span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;No information available on that topic.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Build a basic web interface for your Q&amp;A system using Flask or Streamlit.</p>
+<p><strong>Instructions</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Set Up the Environment</strong>:</p>
+<ul class="simple">
+<li><p>Install Flask or Streamlit.</p></li>
+</ul>
+</li>
+<li><p><strong>Create the Front-End Interface</strong>:</p>
+<ul class="simple">
+<li><p>Design a simple UI where users can input their questions.</p></li>
+</ul>
+</li>
+<li><p><strong>Integrate the Backend Logic</strong>:</p>
+<ul class="simple">
+<li><p>Connect your query processing function to the front-end.</p></li>
+</ul>
+</li>
+<li><p><strong>Run and Test the Application</strong>:</p>
+<ul class="simple">
+<li><p>Ensure the system works end-to-end and handles errors gracefully.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Outcome</strong>:</p>
+<ul class="simple">
+<li><p>A functional web application where users can ask questions and receive answers generated by your Q&amp;A system.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<section id="recap">
+<h3>Recap<a class="headerlink" href="#recap" title="Link to this heading">#</a></h3>
+<p>In this session, we integrated all the components learned throughout the week to build a functional LLM-based Q&amp;A system. We covered:</p>
+<ul class="simple">
+<li><p><strong>Connecting Components</strong>: How to integrate document processing, embedding generation, vector storage, and LLMs.</p></li>
+<li><p><strong>Query Processing Pipeline</strong>: The step-by-step flow from user query to generated answer.</p></li>
+<li><p><strong>Error Handling and Edge Cases</strong>: Strategies to make the system robust and user-friendly.</p></li>
+<li><p><strong>Evaluating and Optimizing Performance</strong>: Methods to assess and improve the system’s effectiveness.</p></li>
+</ul>
+</section>
+<section id="future-directions">
+<h3>Future Directions<a class="headerlink" href="#future-directions" title="Link to this heading">#</a></h3>
+<p>Now that you have a foundational understanding of building an LLM-based Q&amp;A system, you’re prepared to delve into more advanced topics. In the upcoming weeks, we’ll explore <strong>web application development</strong>, allowing you to create user-friendly interfaces for your systems. We’ll also introduce <strong>Retrieval-Augmented Generation (RAG) systems</strong> and discuss ways to fine-tune models for specific domains.</p>
+</section>
+</section>
+<section id="references-and-additional-resources">
+<h2>References and Additional Resources<a class="headerlink" href="#references-and-additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Frameworks and Libraries</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/api-reference/introduction">OpenAI API Documentation</a></p></li>
+<li><p><a class="reference external" href="https://langchain.readthedocs.io/en/latest/">LangChain Documentation</a></p></li>
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/">Flask Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.streamlit.io/">Streamlit Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Vector Database Documentation</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.pinecone.io/">Pinecone Documentation</a></p></li>
+<li><p><a class="reference external" href="https://weaviate.io/developers/weaviate">Weaviate Documentation</a></p></li>
+<li><p><a class="reference external" href="https://milvus.io/docs/overview.md">Milvus Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Tutorials</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.pinecone.io/learn/openai-pinecone-question-answering/">Building a Q&amp;A Bot with OpenAI and Pinecone</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/python-chatbot/">Creating a Chatbot with Flask and OpenAI</a></p></li>
+</ul>
+</li>
+<li><p><strong>Articles</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://ai.facebook.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/">Retrieval-Augmented Generation: A New Approach to NLP Tasks</a></p></li>
+<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best Practices for Prompt Engineering with OpenAI APIs</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 10 Session 2: Vector Databases and Embeddings</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Team Project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-integration-and-implementation">System Integration and Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-components">Connecting Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#document-processor-integration">Document Processor Integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-generation-and-storage">Embedding Generation and Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api-integration">LLM API Integration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-processing-pipeline">Query Processing Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#query-understanding">Query Understanding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-retrieval">Context Retrieval</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#response-generation">Response Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#response-delivery">Response Delivery</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-edge-cases">Error Handling and Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#invalid-queries">Invalid Queries</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-information">Missing Information</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-errors">LLM Errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-and-optimizing-q-a-system-performance">Evaluating and Optimizing Q&amp;A System Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-metrics">Accuracy Metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-formatting-and-standardization">Output Formatting and Standardization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring-and-maintenance">System Monitoring and Maintenance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-and-exercises">Practical Examples and Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-implementing-the-query-processing-pipeline">Example 1: Implementing the Query Processing Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-enhancing-error-handling">Example 2: Enhancing Error Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions">Future Directions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-additional-resources">References and Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
