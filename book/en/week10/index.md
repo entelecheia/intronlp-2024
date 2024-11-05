@@ -1,4 +1,4 @@
-# Week 10: Building LLM-based Q&A Systems
+# Week 10 - Building LLM-based Q&A Systems
 
 ## Overview
 

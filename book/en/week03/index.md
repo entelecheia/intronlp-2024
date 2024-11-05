@@ -1,4 +1,4 @@
-# Week 3 - Fundamentals of Language Models
+# Week 3: Fundamentals of Language Models
 
 ## Overview
 

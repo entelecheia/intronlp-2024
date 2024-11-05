@@ -1,4 +1,4 @@
-# Week 6 - Understanding LLM APIs
+# Week 6: Understanding LLM APIs
 
 ## Key Learning Content
 

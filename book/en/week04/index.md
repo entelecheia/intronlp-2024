@@ -1,4 +1,4 @@
-# Week 4 - Word Embeddings
+# Week 4: Word Embeddings
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# Week 5 Session 1 - Introduction to Transformers
+# Week 5 Session 1: Introduction to Transformers
 
 ## Introduction
 

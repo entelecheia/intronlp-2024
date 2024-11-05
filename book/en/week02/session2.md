@@ -1,4 +1,4 @@
-# Week 2 Session 2 - Advanced Text Preprocessing and Representation
+# Week 2 Session 2: Advanced Text Preprocessing and Representation
 
 ## Introduction
 

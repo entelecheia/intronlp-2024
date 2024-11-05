@@ -1,4 +1,4 @@
-# Week 5 Session 2 - BERT
+# Week 5 Session 2: BERT
 
 ## 1. Introduction to BERT
 

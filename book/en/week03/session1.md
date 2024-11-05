@@ -1,4 +1,4 @@
-# Week 3 Session 1 - Introduction to Language Models and N-grams
+# Week 3 Session 1: Introduction to Language Models and N-grams
 
 ## 1. Introduction to Language Models
 

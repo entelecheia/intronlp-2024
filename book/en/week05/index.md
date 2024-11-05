@@ -1,4 +1,4 @@
-# Week 5 - Transformers
+# Week 5: Transformers
 
 ## Introduction
 

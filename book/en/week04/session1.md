@@ -1,4 +1,4 @@
-# Week 4 Session 1 - Introduction to Word Embeddings and Word2Vec
+# Week 4 Session 1: Introduction to Word Embeddings and Word2Vec
 
 ## 1. Introduction to Word Embeddings
 
