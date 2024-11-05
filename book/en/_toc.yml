@@ -51,6 +51,7 @@ parts:
         sections:
           - file: week10/session1
           - file: week10/session2
+          - file: week10/session3
   - caption: Projects
     chapters:
       - file: projects/index
