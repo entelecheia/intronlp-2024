@@ -188,13 +188,16 @@ Building an effective Q&A system requires more than understanding individual com
 5. **Generate the Answer using LLM**:
    ```python
        try:
-           response = openai.Completion.create(
-               engine="text-davinci-003",
-               prompt=prompt,
+           response = client.chat.completions.create(
+               model="gpt-4",
+               messages=[
+                   {"role": "system", "content": "You are a helpful assistant."},
+                   {"role": "user", "content": prompt}
+               ],
                max_tokens=150,
                temperature=0.7
            )
-           answer = response.choices[0].text.strip()
+           answer = response.choices[0].message.content.strip()
            return answer
        except Exception as e:
            return "An error occurred while generating the answer."
