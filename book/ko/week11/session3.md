@@ -28,13 +28,13 @@
 - **라이브러리 임포트**:
 
   ```python
-  import openai
+  from openai import OpenAI
   ```
 
 - **API 키 설정**:
 
   ```python
-  openai.api_key = '여기에_API_키_입력'
+  client = OpenAI(api_key='여기에_API_키_입력')
   ```
 
 ### 1.2 API 키 관리와 보안
@@ -122,17 +122,17 @@
 
   ```python
   try:
-      response = openai.Completion.create(
-          engine="text-davinci-003",
-          prompt="안녕하세요!",
+      response = client.chat.completions.create(
+          model="gpt-4",
+          messages=[{"role": "user", "content": "안녕하세요!"}],
           max_tokens=5
       )
-  except openai.error.AuthenticationError:
+  except openai.AuthenticationError:
       print("잘못된 API 키입니다.")
-  except openai.error.RateLimitError:
+  except openai.RateLimitError:
       print("속도 제한을 초과했습니다. 다시 시도합니다...")
       time.sleep(5)
-  except openai.error.APIError as e:
+  except openai.APIError as e:
       print(f"API 오류: {e}")
   ```
 
@@ -150,7 +150,7 @@
 - **`stream=True` 설정**:
 
   ```python
-  response = openai.ChatCompletion.create(
+  response = client.chat.completions.create(
       model="gpt-4",
       messages=[{"role": "user", "content": "이야기를 들려주세요."}],
       stream=True
@@ -161,8 +161,9 @@
 
   ```python
   for chunk in response:
-      content = chunk['choices'][0]['delta'].get('content', '')
-      print(content, end='', flush=True)
+      content = chunk.choices[0].delta.content
+      if content is not None:
+          print(content, end='', flush=True)
   ```
 
 - **Flask와 통합**:
@@ -173,14 +174,15 @@
   @app.route('/chat', methods=['POST'])
   def chat():
       def generate():
-          response = openai.ChatCompletion.create(
+          response = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": request.json['message']}],
               stream=True
           )
           for chunk in response:
-              content = chunk['choices'][0]['delta'].get('content', '')
-              yield content
+              content = chunk.choices[0].delta.content
+              if content is not None:
+                  yield content
 
       return Response(generate(), mimetype='text/plain')
   ```
@@ -444,7 +446,7 @@
   ```python
   def get_openai_response(prompt):
       try:
-          client = openai.OpenAI()
+          client = OpenAI()
           completion = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": prompt}]

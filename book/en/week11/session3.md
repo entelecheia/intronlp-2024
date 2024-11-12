@@ -28,7 +28,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
 - **Importing the Library**:
 
   ```python
-  import openai
+  from openai import OpenAI
   ```
 
 - **Configuring the API Key**:
@@ -161,8 +161,9 @@ Welcome to the final session of our web development series! Today, we'll focus o
 
   ```python
   for chunk in response:
-      content = chunk['choices'][0]['delta'].get('content', '')
-      print(content, end='', flush=True)
+      content = chunk.choices[0].delta.content
+      if content is not None:
+          print(content, end='', flush=True)
   ```
 
 - **Integrating with Flask**:
@@ -173,14 +174,15 @@ Welcome to the final session of our web development series! Today, we'll focus o
   @app.route('/chat', methods=['POST'])
   def chat():
       def generate():
-          response = openai.ChatCompletion.create(
+          client = OpenAI()
+          response = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": request.json['message']}],
               stream=True
           )
           for chunk in response:
-              content = chunk['choices'][0]['delta'].get('content', '')
-              yield content
+              if chunk.choices[0].delta.content is not None:
+                  yield chunk.choices[0].delta.content
 
       return Response(generate(), mimetype='text/plain')
   ```
@@ -444,7 +446,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
   ```python
   def get_openai_response(prompt):
       try:
-          client = openai.OpenAI()
+          client = OpenAI()
           completion = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": prompt}]
@@ -508,7 +510,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
 
   ```python
   app.config.from_object('config.Config')
-  openai.api_key = app.config['OPENAI_API_KEY']
+  client = OpenAI(api_key=app.config['OPENAI_API_KEY'])
   ```
 
 ### 4.4 Deploying an Application to a Hosting Platform
