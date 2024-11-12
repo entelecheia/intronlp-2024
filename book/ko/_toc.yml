@@ -73,6 +73,7 @@ parts:
                   - file: projects/team1/research-note-6week-01
                   - file: projects/team1/research-note-7week-01
                   - file: projects/team1/research-note-8week-01
+                  - file: projects/team1/research-note-11week-01
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
@@ -96,6 +97,11 @@ parts:
                   - file: projects/team4/Research-Log/W3
                   - file: projects/team4/Research-Log/W4
                   - file: projects/team4/Research-Log/W5
+                  - file: projects/team4/Research-Log/W6
+                  - file: projects/team4/Research-Log/W7
+                  - file: projects/team4/Research-Log/W8
+                  - file: projects/team4/Research-Log/W9
+                  - file: projects/team4/Research-Log/W10
           - file: projects/team5/index
             sections:
               - file: projects/team5/proposal
@@ -107,6 +113,7 @@ parts:
                   - file: projects/team5/research-note-6
                   - file: projects/team5/research-note-7
                   - file: projects/team5/research-note-8
+                  - file: projects/team5/research-note-9
   - caption: About
     chapters:
       - file: syllabus/index
