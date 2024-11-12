@@ -1,0 +1,1531 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 11 Session 3: Integrating LLM APIs and Deployment &#8212; Introduction to NLP and LLMs 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week11/session3';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team Project" href="../projects/index.html" />
+    <link rel="prev" title="Week 11 Session 2: Advanced Flask and Introduction to Streamlit" href="session2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to NLP and LLMs 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1: Foundations and Evolution of NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2: The Revolution in Modern NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/wk1-lab1.html">Week 1 Lab - Introduction to NLP Basics</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2: Basics of Text Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session1.html">Week 2 Session 1: Text Preprocessing Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session2.html">Week 2 Session 2: Advanced Text Preprocessing and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/session3.html">Week 2 Session 3: Korean Text Preprocessing and Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3: Fundamentals of Language Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session1.html">Week 3 Session 1: Introduction to Language Models and N-grams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/session2.html">Week 3 Session 2: Advanced Statistical Language Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4: Word Embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session1.html">Week 4 Session 1: Introduction to Word Embeddings and Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/session2.html">Week 4 Session 2:  Advanced Word Embeddings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5: Transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session1.html">Week 5 Session 1: Introduction to Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session2.html">Week 5 Session 2: BERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/session3.html">Week 5 Session 3: Practical Implementation and Visualization of Transformers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6: Understanding LLM APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session1.html">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/session2.html">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session1.html">Session 1: Foundational Discoveries in Machine Learning with Artificial Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session2.html">Session 2: Deep Learning Evolution and Advanced Neural Network Architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-physics/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-chemistry/index.html">Special Lecture: 2024 Nobel Prize in Chemistry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session1.html">Session 1: Computational Protein Design and De Novo Protein Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session2.html">Session 2: Protein Structure Prediction Using Artificial Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nobel-chemistry/session3.html">Session 3: Insights from Interviews</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">Week 9: Basics of Prompt Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session1.html">Week 9 Session 1: Introduction to Prompt Engineering and Core Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/session2.html">Week 9 Session 2: Advanced Prompting Strategies and Prompt Design Principles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week10/index.html">Week 10: Building LLM-based Q&amp;A Systems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week10/session1.html">Week 10 Session 1: Introduction to LLM-based Q&amp;A Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week10/session2.html">Week 10 Session 2: Vector Databases and Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week10/session3.html">Week 10 Session 3: System Integration and Implementation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 11: Web Application Development Basics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 11 Session 1: Introduction to Web Development and Flask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 11 Session 2: Advanced Flask and Introduction to Streamlit</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 11 Session 3: Integrating LLM APIs and Deployment</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proposal.html">NLP Project Proposal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/research-note.html">Week [n] Project Research Note</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">CHU AI Department</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/edit/main/book/en/week11/session3.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/intronlp-2024/issues/new?title=Issue%20on%20page%20%2Fweek11/session3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week11/session3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 11 Session 3: Integrating LLM APIs and Deployment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api-integration">1. LLM API Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-integration-patterns">1.1 OpenAI API Integration Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-openai-api">1.1.1 What is the OpenAI API?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">1.1.2 Setting Up the OpenAI API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-key-management-and-security">1.2 API Key Management and Security</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-secure-api-key-management">1.2.1 Importance of Secure API Key Management</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-api-keys-securely">1.2.2 Storing API Keys Securely</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricting-api-key-usage">1.2.3 Restricting API Key Usage</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rate-limiting-and-error-handling">1.3 Rate Limiting and Error Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-rate-limits">1.3.1 Understanding Rate Limits</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-strategies">1.3.2 Error Handling Strategies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-responses-from-llms">1.4 Streaming Responses from LLMs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-response-streaming">1.4.1 What is Response Streaming?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-streaming-in-openai-api">1.4.2 Implementing Streaming in OpenAI API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-and-best-practices">2. Security and Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variable-management">2.1 Environment Variable Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-environment-variables">2.1.1 Why Use Environment Variables?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-environment-variables">2.1.2 Managing Environment Variables</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-validation-and-sanitization">2.2 Input Validation and Sanitization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-validation">2.2.1 Importance of Validation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-input-validation">2.2.2 Implementing Input Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-site-scripting-xss-prevention">2.3 Cross-Site Scripting (XSS) Prevention</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-xss">2.3.1 What is XSS?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preventing-xss-in-flask">2.3.2 Preventing XSS in Flask</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-error-handling-strategies">2.4 API Error Handling Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#user-friendly-error-messages">2.4.1 User-Friendly Error Messages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-error-handlers-in-flask">2.4.2 Implementing Error Handlers in Flask</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-and-production">3. Deployment and Production</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-options-overview">3.1 Deployment Options Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hosting-platforms">3.1.1 Hosting Platforms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration">3.2 Environment Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-for-production">3.2.1 Configuring for Production</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-production-wsgi-server">3.2.2 Using a Production WSGI Server</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-server-setup">3.3 Basic Server Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-virtual-environment">3.3.1 Setting Up a Virtual Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-dependencies">3.3.2 Installing Dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-logging">3.4 Monitoring and Logging</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-monitoring">3.4.1 Importance of Monitoring</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-logging">3.4.2 Implementing Logging</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-tools">3.4.3 Monitoring Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-component">Practical Component</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-chatbot-interface-with-openai-api">4.1 Building a Chatbot Interface with OpenAI API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-flask-route">4.1.1 Setting Up the Flask Route</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-the-openai-api-call">4.1.2 Implementing the OpenAI API Call</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-chat-interface-template">4.1.3 Creating the Chat Interface Template</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-secure-api-key-storage">4.2 Implementing Secure API Key Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-production-ready-configuration">4.3 Creating a Production-Ready Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-file">4.3.1 Configuration File</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-an-application-to-a-hosting-platform">4.4 Deploying an Application to a Hosting Platform</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-deploying-to-heroku">4.4.1 Example: Deploying to Heroku</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-deploying-to-render">4.4.2 Alternative: Deploying to Render</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-11-session-3-integrating-llm-apis-and-deployment">
+<h1>Week 11 Session 3: Integrating LLM APIs and Deployment<a class="headerlink" href="#week-11-session-3-integrating-llm-apis-and-deployment" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Welcome to the final session of our web development series! Today, we’ll focus on integrating Large Language Model (LLM) APIs, such as OpenAI’s GPT-4, into web applications. We’ll discuss best practices for API integration, security considerations, and strategies for deploying your applications to production environments. By the end of this session, you’ll be able to create dynamic web applications that leverage the power of LLMs and are ready for real-world use.</p>
+</section>
+<hr class="docutils" />
+<section id="llm-api-integration">
+<h2>1. LLM API Integration<a class="headerlink" href="#llm-api-integration" title="Link to this heading">#</a></h2>
+<section id="openai-api-integration-patterns">
+<h3>1.1 OpenAI API Integration Patterns<a class="headerlink" href="#openai-api-integration-patterns" title="Link to this heading">#</a></h3>
+<section id="what-is-the-openai-api">
+<h4>1.1.1 What is the OpenAI API?<a class="headerlink" href="#what-is-the-openai-api" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Provides access to powerful AI models for tasks like text generation, translation, summarization, and more.</p></li>
+<li><p><strong>API Models</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code>, <code class="docutils literal notranslate"><span class="pre">gpt-4</span></code>, <code class="docutils literal notranslate"><span class="pre">gpt-4-turbo-preview</span></code> for conversational AI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text-embedding-ada-002</span></code> for embeddings.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="setting-up-the-openai-api">
+<h4>1.1.2 Setting Up the OpenAI API<a class="headerlink" href="#setting-up-the-openai-api" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Installation</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openai
+</pre></div>
+</div>
+</li>
+<li><p><strong>Importing the Library</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configuring the API Key</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;your-api-key-here&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="api-key-management-and-security">
+<h3>1.2 API Key Management and Security<a class="headerlink" href="#api-key-management-and-security" title="Link to this heading">#</a></h3>
+<section id="importance-of-secure-api-key-management">
+<h4>1.2.1 Importance of Secure API Key Management<a class="headerlink" href="#importance-of-secure-api-key-management" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Why Secure API Keys?</strong></p>
+<ul>
+<li><p>Prevent unauthorized access.</p></li>
+<li><p>Protect against misuse and potential charges.</p></li>
+</ul>
+</li>
+<li><p><strong>Do Not Hardcode API Keys</strong>:</p>
+<ul>
+<li><p>Avoid including API keys directly in your codebase.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="storing-api-keys-securely">
+<h4>1.2.2 Storing API Keys Securely<a class="headerlink" href="#storing-api-keys-securely" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Environment Variables</strong>:</p>
+<ul>
+<li><p><strong>Setting an Environment Variable</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-api-key-here&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Accessing in Python</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Using <code class="docutils literal notranslate"><span class="pre">.env</span></code> Files</strong>:</p>
+<ul>
+<li><p><strong>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> File</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">here</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Load with <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code></strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-dotenv
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="restricting-api-key-usage">
+<h4>1.2.3 Restricting API Key Usage<a class="headerlink" href="#restricting-api-key-usage" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Use API Key Permissions</strong>:</p>
+<ul>
+<li><p>Limit which APIs the key can access.</p></li>
+<li><p>Set usage quotas if available.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="rate-limiting-and-error-handling">
+<h3>1.3 Rate Limiting and Error Handling<a class="headerlink" href="#rate-limiting-and-error-handling" title="Link to this heading">#</a></h3>
+<section id="understanding-rate-limits">
+<h4>1.3.1 Understanding Rate Limits<a class="headerlink" href="#understanding-rate-limits" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Why Rate Limits Exist</strong>:</p>
+<ul class="simple">
+<li><p>Prevent abuse and ensure fair usage.</p></li>
+</ul>
+</li>
+<li><p><strong>Handling Rate Limits</strong>:</p>
+<ul>
+<li><p><strong>Check API Documentation</strong>: Know the limits.</p></li>
+<li><p><strong>Implement Backoff Strategies</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Make API call</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">RateLimitError</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Wait before retrying</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="error-handling-strategies">
+<h4>1.3.2 Error Handling Strategies<a class="headerlink" href="#error-handling-strategies" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Common API Errors</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AuthenticationError</span></code>: Invalid API key.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RateLimitError</span></code>: Exceeded rate limits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">APIError</span></code>: Server errors.</p></li>
+</ul>
+</li>
+<li><p><strong>Implementing Error Handling</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">AuthenticationError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid API key.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">RateLimitError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rate limit exceeded. Retrying...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">APIError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="streaming-responses-from-llms">
+<h3>1.4 Streaming Responses from LLMs<a class="headerlink" href="#streaming-responses-from-llms" title="Link to this heading">#</a></h3>
+<section id="what-is-response-streaming">
+<h4>1.4.1 What is Response Streaming?<a class="headerlink" href="#what-is-response-streaming" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Receiving parts of the response as they are generated.</p></li>
+<li><p><strong>Benefits</strong>:</p>
+<ul>
+<li><p>Improved user experience with real-time feedback.</p></li>
+<li><p>Reduced perceived latency.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="implementing-streaming-in-openai-api">
+<h4>1.4.2 Implementing Streaming in OpenAI API<a class="headerlink" href="#implementing-streaming-in-openai-api" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Setting <code class="docutils literal notranslate"><span class="pre">stream=True</span></code></strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Tell me a story.&quot;</span><span class="p">}],</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handling the Streamed Response</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">if</span> <span class="n">content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Integrating with Flask</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/chat&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">chat</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">():</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]}],</span>
+            <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span>
+
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">generate</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="security-and-best-practices">
+<h2>2. Security and Best Practices<a class="headerlink" href="#security-and-best-practices" title="Link to this heading">#</a></h2>
+<section id="environment-variable-management">
+<h3>2.1 Environment Variable Management<a class="headerlink" href="#environment-variable-management" title="Link to this heading">#</a></h3>
+<section id="why-use-environment-variables">
+<h4>2.1.1 Why Use Environment Variables?<a class="headerlink" href="#why-use-environment-variables" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Separation of Code and Configuration</strong>:</p>
+<ul>
+<li><p>Keeps sensitive data out of codebase.</p></li>
+</ul>
+</li>
+<li><p><strong>Flexibility</strong>:</p>
+<ul>
+<li><p>Easily change configurations without altering code.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="managing-environment-variables">
+<h4>2.1.2 Managing Environment Variables<a class="headerlink" href="#managing-environment-variables" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Using <code class="docutils literal notranslate"><span class="pre">.env</span></code> Files</strong>:</p>
+<ul class="simple">
+<li><p>Store environment variables locally.</p></li>
+<li><p><strong>Note</strong>: Do not commit <code class="docutils literal notranslate"><span class="pre">.env</span></code> files to version control.</p></li>
+</ul>
+</li>
+<li><p><strong>Example <code class="docutils literal notranslate"><span class="pre">.env</span></code> File</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FLASK_ENV</span><span class="o">=</span><span class="n">production</span>
+<span class="n">SECRET_KEY</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">secret</span><span class="o">-</span><span class="n">key</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Loading Environment Variables</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="input-validation-and-sanitization">
+<h3>2.2 Input Validation and Sanitization<a class="headerlink" href="#input-validation-and-sanitization" title="Link to this heading">#</a></h3>
+<section id="importance-of-validation">
+<h4>2.2.1 Importance of Validation<a class="headerlink" href="#importance-of-validation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Prevent Security Risks</strong>:</p>
+<ul>
+<li><p>SQL injection.</p></li>
+<li><p>Cross-Site Scripting (XSS).</p></li>
+</ul>
+</li>
+<li><p><strong>Ensure Data Integrity</strong>:</p>
+<ul>
+<li><p>Validates that input meets expected format.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="implementing-input-validation">
+<h4>2.2.2 Implementing Input Validation<a class="headerlink" href="#implementing-input-validation" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Use Validation Libraries</strong>:</p>
+<ul class="simple">
+<li><p><strong>Flask-WTF</strong> for form validation.</p></li>
+<li><p><strong>WTForms validators</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wtforms.validators</span> <span class="kn">import</span> <span class="n">DataRequired</span><span class="p">,</span> <span class="n">Length</span>
+
+<span class="k">class</span> <span class="nc">MessageForm</span><span class="p">(</span><span class="n">FlaskForm</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">DataRequired</span><span class="p">(),</span> <span class="n">Length</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="mi">500</span><span class="p">)])</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="cross-site-scripting-xss-prevention">
+<h3>2.3 Cross-Site Scripting (XSS) Prevention<a class="headerlink" href="#cross-site-scripting-xss-prevention" title="Link to this heading">#</a></h3>
+<section id="what-is-xss">
+<h4>2.3.1 What is XSS?<a class="headerlink" href="#what-is-xss" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Injection of malicious scripts into trusted websites.</p></li>
+<li><p><strong>Types</strong>:</p>
+<ul>
+<li><p>Stored XSS.</p></li>
+<li><p>Reflected XSS.</p></li>
+<li><p>DOM-based XSS.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="preventing-xss-in-flask">
+<h4>2.3.2 Preventing XSS in Flask<a class="headerlink" href="#preventing-xss-in-flask" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Autoescaping in Templates</strong>:</p>
+<ul>
+<li><p>Jinja2 autoescapes variables by default.</p></li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ user_input }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Marking Safe Content</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">markupsafe</span> <span class="kn">import</span> <span class="n">Markup</span>
+
+<span class="n">safe_content</span> <span class="o">=</span> <span class="n">Markup</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;Safe HTML&lt;/strong&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Avoid Using <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">safe</span></code> Filter Unless Necessary</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="api-error-handling-strategies">
+<h3>2.4 API Error Handling Strategies<a class="headerlink" href="#api-error-handling-strategies" title="Link to this heading">#</a></h3>
+<section id="user-friendly-error-messages">
+<h4>2.4.1 User-Friendly Error Messages<a class="headerlink" href="#user-friendly-error-messages" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Do Not Expose Internal Errors</strong>:</p>
+<ul>
+<li><p>Show generic messages to users.</p></li>
+<li><p>Log detailed errors internally.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="implementing-error-handlers-in-flask">
+<h4>2.4.2 Implementing Error Handlers in Flask<a class="headerlink" href="#implementing-error-handlers-in-flask" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Custom Error Pages</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handle_exception</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="c1"># Pass through HTTP errors</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">e</span>
+
+    <span class="c1"># Log the error</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unhandled exception: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Return a generic message</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;500.html&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handling Specific Exceptions</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">APIError</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handle_api_error</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;OpenAI API Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;An error occurred while processing your request.&quot;</span><span class="p">,</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="deployment-and-production">
+<h2>3. Deployment and Production<a class="headerlink" href="#deployment-and-production" title="Link to this heading">#</a></h2>
+<section id="deployment-options-overview">
+<h3>3.1 Deployment Options Overview<a class="headerlink" href="#deployment-options-overview" title="Link to this heading">#</a></h3>
+<section id="hosting-platforms">
+<h4>3.1.1 Hosting Platforms<a class="headerlink" href="#hosting-platforms" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Platform-as-a-Service (PaaS)</strong>:</p>
+<ul>
+<li><p><strong>Heroku</strong>: Easy deployment, free tier available.</p></li>
+<li><p><strong>Render</strong>: Supports Docker, free tier.</p></li>
+<li><p><strong>DigitalOcean App Platform</strong>: Simple setup.</p></li>
+</ul>
+</li>
+<li><p><strong>Infrastructure-as-a-Service (IaaS)</strong>:</p>
+<ul>
+<li><p><strong>AWS EC2</strong>, <strong>Google Cloud Compute Engine</strong>, <strong>Azure</strong>: More control, but requires more setup.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="environment-configuration">
+<h3>3.2 Environment Configuration<a class="headerlink" href="#environment-configuration" title="Link to this heading">#</a></h3>
+<section id="configuring-for-production">
+<h4>3.2.1 Configuring for Production<a class="headerlink" href="#configuring-for-production" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Set <code class="docutils literal notranslate"><span class="pre">FLASK_ENV</span></code> to <code class="docutils literal notranslate"><span class="pre">production</span></code></strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FLASK_ENV</span><span class="o">=</span>production
+</pre></div>
+</div>
+</li>
+<li><p><strong>Disable Debug Mode</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="using-a-production-wsgi-server">
+<h4>3.2.2 Using a Production WSGI Server<a class="headerlink" href="#using-a-production-wsgi-server" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Why Use a WSGI Server?</strong></p>
+<ul class="simple">
+<li><p>Better performance and stability.</p></li>
+</ul>
+</li>
+<li><p><strong>Popular Choices</strong>:</p>
+<ul class="simple">
+<li><p><strong>Gunicorn</strong> for UNIX.</p></li>
+<li><p><strong>Waitress</strong> for Windows.</p></li>
+</ul>
+</li>
+<li><p><strong>Example with Gunicorn</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gunicorn<span class="w"> </span>app:app
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="basic-server-setup">
+<h3>3.3 Basic Server Setup<a class="headerlink" href="#basic-server-setup" title="Link to this heading">#</a></h3>
+<section id="setting-up-a-virtual-environment">
+<h4>3.3.1 Setting Up a Virtual Environment<a class="headerlink" href="#setting-up-a-virtual-environment" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Create and Activate Virtual Environment</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="installing-dependencies">
+<h4>3.3.2 Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Use <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generating <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="monitoring-and-logging">
+<h3>3.4 Monitoring and Logging<a class="headerlink" href="#monitoring-and-logging" title="Link to this heading">#</a></h3>
+<section id="importance-of-monitoring">
+<h4>3.4.1 Importance of Monitoring<a class="headerlink" href="#importance-of-monitoring" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Detect Issues Early</strong>:</p>
+<ul>
+<li><p>Performance bottlenecks.</p></li>
+<li><p>Errors and exceptions.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="implementing-logging">
+<h4>3.4.2 Implementing Logging<a class="headerlink" href="#implementing-logging" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Configure Logging in Flask</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use Logging in Your Code</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;This is an error message&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="monitoring-tools">
+<h4>3.4.3 Monitoring Tools<a class="headerlink" href="#monitoring-tools" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Application Performance Monitoring (APM)</strong>:</p>
+<ul>
+<li><p><strong>New Relic</strong></p></li>
+<li><p><strong>Datadog</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Server Monitoring</strong>:</p>
+<ul>
+<li><p><strong>Prometheus</strong></p></li>
+<li><p><strong>Grafana</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="practical-component">
+<h2>Practical Component<a class="headerlink" href="#practical-component" title="Link to this heading">#</a></h2>
+<section id="building-a-chatbot-interface-with-openai-api">
+<h3>4.1 Building a Chatbot Interface with OpenAI API<a class="headerlink" href="#building-a-chatbot-interface-with-openai-api" title="Link to this heading">#</a></h3>
+<section id="setting-up-the-flask-route">
+<h4>4.1.1 Setting Up the Flask Route<a class="headerlink" href="#setting-up-the-flask-route" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Create a Chat Route</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/chat&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">chat</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">get_openai_response</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;chat.html&#39;</span><span class="p">,</span> <span class="n">user_input</span><span class="o">=</span><span class="n">user_input</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;chat.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="implementing-the-openai-api-call">
+<h4>4.1.2 Implementing the OpenAI API Call<a class="headerlink" href="#implementing-the-openai-api-call" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Define the API Call Function</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_openai_response</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;OpenAI API Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Sorry, I&#39;m having trouble responding right now.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="creating-the-chat-interface-template">
+<h4>4.1.3 Creating the Chat Interface Template<a class="headerlink" href="#creating-the-chat-interface-template" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">templates/chat.html</span></code></strong>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Chatbot<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Chat with the Bot<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;message&quot;</span><span class="p">&gt;</span>You:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Send&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    {% if response %}
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Bot:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> {{ response }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    {% endif %}
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="implementing-secure-api-key-storage">
+<h3>4.2 Implementing Secure API Key Storage<a class="headerlink" href="#implementing-secure-api-key-storage" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Using Environment Variables</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Ensure API Key is Not Exposed</strong>:</p>
+<ul class="simple">
+<li><p>Do not print or log the API key.</p></li>
+<li><p>Do not include the key in client-side code or templates.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="creating-a-production-ready-configuration">
+<h3>4.3 Creating a Production-Ready Configuration<a class="headerlink" href="#creating-a-production-ready-configuration" title="Link to this heading">#</a></h3>
+<section id="configuration-file">
+<h4>4.3.1 Configuration File<a class="headerlink" href="#configuration-file" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Create a <code class="docutils literal notranslate"><span class="pre">config.py</span></code></strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
+    <span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Load Configuration in Flask App</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;config.Config&#39;</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="deploying-an-application-to-a-hosting-platform">
+<h3>4.4 Deploying an Application to a Hosting Platform<a class="headerlink" href="#deploying-an-application-to-a-hosting-platform" title="Link to this heading">#</a></h3>
+<section id="example-deploying-to-heroku">
+<h4>4.4.1 Example: Deploying to Heroku<a class="headerlink" href="#example-deploying-to-heroku" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Create a <code class="docutils literal notranslate"><span class="pre">Procfile</span></code></strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">web</span><span class="p">:</span> <span class="n">gunicorn</span> <span class="n">app</span><span class="p">:</span><span class="n">app</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install Gunicorn</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>gunicorn
+</pre></div>
+</div>
+</li>
+<li><p><strong>Commit and Push to Heroku</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>create
+git<span class="w"> </span>push<span class="w"> </span>heroku<span class="w"> </span>main
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set Environment Variables on Heroku</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>your-api-key-here
+heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">SECRET_KEY</span><span class="o">=</span>your-secret-key
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="alternative-deploying-to-render">
+<h4>4.4.2 Alternative: Deploying to Render<a class="headerlink" href="#alternative-deploying-to-render" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Create <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code> or use their dashboard for configuration</strong>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this session, we’ve explored how to integrate Large Language Model APIs like OpenAI’s GPT-4 into your web applications. We’ve covered the critical aspects of API key management and security to protect sensitive information. Error handling and rate limiting are essential for building robust applications that provide a good user experience. We’ve also discussed best practices for deploying your application to a production environment, including environment configuration and monitoring.</p>
+<p>With these skills, you’re now capable of creating sophisticated web applications that leverage AI capabilities and are ready for real-world deployment.</p>
+</section>
+<hr class="docutils" />
+<section id="looking-ahead">
+<h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h2>
+<p>Next week, we’ll build upon these web development skills to focus on controlling and structuring LLM outputs in more sophisticated ways. We’ll delve into prompt engineering, response parsing, and techniques to guide the AI’s output to meet specific requirements.</p>
+<hr class="docutils" />
+<p><strong>Recommended Reading and Resources</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://beta.openai.com/docs/">OpenAI API Documentation</a></p></li>
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/en/2.3.x/deploying/">Flask Deployment Options</a></p></li>
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/en/2.3.x/security/">Security Best Practices with Flask</a></p></li>
+<li><p><a class="reference external" href="https://gunicorn.org/">Gunicorn Documentation</a></p></li>
+<li><p><a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-python">Heroku Deployment Guide</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Assignment</strong></p>
+<p>Create a simple web application that integrates with an LLM API to perform a specific NLP task (e.g., text summarization, question answering, or code generation). The application should:</p>
+<ul class="simple">
+<li><p><strong>Handle User Input Securely</strong>:</p>
+<ul>
+<li><p>Validate and sanitize all user inputs.</p></li>
+</ul>
+</li>
+<li><p><strong>Manage API Keys Properly</strong>:</p>
+<ul>
+<li><p>Use environment variables to store sensitive information.</p></li>
+</ul>
+</li>
+<li><p><strong>Implement Error Handling</strong>:</p>
+<ul>
+<li><p>Provide user-friendly error messages.</p></li>
+<li><p>Log errors internally for debugging.</p></li>
+</ul>
+</li>
+<li><p><strong>Include Basic Styling and User Feedback</strong>:</p>
+<ul>
+<li><p>Use CSS to improve the user interface.</p></li>
+<li><p>Display loading indicators during API calls.</p></li>
+</ul>
+</li>
+<li><p><strong>Be Properly Documented and Ready for Deployment</strong>:</p>
+<ul>
+<li><p>Include a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> with setup and deployment instructions.</p></li>
+<li><p>Ensure the application can be easily deployed to a hosting platform.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/intronlp-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/intronlp-2024"        data-repo-id="R_kgDOMnmcQA"        data-category="General"        data-category-id="DIC_kwDOMnmcQM4Ch5PF"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="session2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 11 Session 2: Advanced Flask and Introduction to Streamlit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Team Project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-api-integration">1. LLM API Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-integration-patterns">1.1 OpenAI API Integration Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-openai-api">1.1.1 What is the OpenAI API?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">1.1.2 Setting Up the OpenAI API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-key-management-and-security">1.2 API Key Management and Security</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-secure-api-key-management">1.2.1 Importance of Secure API Key Management</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-api-keys-securely">1.2.2 Storing API Keys Securely</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricting-api-key-usage">1.2.3 Restricting API Key Usage</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rate-limiting-and-error-handling">1.3 Rate Limiting and Error Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-rate-limits">1.3.1 Understanding Rate Limits</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-strategies">1.3.2 Error Handling Strategies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-responses-from-llms">1.4 Streaming Responses from LLMs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-response-streaming">1.4.1 What is Response Streaming?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-streaming-in-openai-api">1.4.2 Implementing Streaming in OpenAI API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-and-best-practices">2. Security and Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variable-management">2.1 Environment Variable Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-environment-variables">2.1.1 Why Use Environment Variables?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-environment-variables">2.1.2 Managing Environment Variables</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-validation-and-sanitization">2.2 Input Validation and Sanitization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-validation">2.2.1 Importance of Validation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-input-validation">2.2.2 Implementing Input Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-site-scripting-xss-prevention">2.3 Cross-Site Scripting (XSS) Prevention</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-xss">2.3.1 What is XSS?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preventing-xss-in-flask">2.3.2 Preventing XSS in Flask</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-error-handling-strategies">2.4 API Error Handling Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#user-friendly-error-messages">2.4.1 User-Friendly Error Messages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-error-handlers-in-flask">2.4.2 Implementing Error Handlers in Flask</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-and-production">3. Deployment and Production</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-options-overview">3.1 Deployment Options Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hosting-platforms">3.1.1 Hosting Platforms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration">3.2 Environment Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-for-production">3.2.1 Configuring for Production</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-production-wsgi-server">3.2.2 Using a Production WSGI Server</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-server-setup">3.3 Basic Server Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-virtual-environment">3.3.1 Setting Up a Virtual Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-dependencies">3.3.2 Installing Dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-logging">3.4 Monitoring and Logging</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-monitoring">3.4.1 Importance of Monitoring</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-logging">3.4.2 Implementing Logging</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-tools">3.4.3 Monitoring Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-component">Practical Component</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-chatbot-interface-with-openai-api">4.1 Building a Chatbot Interface with OpenAI API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-flask-route">4.1.1 Setting Up the Flask Route</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-the-openai-api-call">4.1.2 Implementing the OpenAI API Call</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-chat-interface-template">4.1.3 Creating the Chat Interface Template</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-secure-api-key-storage">4.2 Implementing Secure API Key Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-production-ready-configuration">4.3 Creating a Production-Ready Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-file">4.3.1 Configuration File</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-an-application-to-a-hosting-platform">4.4 Deploying an Application to a Hosting Platform</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-deploying-to-heroku">4.4.1 Example: Deploying to Heroku</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-deploying-to-render">4.4.2 Alternative: Deploying to Render</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
