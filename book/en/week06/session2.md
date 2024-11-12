@@ -1,4 +1,4 @@
-# Week 6 Session 2 - Sampling Methods and Text Generation
+# Week 6 Session 2: Sampling Methods and Text Generation
 
 ## Overview
 

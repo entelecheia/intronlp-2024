@@ -1,4 +1,4 @@
-# Session 3 - Insights from Interviews
+# Session 3: Insights from Interviews
 
 This session delves into the insights gleaned from interviews with two pioneers in the field of artificial intelligence and neural networks: Geoffrey Hinton and John Hopfield. Their reflections offer a unique perspective on the current state and future of AI, highlighting both its immense potential and the pressing need for safety research and ethical considerations.
 

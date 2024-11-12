@@ -1,4 +1,4 @@
-# Week 5 Session 3 - Practical Implementation and Visualization of Transformers
+# Week 5 Session 3: Practical Implementation and Visualization of Transformers
 
 ## Introduction
 

@@ -47,6 +47,16 @@ parts:
         sections:
           - file: week09/session1
           - file: week09/session2
+      - file: week10/index
+        sections:
+          - file: week10/session1
+          - file: week10/session2
+          - file: week10/session3
+      - file: week11/index
+        sections:
+          - file: week11/session1
+          - file: week11/session2
+          - file: week11/session3
   - caption: Projects
     chapters:
       - file: projects/index

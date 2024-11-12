@@ -1,4 +1,4 @@
-# Week 6 Session 1 - Introduction to LLM APIs and OpenAI API Usage
+# Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage
 
 ## 1. Introduction to Large Language Model APIs
 
