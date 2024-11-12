@@ -14,8 +14,8 @@
 
 - **목적**: 텍스트 생성, 번역, 요약 등의 작업을 위한 강력한 AI 모델 접근 제공
 - **API 모델**:
-  - 대화형 AI를 위한 `gpt-3.5-turbo`, `gpt-4`
-  - 일반적인 텍스트 생성을 위한 `text-davinci-003`
+  - 대화형 AI를 위한 `gpt-3.5-turbo`, `gpt-4`, `gpt-4-turbo`
+  - 일반적인 텍스트 임베딩을 위한 `text-embedding-ada-002`
 
 #### 1.1.2 OpenAI API 설정
 
@@ -444,11 +444,12 @@
   ```python
   def get_openai_response(prompt):
       try:
-          completion = openai.ChatCompletion.create(
+          client = openai.OpenAI()
+          completion = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": prompt}]
           )
-          return completion['choices'][0]['message']['content']
+          return completion.choices[0].message.content
       except Exception as e:
           app.logger.error(f'OpenAI API 오류: {e}')
           return "죄송합니다. 현재 응답하는 데 문제가 있습니다."

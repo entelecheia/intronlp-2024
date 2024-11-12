@@ -14,8 +14,8 @@ Welcome to the final session of our web development series! Today, we'll focus o
 
 - **Purpose**: Provides access to powerful AI models for tasks like text generation, translation, summarization, and more.
 - **API Models**:
-  - `gpt-3.5-turbo`, `gpt-4` for conversational AI.
-  - `text-davinci-003` for general-purpose text generation.
+  - `gpt-3.5-turbo`, `gpt-4`, `gpt-4-turbo-preview` for conversational AI.
+  - `text-embedding-ada-002` for embeddings.
 
 #### 1.1.2 Setting Up the OpenAI API
 
@@ -34,7 +34,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
 - **Configuring the API Key**:
 
   ```python
-  openai.api_key = 'your-api-key-here'
+  client = OpenAI(api_key='your-api-key-here')
   ```
 
 ### 1.2 API Key Management and Security
@@ -61,7 +61,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
 
     ```python
     import os
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     ```
 
 - **Using `.env` Files**:
@@ -81,7 +81,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
     ```python
     from dotenv import load_dotenv
     load_dotenv()
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     ```
 
 #### 1.2.3 Restricting API Key Usage
@@ -150,7 +150,7 @@ Welcome to the final session of our web development series! Today, we'll focus o
 - **Setting `stream=True`**:
 
   ```python
-  response = openai.ChatCompletion.create(
+  response = client.chat.completions.create(
       model="gpt-4",
       messages=[{"role": "user", "content": "Tell me a story."}],
       stream=True
@@ -444,11 +444,12 @@ Welcome to the final session of our web development series! Today, we'll focus o
   ```python
   def get_openai_response(prompt):
       try:
-          completion = openai.ChatCompletion.create(
+          client = openai.OpenAI()
+          completion = client.chat.completions.create(
               model="gpt-4",
               messages=[{"role": "user", "content": prompt}]
           )
-          return completion['choices'][0]['message']['content']
+          return completion.choices[0].message.content
       except Exception as e:
           app.logger.error(f'OpenAI API Error: {e}')
           return "Sorry, I'm having trouble responding right now."
