@@ -1,167 +1,195 @@
-# Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage
+# Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies
 
-## 1. Introduction to Large Language Model APIs
+## 1. Introduction to Large Language Models
 
-Large Language Model (LLM) APIs provide developers with access to powerful natural language processing capabilities without the need to train or host complex models themselves. These APIs offer a wide range of functionalities, including:
+### Definition and Overview
 
-- Text generation
-- Text completion
-- Question answering
-- Summarization
-- Sentiment analysis
-- Language translation
+Large Language Models (LLMs) are neural network models with a vast number of parameters, typically in the order of billions or even trillions. They are trained on extensive corpora of text data to understand and generate human-like language. Examples include OpenAI's GPT-3 and GPT-4, Google's BERT, and Meta's LLaMA.
 
-One of the most prominent LLM APIs is provided by OpenAI, which we'll focus on in this session.
+### Applications and Impact
 
-## 2. OpenAI API Overview
+LLMs have revolutionized natural language processing (NLP) by achieving state-of-the-art results in various tasks:
 
-The OpenAI API allows developers to access various models, including GPT-3.5 and GPT-4, for different natural language processing tasks. Key features include:
+- **Text Generation:** Crafting human-like text for chatbots, storytelling, and content creation.
+- **Translation:** Converting text from one language to another with high accuracy.
+- **Summarization:** Condensing large documents into concise summaries.
+- **Question Answering:** Providing answers to queries based on context.
+- **Sentiment Analysis:** Determining the sentiment expressed in text data.
 
-- **Multiple models**: Different models optimized for various tasks and performance levels.
-- **Customizable parameters**: Control over generation parameters like temperature and max tokens.
-- **Fine-tuning capabilities**: Ability to customize models for specific use cases.
-- **Moderation tools**: Built-in content filtering for safety and compliance.
+The impact of LLMs extends to industries like healthcare, finance, education, and more, enabling advanced analytics and automation.
 
-## 3. Setting Up the OpenAI API
+---
 
-To use the OpenAI API, follow these steps:
+## 2. Fundamentals of Transformer Architecture
 
-- a) Sign up for an OpenAI account at https://platform.openai.com/
-- b) Navigate to the API keys section and create a new secret key
-- c) Store your API key securely (never share or expose it publicly)
-- d) Install the OpenAI Python library:
+### The Transformer Model
 
-```bash
-pip install openai
-```
+Introduced by Vaswani et al. in 2017, the Transformer architecture has become the foundation for most LLMs. It addresses the limitations of recurrent neural networks (RNNs) by allowing for parallelization and better handling of long-range dependencies.
 
-e) Set up your API key as an environment variable:
+### Self-Attention Mechanism
 
-```bash
-export OPENAI_API_KEY='your-api-key-here'
-```
+At the core of the Transformer is the self-attention mechanism, which allows the model to weigh the importance of different words in a sequence relative to each other.
 
-## 4. Making Your First API Call
+- **Key Components:**
+  - **Queries (Q):** The vector representation of the current word.
+  - **Keys (K):** The vector representations of all words in the sequence.
+  - **Values (V):** The same as the keys but can be different based on implementation.
 
-Let's create a simple Python script to generate text using the OpenAI API:
+The attention score is computed as:
 
-```python
-import openai
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
 
-# Initialize the OpenAI client
-client = openai.OpenAI()
+where $ d_k $ is the dimension of the key vectors.
 
-# Make an API call
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is artificial intelligence?"}
-    ]
-)
+### Key Components
 
-# Print the generated response
-print(response.choices[0].message.content)
-```
+- **Multi-Head Attention:** Improves the model's ability to focus on different positions.
+- **Feed-Forward Networks:** Applies non-linear transformations to the attention outputs.
+- **Positional Encoding:** Adds information about the position of words in the sequence.
 
-This script does the following:
+---
 
-1. Imports the OpenAI library
-2. Initializes the OpenAI client
-3. Makes an API call to the chat completions endpoint
-4. Prints the generated response
+## 3. Pretraining Strategies
 
-## 5. Understanding the API Response
+### Objectives of Pretraining
 
-The API response is a JSON object containing various fields. Key fields include:
+Pretraining aims to initialize the model's parameters by learning from large unlabeled text corpora. This phase equips the model with a general understanding of language.
 
-- `id`: A unique identifier for the response
-- `object`: The type of object returned (e.g., "chat.completion")
-- `created`: The Unix timestamp of when the response was generated
-- `model`: The name of the model used
-- `choices`: An array containing the generated responses
-- `usage`: Information about token usage for the request
+### Pretraining Tasks
 
-## 6. API Parameters
+1. **Masked Language Modeling (MLM):** Used in models like BERT.
+   - Randomly masks tokens in the input and tasks the model with predicting them.
+2. **Causal Language Modeling (CLM):** Used in models like GPT.
+   - Predicts the next word in a sequence, training the model to generate coherent text.
+3. **Seq2Seq Modeling:** Combines encoding and decoding processes for tasks like translation.
 
-When making API calls, you can control various aspects of the generation process. Some important parameters include:
+### Importance and Challenges
 
-- `model`: Specifies which model to use (e.g., "gpt-4o-mini", "gpt-4o")
-- `messages`: An array of message objects representing the conversation history
-- `max_tokens`: The maximum number of tokens to generate
-- `temperature`: Controls randomness (0 to 2, lower is more deterministic)
-- `top_p`: An alternative to temperature, using nucleus sampling
-- `n`: Number of completions to generate for each prompt
-- `stop`: Sequences where the API will stop generating further tokens
+- **Importance:**
+  - Captures syntax and semantics.
+  - Provides a strong foundation for downstream tasks.
+- **Challenges:**
+  - Computationally intensive.
+  - Requires careful consideration of data quality and diversity.
 
-Example with additional parameters:
+---
 
-```python
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Write a short poem about AI."}
-    ],
-    max_tokens=50,
-    temperature=0.7,
-    n=2,
-    stop=["\n\n"]
-)
+## 4. Supervised Fine-Tuning (SFT)
 
-for choice in response.choices:
-    print(choice.message.content)
-    print("---")
-```
+### What is SFT?
 
-This example generates two short poems about AI, each limited to 50 tokens, with a temperature of 0.7, and stops generation at double newlines.
+Supervised Fine-Tuning involves training the pretrained model on a specific task with labeled data. It tailors the model to perform well on that task by adjusting the parameters further.
 
-## 7. Best Practices and Rate Limits
+### Methods and Techniques
 
-When using the OpenAI API, keep in mind:
+- **Data Preparation:** Collecting and labeling high-quality datasets relevant to the task.
+- **Training Procedure:**
+  - Use a smaller learning rate to avoid overwriting pretrained knowledge.
+  - Employ regularization techniques to prevent overfitting.
+- **Evaluation Metrics:** Selecting appropriate metrics to assess performance, such as accuracy, F1-score, or BLEU score.
 
-- **Rate limits**: OpenAI imposes rate limits on API calls. Monitor your usage and implement appropriate error handling.
-- **Costs**: API usage is billed based on the number of tokens processed. Estimate costs and set up usage limits to avoid unexpected charges.
-- **Prompt engineering**: Craft effective prompts to get the best results from the model.
-- **Error handling**: Implement robust error handling to manage API errors and network issues.
+### Practical Considerations
 
-## 8. Tokenization Basics
+- **Compute Resources:** Fine-tuning large models can be resource-intensive.
+- **Overfitting Risks:** Smaller datasets can lead to overfitting; data augmentation may help.
+- **Hyperparameter Tuning:** Essential for optimal performance.
 
-Understanding tokenization is crucial when working with LLM APIs:
+---
 
-- Tokens are the basic units processed by the model, roughly corresponding to parts of words.
-- English text typically breaks down to about 4 characters per token.
-- Both input (prompt) and output (completion) consume tokens.
-- Different models have different token limits (e.g., 4096 for gpt-4o-mini).
+## 5. Parameter-Efficient Fine-Tuning (PEFT)
 
-You can use the OpenAI tokenizer to count tokens:
+### Motivation for PEFT
 
-```python
-from openai import OpenAI
+Fine-tuning all parameters of a large model is computationally expensive and storage-intensive. PEFT addresses this by adjusting only a small subset of parameters, making the process more efficient.
 
-client = OpenAI()
+### PEFT Techniques
 
-def num_tokens_from_string(string: str, model_name: str) -> int:
-    """Returns the number of tokens in a text string."""
-    encoding = client.tiktoken.encoding_for_model(model_name)
-    num_tokens = len(encoding.encode(string))
-    return num_tokens
+#### Adapters
 
-text = "Hello, world! How are you doing today?"
-model = "gpt-4o-mini"
-token_count = num_tokens_from_string(text, model)
-print(f"The text contains {token_count} tokens for model {model}")
-```
+- **Concept:** Introduced by Houlsby et al., adapters are small neural networks inserted between layers of the pretrained model.
+- **Function:** They adjust representations for specific tasks without altering the main model weights.
+- **Advantages:** Reduces the number of trainable parameters.
 
-This function uses the `tiktoken` library (included in the OpenAI package) to accurately count tokens for a specific model.
+#### Low-Rank Adaptation (LoRA)
 
-## Conclusion
+- **Concept:** Decomposes weight updates into low-rank matrices.
+- **Function:** Applies low-rank approximations to the weight updates during fine-tuning.
+- **Advantages:** Significantly reduces memory footprint and computational cost.
 
-This session introduced the basics of working with LLM APIs, focusing on the OpenAI API. We covered API setup, making basic calls, understanding responses, and important concepts like tokenization. In the next session, we'll dive deeper into advanced usage patterns and explore different sampling methods to control text generation.
+#### Prefix-Tuning
 
-## References
+- **Concept:** Keeps the model weights frozen and optimizes a sequence of prefix tokens.
+- **Function:** The prefix tokens influence the model's activations, steering it towards task-specific outputs.
+- **Advantages:** Requires tuning only the prefix parameters.
 
-- [1] https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8
-- [2] https://huyenchip.com/2024/01/16/sampling.html
-- [3] https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/
-- [4] https://platform.openai.com/docs/quickstart
+#### BitFit
+
+- **Concept:** Fine-tunes only the bias terms in the model's layers.
+- **Function:** Adjusts biases to adapt to new tasks while keeping the majority of weights unchanged.
+- **Advantages:** Extremely parameter-efficient.
+
+### Advantages and Limitations
+
+- **Advantages:**
+  - Reduces computational and storage requirements.
+  - Enables quick adaptation to multiple tasks.
+- **Limitations:**
+  - May not achieve the same performance as full fine-tuning.
+  - Selection of which parameters to tune is crucial.
+
+---
+
+## 6. Alignment Techniques
+
+### Importance of Alignment
+
+Aligning LLMs with human values and intentions is critical to ensure that the models behave responsibly and ethically. Misaligned models can produce harmful or biased outputs.
+
+### Reinforcement Learning from Human Feedback (RLHF)
+
+- **Concept:** Combines reinforcement learning with human feedback to fine-tune the model.
+- **Process:**
+  1. **Supervised Fine-Tuning:** Initialize the model with human-annotated data.
+  2. **Reward Modeling:** Train a reward model based on human preferences.
+  3. **Policy Optimization:** Use reinforcement learning (e.g., Proximal Policy Optimization) to optimize the model according to the reward model.
+- **Advantages:** Aligns the model's outputs with human preferences.
+
+### Constitutional AI
+
+- **Concept:** Proposed by Anthropic, it involves training models to follow a set of principles or a "constitution."
+- **Function:** Models are fine-tuned to generate outputs that adhere to predefined ethical guidelines without human intervention during training.
+- **Advantages:** Reduces the need for extensive human feedback.
+
+### Ethical and Safety Considerations
+
+- **Bias and Fairness:** Ensuring the model does not perpetuate or amplify biases present in training data.
+- **Transparency:** Making the model's decision-making process interpretable.
+- **Accountability:** Establishing mechanisms to address and rectify harmful outputs.
+- **Regulation Compliance:** Adhering to legal standards like GDPR for data privacy.
+
+---
+
+## 7. Conclusion
+
+Large Language Models have transformed the field of NLP, enabling machines to understand and generate human-like text. Understanding the basics of LLMs, from their transformer architecture to various training strategies, is essential for leveraging their capabilities effectively.
+
+- **Pretraining** provides a foundational understanding of language.
+- **Supervised Fine-Tuning (SFT)** adapts the model to specific tasks.
+- **Parameter-Efficient Fine-Tuning (PEFT)** offers a resource-friendly alternative to full fine-tuning.
+- **Alignment Techniques** ensure that models act in accordance with human values and ethics.
+
+By combining these strategies, we can develop LLMs that are not only powerful but also responsible and aligned with societal needs.
+
+---
+
+## 8. References
+
+1. Vaswani, A., et al. (2017). ["Attention is All You Need."](https://arxiv.org/abs/1706.03762)
+2. Devlin, J., et al. (2018). ["BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding."](https://arxiv.org/abs/1810.04805)
+3. Radford, A., et al. (2019). ["Language Models are Unsupervised Multitask Learners."](https://openai.com/blog/better-language-models/)
+4. Houlsby, N., et al. (2019). ["Parameter-Efficient Transfer Learning for NLP."](https://arxiv.org/abs/1902.00751)
+5. Hu, E. J., et al. (2021). ["LoRA: Low-Rank Adaptation of Large Language Models."](https://arxiv.org/abs/2106.09685)
+6. Ouyang, L., et al. (2022). ["Training language models to follow instructions with human feedback."](https://arxiv.org/abs/2203.02155)
+7. Bai, Y., et al. (2022). ["Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback."](https://arxiv.org/abs/2204.05862)

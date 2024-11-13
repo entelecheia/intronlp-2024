@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 6 Session 2: Sampling Methods and Text Generation &#8212; Introduction to NLP and LLMs 2024</title>
+    <title>Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -99,8 +99,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Special Lecture: 2024 Nobel Prize in Physics" href="../nobel-physics/index.html" />
-    <link rel="prev" title="Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage" href="session1.html" />
+    <link rel="next" title="Week 6 Session 3: Sampling Methods and Text Generation" href="session3.html" />
+    <link rel="prev" title="Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies" href="session1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -231,8 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 6: Understanding LLM APIs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">Week 6 Session 3: Sampling Methods and Text Generation</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -470,7 +471,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 6 Session 2: Sampling Methods and Text Generation</h1>
+    <h1>Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -480,73 +481,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-session">1. Recap of Previous Session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-sampling-methods">2. Understanding Sampling Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sampling"><strong>2.1 Temperature Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-explanation"><strong>Mathematical Explanation</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagram-effect-of-temperature-on-probability-distribution"><strong>Diagram: Effect of Temperature on Probability Distribution</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling"><strong>2.2 Top-p (Nucleus) Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-explanation"><strong>Visual Explanation</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling"><strong>2.3 Top-k Sampling</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-presence-penalties"><strong>2.4 Frequency and Presence Penalties</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-with-code">3. Practical Examples with Code</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-environment"><strong>3.1 Setting Up the Environment</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimenting-with-temperature"><strong>3.2 Experimenting with Temperature</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt"><strong>Prompt</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-varying-temperature"><strong>Code Example: Varying Temperature</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-top-p-sampling"><strong>3.3 Exploring Top-p Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-varying-top-p"><strong>Code Example: Varying Top-p</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-temperature-and-top-p"><strong>3.4 Combining Temperature and Top-p</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example"><strong>Code Example</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation"><strong>Explanation</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-parameters-in-openai-api">4. Advanced Parameters in OpenAI API</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-output-length"><strong>4.1 Controlling Output Length</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example"><strong>Example</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-stop-sequences"><strong>4.2 Using Stop Sequences</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Example</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-output"><strong>4.3 Formatting Output</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-generating-json"><strong>Example: Generating JSON</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercise">5. Hands-On Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions"><strong>Instructions</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-code"><strong>Sample Code</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-and-troubleshooting">6. Common Issues and Troubleshooting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repetitive-or-nonsensical-output"><strong>Repetitive or Nonsensical Output</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-errors"><strong>API Errors</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-issues"><strong>Formatting Issues</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">7. Summary and Key Takeaways</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments-for-next-week">8. Assignments for Next Week</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-model-apis">1. Introduction to Large Language Model APIs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-overview">2. OpenAI API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">3. Setting Up the OpenAI API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-first-api-call">4. Making Your First API Call</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-response">5. Understanding the API Response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-parameters">6. API Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-rate-limits">7. Best Practices and Rate Limits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization-basics">8. Tokenization Basics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -558,449 +502,171 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-6-session-2-sampling-methods-and-text-generation">
-<h1>Week 6 Session 2: Sampling Methods and Text Generation<a class="headerlink" href="#week-6-session-2-sampling-methods-and-text-generation" title="Link to this heading">#</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this session, we’ll delve deeper into advanced usage of Large Language Model (LLM) APIs, focusing on sampling methods that control the randomness and creativity of generated text. We’ll explore how parameters like <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">top_p</span></code>, <code class="docutils literal notranslate"><span class="pre">top_k</span></code>, and others influence the model’s output. Through hands-on practice, we’ll learn how to fine-tune these parameters to achieve desired results in various natural language processing tasks.</p>
-</section>
-<hr class="docutils" />
-<section id="recap-of-previous-session">
-<h2>1. Recap of Previous Session<a class="headerlink" href="#recap-of-previous-session" title="Link to this heading">#</a></h2>
-<p>In our last session, we:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-6-session-2-introduction-to-llm-apis-and-openai-api-usage">
+<h1>Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage<a class="headerlink" href="#week-6-session-2-introduction-to-llm-apis-and-openai-api-usage" title="Link to this heading">#</a></h1>
+<section id="introduction-to-large-language-model-apis">
+<h2>1. Introduction to Large Language Model APIs<a class="headerlink" href="#introduction-to-large-language-model-apis" title="Link to this heading">#</a></h2>
+<p>Large Language Model (LLM) APIs provide developers with access to powerful natural language processing capabilities without the need to train or host complex models themselves. These APIs offer a wide range of functionalities, including:</p>
 <ul class="simple">
-<li><p><strong>Set Up the OpenAI API</strong>: Learned how to authenticate and make basic API calls.</p></li>
-<li><p><strong>Explored Tokenization</strong>: Understood how text is broken down into tokens and the implications for API usage.</p></li>
-<li><p><strong>Made Initial API Calls</strong>: Generated simple text based on prompts.</p></li>
-<li><p><strong>Discussed Best Practices</strong>: Covered error handling, cost management, and rate limits.</p></li>
+<li><p>Text generation</p></li>
+<li><p>Text completion</p></li>
+<li><p>Question answering</p></li>
+<li><p>Summarization</p></li>
+<li><p>Sentiment analysis</p></li>
+<li><p>Language translation</p></li>
+</ul>
+<p>One of the most prominent LLM APIs is provided by OpenAI, which we’ll focus on in this session.</p>
+</section>
+<section id="openai-api-overview">
+<h2>2. OpenAI API Overview<a class="headerlink" href="#openai-api-overview" title="Link to this heading">#</a></h2>
+<p>The OpenAI API allows developers to access various models, including GPT-3.5 and GPT-4, for different natural language processing tasks. Key features include:</p>
+<ul class="simple">
+<li><p><strong>Multiple models</strong>: Different models optimized for various tasks and performance levels.</p></li>
+<li><p><strong>Customizable parameters</strong>: Control over generation parameters like temperature and max tokens.</p></li>
+<li><p><strong>Fine-tuning capabilities</strong>: Ability to customize models for specific use cases.</p></li>
+<li><p><strong>Moderation tools</strong>: Built-in content filtering for safety and compliance.</p></li>
 </ul>
 </section>
-<hr class="docutils" />
-<section id="understanding-sampling-methods">
-<h2>2. Understanding Sampling Methods<a class="headerlink" href="#understanding-sampling-methods" title="Link to this heading">#</a></h2>
-<p>Sampling methods determine how the language model selects the next word (token) during text generation. Adjusting these parameters allows us to control the creativity and randomness of the output.</p>
-<section id="temperature-sampling">
-<h3><strong>2.1 Temperature Sampling</strong><a class="headerlink" href="#temperature-sampling" title="Link to this heading">#</a></h3>
+<section id="setting-up-the-openai-api">
+<h2>3. Setting Up the OpenAI API<a class="headerlink" href="#setting-up-the-openai-api" title="Link to this heading">#</a></h2>
+<p>To use the OpenAI API, follow these steps:</p>
 <ul class="simple">
-<li><p><strong>Definition</strong>: A parameter (<code class="docutils literal notranslate"><span class="pre">temperature</span></code>) that scales the logits (raw outputs) before applying the softmax function to generate probabilities.</p></li>
-<li><p><strong>Range</strong>: Typically between 0.0 and 1.0, but can go higher.</p>
-<ul>
-<li><p><strong>Low Temperature (&lt;0.5)</strong>: Makes the model more deterministic and focused.</p></li>
-<li><p><strong>High Temperature (&gt;0.7)</strong>: Increases randomness and creativity.</p></li>
+<li><p>a) Sign up for an OpenAI account at <a class="reference external" href="https://platform.openai.com/">https://platform.openai.com/</a></p></li>
+<li><p>b) Navigate to the API keys section and create a new secret key</p></li>
+<li><p>c) Store your API key securely (never share or expose it publicly)</p></li>
+<li><p>d) Install the OpenAI Python library:</p></li>
 </ul>
-</li>
-</ul>
-<section id="mathematical-explanation">
-<h4><strong>Mathematical Explanation</strong><a class="headerlink" href="#mathematical-explanation" title="Link to this heading">#</a></h4>
-<p>The probability <span class="math notranslate nohighlight">\( p_i \)</span> of each token <span class="math notranslate nohighlight">\( i \)</span> is calculated as:</p>
-<div class="math notranslate nohighlight">
-\[
-p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T} \right)}}
-\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( z_i \)</span> is the logit for token <span class="math notranslate nohighlight">\( i \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( T \)</span> is the temperature.</p></li>
-</ul>
-<p>As <span class="math notranslate nohighlight">\( T \)</span> increases, the probability distribution becomes more uniform.</p>
-</section>
-<section id="diagram-effect-of-temperature-on-probability-distribution">
-<h4><strong>Diagram: Effect of Temperature on Probability Distribution</strong><a class="headerlink" href="#diagram-effect-of-temperature-on-probability-distribution" title="Link to this heading">#</a></h4>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
-    A[Logits] --&gt; B[Divide by Temperature]
-    B --&gt; C[Softmax Function]
-    C --&gt; D[Probability Distribution]
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openai
 </pre></div>
 </div>
-</section>
-</section>
-<section id="top-p-nucleus-sampling">
-<h3><strong>2.2 Top-p (Nucleus) Sampling</strong><a class="headerlink" href="#top-p-nucleus-sampling" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Definition</strong>: Instead of considering all possible tokens, the model considers only the smallest set of tokens whose cumulative probability exceeds a threshold <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
-<li><p><strong>Parameter</strong>: <code class="docutils literal notranslate"><span class="pre">top_p</span></code> ranges between 0.0 and 1.0.</p>
-<ul>
-<li><p><strong>Low Top-p (&lt;0.5)</strong>: Only the most probable tokens are considered.</p></li>
-<li><p><strong>High Top-p (~1.0)</strong>: Considers a broader range of tokens.</p></li>
-</ul>
-</li>
-</ul>
-<section id="visual-explanation">
-<h4><strong>Visual Explanation</strong><a class="headerlink" href="#visual-explanation" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Cumulative Probability Curve</strong>: Plotting tokens sorted by probability.</p></li>
-<li><p><strong>Top-p Threshold</strong>: A vertical line at cumulative probability <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
-</ul>
-</section>
-</section>
-<section id="top-k-sampling">
-<h3><strong>2.3 Top-k Sampling</strong><a class="headerlink" href="#top-k-sampling" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Definition</strong>: The model considers only the top <code class="docutils literal notranslate"><span class="pre">k</span></code> tokens with the highest probabilities.</p></li>
-<li><p><strong>Parameter</strong>: <code class="docutils literal notranslate"><span class="pre">top_k</span></code> is an integer.</p>
-<ul>
-<li><p><strong>Low Top-k</strong>: Limits choices to the most probable tokens.</p></li>
-<li><p><strong>High Top-k</strong>: Allows more diversity.</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="frequency-and-presence-penalties">
-<h3><strong>2.4 Frequency and Presence Penalties</strong><a class="headerlink" href="#frequency-and-presence-penalties" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Frequency Penalty</strong>: Reduces the likelihood of a token being selected again based on its frequency in the generated text.</p></li>
-<li><p><strong>Presence Penalty</strong>: Penalizes tokens that have already appeared, encouraging the model to introduce new topics.</p></li>
-</ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="practical-examples-with-code">
-<h2>3. Practical Examples with Code<a class="headerlink" href="#practical-examples-with-code" title="Link to this heading">#</a></h2>
-<p>Let’s apply these sampling methods in practice.</p>
-<section id="setting-up-the-environment">
-<h3><strong>3.1 Setting Up the Environment</strong><a class="headerlink" href="#setting-up-the-environment" title="Link to this heading">#</a></h3>
-<p>Ensure you have the OpenAI library installed and your API key set up.</p>
+<p>e) Set up your API key as an environment variable:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-api-key-here&#39;</span>
 </pre></div>
 </div>
+</section>
+<section id="making-your-first-api-call">
+<h2>4. Making Your First API Call<a class="headerlink" href="#making-your-first-api-call" title="Link to this heading">#</a></h2>
+<p>Let’s create a simple Python script to generate text using the OpenAI API:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
 
+<span class="c1"># Initialize the OpenAI client</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">generate_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
-        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
-            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
-        <span class="p">],</span>
-        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
-</pre></div>
-</div>
-</section>
-<section id="experimenting-with-temperature">
-<h3><strong>3.2 Experimenting with Temperature</strong><a class="headerlink" href="#experimenting-with-temperature" title="Link to this heading">#</a></h3>
-<p>We’ll see how changing the temperature affects the output.</p>
-<section id="prompt">
-<h4><strong>Prompt</strong><a class="headerlink" href="#prompt" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Once upon a time in a distant land, there lived a&quot;</span>
-</pre></div>
-</div>
-</section>
-<section id="code-example-varying-temperature">
-<h4><strong>Code Example: Varying Temperature</strong><a class="headerlink" href="#code-example-varying-temperature" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-        <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="expected-output">
-<h4><strong>Expected Output</strong><a class="headerlink" href="#expected-output" title="Link to this heading">#</a></h4>
-<ul>
-<li><p><strong>Temperature 0.2</strong>: More predictable, less creative.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span> <span class="mf">0.2</span><span class="p">:</span>
-<span class="n">young</span> <span class="n">prince</span> <span class="n">who</span> <span class="n">was</span> <span class="n">brave</span> <span class="ow">and</span> <span class="n">kind</span><span class="o">.</span> <span class="n">He</span> <span class="n">loved</span> <span class="n">exploring</span> <span class="n">the</span> <span class="n">forests</span> <span class="ow">and</span> <span class="n">meeting</span> <span class="n">new</span> <span class="n">creatures</span><span class="o">.</span> <span class="n">One</span> <span class="n">day</span><span class="p">,</span> <span class="n">he</span> <span class="n">discovered</span> <span class="n">a</span> <span class="n">hidden</span> <span class="n">path</span> <span class="n">that</span> <span class="n">led</span> <span class="n">to</span> <span class="n">a</span> <span class="n">magical</span> <span class="n">garden</span> <span class="n">filled</span> <span class="k">with</span> <span class="n">beautiful</span> <span class="n">flowers</span> <span class="ow">and</span> <span class="n">singing</span> <span class="n">birds</span><span class="o">.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Temperature 0.7</strong>: Balanced creativity.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span> <span class="mf">0.7</span><span class="p">:</span>
-<span class="n">mysterious</span> <span class="n">old</span> <span class="n">wizard</span> <span class="n">known</span> <span class="k">for</span> <span class="n">his</span> <span class="n">wisdom</span><span class="o">.</span> <span class="n">People</span> <span class="kn">from</span> <span class="nn">all</span> <span class="n">over</span> <span class="n">sought</span> <span class="n">his</span> <span class="n">advice</span><span class="p">,</span> <span class="n">but</span> <span class="n">he</span> <span class="n">rarely</span> <span class="n">revealed</span> <span class="n">his</span> <span class="n">secrets</span><span class="o">.</span> <span class="n">One</span> <span class="n">day</span><span class="p">,</span> <span class="n">a</span> <span class="n">young</span> <span class="n">girl</span> <span class="n">approached</span> <span class="n">him</span> <span class="k">with</span> <span class="n">a</span> <span class="n">question</span> <span class="n">that</span> <span class="n">intrigued</span> <span class="n">him</span><span class="o">.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Temperature 1.0</strong>: Highly creative, possibly less coherent.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span> <span class="mf">1.0</span><span class="p">:</span>
-<span class="n">a</span> <span class="n">dragon</span> <span class="n">who</span> <span class="n">collected</span> <span class="n">porcelain</span> <span class="n">teacups</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">gold</span><span class="o">.</span> <span class="n">The</span> <span class="n">villagers</span> <span class="n">thought</span> <span class="n">it</span> <span class="n">was</span> <span class="n">peculiar</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">dragon</span> <span class="n">didn</span><span class="s1">&#39;t mind. He sipped tea every afternoon while reading ancient scrolls about the stars.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</section>
-</section>
-<section id="exploring-top-p-sampling">
-<h3><strong>3.3 Exploring Top-p Sampling</strong><a class="headerlink" href="#exploring-top-p-sampling" title="Link to this heading">#</a></h3>
-<p>Let’s see how adjusting <code class="docutils literal notranslate"><span class="pre">top_p</span></code> affects the output.</p>
-<section id="code-example-varying-top-p">
-<h4><strong>Code Example: Varying Top-p</strong><a class="headerlink" href="#code-example-varying-top-p" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">top_p_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">top_p_values</span><span class="p">:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-        <span class="n">top_p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top-p </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="id1">
-<h4><strong>Expected Output</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<ul>
-<li><p><strong>Top-p 0.3</strong>: Limited to most probable tokens.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">0.3</span><span class="p">:</span>
-<span class="n">young</span> <span class="n">prince</span> <span class="n">who</span> <span class="n">was</span> <span class="n">brave</span> <span class="ow">and</span> <span class="n">kind</span><span class="o">.</span> <span class="n">He</span> <span class="n">loved</span> <span class="n">exploring</span> <span class="n">the</span> <span class="n">kingdom</span> <span class="ow">and</span> <span class="n">helping</span> <span class="n">his</span> <span class="n">people</span><span class="o">.</span> <span class="n">One</span> <span class="n">day</span><span class="p">,</span> <span class="n">he</span> <span class="nb">set</span> <span class="n">out</span> <span class="n">on</span> <span class="n">a</span> <span class="n">journey</span> <span class="n">to</span> <span class="n">find</span> <span class="n">a</span> <span class="n">legendary</span> <span class="n">treasure</span> <span class="n">that</span> <span class="n">could</span> <span class="n">bring</span> <span class="n">prosperity</span> <span class="n">to</span> <span class="n">his</span> <span class="n">land</span><span class="o">.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Top-p 0.7</strong>: More diverse word choices.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">0.7</span><span class="p">:</span>
-<span class="n">curious</span> <span class="n">adventurer</span> <span class="k">with</span> <span class="n">a</span> <span class="n">heart</span> <span class="n">full</span> <span class="n">of</span> <span class="n">dreams</span><span class="o">.</span> <span class="n">She</span> <span class="n">longed</span> <span class="n">to</span> <span class="n">explore</span> <span class="n">the</span> <span class="n">unknown</span> <span class="ow">and</span> <span class="n">discover</span> <span class="n">hidden</span> <span class="n">wonders</span><span class="o">.</span> <span class="n">With</span> <span class="n">a</span> <span class="nb">map</span> <span class="ow">in</span> <span class="n">hand</span><span class="p">,</span> <span class="n">she</span> <span class="n">embarked</span> <span class="n">on</span> <span class="n">a</span> <span class="n">journey</span> <span class="n">that</span> <span class="n">would</span> <span class="n">change</span> <span class="n">her</span> <span class="n">life</span> <span class="n">forever</span><span class="o">.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Top-p 1.0</strong>: Full range of possible tokens (similar to not using top-p).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span><span class="o">-</span><span class="n">p</span> <span class="mf">1.0</span><span class="p">:</span>
-<span class="n">a</span> <span class="n">talking</span> <span class="n">tree</span> <span class="n">who</span> <span class="n">whispered</span> <span class="n">secrets</span> <span class="n">to</span> <span class="n">those</span> <span class="n">who</span> <span class="n">would</span> <span class="n">listen</span><span class="o">.</span> <span class="n">Travelers</span> <span class="n">would</span> <span class="n">come</span> <span class="kn">from</span> <span class="nn">afar</span> <span class="n">to</span> <span class="n">hear</span> <span class="n">its</span> <span class="n">tales</span> <span class="n">of</span> <span class="n">ancient</span> <span class="n">times</span> <span class="ow">and</span> <span class="n">forgotten</span> <span class="n">realms</span><span class="p">,</span> <span class="n">each</span> <span class="n">story</span> <span class="n">more</span> <span class="n">enchanting</span> <span class="n">than</span> <span class="n">the</span> <span class="n">last</span><span class="o">.</span>
-<span class="o">----------------------------------------</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</section>
-</section>
-<section id="combining-temperature-and-top-p">
-<h3><strong>3.4 Combining Temperature and Top-p</strong><a class="headerlink" href="#combining-temperature-and-top-p" title="Link to this heading">#</a></h3>
-<p>You can use both parameters together to fine-tune the output.</p>
-<section id="code-example">
-<h4><strong>Code Example</strong><a class="headerlink" href="#code-example" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
+<span class="c1"># Make an API call</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What is artificial intelligence?&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined Parameters:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="explanation">
-<h4><strong>Explanation</strong><a class="headerlink" href="#explanation" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Temperature 0.9</strong>: High creativity.</p></li>
-<li><p><strong>Top-p 0.6</strong>: Limits the choices to the most probable tokens, even with high temperature.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section id="advanced-parameters-in-openai-api">
-<h2>4. Advanced Parameters in OpenAI API<a class="headerlink" href="#advanced-parameters-in-openai-api" title="Link to this heading">#</a></h2>
-<p>Beyond sampling methods, other parameters allow you to control the model’s output.</p>
-<section id="controlling-output-length">
-<h3><strong>4.1 Controlling Output Length</strong><a class="headerlink" href="#controlling-output-length" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_tokens</span></code></strong>: Sets the maximum number of tokens in the generated response.</p></li>
-<li><p><strong>Limitation</strong>: The total tokens (prompt + completion) must be within the model’s context length (e.g., 4,096 tokens for <code class="docutils literal notranslate"><span class="pre">text-davinci-003</span></code>).</p></li>
-</ul>
-<section id="example">
-<h4><strong>Example</strong><a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Explain quantum computing in simple terms.&quot;</span><span class="p">,</span>
-    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="using-stop-sequences">
-<h3><strong>4.2 Using Stop Sequences</strong><a class="headerlink" href="#using-stop-sequences" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Purpose</strong>: Tells the model when to stop generating text.</p></li>
-<li><p><strong>Parameter</strong>: <code class="docutils literal notranslate"><span class="pre">stop</span></code> accepts a string or a list of strings.</p></li>
-</ul>
-<section id="id2">
-<h4><strong>Example</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;List three benefits of exercise:</span><span class="se">\n</span><span class="s2">1.&quot;</span><span class="p">,</span>
-    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
-<span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated List:</span><span class="se">\n</span><span class="s2">1.</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="id3">
-<h4><strong>Expected Output</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">List</span><span class="p">:</span>
-<span class="mf">1.</span> <span class="n">Improves</span> <span class="n">cardiovascular</span> <span class="n">health</span><span class="o">.</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="formatting-output">
-<h3><strong>4.3 Formatting Output</strong><a class="headerlink" href="#formatting-output" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Instructional Prompts</strong>: Ask the model to format the output in a specific way.</p></li>
-<li><p><strong>JSON Output</strong>: Useful for structured data extraction.</p></li>
-</ul>
-<section id="example-generating-json">
-<h4><strong>Example: Generating JSON</strong><a class="headerlink" href="#example-generating-json" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Extract the following information and provide it in JSON format:</span>
-<span class="s2">- Name</span>
-<span class="s2">- Age</span>
-<span class="s2">- Occupation</span>
 
-<span class="s2">Text: &quot;John Doe is a 29-year-old software engineer living in San Francisco.&quot;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">stop</span><span class="o">=</span><span class="kc">None</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="c1"># Print the generated response</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id4">
-<h4><strong>Expected Output</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;Occupation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Software Engineer&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section id="hands-on-exercise">
-<h2>5. Hands-On Exercise<a class="headerlink" href="#hands-on-exercise" title="Link to this heading">#</a></h2>
-<p><strong>Objective</strong>: Write a script that generates creative story prompts by adjusting sampling parameters.</p>
-<section id="instructions">
-<h3><strong>Instructions</strong><a class="headerlink" href="#instructions" title="Link to this heading">#</a></h3>
+<p>This script does the following:</p>
 <ol class="arabic simple">
-<li><p><strong>Choose a Base Prompt</strong>: For example, “In a world where robots have emotions, a single robot begins to…”</p></li>
-<li><p><strong>Experiment with Different Values</strong>:</p>
-<ul class="simple">
-<li><p>Vary <code class="docutils literal notranslate"><span class="pre">temperature</span></code> between 0.5 and 1.2.</p></li>
-<li><p>Adjust <code class="docutils literal notranslate"><span class="pre">top_p</span></code> between 0.5 and 1.0.</p></li>
-</ul>
-</li>
-<li><p><strong>Observe the Outputs</strong>:</p>
-<ul class="simple">
-<li><p>Note how the changes affect the creativity and coherence.</p></li>
-</ul>
-</li>
-<li><p><strong>Document Findings</strong>:</p>
-<ul class="simple">
-<li><p>Record the parameter values and corresponding outputs.</p></li>
-</ul>
-</li>
+<li><p>Imports the OpenAI library</p></li>
+<li><p>Initializes the OpenAI client</p></li>
+<li><p>Makes an API call to the chat completions endpoint</p></li>
+<li><p>Prints the generated response</p></li>
 </ol>
 </section>
-<section id="sample-code">
-<h3><strong>Sample Code</strong><a class="headerlink" href="#sample-code" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;In a world where robots have emotions, a single robot begins to&quot;</span>
+<section id="understanding-the-api-response">
+<h2>5. Understanding the API Response<a class="headerlink" href="#understanding-the-api-response" title="Link to this heading">#</a></h2>
+<p>The API response is a JSON object containing various fields. Key fields include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: A unique identifier for the response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">object</span></code>: The type of object returned (e.g., “chat.completion”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">created</span></code>: The Unix timestamp of when the response was generated</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: The name of the model used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">choices</span></code>: An array containing the generated responses</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usage</span></code>: Information about token usage for the request</p></li>
+</ul>
+</section>
+<section id="api-parameters">
+<h2>6. API Parameters<a class="headerlink" href="#api-parameters" title="Link to this heading">#</a></h2>
+<p>When making API calls, you can control various aspects of the generation process. Some important parameters include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: Specifies which model to use (e.g., “gpt-4o-mini”, “gpt-4o”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">messages</span></code>: An array of message objects representing the conversation history</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_tokens</span></code>: The maximum number of tokens to generate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">temperature</span></code>: Controls randomness (0 to 2, lower is more deterministic)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top_p</span></code>: An alternative to temperature, using nucleus sampling</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: Number of completions to generate for each prompt</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: Sequences where the API will stop generating further tokens</p></li>
+</ul>
+<p>Example with additional parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Write a short poem about AI.&quot;</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 
-<span class="n">temperatures</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
-<span class="n">top_p_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">top_p_values</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">generate_text</span><span class="p">(</span>
-            <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-            <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
-            <span class="n">top_p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
-            <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">stop</span><span class="o">=</span><span class="s2">&quot;.&quot;</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">, Top-p: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">choice</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>This example generates two short poems about AI, each limited to 50 tokens, with a temperature of 0.7, and stops generation at double newlines.</p>
 </section>
-</section>
-<hr class="docutils" />
-<section id="common-issues-and-troubleshooting">
-<h2>6. Common Issues and Troubleshooting<a class="headerlink" href="#common-issues-and-troubleshooting" title="Link to this heading">#</a></h2>
-<section id="repetitive-or-nonsensical-output">
-<h3><strong>Repetitive or Nonsensical Output</strong><a class="headerlink" href="#repetitive-or-nonsensical-output" title="Link to this heading">#</a></h3>
+<section id="best-practices-and-rate-limits">
+<h2>7. Best Practices and Rate Limits<a class="headerlink" href="#best-practices-and-rate-limits" title="Link to this heading">#</a></h2>
+<p>When using the OpenAI API, keep in mind:</p>
 <ul class="simple">
-<li><p><strong>Cause</strong>: Too low or too high temperature.</p></li>
-<li><p><strong>Solution</strong>: Adjust <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and <code class="docutils literal notranslate"><span class="pre">top_p</span></code> to find a balance.</p></li>
+<li><p><strong>Rate limits</strong>: OpenAI imposes rate limits on API calls. Monitor your usage and implement appropriate error handling.</p></li>
+<li><p><strong>Costs</strong>: API usage is billed based on the number of tokens processed. Estimate costs and set up usage limits to avoid unexpected charges.</p></li>
+<li><p><strong>Prompt engineering</strong>: Craft effective prompts to get the best results from the model.</p></li>
+<li><p><strong>Error handling</strong>: Implement robust error handling to manage API errors and network issues.</p></li>
 </ul>
 </section>
-<section id="api-errors">
-<h3><strong>API Errors</strong><a class="headerlink" href="#api-errors" title="Link to this heading">#</a></h3>
+<section id="tokenization-basics">
+<h2>8. Tokenization Basics<a class="headerlink" href="#tokenization-basics" title="Link to this heading">#</a></h2>
+<p>Understanding tokenization is crucial when working with LLM APIs:</p>
 <ul class="simple">
-<li><p><strong>InvalidRequestError</strong>: Check if parameters are within allowed ranges.</p></li>
-<li><p><strong>RateLimitError</strong>: Implement retries with exponential backoff.</p></li>
+<li><p>Tokens are the basic units processed by the model, roughly corresponding to parts of words.</p></li>
+<li><p>English text typically breaks down to about 4 characters per token.</p></li>
+<li><p>Both input (prompt) and output (completion) consume tokens.</p></li>
+<li><p>Different models have different token limits (e.g., 4096 for gpt-4o-mini).</p></li>
 </ul>
+<p>You can use the OpenAI tokenizer to count tokens:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">num_tokens_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of tokens in a text string.&quot;&quot;&quot;</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">tiktoken</span><span class="o">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+    <span class="n">num_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">num_tokens</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, world! How are you doing today?&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+<span class="n">token_count</span> <span class="o">=</span> <span class="n">num_tokens_from_string</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The text contains </span><span class="si">{</span><span class="n">token_count</span><span class="si">}</span><span class="s2"> tokens for model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function uses the <code class="docutils literal notranslate"><span class="pre">tiktoken</span></code> library (included in the OpenAI package) to accurately count tokens for a specific model.</p>
 </section>
-<section id="formatting-issues">
-<h3><strong>Formatting Issues</strong><a class="headerlink" href="#formatting-issues" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Unwanted Text</strong>: Use <code class="docutils literal notranslate"><span class="pre">stop</span></code> sequences to prevent the model from generating beyond the desired point.</p></li>
-<li><p><strong>Incorrect Output Format</strong>: Provide clear instructions and examples in the prompt.</p></li>
-</ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="summary-and-key-takeaways">
-<h2>7. Summary and Key Takeaways<a class="headerlink" href="#summary-and-key-takeaways" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Sampling Methods</strong>: Understanding <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">top_p</span></code>, and <code class="docutils literal notranslate"><span class="pre">top_k</span></code> is crucial for controlling text generation.</p></li>
-<li><p><strong>Parameter Tuning</strong>: Adjusting these parameters allows you to balance creativity and coherence.</p></li>
-<li><p><strong>Advanced Controls</strong>: Use <code class="docutils literal notranslate"><span class="pre">max_tokens</span></code>, <code class="docutils literal notranslate"><span class="pre">stop</span></code> sequences, and formatting instructions to refine outputs.</p></li>
-<li><p><strong>Hands-On Practice</strong>: Experimenting with different settings is the best way to learn their effects.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="assignments-for-next-week">
-<h2>8. Assignments for Next Week<a class="headerlink" href="#assignments-for-next-week" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Sampling Methods Report</strong>:</p>
-<ul class="simple">
-<li><p>Experiment with different combinations of <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and <code class="docutils literal notranslate"><span class="pre">top_p</span></code> using a prompt of your choice.</p></li>
-<li><p>Prepare a short report summarizing your findings, including code snippets and generated outputs.</p></li>
-</ul>
-</li>
-<li><p><strong>Create a Controlled Output</strong>:</p>
-<ul class="simple">
-<li><p>Write a script that generates a list of at least five items (e.g., “Top 5 programming languages in 2024”) using the OpenAI API.</p></li>
-<li><p>Ensure the output is formatted correctly and stops after listing five items.</p></li>
-</ul>
-</li>
-<li><p><strong>Structured Data Extraction</strong>:</p>
-<ul class="simple">
-<li><p>Use the API to extract specific information from a block of text and output it in JSON format.</p></li>
-<li><p>Share your prompt, code, and the results.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<hr class="docutils" />
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>Understanding and effectively using sampling methods is essential for harnessing the full potential of LLM APIs. By mastering these parameters, you can generate text that meets specific requirements for creativity, coherence, and format. Continue to experiment and explore the possibilities offered by these powerful tools.</p>
+<p>This session introduced the basics of working with LLM APIs, focusing on the OpenAI API. We covered API setup, making basic calls, understanding responses, and important concepts like tokenization. In the next session, we’ll dive deeper into advanced usage patterns and explore different sampling methods to control text generation.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>[1] <a class="reference external" href="https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8">https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8</a></p></li>
+<li><p>[2] <a class="reference external" href="https://huyenchip.com/2024/01/16/sampling.html">https://huyenchip.com/2024/01/16/sampling.html</a></p></li>
+<li><p>[3] <a class="reference external" href="https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/">https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/</a></p></li>
+<li><p>[4] <a class="reference external" href="https://platform.openai.com/docs/quickstart">https://platform.openai.com/docs/quickstart</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -1042,15 +708,15 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</p>
+        <p class="prev-next-title">Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies</p>
       </div>
     </a>
     <a class="right-next"
-       href="../nobel-physics/index.html"
+       href="session3.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Special Lecture: 2024 Nobel Prize in Physics</p>
+        <p class="prev-next-title">Week 6 Session 3: Sampling Methods and Text Generation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1071,73 +737,16 @@ p_i = \frac{\exp{\left( \frac{z_i}{T} \right)}}{\sum_j \exp{\left( \frac{z_j}{T}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-session">1. Recap of Previous Session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-sampling-methods">2. Understanding Sampling Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sampling"><strong>2.1 Temperature Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-explanation"><strong>Mathematical Explanation</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagram-effect-of-temperature-on-probability-distribution"><strong>Diagram: Effect of Temperature on Probability Distribution</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling"><strong>2.2 Top-p (Nucleus) Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-explanation"><strong>Visual Explanation</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling"><strong>2.3 Top-k Sampling</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-presence-penalties"><strong>2.4 Frequency and Presence Penalties</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-with-code">3. Practical Examples with Code</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-environment"><strong>3.1 Setting Up the Environment</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimenting-with-temperature"><strong>3.2 Experimenting with Temperature</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt"><strong>Prompt</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-varying-temperature"><strong>Code Example: Varying Temperature</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-top-p-sampling"><strong>3.3 Exploring Top-p Sampling</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-varying-top-p"><strong>Code Example: Varying Top-p</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-temperature-and-top-p"><strong>3.4 Combining Temperature and Top-p</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example"><strong>Code Example</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation"><strong>Explanation</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-parameters-in-openai-api">4. Advanced Parameters in OpenAI API</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-output-length"><strong>4.1 Controlling Output Length</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example"><strong>Example</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-stop-sequences"><strong>4.2 Using Stop Sequences</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Example</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-output"><strong>4.3 Formatting Output</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-generating-json"><strong>Example: Generating JSON</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Expected Output</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercise">5. Hands-On Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions"><strong>Instructions</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-code"><strong>Sample Code</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-and-troubleshooting">6. Common Issues and Troubleshooting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repetitive-or-nonsensical-output"><strong>Repetitive or Nonsensical Output</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-errors"><strong>API Errors</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-issues"><strong>Formatting Issues</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">7. Summary and Key Takeaways</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments-for-next-week">8. Assignments for Next Week</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-model-apis">1. Introduction to Large Language Model APIs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-overview">2. OpenAI API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">3. Setting Up the OpenAI API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-first-api-call">4. Making Your First API Call</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-response">5. Understanding the API Response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-parameters">6. API Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-rate-limits">7. Best Practices and Rate Limits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization-basics">8. Tokenization Basics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

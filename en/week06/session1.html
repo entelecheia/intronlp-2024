@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage &#8212; Introduction to NLP and LLMs 2024</title>
+    <title>Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies &#8212; Introduction to NLP and LLMs 2024</title>
   
   
   
@@ -99,7 +99,7 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 6 Session 2: Sampling Methods and Text Generation" href="session2.html" />
+    <link rel="next" title="Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage" href="session2.html" />
     <link rel="prev" title="Week 6: Understanding LLM APIs" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -231,8 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 6: Understanding LLM APIs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 6 Session 2: Sampling Methods and Text Generation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session3.html">Week 6 Session 3: Sampling Methods and Text Generation</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../nobel-physics/index.html">Special Lecture: 2024 Nobel Prize in Physics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -470,7 +471,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage</h1>
+    <h1>Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -480,16 +481,50 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-model-apis">1. Introduction to Large Language Model APIs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-overview">2. OpenAI API Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">3. Setting Up the OpenAI API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-first-api-call">4. Making Your First API Call</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-response">5. Understanding the API Response</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-parameters">6. API Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-rate-limits">7. Best Practices and Rate Limits</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization-basics">8. Tokenization Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-models">1. Introduction to Large Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-overview">Definition and Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-and-impact">Applications and Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals-of-transformer-architecture">2. Fundamentals of Transformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-transformer-model">The Transformer Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-mechanism">Self-Attention Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining-strategies">3. Pretraining Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives-of-pretraining">Objectives of Pretraining</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining-tasks">Pretraining Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-and-challenges">Importance and Challenges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-fine-tuning-sft">4. Supervised Fine-Tuning (SFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sft">What is SFT?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-and-techniques">Methods and Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations">Practical Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-fine-tuning-peft">5. Parameter-Efficient Fine-Tuning (PEFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-for-peft">Motivation for PEFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-techniques">PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adapters">Adapters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-adaptation-lora">Low-Rank Adaptation (LoRA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prefix-tuning">Prefix-Tuning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bitfit">BitFit</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations">Advantages and Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-techniques">6. Alignment Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-alignment">Importance of Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-from-human-feedback-rlhf">Reinforcement Learning from Human Feedback (RLHF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutional-ai">Constitutional AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethical-and-safety-considerations">Ethical and Safety Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">8. References</a></li>
 </ul>
             </nav>
         </div>
@@ -501,171 +536,255 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-6-session-1-introduction-to-llm-apis-and-openai-api-usage">
-<h1>Week 6 Session 1: Introduction to LLM APIs and OpenAI API Usage<a class="headerlink" href="#week-6-session-1-introduction-to-llm-apis-and-openai-api-usage" title="Link to this heading">#</a></h1>
-<section id="introduction-to-large-language-model-apis">
-<h2>1. Introduction to Large Language Model APIs<a class="headerlink" href="#introduction-to-large-language-model-apis" title="Link to this heading">#</a></h2>
-<p>Large Language Model (LLM) APIs provide developers with access to powerful natural language processing capabilities without the need to train or host complex models themselves. These APIs offer a wide range of functionalities, including:</p>
-<ul class="simple">
-<li><p>Text generation</p></li>
-<li><p>Text completion</p></li>
-<li><p>Question answering</p></li>
-<li><p>Summarization</p></li>
-<li><p>Sentiment analysis</p></li>
-<li><p>Language translation</p></li>
-</ul>
-<p>One of the most prominent LLM APIs is provided by OpenAI, which we’ll focus on in this session.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-6-session-1-large-language-model-llm-basics-and-training-strategies">
+<h1>Week 6 Session 1: Large Language Model (LLM) Basics and Training Strategies<a class="headerlink" href="#week-6-session-1-large-language-model-llm-basics-and-training-strategies" title="Link to this heading">#</a></h1>
+<section id="introduction-to-large-language-models">
+<h2>1. Introduction to Large Language Models<a class="headerlink" href="#introduction-to-large-language-models" title="Link to this heading">#</a></h2>
+<section id="definition-and-overview">
+<h3>Definition and Overview<a class="headerlink" href="#definition-and-overview" title="Link to this heading">#</a></h3>
+<p>Large Language Models (LLMs) are neural network models with a vast number of parameters, typically in the order of billions or even trillions. They are trained on extensive corpora of text data to understand and generate human-like language. Examples include OpenAI’s GPT-3 and GPT-4, Google’s BERT, and Meta’s LLaMA.</p>
 </section>
-<section id="openai-api-overview">
-<h2>2. OpenAI API Overview<a class="headerlink" href="#openai-api-overview" title="Link to this heading">#</a></h2>
-<p>The OpenAI API allows developers to access various models, including GPT-3.5 and GPT-4, for different natural language processing tasks. Key features include:</p>
+<section id="applications-and-impact">
+<h3>Applications and Impact<a class="headerlink" href="#applications-and-impact" title="Link to this heading">#</a></h3>
+<p>LLMs have revolutionized natural language processing (NLP) by achieving state-of-the-art results in various tasks:</p>
 <ul class="simple">
-<li><p><strong>Multiple models</strong>: Different models optimized for various tasks and performance levels.</p></li>
-<li><p><strong>Customizable parameters</strong>: Control over generation parameters like temperature and max tokens.</p></li>
-<li><p><strong>Fine-tuning capabilities</strong>: Ability to customize models for specific use cases.</p></li>
-<li><p><strong>Moderation tools</strong>: Built-in content filtering for safety and compliance.</p></li>
+<li><p><strong>Text Generation:</strong> Crafting human-like text for chatbots, storytelling, and content creation.</p></li>
+<li><p><strong>Translation:</strong> Converting text from one language to another with high accuracy.</p></li>
+<li><p><strong>Summarization:</strong> Condensing large documents into concise summaries.</p></li>
+<li><p><strong>Question Answering:</strong> Providing answers to queries based on context.</p></li>
+<li><p><strong>Sentiment Analysis:</strong> Determining the sentiment expressed in text data.</p></li>
+</ul>
+<p>The impact of LLMs extends to industries like healthcare, finance, education, and more, enabling advanced analytics and automation.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="fundamentals-of-transformer-architecture">
+<h2>2. Fundamentals of Transformer Architecture<a class="headerlink" href="#fundamentals-of-transformer-architecture" title="Link to this heading">#</a></h2>
+<section id="the-transformer-model">
+<h3>The Transformer Model<a class="headerlink" href="#the-transformer-model" title="Link to this heading">#</a></h3>
+<p>Introduced by Vaswani et al. in 2017, the Transformer architecture has become the foundation for most LLMs. It addresses the limitations of recurrent neural networks (RNNs) by allowing for parallelization and better handling of long-range dependencies.</p>
+</section>
+<section id="self-attention-mechanism">
+<h3>Self-Attention Mechanism<a class="headerlink" href="#self-attention-mechanism" title="Link to this heading">#</a></h3>
+<p>At the core of the Transformer is the self-attention mechanism, which allows the model to weigh the importance of different words in a sequence relative to each other.</p>
+<ul class="simple">
+<li><p><strong>Key Components:</strong></p>
+<ul>
+<li><p><strong>Queries (Q):</strong> The vector representation of the current word.</p></li>
+<li><p><strong>Keys (K):</strong> The vector representations of all words in the sequence.</p></li>
+<li><p><strong>Values (V):</strong> The same as the keys but can be different based on implementation.</p></li>
+</ul>
+</li>
+</ul>
+<p>The attention score is computed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( d_k \)</span> is the dimension of the key vectors.</p>
+</section>
+<section id="key-components">
+<h3>Key Components<a class="headerlink" href="#key-components" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Multi-Head Attention:</strong> Improves the model’s ability to focus on different positions.</p></li>
+<li><p><strong>Feed-Forward Networks:</strong> Applies non-linear transformations to the attention outputs.</p></li>
+<li><p><strong>Positional Encoding:</strong> Adds information about the position of words in the sequence.</p></li>
 </ul>
 </section>
-<section id="setting-up-the-openai-api">
-<h2>3. Setting Up the OpenAI API<a class="headerlink" href="#setting-up-the-openai-api" title="Link to this heading">#</a></h2>
-<p>To use the OpenAI API, follow these steps:</p>
-<ul class="simple">
-<li><p>a) Sign up for an OpenAI account at <a class="reference external" href="https://platform.openai.com/">https://platform.openai.com/</a></p></li>
-<li><p>b) Navigate to the API keys section and create a new secret key</p></li>
-<li><p>c) Store your API key securely (never share or expose it publicly)</p></li>
-<li><p>d) Install the OpenAI Python library:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openai
-</pre></div>
-</div>
-<p>e) Set up your API key as an environment variable:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-api-key-here&#39;</span>
-</pre></div>
-</div>
 </section>
-<section id="making-your-first-api-call">
-<h2>4. Making Your First API Call<a class="headerlink" href="#making-your-first-api-call" title="Link to this heading">#</a></h2>
-<p>Let’s create a simple Python script to generate text using the OpenAI API:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
-
-<span class="c1"># Initialize the OpenAI client</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
-
-<span class="c1"># Make an API call</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
-    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What is artificial intelligence?&quot;</span><span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-
-<span class="c1"># Print the generated response</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This script does the following:</p>
+<hr class="docutils" />
+<section id="pretraining-strategies">
+<h2>3. Pretraining Strategies<a class="headerlink" href="#pretraining-strategies" title="Link to this heading">#</a></h2>
+<section id="objectives-of-pretraining">
+<h3>Objectives of Pretraining<a class="headerlink" href="#objectives-of-pretraining" title="Link to this heading">#</a></h3>
+<p>Pretraining aims to initialize the model’s parameters by learning from large unlabeled text corpora. This phase equips the model with a general understanding of language.</p>
+</section>
+<section id="pretraining-tasks">
+<h3>Pretraining Tasks<a class="headerlink" href="#pretraining-tasks" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Imports the OpenAI library</p></li>
-<li><p>Initializes the OpenAI client</p></li>
-<li><p>Makes an API call to the chat completions endpoint</p></li>
-<li><p>Prints the generated response</p></li>
+<li><p><strong>Masked Language Modeling (MLM):</strong> Used in models like BERT.</p>
+<ul class="simple">
+<li><p>Randomly masks tokens in the input and tasks the model with predicting them.</p></li>
+</ul>
+</li>
+<li><p><strong>Causal Language Modeling (CLM):</strong> Used in models like GPT.</p>
+<ul class="simple">
+<li><p>Predicts the next word in a sequence, training the model to generate coherent text.</p></li>
+</ul>
+</li>
+<li><p><strong>Seq2Seq Modeling:</strong> Combines encoding and decoding processes for tasks like translation.</p></li>
 </ol>
 </section>
-<section id="understanding-the-api-response">
-<h2>5. Understanding the API Response<a class="headerlink" href="#understanding-the-api-response" title="Link to this heading">#</a></h2>
-<p>The API response is a JSON object containing various fields. Key fields include:</p>
+<section id="importance-and-challenges">
+<h3>Importance and Challenges<a class="headerlink" href="#importance-and-challenges" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: A unique identifier for the response</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">object</span></code>: The type of object returned (e.g., “chat.completion”)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">created</span></code>: The Unix timestamp of when the response was generated</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: The name of the model used</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">choices</span></code>: An array containing the generated responses</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">usage</span></code>: Information about token usage for the request</p></li>
+<li><p><strong>Importance:</strong></p>
+<ul>
+<li><p>Captures syntax and semantics.</p></li>
+<li><p>Provides a strong foundation for downstream tasks.</p></li>
+</ul>
+</li>
+<li><p><strong>Challenges:</strong></p>
+<ul>
+<li><p>Computationally intensive.</p></li>
+<li><p>Requires careful consideration of data quality and diversity.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="api-parameters">
-<h2>6. API Parameters<a class="headerlink" href="#api-parameters" title="Link to this heading">#</a></h2>
-<p>When making API calls, you can control various aspects of the generation process. Some important parameters include:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: Specifies which model to use (e.g., “gpt-4o-mini”, “gpt-4o”)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">messages</span></code>: An array of message objects representing the conversation history</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">max_tokens</span></code>: The maximum number of tokens to generate</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">temperature</span></code>: Controls randomness (0 to 2, lower is more deterministic)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">top_p</span></code>: An alternative to temperature, using nucleus sampling</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: Number of completions to generate for each prompt</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: Sequences where the API will stop generating further tokens</p></li>
-</ul>
-<p>Example with additional parameters:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
-    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Write a short poem about AI.&quot;</span><span class="p">}</span>
-    <span class="p">],</span>
-    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span>
-<span class="p">)</span>
-
-<span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">choice</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This example generates two short poems about AI, each limited to 50 tokens, with a temperature of 0.7, and stops generation at double newlines.</p>
 </section>
-<section id="best-practices-and-rate-limits">
-<h2>7. Best Practices and Rate Limits<a class="headerlink" href="#best-practices-and-rate-limits" title="Link to this heading">#</a></h2>
-<p>When using the OpenAI API, keep in mind:</p>
+<hr class="docutils" />
+<section id="supervised-fine-tuning-sft">
+<h2>4. Supervised Fine-Tuning (SFT)<a class="headerlink" href="#supervised-fine-tuning-sft" title="Link to this heading">#</a></h2>
+<section id="what-is-sft">
+<h3>What is SFT?<a class="headerlink" href="#what-is-sft" title="Link to this heading">#</a></h3>
+<p>Supervised Fine-Tuning involves training the pretrained model on a specific task with labeled data. It tailors the model to perform well on that task by adjusting the parameters further.</p>
+</section>
+<section id="methods-and-techniques">
+<h3>Methods and Techniques<a class="headerlink" href="#methods-and-techniques" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Rate limits</strong>: OpenAI imposes rate limits on API calls. Monitor your usage and implement appropriate error handling.</p></li>
-<li><p><strong>Costs</strong>: API usage is billed based on the number of tokens processed. Estimate costs and set up usage limits to avoid unexpected charges.</p></li>
-<li><p><strong>Prompt engineering</strong>: Craft effective prompts to get the best results from the model.</p></li>
-<li><p><strong>Error handling</strong>: Implement robust error handling to manage API errors and network issues.</p></li>
+<li><p><strong>Data Preparation:</strong> Collecting and labeling high-quality datasets relevant to the task.</p></li>
+<li><p><strong>Training Procedure:</strong></p>
+<ul>
+<li><p>Use a smaller learning rate to avoid overwriting pretrained knowledge.</p></li>
+<li><p>Employ regularization techniques to prevent overfitting.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluation Metrics:</strong> Selecting appropriate metrics to assess performance, such as accuracy, F1-score, or BLEU score.</p></li>
 </ul>
 </section>
-<section id="tokenization-basics">
-<h2>8. Tokenization Basics<a class="headerlink" href="#tokenization-basics" title="Link to this heading">#</a></h2>
-<p>Understanding tokenization is crucial when working with LLM APIs:</p>
+<section id="practical-considerations">
+<h3>Practical Considerations<a class="headerlink" href="#practical-considerations" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Tokens are the basic units processed by the model, roughly corresponding to parts of words.</p></li>
-<li><p>English text typically breaks down to about 4 characters per token.</p></li>
-<li><p>Both input (prompt) and output (completion) consume tokens.</p></li>
-<li><p>Different models have different token limits (e.g., 4096 for gpt-4o-mini).</p></li>
+<li><p><strong>Compute Resources:</strong> Fine-tuning large models can be resource-intensive.</p></li>
+<li><p><strong>Overfitting Risks:</strong> Smaller datasets can lead to overfitting; data augmentation may help.</p></li>
+<li><p><strong>Hyperparameter Tuning:</strong> Essential for optimal performance.</p></li>
 </ul>
-<p>You can use the OpenAI tokenizer to count tokens:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">num_tokens_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of tokens in a text string.&quot;&quot;&quot;</span>
-    <span class="n">encoding</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">tiktoken</span><span class="o">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-    <span class="n">num_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">num_tokens</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, world! How are you doing today?&quot;</span>
-<span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
-<span class="n">token_count</span> <span class="o">=</span> <span class="n">num_tokens_from_string</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The text contains </span><span class="si">{</span><span class="n">token_count</span><span class="si">}</span><span class="s2"> tokens for model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This function uses the <code class="docutils literal notranslate"><span class="pre">tiktoken</span></code> library (included in the OpenAI package) to accurately count tokens for a specific model.</p>
 </section>
+</section>
+<hr class="docutils" />
+<section id="parameter-efficient-fine-tuning-peft">
+<h2>5. Parameter-Efficient Fine-Tuning (PEFT)<a class="headerlink" href="#parameter-efficient-fine-tuning-peft" title="Link to this heading">#</a></h2>
+<section id="motivation-for-peft">
+<h3>Motivation for PEFT<a class="headerlink" href="#motivation-for-peft" title="Link to this heading">#</a></h3>
+<p>Fine-tuning all parameters of a large model is computationally expensive and storage-intensive. PEFT addresses this by adjusting only a small subset of parameters, making the process more efficient.</p>
+</section>
+<section id="peft-techniques">
+<h3>PEFT Techniques<a class="headerlink" href="#peft-techniques" title="Link to this heading">#</a></h3>
+<section id="adapters">
+<h4>Adapters<a class="headerlink" href="#adapters" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Introduced by Houlsby et al., adapters are small neural networks inserted between layers of the pretrained model.</p></li>
+<li><p><strong>Function:</strong> They adjust representations for specific tasks without altering the main model weights.</p></li>
+<li><p><strong>Advantages:</strong> Reduces the number of trainable parameters.</p></li>
+</ul>
+</section>
+<section id="low-rank-adaptation-lora">
+<h4>Low-Rank Adaptation (LoRA)<a class="headerlink" href="#low-rank-adaptation-lora" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Decomposes weight updates into low-rank matrices.</p></li>
+<li><p><strong>Function:</strong> Applies low-rank approximations to the weight updates during fine-tuning.</p></li>
+<li><p><strong>Advantages:</strong> Significantly reduces memory footprint and computational cost.</p></li>
+</ul>
+</section>
+<section id="prefix-tuning">
+<h4>Prefix-Tuning<a class="headerlink" href="#prefix-tuning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Keeps the model weights frozen and optimizes a sequence of prefix tokens.</p></li>
+<li><p><strong>Function:</strong> The prefix tokens influence the model’s activations, steering it towards task-specific outputs.</p></li>
+<li><p><strong>Advantages:</strong> Requires tuning only the prefix parameters.</p></li>
+</ul>
+</section>
+<section id="bitfit">
+<h4>BitFit<a class="headerlink" href="#bitfit" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Fine-tunes only the bias terms in the model’s layers.</p></li>
+<li><p><strong>Function:</strong> Adjusts biases to adapt to new tasks while keeping the majority of weights unchanged.</p></li>
+<li><p><strong>Advantages:</strong> Extremely parameter-efficient.</p></li>
+</ul>
+</section>
+</section>
+<section id="advantages-and-limitations">
+<h3>Advantages and Limitations<a class="headerlink" href="#advantages-and-limitations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Advantages:</strong></p>
+<ul>
+<li><p>Reduces computational and storage requirements.</p></li>
+<li><p>Enables quick adaptation to multiple tasks.</p></li>
+</ul>
+</li>
+<li><p><strong>Limitations:</strong></p>
+<ul>
+<li><p>May not achieve the same performance as full fine-tuning.</p></li>
+<li><p>Selection of which parameters to tune is crucial.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="alignment-techniques">
+<h2>6. Alignment Techniques<a class="headerlink" href="#alignment-techniques" title="Link to this heading">#</a></h2>
+<section id="importance-of-alignment">
+<h3>Importance of Alignment<a class="headerlink" href="#importance-of-alignment" title="Link to this heading">#</a></h3>
+<p>Aligning LLMs with human values and intentions is critical to ensure that the models behave responsibly and ethically. Misaligned models can produce harmful or biased outputs.</p>
+</section>
+<section id="reinforcement-learning-from-human-feedback-rlhf">
+<h3>Reinforcement Learning from Human Feedback (RLHF)<a class="headerlink" href="#reinforcement-learning-from-human-feedback-rlhf" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Combines reinforcement learning with human feedback to fine-tune the model.</p></li>
+<li><p><strong>Process:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Supervised Fine-Tuning:</strong> Initialize the model with human-annotated data.</p></li>
+<li><p><strong>Reward Modeling:</strong> Train a reward model based on human preferences.</p></li>
+<li><p><strong>Policy Optimization:</strong> Use reinforcement learning (e.g., Proximal Policy Optimization) to optimize the model according to the reward model.</p></li>
+</ol>
+</li>
+<li><p><strong>Advantages:</strong> Aligns the model’s outputs with human preferences.</p></li>
+</ul>
+</section>
+<section id="constitutional-ai">
+<h3>Constitutional AI<a class="headerlink" href="#constitutional-ai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Proposed by Anthropic, it involves training models to follow a set of principles or a “constitution.”</p></li>
+<li><p><strong>Function:</strong> Models are fine-tuned to generate outputs that adhere to predefined ethical guidelines without human intervention during training.</p></li>
+<li><p><strong>Advantages:</strong> Reduces the need for extensive human feedback.</p></li>
+</ul>
+</section>
+<section id="ethical-and-safety-considerations">
+<h3>Ethical and Safety Considerations<a class="headerlink" href="#ethical-and-safety-considerations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Bias and Fairness:</strong> Ensuring the model does not perpetuate or amplify biases present in training data.</p></li>
+<li><p><strong>Transparency:</strong> Making the model’s decision-making process interpretable.</p></li>
+<li><p><strong>Accountability:</strong> Establishing mechanisms to address and rectify harmful outputs.</p></li>
+<li><p><strong>Regulation Compliance:</strong> Adhering to legal standards like GDPR for data privacy.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>This session introduced the basics of working with LLM APIs, focusing on the OpenAI API. We covered API setup, making basic calls, understanding responses, and important concepts like tokenization. In the next session, we’ll dive deeper into advanced usage patterns and explore different sampling methods to control text generation.</p>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>7. Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Large Language Models have transformed the field of NLP, enabling machines to understand and generate human-like text. Understanding the basics of LLMs, from their transformer architecture to various training strategies, is essential for leveraging their capabilities effectively.</p>
 <ul class="simple">
-<li><p>[1] <a class="reference external" href="https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8">https://blog.allenai.org/a-guide-to-language-model-sampling-in-allennlp-3b1239274bc3?gi=95ecfb79a8b8</a></p></li>
-<li><p>[2] <a class="reference external" href="https://huyenchip.com/2024/01/16/sampling.html">https://huyenchip.com/2024/01/16/sampling.html</a></p></li>
-<li><p>[3] <a class="reference external" href="https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/">https://leftasexercise.com/2023/05/10/mastering-large-language-models-part-vi-sampling/</a></p></li>
-<li><p>[4] <a class="reference external" href="https://platform.openai.com/docs/quickstart">https://platform.openai.com/docs/quickstart</a></p></li>
+<li><p><strong>Pretraining</strong> provides a foundational understanding of language.</p></li>
+<li><p><strong>Supervised Fine-Tuning (SFT)</strong> adapts the model to specific tasks.</p></li>
+<li><p><strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> offers a resource-friendly alternative to full fine-tuning.</p></li>
+<li><p><strong>Alignment Techniques</strong> ensure that models act in accordance with human values and ethics.</p></li>
 </ul>
+<p>By combining these strategies, we can develop LLMs that are not only powerful but also responsible and aligned with societal needs.</p>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>8. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Vaswani, A., et al. (2017). <a class="reference external" href="https://arxiv.org/abs/1706.03762">“Attention is All You Need.”</a></p></li>
+<li><p>Devlin, J., et al. (2018). <a class="reference external" href="https://arxiv.org/abs/1810.04805">“BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.”</a></p></li>
+<li><p>Radford, A., et al. (2019). <a class="reference external" href="https://openai.com/blog/better-language-models/">“Language Models are Unsupervised Multitask Learners.”</a></p></li>
+<li><p>Houlsby, N., et al. (2019). <a class="reference external" href="https://arxiv.org/abs/1902.00751">“Parameter-Efficient Transfer Learning for NLP.”</a></p></li>
+<li><p>Hu, E. J., et al. (2021). <a class="reference external" href="https://arxiv.org/abs/2106.09685">“LoRA: Low-Rank Adaptation of Large Language Models.”</a></p></li>
+<li><p>Ouyang, L., et al. (2022). <a class="reference external" href="https://arxiv.org/abs/2203.02155">“Training language models to follow instructions with human feedback.”</a></p></li>
+<li><p>Bai, Y., et al. (2022). <a class="reference external" href="https://arxiv.org/abs/2204.05862">“Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback.”</a></p></li>
+</ol>
 </section>
 </section>
 
@@ -715,7 +834,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 6 Session 2: Sampling Methods and Text Generation</p>
+        <p class="prev-next-title">Week 6 Session 2: Introduction to LLM APIs and OpenAI API Usage</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -736,16 +855,50 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-model-apis">1. Introduction to Large Language Model APIs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-api-overview">2. OpenAI API Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-openai-api">3. Setting Up the OpenAI API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-first-api-call">4. Making Your First API Call</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-response">5. Understanding the API Response</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-parameters">6. API Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-rate-limits">7. Best Practices and Rate Limits</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization-basics">8. Tokenization Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-large-language-models">1. Introduction to Large Language Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-overview">Definition and Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-and-impact">Applications and Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals-of-transformer-architecture">2. Fundamentals of Transformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-transformer-model">The Transformer Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-mechanism">Self-Attention Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining-strategies">3. Pretraining Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives-of-pretraining">Objectives of Pretraining</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining-tasks">Pretraining Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-and-challenges">Importance and Challenges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-fine-tuning-sft">4. Supervised Fine-Tuning (SFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sft">What is SFT?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-and-techniques">Methods and Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations">Practical Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-fine-tuning-peft">5. Parameter-Efficient Fine-Tuning (PEFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-for-peft">Motivation for PEFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-techniques">PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adapters">Adapters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-adaptation-lora">Low-Rank Adaptation (LoRA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prefix-tuning">Prefix-Tuning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bitfit">BitFit</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations">Advantages and Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-techniques">6. Alignment Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-alignment">Importance of Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-from-human-feedback-rlhf">Reinforcement Learning from Human Feedback (RLHF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutional-ai">Constitutional AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethical-and-safety-considerations">Ethical and Safety Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">8. References</a></li>
 </ul>
   </nav></div>
 
