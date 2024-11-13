@@ -1,5 +1,191 @@
 <!--next-version-placeholder-->
 
+## v0.6.0 (2024-11-12)
+
+### Bug Fixes
+
+- **week09**: Update section titles to use consistent formatting
+  ([`2433e35`](https://github.com/entelecheia/intronlp-2024/commit/2433e35c15c34126c1f6fb01c62e7dc695b74f58))
+
+- **week10**: Update Q&A system to use GPT-4 model and adjust response handling
+  ([`407fb68`](https://github.com/entelecheia/intronlp-2024/commit/407fb6845b7f248589c84192cb37bbca104ae576))
+
+### Chores
+
+- **deps**: Bump python-semantic-release/publish-action
+  ([`832d066`](https://github.com/entelecheia/intronlp-2024/commit/832d06664e2bb1acb6b36bfc2beffdcd05444f31))
+
+Bumps
+  [python-semantic-release/publish-action](https://github.com/python-semantic-release/publish-action)
+  from 9.13.0 to 9.14.0. - [Release
+  notes](https://github.com/python-semantic-release/publish-action/releases) -
+  [Changelog](https://github.com/python-semantic-release/publish-action/blob/main/releaserc.toml) -
+  [Commits](https://github.com/python-semantic-release/publish-action/compare/v9.13.0...v9.14.0)
+
+--- updated-dependencies: - dependency-name: python-semantic-release/publish-action dependency-type:
+  direct:production update-type: version-update:semver-minor ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump python-semantic-release/python-semantic-release
+  ([`fc44ec4`](https://github.com/entelecheia/intronlp-2024/commit/fc44ec4c628436c46fefcf659d45b31f8cb62883))
+
+Bumps
+  [python-semantic-release/python-semantic-release](https://github.com/python-semantic-release/python-semantic-release)
+  from 9.13.0 to 9.14.0. - [Release
+  notes](https://github.com/python-semantic-release/python-semantic-release/releases) -
+  [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+  -
+  [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v9.13.0...v9.14.0)
+
+--- updated-dependencies: - dependency-name: python-semantic-release/python-semantic-release
+  dependency-type: direct:production update-type: version-update:semver-minor ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump openai from 1.54.1 to 1.54.3
+  ([`e5f9b86`](https://github.com/entelecheia/intronlp-2024/commit/e5f9b8689f2a6e32ff71179166c3acf97a0c35db))
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.54.1 to 1.54.3. - [Release
+  notes](https://github.com/openai/openai-python/releases) -
+  [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md) -
+  [Commits](https://github.com/openai/openai-python/compare/v1.54.1...v1.54.3)
+
+--- updated-dependencies: - dependency-name: openai dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump python-semantic-release/publish-action from 9.12.0 to 9.12.1
+  ([`1163ee3`](https://github.com/entelecheia/intronlp-2024/commit/1163ee3a379cd5d1fe667449e5a0a577a456d0c4))
+
+chore(deps): bump python-semantic-release/publish-action from 9.12.0 to 9.12.1
+
+- **deps**: Bump python-semantic-release/publish-action
+  ([`7e6222b`](https://github.com/entelecheia/intronlp-2024/commit/7e6222b7b049678b0d421aab3a256d9deb94f6ed))
+
+Bumps
+  [python-semantic-release/publish-action](https://github.com/python-semantic-release/publish-action)
+  from 9.12.0 to 9.12.1. - [Release
+  notes](https://github.com/python-semantic-release/publish-action/releases) -
+  [Changelog](https://github.com/python-semantic-release/publish-action/blob/main/releaserc.toml) -
+  [Commits](https://github.com/python-semantic-release/publish-action/compare/v9.12.0...v9.12.1)
+
+--- updated-dependencies: - dependency-name: python-semantic-release/publish-action dependency-type:
+  direct:production update-type: version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump python-semantic-release/python-semantic-release
+  ([`3617123`](https://github.com/entelecheia/intronlp-2024/commit/36171236bb5a4de59ee5a8b038ae36338371c632))
+
+Bumps
+  [python-semantic-release/python-semantic-release](https://github.com/python-semantic-release/python-semantic-release)
+  from 9.12.0 to 9.12.2. - [Release
+  notes](https://github.com/python-semantic-release/python-semantic-release/releases) -
+  [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+  -
+  [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v9.12.0...v9.12.2)
+
+--- updated-dependencies: - dependency-name: python-semantic-release/python-semantic-release
+  dependency-type: direct:production update-type: version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **week05**: Update section titles to use consistent formatting with colons
+  ([`6064349`](https://github.com/entelecheia/intronlp-2024/commit/6064349fd423ce196d18d5074fb8b2dfa2f695e0))
+
+- **toc**: Add week 10 session 3 to English and Korean table of contents
+  ([`bded654`](https://github.com/entelecheia/intronlp-2024/commit/bded6549546f23b13e1ed4b84ebc52f7ec55a94f))
+
+- **deps**: Bump openai from 1.53.1 to 1.54.1
+  ([`1b766ee`](https://github.com/entelecheia/intronlp-2024/commit/1b766ee17bd598a19c945dadfbb5b4d251f3bb84))
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.53.1 to 1.54.1. - [Release
+  notes](https://github.com/openai/openai-python/releases) -
+  [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md) -
+  [Commits](https://github.com/openai/openai-python/compare/v1.53.1...v1.54.1)
+
+--- updated-dependencies: - dependency-name: openai dependency-type: direct:production update-type:
+  version-update:semver-minor ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump openai from 1.53.0 to 1.53.1
+  ([`f5e860e`](https://github.com/entelecheia/intronlp-2024/commit/f5e860e26c7520d1ef5575d75c43359ae79abaa7))
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.53.0 to 1.53.1. - [Release
+  notes](https://github.com/openai/openai-python/releases) -
+  [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md) -
+  [Commits](https://github.com/openai/openai-python/compare/v1.53.0...v1.53.1)
+
+--- updated-dependencies: - dependency-name: openai dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump openai from 1.52.2 to 1.53.0
+  ([`2bed697`](https://github.com/entelecheia/intronlp-2024/commit/2bed697ea6c4600415ba5840d72da4044479aa8a))
+
+Bumps [openai](https://github.com/openai/openai-python) from 1.52.2 to 1.53.0. - [Release
+  notes](https://github.com/openai/openai-python/releases) -
+  [Changelog](https://github.com/openai/openai-python/blob/main/CHANGELOG.md) -
+  [Commits](https://github.com/openai/openai-python/compare/v1.52.2...v1.53.0)
+
+--- updated-dependencies: - dependency-name: openai dependency-type: direct:production update-type:
+  version-update:semver-minor ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps**: Bump ekonlpy from 2.0.5 to 2.0.6
+  ([`761f73b`](https://github.com/entelecheia/intronlp-2024/commit/761f73b036ab114e1dd12a9bdb1d9f6b9c176d8f))
+
+Bumps [ekonlpy](https://github.com/entelecheia/eKoNLPy) from 2.0.5 to 2.0.6. - [Release
+  notes](https://github.com/entelecheia/eKoNLPy/releases) -
+  [Changelog](https://github.com/entelecheia/eKoNLPy/blob/master/CHANGELOG.md) -
+  [Commits](https://github.com/entelecheia/eKoNLPy/compare/v2.0.5...v2.0.6)
+
+--- updated-dependencies: - dependency-name: ekonlpy dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+### Features
+
+- **week11**: Add new research notes and logs for team projects
+  ([`d7d8fda`](https://github.com/entelecheia/intronlp-2024/commit/d7d8fda3f3528bddbec33592d635a7473549f04c))
+
+- **week11**: Refactor OpenAI API usage to improve clarity and consistency
+  ([`41adf7f`](https://github.com/entelecheia/intronlp-2024/commit/41adf7fd63fbadc5a7568959969fbd031dd2f2a0))
+
+- **week11**: Update OpenAI API usage examples and enhance model descriptions
+  ([`fd6ebd1`](https://github.com/entelecheia/intronlp-2024/commit/fd6ebd18e131f4da202b61afb4ad45c8de19c4e0))
+
+- **week11**: Update session titles and add advanced Flask and Streamlit materials
+  ([`c8d0d06`](https://github.com/entelecheia/intronlp-2024/commit/c8d0d06d35d19d74635d9c3d1255ecb43481a03b))
+
+- **week11**: Add introductory materials for web application development and Flask
+  ([`bf11829`](https://github.com/entelecheia/intronlp-2024/commit/bf118297e4fdbb748ad8c262faf8bc229c08deec))
+
+- **week11**: Add week 11 sessions to the table of contents
+  ([`48fb0ea`](https://github.com/entelecheia/intronlp-2024/commit/48fb0ea70d51b5dbf8b53a8219b4d7fa4a1d9958))
+
+- **week11**: Add introductory materials for web application development and Flask
+  ([`7b3740d`](https://github.com/entelecheia/intronlp-2024/commit/7b3740dcd661714b155037d049fba9cfc7cce0c1))
+
+- **toc**: Add table of contents for week 10 in English and Korean
+  ([`ad6c466`](https://github.com/entelecheia/intronlp-2024/commit/ad6c466067d78c4c82326b57cde2936c2816dec8))
+
+- **toc**: Add week 10 sessions to English and Korean table of contents
+  ([`adff7b4`](https://github.com/entelecheia/intronlp-2024/commit/adff7b47d716d94b6a1eed1d91e1ed8d1a8a3118))
+
+- **week10**: Add content for LLM-based Q&A system and session overview
+  ([`ccac27b`](https://github.com/entelecheia/intronlp-2024/commit/ccac27bd734db146233f919ce28bce5f7ce61277))
+
+- **week10**: Add curriculum outline for building LLM-based Q&A systems
+  ([`6300323`](https://github.com/entelecheia/intronlp-2024/commit/6300323de86f61ebac4df0a625fea3eabd8e0e59))
+
+
 ## v0.5.1 (2024-10-29)
 
 ### Bug Fixes
