@@ -71,7 +71,7 @@ jobs:
           echo '\n\n\n'
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # required
           fail_ci_if_error: false # optional (default = false)
