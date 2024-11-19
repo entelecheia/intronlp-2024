@@ -74,6 +74,7 @@ parts:
                   - file: projects/team1/research-note-7week-01
                   - file: projects/team1/research-note-8week-01
                   - file: projects/team1/research-note-11week-01
+                  - file: projects/team1/research-note-12week-01
           - file: projects/team2/index
             sections:
               - file: projects/team2/proposal
@@ -114,6 +115,7 @@ parts:
                   - file: projects/team5/research-note-7
                   - file: projects/team5/research-note-8
                   - file: projects/team5/research-note-9
+                  - file: projects/team5/research-note-10
   - caption: About
     chapters:
       - file: syllabus/index
