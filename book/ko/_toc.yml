@@ -88,6 +88,11 @@ parts:
                   - file: projects/team3/research-note5w
                   - file: projects/team3/research-note6w
                   - file: projects/team3/research-note7w
+                  - file: projects/team3/research-note8w
+                  - file: projects/team3/research-note9w
+                  - file: projects/team3/research-note10w
+                  - file: projects/team3/research-note11w
+                  - file: projects/team3/research-note12w
           - file: projects/team4/index
             sections:
               - file: projects/team4/proposal
@@ -116,6 +121,7 @@ parts:
                   - file: projects/team5/research-note-8
                   - file: projects/team5/research-note-9
                   - file: projects/team5/research-note-10
+                  - file: projects/team5/research-note-11
   - caption: About
     chapters:
       - file: syllabus/index
