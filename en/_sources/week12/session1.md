@@ -1,21 +1,19 @@
 # Week 12 Session 1: Fundamentals of LLM Output Structuring
 
-## Output Structuring Techniques for LLMs
-
 In this session, we'll explore fundamental techniques for structuring and controlling outputs from Large Language Models (LLMs). Understanding these techniques is crucial for developing reliable and practical NLP applications.
 
-### Learning Objectives
+## Learning Objectives
 
 - Master template-based output techniques
 - Understand JSON and XML formatting in LLM outputs
 - Learn to use markdown and other markup languages effectively
 - Implement basic output validation strategies
 
-### Template-Based Outputs
+## Template-Based Outputs
 
 Template-based outputs provide a consistent framework for LLM responses. This approach helps maintain uniformity and reliability in applications.
 
-#### Key Components:
+### Key Components:
 
 1. **Basic Templates**
 
@@ -39,11 +37,11 @@ Template-based outputs provide a consistent framework for LLM responses. This ap
    - References: [List of sources]
    ```
 
-### JSON and XML Formatting
+## JSON and XML Formatting
 
 Structured data formats are essential for integrating LLM outputs with other systems.
 
-#### JSON Format Example:
+### JSON Format Example:
 
 ```json
 {
@@ -55,7 +53,7 @@ Structured data formats are essential for integrating LLM outputs with other sys
 }
 ```
 
-#### XML Format Example:
+### XML Format Example:
 
 ```xml
 <analysis>
@@ -69,11 +67,11 @@ Structured data formats are essential for integrating LLM outputs with other sys
 </analysis>
 ```
 
-### Markdown and Other Markup Languages
+## Markdown and Other Markup Languages
 
 Markdown provides a human-readable yet structured format for documentation and content organization.
 
-#### Common Use Cases:
+### Common Use Cases:
 
 1. **Documentation Generation**
 
@@ -113,7 +111,7 @@ Markdown provides a human-readable yet structured format for documentation and c
    - Recommendation 2
    ```
 
-### Implementation Strategies
+## Implementation Strategies
 
 1. **Prompt Engineering**
 
@@ -145,7 +143,7 @@ Markdown provides a human-readable yet structured format for documentation and c
            return {"error": str(e), "raw_response": response}
    ```
 
-### Best Practices
+## Best Practices
 
 1. **Format Consistency**
 
@@ -164,7 +162,7 @@ Markdown provides a human-readable yet structured format for documentation and c
    - Log validation failures
    - Provide meaningful error messages
 
-### Practical Exercise
+## Practical Exercise
 
 Try implementing this basic structured output system:
 
@@ -190,11 +188,11 @@ def create_structured_response(content, format_type='json'):
     return templates.get(format_type, {'error': 'Invalid format'})
 ```
 
-### Next Steps
+## Next Steps
 
 In the next session, we'll explore more advanced control mechanisms including temperature settings, sampling parameters, and sophisticated validation techniques.
 
-### References
+## References
 
 1. "Best Practices for LLM Output Structuring" - OpenAI Documentation
 2. "JSON Schema Validation for LLM Outputs" - Schema.org

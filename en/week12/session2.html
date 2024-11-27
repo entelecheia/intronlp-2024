@@ -487,34 +487,31 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-control-mechanisms-for-llm-outputs">Advanced Control Mechanisms for LLM Outputs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling-parameters">Temperature and Sampling Parameters</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-control">1. Temperature Control</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">2. Top-p (Nucleus) Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling-parameters">Temperature and Sampling Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-control">1. Temperature Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">2. Top-p (Nucleus) Sampling</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-validation-techniques">Advanced Validation Techniques</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-based-validation">1. Schema-Based Validation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-validation-rules">2. Custom Validation Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-validation-techniques">Advanced Validation Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-based-validation">1. Schema-Based Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-validation-rules">2. Custom Validation Rules</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-recovery">Error Handling and Recovery</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-mechanism">1. Retry Mechanism</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-strategies">2. Fallback Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-recovery">Error Handling and Recovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-mechanism">1. Retry Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-strategies">2. Fallback Strategies</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive-output-parsing">Comprehensive Output Parsing</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-format-parser">1. Multi-Format Parser</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#format-detection">2. Format Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive-output-parsing">Comprehensive Output Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-format-parser">1. Multi-Format Parser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-detection">2. Format Detection</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production">Best Practices for Production</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production">Best Practices for Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -528,11 +525,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-12-session-2-advanced-llm-output-control">
 <h1>Week 12 Session 2: Advanced LLM Output Control<a class="headerlink" href="#week-12-session-2-advanced-llm-output-control" title="Link to this heading">#</a></h1>
-<section id="advanced-control-mechanisms-for-llm-outputs">
-<h2>Advanced Control Mechanisms for LLM Outputs<a class="headerlink" href="#advanced-control-mechanisms-for-llm-outputs" title="Link to this heading">#</a></h2>
 <p>Building on our understanding of basic output structuring, this session explores advanced techniques for controlling LLM outputs, including temperature settings, sampling parameters, and sophisticated validation mechanisms.</p>
 <section id="learning-objectives">
-<h3>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Master temperature and sampling parameters for output control</p></li>
 <li><p>Implement advanced validation techniques</p></li>
@@ -541,10 +536,10 @@
 </ul>
 </section>
 <section id="temperature-and-sampling-parameters">
-<h3>Temperature and Sampling Parameters<a class="headerlink" href="#temperature-and-sampling-parameters" title="Link to this heading">#</a></h3>
+<h2>Temperature and Sampling Parameters<a class="headerlink" href="#temperature-and-sampling-parameters" title="Link to this heading">#</a></h2>
 <p>Temperature and other sampling parameters significantly influence LLM output characteristics.</p>
 <section id="temperature-control">
-<h4>1. Temperature Control<a class="headerlink" href="#temperature-control" title="Link to this heading">#</a></h4>
+<h3>1. Temperature Control<a class="headerlink" href="#temperature-control" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_with_temperature</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate text with specified temperature.</span>
@@ -560,7 +555,7 @@
 </div>
 </section>
 <section id="top-p-nucleus-sampling">
-<h4>2. Top-p (Nucleus) Sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Link to this heading">#</a></h4>
+<h3>2. Top-p (Nucleus) Sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nucleus_sampling</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implement nucleus sampling for more natural text generation.</span>
@@ -576,9 +571,9 @@
 </section>
 </section>
 <section id="advanced-validation-techniques">
-<h3>Advanced Validation Techniques<a class="headerlink" href="#advanced-validation-techniques" title="Link to this heading">#</a></h3>
+<h2>Advanced Validation Techniques<a class="headerlink" href="#advanced-validation-techniques" title="Link to this heading">#</a></h2>
 <section id="schema-based-validation">
-<h4>1. Schema-Based Validation<a class="headerlink" href="#schema-based-validation" title="Link to this heading">#</a></h4>
+<h3>1. Schema-Based Validation<a class="headerlink" href="#schema-based-validation" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
@@ -599,7 +594,7 @@
 </div>
 </section>
 <section id="custom-validation-rules">
-<h4>2. Custom Validation Rules<a class="headerlink" href="#custom-validation-rules" title="Link to this heading">#</a></h4>
+<h3>2. Custom Validation Rules<a class="headerlink" href="#custom-validation-rules" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OutputValidator</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validators</span> <span class="o">=</span> <span class="p">[]</span>
@@ -622,9 +617,9 @@
 </section>
 </section>
 <section id="error-handling-and-recovery">
-<h3>Error Handling and Recovery<a class="headerlink" href="#error-handling-and-recovery" title="Link to this heading">#</a></h3>
+<h2>Error Handling and Recovery<a class="headerlink" href="#error-handling-and-recovery" title="Link to this heading">#</a></h2>
 <section id="retry-mechanism">
-<h4>1. Retry Mechanism<a class="headerlink" href="#retry-mechanism" title="Link to this heading">#</a></h4>
+<h3>1. Retry Mechanism<a class="headerlink" href="#retry-mechanism" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tenacity</span> <span class="kn">import</span> <span class="n">retry</span><span class="p">,</span> <span class="n">stop_after_attempt</span><span class="p">,</span> <span class="n">wait_exponential</span>
 
 <span class="nd">@retry</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="n">stop_after_attempt</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait_exponential</span><span class="p">(</span><span class="n">multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
@@ -644,7 +639,7 @@
 </div>
 </section>
 <section id="fallback-strategies">
-<h4>2. Fallback Strategies<a class="headerlink" href="#fallback-strategies" title="Link to this heading">#</a></h4>
+<h3>2. Fallback Strategies<a class="headerlink" href="#fallback-strategies" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OutputGenerator</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_model</span><span class="p">,</span> <span class="n">fallback_model</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">primary</span> <span class="o">=</span> <span class="n">primary_model</span>
@@ -661,9 +656,9 @@
 </section>
 </section>
 <section id="comprehensive-output-parsing">
-<h3>Comprehensive Output Parsing<a class="headerlink" href="#comprehensive-output-parsing" title="Link to this heading">#</a></h3>
+<h2>Comprehensive Output Parsing<a class="headerlink" href="#comprehensive-output-parsing" title="Link to this heading">#</a></h2>
 <section id="multi-format-parser">
-<h4>1. Multi-Format Parser<a class="headerlink" href="#multi-format-parser" title="Link to this heading">#</a></h4>
+<h3>1. Multi-Format Parser<a class="headerlink" href="#multi-format-parser" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OutputParser</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parsers</span> <span class="o">=</span> <span class="p">{</span>
@@ -691,7 +686,7 @@
 </div>
 </section>
 <section id="format-detection">
-<h4>2. Format Detection<a class="headerlink" href="#format-detection" title="Link to this heading">#</a></h4>
+<h3>2. Format Detection<a class="headerlink" href="#format-detection" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">detect_format</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Automatically detect the format of the output.</span>
@@ -708,7 +703,7 @@
 </section>
 </section>
 <section id="practical-implementation">
-<h3>Practical Implementation<a class="headerlink" href="#practical-implementation" title="Link to this heading">#</a></h3>
+<h2>Practical Implementation<a class="headerlink" href="#practical-implementation" title="Link to this heading">#</a></h2>
 <p>Here’s a complete example combining various control mechanisms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LLMController</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;gpt-3.5-turbo&#39;</span><span class="p">):</span>
@@ -752,7 +747,7 @@
 </div>
 </section>
 <section id="best-practices-for-production">
-<h3>Best Practices for Production<a class="headerlink" href="#best-practices-for-production" title="Link to this heading">#</a></h3>
+<h2>Best Practices for Production<a class="headerlink" href="#best-practices-for-production" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Monitoring and Logging</strong></p>
 <ul class="simple">
@@ -778,18 +773,17 @@
 </ol>
 </section>
 <section id="next-steps">
-<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <p>In the next week, we’ll focus on applying these concepts in real-world scenarios through the final project presentations.</p>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>“Advanced LLM Control Mechanisms” - OpenAI API Documentation</p></li>
 <li><p>“Sampling Strategies in Language Models” - DeepMind Research</p></li>
 <li><p>“Production-Ready LLM Systems” - ML Engineering Best Practices</p></li>
 <li><p>“Error Handling in AI Systems” - Google AI Platform Documentation</p></li>
 </ol>
-</section>
 </section>
 </section>
 
@@ -860,34 +854,31 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-control-mechanisms-for-llm-outputs">Advanced Control Mechanisms for LLM Outputs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling-parameters">Temperature and Sampling Parameters</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-control">1. Temperature Control</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">2. Top-p (Nucleus) Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling-parameters">Temperature and Sampling Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-control">1. Temperature Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">2. Top-p (Nucleus) Sampling</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-validation-techniques">Advanced Validation Techniques</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-based-validation">1. Schema-Based Validation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-validation-rules">2. Custom Validation Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-validation-techniques">Advanced Validation Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-based-validation">1. Schema-Based Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-validation-rules">2. Custom Validation Rules</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-recovery">Error Handling and Recovery</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-mechanism">1. Retry Mechanism</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-strategies">2. Fallback Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-and-recovery">Error Handling and Recovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-mechanism">1. Retry Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-strategies">2. Fallback Strategies</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive-output-parsing">Comprehensive Output Parsing</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-format-parser">1. Multi-Format Parser</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#format-detection">2. Format Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive-output-parsing">Comprehensive Output Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-format-parser">1. Multi-Format Parser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-detection">2. Format Detection</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production">Best Practices for Production</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production">Best Practices for Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
