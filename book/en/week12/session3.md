@@ -1,4 +1,4 @@
-# Week 12 Session 3
+# Week 12 Session 3: Real-World LLM Applications
 
 ## Practical Applications and Advanced Use Cases
 
