@@ -1,21 +1,19 @@
 # Week 12 Session 2: Advanced LLM Output Control
 
-## Advanced Control Mechanisms for LLM Outputs
-
 Building on our understanding of basic output structuring, this session explores advanced techniques for controlling LLM outputs, including temperature settings, sampling parameters, and sophisticated validation mechanisms.
 
-### Learning Objectives
+## Learning Objectives
 
 - Master temperature and sampling parameters for output control
 - Implement advanced validation techniques
 - Design robust error handling systems
 - Create comprehensive output parsing solutions
 
-### Temperature and Sampling Parameters
+## Temperature and Sampling Parameters
 
 Temperature and other sampling parameters significantly influence LLM output characteristics.
 
-#### 1. Temperature Control
+### 1. Temperature Control
 
 ```python
 def generate_with_temperature(prompt, temperature=0.7):
@@ -31,7 +29,7 @@ def generate_with_temperature(prompt, temperature=0.7):
     )
 ```
 
-#### 2. Top-p (Nucleus) Sampling
+### 2. Top-p (Nucleus) Sampling
 
 ```python
 def nucleus_sampling(prompt, top_p=0.9):
@@ -46,9 +44,9 @@ def nucleus_sampling(prompt, top_p=0.9):
     )
 ```
 
-### Advanced Validation Techniques
+## Advanced Validation Techniques
 
-#### 1. Schema-Based Validation
+### 1. Schema-Based Validation
 
 ```python
 from pydantic import BaseModel, Field
@@ -69,7 +67,7 @@ def validate_analysis(response: dict) -> bool:
         return False
 ```
 
-#### 2. Custom Validation Rules
+### 2. Custom Validation Rules
 
 ```python
 class OutputValidator:
@@ -91,9 +89,9 @@ validator.add_rule(lambda x: len(x.get('key_points', [])) >= 3)
 validator.add_rule(lambda x: 0 <= x.get('confidence', 0) <= 1)
 ```
 
-### Error Handling and Recovery
+## Error Handling and Recovery
 
-#### 1. Retry Mechanism
+### 1. Retry Mechanism
 
 ```python
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -113,7 +111,7 @@ def generate_with_retry(prompt, format_type='json'):
         raise
 ```
 
-#### 2. Fallback Strategies
+### 2. Fallback Strategies
 
 ```python
 class OutputGenerator:
@@ -129,9 +127,9 @@ class OutputGenerator:
             return self.fallback.generate(prompt)
 ```
 
-### Comprehensive Output Parsing
+## Comprehensive Output Parsing
 
-#### 1. Multi-Format Parser
+### 1. Multi-Format Parser
 
 ```python
 class OutputParser:
@@ -159,7 +157,7 @@ class OutputParser:
         pass
 ```
 
-#### 2. Format Detection
+### 2. Format Detection
 
 ```python
 def detect_format(content: str) -> str:
@@ -175,7 +173,7 @@ def detect_format(content: str) -> str:
     return 'plain_text'
 ```
 
-### Practical Implementation
+## Practical Implementation
 
 Here's a complete example combining various control mechanisms:
 
@@ -220,7 +218,7 @@ class LLMController:
         raise ValueError("Failed to generate valid output")
 ```
 
-### Best Practices for Production
+## Best Practices for Production
 
 1. **Monitoring and Logging**
 
@@ -239,11 +237,11 @@ class LLMController:
    - Implement rate limiting
    - Handle sensitive information appropriately
 
-### Next Steps
+## Next Steps
 
 In the next week, we'll focus on applying these concepts in real-world scenarios through the final project presentations.
 
-### References
+## References
 
 1. "Advanced LLM Control Mechanisms" - OpenAI API Documentation
 2. "Sampling Strategies in Language Models" - DeepMind Research
