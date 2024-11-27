@@ -1,4 +1,4 @@
-# Week 12 Session 2
+# Week 12 Session 2: Advanced LLM Output Control
 
 ## Advanced Control Mechanisms for LLM Outputs
 

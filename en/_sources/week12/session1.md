@@ -1,4 +1,4 @@
-# Week 12 Session 1
+# Week 12 Session 1: Fundamentals of LLM Output Structuring
 
 ## Output Structuring Techniques for LLMs
 
