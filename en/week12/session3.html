@@ -99,6 +99,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team Project" href="../projects/index.html" />
+    <link rel="prev" title="Week 12 Session 2" href="session2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -151,8 +153,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -201,7 +201,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week01/session1.html">Week 1 Session 1: Foundations and Evolution of NLP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week01/session2.html">Week 1 Session 2: The Revolution in Modern NLP</a></li>
@@ -263,6 +263,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../week11/session1.html">Week 11 Session 1: Introduction to Web Development and Flask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week11/session2.html">Week 11 Session 2: Advanced Flask and Introduction to Streamlit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week11/session3.html">Week 11 Session 3: Integrating LLM APIs and Deployment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 12: Controlling and Structuring LLM Outputs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="session1.html">Week 12 Session 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session2.html">Week 12 Session 2</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 12 Session 3</a></li>
 </ul>
 </details></li>
 </ul>
@@ -458,7 +464,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -474,6 +482,36 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-applications-and-advanced-use-cases">Practical Applications and Advanced Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-applications">Real-World Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-information-extraction">1. Structured Information Extraction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-report-generation">2. Automated Report Generation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-validation-workflows">Complex Validation Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-stage-validation-pipeline">1. Multi-Stage Validation Pipeline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-aware-validation">2. Context-Aware Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-ready-implementation">Production-Ready Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scalable-llm-service">1. Scalable LLM Service</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-analytics">2. Monitoring and Analytics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production-deployment">Best Practices for Production Deployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-exercise">Practical Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -485,6 +523,286 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-12-session-3">
 <h1>Week 12 Session 3<a class="headerlink" href="#week-12-session-3" title="Link to this heading">#</a></h1>
+<section id="practical-applications-and-advanced-use-cases">
+<h2>Practical Applications and Advanced Use Cases<a class="headerlink" href="#practical-applications-and-advanced-use-cases" title="Link to this heading">#</a></h2>
+<p>In this final session of Week 12, we’ll explore practical applications and advanced use cases for controlling and structuring LLM outputs, focusing on real-world implementations and complex scenarios.</p>
+<section id="learning-objectives">
+<h3>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Apply structured output techniques to real-world use cases</p></li>
+<li><p>Implement complex validation workflows</p></li>
+<li><p>Design robust error handling systems</p></li>
+<li><p>Create production-ready LLM applications</p></li>
+</ul>
+</section>
+<section id="real-world-applications">
+<h3>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading">#</a></h3>
+<section id="structured-information-extraction">
+<h4>1. Structured Information Extraction<a class="headerlink" href="#structured-information-extraction" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InformationExtractor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">LLMController</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">extract_entities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Extract key entities from the following text and format as JSON:</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">text</span><span class="si">}</span>
+
+<span class="s2">        Required format:</span>
+<span class="s2">        </span><span class="se">{{</span>
+<span class="s2">            &quot;people&quot;: [</span><span class="si">{</span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> str, &quot;role&quot;: str</span><span class="si">}</span><span class="s2">],</span>
+<span class="s2">            &quot;organizations&quot;: [</span><span class="si">{</span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> str, &quot;type&quot;: str</span><span class="si">}</span><span class="s2">],</span>
+<span class="s2">            &quot;locations&quot;: [</span><span class="si">{</span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> str, &quot;context&quot;: str</span><span class="si">}</span><span class="s2">]</span>
+<span class="s2">        </span><span class="se">}}</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate_controlled_output</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.3</span>  <span class="c1"># Lower temperature for factual extraction</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="automated-report-generation">
+<h4>2. Automated Report Generation<a class="headerlink" href="#automated-report-generation" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ReportGenerator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">LLMController</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># Analysis Report</span>
+<span class="s2">## Executive Summary</span>
+<span class="si">{summary}</span>
+
+<span class="s2">## Key Findings</span>
+<span class="si">{findings}</span>
+
+<span class="s2">## Recommendations</span>
+<span class="si">{recommendations}</span>
+
+<span class="s2">## Technical Details</span>
+<span class="si">{details}</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">sections</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;findings&#39;</span><span class="p">,</span> <span class="s1">&#39;recommendations&#39;</span><span class="p">,</span> <span class="s1">&#39;details&#39;</span><span class="p">]:</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Generate </span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s2"> section for report about: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">sections</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate_controlled_output</span><span class="p">(</span>
+                <span class="n">prompt</span><span class="p">,</span>
+                <span class="n">format_type</span><span class="o">=</span><span class="s1">&#39;markdown&#39;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">sections</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="complex-validation-workflows">
+<h3>Complex Validation Workflows<a class="headerlink" href="#complex-validation-workflows" title="Link to this heading">#</a></h3>
+<section id="multi-stage-validation-pipeline">
+<h4>1. Multi-Stage Validation Pipeline<a class="headerlink" href="#multi-stage-validation-pipeline" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ValidationPipeline</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validator</span><span class="p">,</span> <span class="n">error_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;validator&#39;</span><span class="p">:</span> <span class="n">validator</span><span class="p">,</span>
+            <span class="s1">&#39;error_handler&#39;</span><span class="p">:</span> <span class="n">error_handler</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_handler</span>
+        <span class="p">})</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">content</span>
+        <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">stage</span><span class="p">[</span><span class="s1">&#39;validator&#39;</span><span class="p">](</span><span class="n">result</span><span class="p">):</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stage</span><span class="p">[</span><span class="s1">&#39;error_handler&#39;</span><span class="p">](</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stage</span><span class="p">[</span><span class="s1">&#39;error_handler&#39;</span><span class="p">](</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">default_handler</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation failed: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Content failed validation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="context-aware-validation">
+<h4>2. Context-Aware Validation<a class="headerlink" href="#context-aware-validation" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ContextualValidator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">any</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">add_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rule_func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">rule_func</span>
+
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">rule_name</span><span class="p">,</span> <span class="n">rule_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rule_func</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rule </span><span class="si">{</span><span class="n">rule_name</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">validator</span> <span class="o">=</span> <span class="n">ContextualValidator</span><span class="p">()</span>
+<span class="n">validator</span><span class="o">.</span><span class="n">add_context</span><span class="p">(</span><span class="s1">&#39;max_length&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">validator</span><span class="o">.</span><span class="n">add_context</span><span class="p">(</span><span class="s1">&#39;required_fields&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">])</span>
+<span class="n">validator</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s1">&#39;length_check&#39;</span><span class="p">,</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)))</span> <span class="o">&lt;=</span> <span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;max_length&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="production-ready-implementation">
+<h3>Production-Ready Implementation<a class="headerlink" href="#production-ready-implementation" title="Link to this heading">#</a></h3>
+<section id="scalable-llm-service">
+<h4>1. Scalable LLM Service<a class="headerlink" href="#scalable-llm-service" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">LLMService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">LLMController</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                      <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                      <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cache_key</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">generate_controlled_output</span><span class="p">(</span>
+                <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">params</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generation failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Failed to generate response&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_cache_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">hash</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">LLMService</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/generate&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">generate_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">service</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">[</span><span class="s1">&#39;prompt&#39;</span><span class="p">],</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-analytics">
+<h4>2. Monitoring and Analytics<a class="headerlink" href="#monitoring-and-analytics" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LLMMonitor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Counter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latencies</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">track_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                          <span class="n">request_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                          <span class="n">start_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latencies</span><span class="p">[</span><span class="n">request_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="n">request_type</span><span class="p">][</span><span class="s1">&#39;total_requests&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">get_statistics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">req_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span>
+            <span class="n">stats</span><span class="p">[</span><span class="n">req_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;total_requests&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="n">req_type</span><span class="p">][</span><span class="s1">&#39;total_requests&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;avg_latency&#39;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latencies</span><span class="p">[</span><span class="n">req_type</span><span class="p">]),</span>
+                <span class="s1">&#39;p95_latency&#39;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">latencies</span><span class="p">[</span><span class="n">req_type</span><span class="p">],</span>
+                    <span class="n">n</span><span class="o">=</span><span class="mi">20</span>
+                <span class="p">)[</span><span class="mi">18</span><span class="p">]</span>  <span class="c1"># 95th percentile</span>
+            <span class="p">}</span>
+        <span class="k">return</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices-for-production-deployment">
+<h3>Best Practices for Production Deployment<a class="headerlink" href="#best-practices-for-production-deployment" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Performance Optimization</strong></p>
+<ul class="simple">
+<li><p>Implement caching strategies</p></li>
+<li><p>Use async/await for I/O operations</p></li>
+<li><p>Batch similar requests when possible</p></li>
+</ul>
+</li>
+<li><p><strong>Error Handling</strong></p>
+<ul class="simple">
+<li><p>Implement circuit breakers</p></li>
+<li><p>Use fallback responses</p></li>
+<li><p>Log errors with context</p></li>
+</ul>
+</li>
+<li><p><strong>Monitoring</strong></p>
+<ul class="simple">
+<li><p>Track response times</p></li>
+<li><p>Monitor error rates</p></li>
+<li><p>Set up alerts for anomalies</p></li>
+</ul>
+</li>
+<li><p><strong>Security</strong></p>
+<ul class="simple">
+<li><p>Validate all inputs</p></li>
+<li><p>Rate limit requests</p></li>
+<li><p>Implement authentication</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="practical-exercise">
+<h3>Practical Exercise<a class="headerlink" href="#practical-exercise" title="Link to this heading">#</a></h3>
+<p>Implement a complete LLM service with the following features:</p>
+<ol class="arabic simple">
+<li><p>Structured output generation</p></li>
+<li><p>Multi-stage validation</p></li>
+<li><p>Error handling and recovery</p></li>
+<li><p>Monitoring and analytics</p></li>
+<li><p>Caching mechanism</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<p>As we conclude Week 12, you should now have a comprehensive understanding of:</p>
+<ul class="simple">
+<li><p>Output structuring techniques</p></li>
+<li><p>Control mechanisms</p></li>
+<li><p>Validation strategies</p></li>
+<li><p>Production deployment considerations</p></li>
+</ul>
+<p>Apply these concepts in your final projects, focusing on creating robust and production-ready LLM applications.</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>“Building Production-Ready LLM Applications” - AWS Machine Learning Blog</p></li>
+<li><p>“Scaling Language Models in Production” - Microsoft Research</p></li>
+<li><p>“Best Practices for LLM API Design” - OpenAI Engineering</p></li>
+<li><p>“Monitoring ML Systems” - Google SRE Handbook</p></li>
+</ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -519,12 +837,68 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="session2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 12 Session 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Team Project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-applications-and-advanced-use-cases">Practical Applications and Advanced Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-applications">Real-World Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-information-extraction">1. Structured Information Extraction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-report-generation">2. Automated Report Generation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-validation-workflows">Complex Validation Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-stage-validation-pipeline">1. Multi-Stage Validation Pipeline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-aware-validation">2. Context-Aware Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-ready-implementation">Production-Ready Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scalable-llm-service">1. Scalable LLM Service</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-analytics">2. Monitoring and Analytics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-production-deployment">Best Practices for Production Deployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-exercise">Practical Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
