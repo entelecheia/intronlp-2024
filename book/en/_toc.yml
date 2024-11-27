@@ -58,6 +58,11 @@ parts:
           - file: week11/session1
           - file: week11/session2
           - file: week11/session3
+      - file: week12/index
+        sections:
+          - file: week12/session1
+          - file: week12/session2
+          - file: week12/session3
   - caption: Projects
     chapters:
       - file: projects/index
