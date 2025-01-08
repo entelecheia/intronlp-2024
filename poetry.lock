@@ -1486,13 +1486,13 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.58.1"
+version = "1.59.5"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "openai-1.58.1-py3-none-any.whl", hash = "sha256:e2910b1170a6b7f88ef491ac3a42c387f08bd3db533411f7ee391d166571d63c"},
-    {file = "openai-1.58.1.tar.gz", hash = "sha256:f5a035fd01e141fc743f4b0e02c41ca49be8fab0866d3b67f5f29b4f4d3c0973"},
+    {file = "openai-1.59.5-py3-none-any.whl", hash = "sha256:e646b44856b0dda9345d3c43639e056334d792d1690e99690313c0ef7ca4d8cc"},
+    {file = "openai-1.59.5.tar.gz", hash = "sha256:9886e77c02dad9dc6a7b67a11ab372a56842a9b5d376aa476672175ab10e83a0"},
 ]
 
 [package.dependencies]
@@ -2606,4 +2606,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "2816feeb8543597ce6684ce70e1461170571ab2e29c9c899202d2da4d4d8b556"
+content-hash = "1c7d728452e650083a87be7a954a8d905af2cb6d7b642c79de794bdaddfd59eb"
